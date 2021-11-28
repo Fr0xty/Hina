@@ -120,6 +120,7 @@ class help(commands.Cog):
     helpEmbedUtility.add_field(name = "`(googlesearch <search_keyword>`\n `(gs <search_keyword>`", value = "google search a keyword", inline = False),
     helpEmbedUtility.add_field(name = "`(prune [amount]`", value = "delete an amount of messages in channel, require *manage_messages* permission", inline = False),
     helpEmbedUtility.add_field(name = "`(epochtime`", value = "get brief doc for epochtime", inline = False)
+    helpEmbedUtility.add_field(name = "`(ping`", value = "get ping time", inline = False)
     helpEmbedUtility.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
@@ -324,6 +325,7 @@ class help(commands.Cog):
     helpEmbedUtility.add_field(name = "`(googlesearch <search_keyword>`\n `(gs <search_keyword>`", value = "google search a keyword", inline = False),
     helpEmbedUtility.add_field(name = "`(prune [amount]`", value = "delete an amount of messages in channel, require *manage_messages* permission", inline = False),
     helpEmbedUtility.add_field(name = "`(epochtime`", value = "get brief doc for epochtime", inline = False)
+    helpEmbedUtility.add_field(name = "`(ping`", value = "get ping time", inline = False)
     helpEmbedUtility.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
@@ -354,7 +356,6 @@ class help(commands.Cog):
     helpEmbedHidden.add_field(name = "🎌 `(tfread <list_index>` *****", value = "get word(dict) from teform.json", inline = True)
     helpEmbedHidden.add_field(name = "🎌 `(tftype` *****", value = "get len() of every conjugate type (ctype)", inline = True)
     helpEmbedHidden.set_footer(text="Commands with * are not restricted to only creator. \n <args> are Required | [args] are Optional", icon_url=owner_pfp)
-
 
 #--------------------------------------------------------------------------------------
     if category is not None:
