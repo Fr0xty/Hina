@@ -1,0 +1,677 @@
+[
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965028811587614/9558cbd5449c1f80.png",
+    "te_form": "\u60b2\u3057\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965040589197312/a878f2c5c67d4338.png",
+    "te_form": "\u6d41\u884c\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965042933813329/496e3a72f4c30ad8.png",
+    "te_form": "\u507d\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965044875776021/0ed48ad47e8b1976.png",
+    "te_form": "\u8150\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965046297628772/f658deb0bc04df42.png",
+    "te_form": "\u5207\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965047966986250/5f98da3d5bd29a9c.png",
+    "te_form": "\u6e21\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965049648902234/a15a95ffef5be930.png",
+    "te_form": "\u7d9a\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965052530372618/fb241f8e5a58aa37.png",
+    "te_form": "\u901a\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965056405901322/2f41d209baa97c76.png",
+    "te_form": "\u53c2\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965058016526376/5c4a6fc7eaef9360.png",
+    "te_form": "\u304d\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965071706750996/cd41447aec1380dc.png",
+    "te_form": "\u8ffd\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965074542096436/5dda456586367f48.png",
+    "te_form": "\u62c5\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965077444550686/d279084e6b3e3eb2.png",
+    "te_form": "\u904b\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965078631530556/9e0436b88a4a7d91.png",
+    "te_form": "\u69cb\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965078828666880/200ebbf90f1fca39.png",
+    "te_form": "\u547c\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965080460259409/236a77af6f9c8642.png",
+    "te_form": "\u8cb7\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965080892248154/3b98fcd80724dcba.png",
+    "te_form": "\u6cb8\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965081148100648/8438cd52b7bc2edb.png",
+    "te_form": "\u58ca\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965082611916862/ec4ff87a4c19b455.png",
+    "te_form": "\u5439\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965083643740210/97479380f98fb306.png",
+    "te_form": "\u54b2\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965120788484186/edc1157a85f03fd3.png",
+    "te_form": "\u971e\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965124311711814/e00784dd782cf102.png",
+    "te_form": "\u52a3\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965127532924948/07594012967228ba.png",
+    "te_form": "\u9a5a\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965130947100712/ce2930f7bf0eb23e.png",
+    "te_form": "\u8ff7\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965134650638356/cdea80f18dd5db64.png",
+    "te_form": "\u6b21\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965136936542228/9cd3e881985dfed1.png",
+    "te_form": "\u56f0\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965140019367986/43b87736cf357d17.png",
+    "te_form": "\u7126\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965142737268776/f1fe0cfe0821168b.png",
+    "te_form": "\u559c\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965145614557235/97feaf291df9ac56.png",
+    "te_form": "\u76f4\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965145358729286/461494d4d2d6eb2f.png",
+    "te_form": "\u9055\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965203932176414/082bb3769e426fa9.png",
+    "te_form": "\u76ee\u7acb\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965206020939776/566a2a96a132bee2.png",
+    "te_form": "\u907f\u3051\u3066",
+    "ctype": 6
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965207073693706/1aae6121dc1f8199.png",
+    "te_form": "\u51fa\u6765\u3066",
+    "ctype": 6
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965209158254592/870f0b6f436ddc98.png",
+    "te_form": "\u6c7a\u307e\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965210701778974/52c6d7fc1c86f076.png",
+    "te_form": "\u7570\u306a\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965212358529024/ee839f0f41f1c466.png",
+    "te_form": "\u8102\u304e\u3063\u3066",
+    "ctype": 1
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965214652821584/0f92638fc35f1cbc.png",
+    "te_form": "\u9045\u308c\u3066",
+    "ctype": 6
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886965217144213625/9535910d25d5c444.png",
+    "te_form": "\u6020\u3051\u3066",
+    "ctype": 6
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886983504653615184/d6e2c316f69cfaee.png",
+    "te_form": "\u697d\u3057\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886983507618955274/cec8ceba982f4c12.png",
+    "te_form": "\u98f2\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886983510622105620/f72e44e4e5ac6966.png",
+    "te_form": "\u6b7b\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886983513381953536/9817a023f19c2709.png",
+    "te_form": "\u99b4\u67d3\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886983514262741072/21bd73325e74f985.png",
+    "te_form": "\u7573\u3080",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886983515957239838/c29d2166137b5e46.png",
+    "te_form": "\u6c88\u3080",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886983538501627914/43eb04ce103ae186.png",
+    "te_form": "\u7768\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886983539814441000/26a8a2b0602db14d.png",
+    "te_form": "\u9032\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886986674440122378/b2a0b100ce040dfb.png",
+    "te_form": "\u5b66\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886986681905971280/246089e28ed41a54.png",
+    "te_form": "\u904a\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886986684334501898/69048cc38e851835.png",
+    "te_form": "\u7d50\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886986686049959996/74d34c4be2b17558.png",
+    "te_form": "\u53ca\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886986686783946842/19b856fb8a4dcfae.png",
+    "te_form": "\u8aad\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886986688306483271/de4a45c521ed5607.png",
+    "te_form": "\u4f01\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886986691108274187/d49ece3c7fd03bd1.png",
+    "te_form": "\u98db\u3093\u3067",
+    "ctype": 2
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886992102406357022/39ab69d875f96dee.png",
+    "te_form": "\u601d\u3044\u3064\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886992107045269504/fd7d92b4cbaa2f6b.png",
+    "te_form": "\u7a81\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886992111361204244/fd0cd9b7173a34f0.png",
+    "te_form": "\u78e8\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886992114741829632/4f8ff034cf29be1b.png",
+    "te_form": "\u5f3e\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886992116289536020/487c7a0cadd57877.png",
+    "te_form": "\u53e3\u8aac\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886992119015804938/50cc6c4a3f240f45.png",
+    "te_form": "\u958b\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886992121985376286/e43b0c570b124080.png",
+    "te_form": "\u52d5\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886992123247870052/37b1d61ff3b9814b.png",
+    "te_form": "\u805e\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886992126964023316/7c1200c41b481ac2.png",
+    "te_form": "\u6c17\u3065\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886992129677737984/95bc84e6cee97acb.png",
+    "te_form": "\u8f1d\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886994975630454795/365d783d41229d16.png",
+    "te_form": "\u629c\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886994977421402132/9216fbb14a739aa4.png",
+    "te_form": "\u62db\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886994979015233556/1daaef16be5f911d.png",
+    "te_form": "\u50be\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886994980122533918/437ec234f4acf8f6.png",
+    "te_form": "\u7815\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886994981217247302/46bac9aa50dfc15d.png",
+    "te_form": "\u6ce3\u3044\u3066",
+    "ctype": 3
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886997009226162217/576e5cdc571e1922.png",
+    "te_form": "\u7a3c\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886997006822801458/7a888b69ae61db52.png",
+    "te_form": "\u9a12\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886997011415592960/d6450fa8bdf54f52.png",
+    "te_form": "\u8131\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886997010589315113/eb4eb627a38b4644.png",
+    "te_form": "\u6cf3\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886997014368379011/a01ad1ee17dca540.png",
+    "te_form": "\u6025\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886998628542062643/395e3452570ee249.png",
+    "te_form": "\u3057\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/886999646579359744/e4ad18c1829436f3.png",
+    "te_form": "\u884c\u3063\u3066",
+    "ctype": 8
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887178020320866314/1d2a4696d4a34138.png",
+    "te_form": "\u6cb8\u304b\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887178023038767164/65e759629f3fe299.png",
+    "te_form": "\u5fd7\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887178026717159424/bd2f291386075eb5.png",
+    "te_form": "\u8db3\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181815717167144/23fb2916ecb7e997.png",
+    "te_form": "\u51b7\u3084\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181816992256000/7c6bc26c12aded00.png",
+    "te_form": "\u51dd\u3089\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181818707714078/59862911d25cdc65.png",
+    "te_form": "\u6e21\u3059",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181821492756540/dae1ce7f0c70984b.png",
+    "te_form": "\u751f\u3084\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181823191420938/a0e2f98a1d37d976.png",
+    "te_form": "\u8fd4\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181825296982026/93ffb8ba56af7f51.png",
+    "te_form": "\u51fa\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181828031664128/0faa66f53ff56df7.png",
+    "te_form": "\u52b1\u307e\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181831441621092/d01676a32f8585a8.png",
+    "te_form": "\u5e72\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181836923572274/6dddb1cba41c0c76.png",
+    "te_form": "\u4e7e\u304b\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181838462877736/9abda0f393473ca7.png",
+    "te_form": "\u964d\u308d\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181875179823134/41eebf183818eb80.png",
+    "te_form": "\u8a00\u3044\u8868\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181878203920406/7067b1901834b82f.png",
+    "te_form": "\u559c\u3070\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181880452067388/722b59a5451e4862.png",
+    "te_form": "\u8ca0\u304b\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887181882964443176/fe176c4071826066.png",
+    "te_form": "\u8d8a\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887184512444940308/20006fb5a11b3482.png",
+    "te_form": "\u4ec4\u3081\u304b\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887184627897356288/8c13de71d8325bfe.png",
+    "te_form": "\u96a0\u3057\u3066",
+    "ctype": 5
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887190215247151144/07c1d79d3f868baa.png",
+    "te_form": "\u5f15\u304d\u7d99\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887190224512376873/d01c1f675f6fd24d.png",
+    "te_form": "\u5b89\u3089\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887190231172919306/64e9c072af26c521.png",
+    "te_form": "\u6ce8\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887190238785589270/bd1c687b127d0ce8.png",
+    "te_form": "\u4ef0\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887190250785501264/f1331957cebee204.png",
+    "te_form": "\u53d7\u3051\u7d99\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887190267852124230/87e175b2e66a82c8.png",
+    "te_form": "\u63fa\u3089\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887190274994999316/5e3182dc6ae45b18.png",
+    "te_form": "\u9632\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887190287053631538/593e77abfef06f88.png",
+    "te_form": "\u548c\u3089\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887190294641131520/3116a0d574dee47f.png",
+    "te_form": "\u83ef\u3084\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887190301536575519/9ef1b45c3b92452d.png",
+    "te_form": "\u7d21\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887190307282771968/eec4f702e11e7f77.png",
+    "te_form": "\u964d\u308a\u6ce8\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887190313368686662/a9ef69de9248a0df.png",
+    "te_form": "\u7814\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887190320612253736/cba95e2f1bbe27ea.png",
+    "te_form": "\u5bdb\u3044\u3067",
+    "ctype": 4
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887194301736583168/f1bfd20bc1d94126.png",
+    "te_form": "\u8cfc\u5165\u3057\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887194302772559892/8d17ab92e97c6920.png",
+    "te_form": "\u65b0\u5a5a\u3057\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887194305121386556/c696727db6e15cbc.png",
+    "te_form": "\u65b0\u7bc9\u3057\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887198756464918538/a4b894c775f8de3a.png",
+    "te_form": "\u96fb\u8a71\u3057\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887198758343938068/987853f4dfb5acad.png",
+    "te_form": "\u53cd\u5bfe\u3057\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887198759396728883/7712c510244f06b6.png",
+    "te_form": "\u30ce\u30c3\u30af\u3057\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887198760487239710/3d22514772614ccf.png",
+    "te_form": "\u8f38\u9001\u3057\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887198762592776232/8f2cd89fc7aac75f.png",
+    "te_form": "\u3073\u3063\u304f\u308a\u3057\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887198762521489438/7daea26fa5869aeb.png",
+    "te_form": "\u52c9\u5f37\u3057\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887202992288321536/bff877f466e0610b.png",
+    "te_form": "\u4ed8\u3044\u3066\u6765\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887202996172259338/25075b5434edf371.png",
+    "te_form": "\u9023\u308c\u3066\u6765\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887202998256812032/075951d56c251082.png",
+    "te_form": "\u6301\u3063\u3066\u6765\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887202999498326046/560ded7790df095a.png",
+    "te_form": "\u3084\u3063\u3066\u6765\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887203001167667230/568b562a851c0913.png",
+    "te_form": "\u51fa\u3066\u6765\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887203005038993448/48fa16e6cb5e6fa7.png",
+    "te_form": "\u30ab\u30c1\u30f3\u3068\u6765\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887203003248025600/2d5229d28ad366e7.png",
+    "te_form": "\u904a\u3073\u306b\u6765\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887203009669496912/b0707afc1ab84d31.png",
+    "te_form": "\u98fd\u304d\u304c\u6765\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887204758060924998/2.png",
+    "te_form": "\u751f\u307e\u308c\u3066\u6765\u3066",
+    "ctype": 7
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887211764910006322/ef9d705bb9033e36.png",
+    "te_form": "\u5bdd\u3066",
+    "ctype": 6
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887211766038294558/65bcddcf586d21a5.png",
+    "te_form": "\u5c45\u3066",
+    "ctype": 6
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887211767409803304/72727b014122b5e9.png",
+    "te_form": "\u8003\u3048\u3066",
+    "ctype": 6
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887211768454209586/9014d50357ebf0d9.png",
+    "te_form": "\u8d77\u304d\u3066",
+    "ctype": 6
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887211769771229214/5ac594b05900d1f6.png",
+    "te_form": "\u6559\u3048\u3066",
+    "ctype": 6
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887211770215804948/29d0df9ae647798d.png",
+    "te_form": "\u51fa\u3066",
+    "ctype": 6
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887211771708997632/7c1ac706ee4476d2.png",
+    "te_form": "\u7740\u3066",
+    "ctype": 6
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887211775655813160/252592ce3c072c12.png",
+    "te_form": "\u7d4c\u3066",
+    "ctype": 6
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887211778017226752/2ce3c3502ee75481.png",
+    "te_form": "\u98df\u3079\u3066",
+    "ctype": 6
+  },
+  {
+    "dict_form_url": "https://cdn.discordapp.com/attachments/886949510109073428/887211931247710208/5b48a43963a7946f.png",
+    "te_form": "\u898b\u3066",
+    "ctype": 6
+  }
+]
