@@ -1,0 +1,15 @@
+import discord
+from discord.ext import commands
+
+class <cogName>(commands.Cog):
+
+  def __init__(self, client):
+    self.client = client
+
+
+  #declare prefix
+  commands = commands.Bot(command_prefix = '(')
+
+
+def setup(client):
+  client.add_cog(<cogName>(client))
