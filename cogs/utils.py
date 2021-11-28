@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import has_permissions, MissingPermissions
-from datetime import datetime, date
+from datetime import datetime, date, time
 import requests, lxml
 from bs4 import BeautifulSoup
 
@@ -279,6 +279,15 @@ class utils(commands.Cog):
     await ctx.channel.purge(limit=num)
 
     
+
+  @commands.command()
+  async def ping(self, ctx):
+    await ctx.send(f'Pong! {round (self.client.latency * 1000)}ms')
+
+
+
+
+
 
 
 def setup(client):
