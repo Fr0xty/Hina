@@ -401,7 +401,7 @@ class help(commands.Cog):
 
     helpEmbedMainPG = discord.Embed( #embed help main page
       title = "Command Categories",
-      description = "My commands are categorized for simpler searching and understanding. \n\n My prefix is `(` \n ```[args] are optional, <args> are required.```",
+      description = "My commands are categorized for simpler searching and understanding. \n\n My prefix is `(` \n ```<> = Required, [] = Optional.```",
       colour = 14982399
     )
     helpEmbedMainPG.set_author(name = f"{self.client.user.name} help command!", icon_url = self.client.user.avatar_url)
