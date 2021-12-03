@@ -228,9 +228,9 @@ class utils(commands.Cog):
     }
 
     params = {
-      'q': keyword, #search keyword
-      'gl': 'us',       #region
-      'hl': 'en',       #language
+      'q': keyword, # search keyword
+      'gl': 'my',       # region
+      'hl': 'en',       # language
     }
 
     html = requests.get('https://www.google.com/search', headers=headers, params=params)
@@ -238,6 +238,62 @@ class utils(commands.Cog):
 
     r = ''
 
+    # info
+    info = soup.select("span.hgKElc")
+
+    if info != []:
+      r += f"__Info Card:__ \n > {info[0].text} \n"
+
+    # main websites
+    for result in soup.select('.tF2Cxc'):
+      title = result.select_one('.DKV0Md').text
+      link = result.select_one('.yuRUbf a')['href']
+      desc = result.select_one('.IsZvec').text
+      
+
+      r += f"[{title}]({link}) \n {desc} \n\n"
+
+    stats = soup.find('div', id='result-stats').text
+    
+    embed = discord.Embed(
+      title=f"Search Result for: {keyword}",
+      description = r,
+      color = 14982399,
+      timestamp = datetime.utcnow() 
+    )
+    embed.set_footer(text=f"{stats} \n Requested by: {ctx.author}", icon_url=ctx.author.avatar_url)
+    await ctx.send(embed=embed)
+
+
+
+
+
+  @commands.command(aliases=['adgs'])
+  async def advancegooglesearch(self, ctx, region, language, *, keyword):
+
+    headers = {   #browse as human user
+      'User-agent':
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.19582'
+    }
+
+    params = {
+      'q': keyword, # search keyword
+      'gl': region,       # region
+      'hl': language,       # language
+    }
+
+    html = requests.get('https://www.google.com/search', headers=headers, params=params)
+    soup = BeautifulSoup(html.text, 'lxml')
+
+    r = ''
+
+    # info
+    info = soup.select("span.hgKElc")
+
+    if info != []:
+      r += f"__Info Card:__ \n > {info[0].text} \n"
+
+    # main websites
     for result in soup.select('.tF2Cxc'):
       title = result.select_one('.DKV0Md').text
       link = result.select_one('.yuRUbf a')['href']

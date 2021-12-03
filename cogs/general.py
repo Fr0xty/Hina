@@ -3,6 +3,7 @@ from discord.ext import commands
 import asyncio
 import requests
 from discord_components import *
+import random
 
 
 client = discord.Client()
@@ -101,7 +102,37 @@ class general(commands.Cog):
 
 
 
+  @commands.command()
+  async def padoru(self, ctx, member: discord.Member=None):
+    links = ['https://c.tenor.com/xYq4RnxDODEAAAAC/padoru-padoru-anime.gif',
+    'https://c.tenor.com/ddSa-psbO3sAAAAS/fate-padoru-christmas.gif',
+    'https://c.tenor.com/XUCU0z2agOQAAAAS/meme-padoru.gif',
+    'https://c.tenor.com/OMnSECt8MewAAAAS/christmas-padoru-padoru.gif',
+    'https://c.tenor.com/ukGbS9ddkfsAAAAS/umu-padoru.gif',
+    'https://c.tenor.com/gKnDBdfrKHkAAAAS/padoru-merry-christmas.gif',
+    'https://c.tenor.com/BF_fkoVmWfYAAAAS/padoru-dance.gif',
+    'https://c.tenor.com/XsCye4oLjMMAAAAS/anime-padoru.gif',
+    'https://c.tenor.com/pfkcmc3Y7SUAAAAC/padoru-konosuba.gif',
+    'https://c.tenor.com/W6g0j1J4qQAAAAAC/saber-christmas.gif',
+    'https://c.tenor.com/jsNTJtSD_aoAAAAC/raphtalia-padoru.gif']
 
+    link = random.choice(links)
+
+    if member is None:
+      embed = discord.Embed(
+        title = f"You've been padoru'd by {ctx.author.display_name}!",
+        color = 16732485
+      )
+    else:
+      embed = discord.Embed(
+        title = f"{member.display_name} got padoru'd by {ctx.author.display_name}!",
+        color = 16732485
+      )
+
+    embed.set_image(url=link)
+    embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+
+    await ctx.send(embed=embed)
 
 
 

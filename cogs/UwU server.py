@@ -28,45 +28,44 @@ class UwU(commands.Cog):
 
 
     embed = discord.Embed(
-      title = "Basic Server Etiquette / Rules",
+      title = "Server Norms / Rules <:shrug:907780696460890142>",
       description = """
-**1.** Please only do waifu commands in <#816169629558112286>
-
-
-**2.** General chat is <#848530088021590037> and commands that don't match any channels in <#873844031048785960>
-
-
-**3.** Order your songs at <#821582013726326814>
-
-
-**4.** ONLY CULTURED PICTURES in <#823513202579079218>, no chatting, text and any irrelevant things
-
-
+**1.** General chat is <#848530088021590037> and general commands in <#873844031048785960>
+\u2800
+\u2800
+**2.** Chats on topics can be found in <#744786416327721051> category
+\u2800
+\u2800
+**3.** Different bot commands are in <#801660898854043659> category
+\u2800
+\u2800
+**4.** <#822362311645724704> <#914857640801218571> are following channels
+\u2800
+\u2800
 **5.** You can swear all you want
-
-
+\u2800
+\u2800
 **6.** <#801984078282620948> is the only NSFW channel in server, although we only use the channel when we're restricted by bots or discord. 
-
-
+\u2800
+\u2800
 **7.** If you're a fellow prisoner you can get all the info at the category <#801659904606601267>
-
-
-**8.** Boring stuff at category <#808657875392004126> and following announcement are at <#781167322794164225>, <#744850566894714902> and <#809513731595042885>, and free stuff to snipe are announced at <#822362311645724704>
-
-
+\u2800
+\u2800
+**8.** Announcements and shit are at category <#808657875392004126>
+\u2800
+\u2800
 **9.** <#852869912682692618> is public for anyone to use and host, everyone can moderate so have fun.
-
-
-**10.** DON'T SEND ANY CLASSIFIED INFO OUT OF THIS GROUP OR ELSE YOU WILL RESULT IN A BAN OR SOME TYPE OF PUNISHMENT. 
-(dont worry we will say if its not ok to share it)
-
-
-**11.** DONT SIMPLY @everyone, anyone spamming @everyone will get MUTED FOR THE APPROPRIATE AMOUNT OF TIME. 
+\u2800
+\u2800
+**10.** DONT SIMPLY @everyone, anyone spamming @everyone will get MUTED FOR THE APPROPRIATE AMOUNT OF TIME. 
+\u2800
+\u2800
+**11.** just have fun and chill
 
 Note: *the server has special roles for things like games, hobbies and shit so you can ping that role instead.*
-
-
-
+\u2800
+\u2800
+\u2800
 __This is a small server and we want to give people freedom, but please be responsible and don't break our trust. Thank you.__ <a:HoloPout:885845964466839563>""",
       color = 16697537
     )
