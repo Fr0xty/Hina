@@ -32,7 +32,7 @@ class help(commands.Cog):
     )
     helpEmbedBehavioral.set_author(name = f"{self.client.user.name} Behavoiral Category <a:HoloPout:885845964466839563>", icon_url = self.client.user.avatar_url)
     helpEmbedBehavioral.add_field(name = "Greetings", value = "If you use any of the following greetings, I will greet you back! \n `hello`, `hi`, `yo`, `sup`, `wassup`, `yahhallo`, `nyahhallo`, `こんにちは`, `おはよう`, `こんばんは`, `ハロー`, `おっす`, `にゃっはろー`, `やっはろー`, `にゃんぱすー` \n\u2800", inline = True)
-    helpEmbedBehavioral.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedBehavioral.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
     helpEmbedGeneral = discord.Embed( #General Category
@@ -41,7 +41,7 @@ class help(commands.Cog):
     helpEmbedGeneral.set_author(name = f"{self.client.user.name} General Category", icon_url = self.client.user.avatar_url)
     helpEmbedGeneral.add_field(name = "`(help`", value = "get this help embed \n\u2800", inline = True)
     helpEmbedGeneral.add_field(name = "`(invite`", value = "get my invite link \n\u2800", inline = True)
-    helpEmbedGeneral.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedGeneral.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -52,7 +52,7 @@ class help(commands.Cog):
     helpEmbedFun.add_field(name = "`(funfact`", value = "Get a fun fact! \n\u2800", inline = True)
     helpEmbedFun.add_field(name = "`(joke`", value = "Allow me to tell you a joke! \n\u2800", inline = True)
     helpEmbedFun.add_field(name = "`(act <@user> <msg>`", value = "I will impersonate the user to say things. \n\u2800", inline = True)
-    helpEmbedFun.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedFun.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
     helpEmbedEmoji = discord.Embed( #Emoji Category
       title = "Use the nitro emoji perks!",
@@ -65,7 +65,7 @@ class help(commands.Cog):
     helpEmbedEmoji.add_field(name = "1 How to get the emoji id?", value = "If I'm in the emoji hosting server: \n `(getemoji [server_id]` \n\n *without giving [server_id] will return the current server's emoji* \n\n else: \n Use the emoji in that server with `\` in front of it \n\u2800\n Result: `<a:hyperYAY:885845967419633704>` \n\u2800", inline = False)
     helpEmbedEmoji.add_field(name = "2 Using the emoji", value = "Use this command, and make sure to remove the angle brackets from the id \n `(usemoji <the_emoji_id>`", inline = False)
     helpEmbedEmoji.add_field(name = "3 Reacting", value = "Using the same emoji id without the brackets! \n `(reactemoji <msg_id> <the_emoji_id>`", inline = False)
-    helpEmbedEmoji.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedEmoji.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -81,7 +81,7 @@ class help(commands.Cog):
     helpEmbedMusic.add_field(name = "`(skip`", value = "Skip current music \n\u2800", inline = True)
     helpEmbedMusic.add_field(name = "`(stop`", value = "Stop playing music \n\u2800", inline = True)
     helpEmbedMusic.add_field(name = "`(clear`", value = "Clear music queue \n\u2800", inline = True)
-    helpEmbedMusic.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedMusic.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -94,7 +94,7 @@ class help(commands.Cog):
     helpEmbedImage.add_field(name="SFW:", value="`(waifu`, `(maid`")
     helpEmbedImage.add_field(name="NSFW:", value="`(ass`, `(ecchi`, `(ero`, `(hentai`, `(nsfwmaid`, `(milf`, `(oppai`, `(oral`, `(paizuri`, `(selfies`, `(uniform` \n\u2800", inline=False)
     helpEmbedImage.add_field(name="Wildcard!", value="`(random`", inline=False)
-    helpEmbedImage.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedImage.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -107,7 +107,7 @@ class help(commands.Cog):
     helpEmbedJP.add_field(name = "`(teform`", value = "Start a teform quiz \n\u2800", inline = True)
     helpEmbedJP.add_field(name = "`(quiz_stop`", value = "Stop the current quiz \n\u2800", inline = False)
     helpEmbedJP.add_field(name = "`(info <quiz_name>`", value = "Get a cheat sheet / explanation of the topic \n\u2800", inline = False)
-    helpEmbedJP.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedJP.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -123,7 +123,7 @@ class help(commands.Cog):
     helpEmbedUtility.add_field(name = "`(prune [amount]`", value = "delete an amount of messages in channel, require *manage_messages* permission \n\u2800", inline = False),
     helpEmbedUtility.add_field(name = "`(epochtime`", value = "get brief doc for epochtime \n\u2800", inline = False)
     helpEmbedUtility.add_field(name = "`(ping`", value = "get ping time \n\u2800", inline = False)
-    helpEmbedUtility.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedUtility.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -133,7 +133,7 @@ class help(commands.Cog):
     )
     helpEmbedUwU.set_author(name = f"{self.client.user.name} UwU Category", icon_url = self.client.user.avatar_url)
     helpEmbedUwU.add_field(name = "Currently this category is __deprecated__", value = "But more commands are coming in the future \n\u2800", inline = True)
-    helpEmbedUwU.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedUwU.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -152,7 +152,7 @@ class help(commands.Cog):
     helpEmbedHidden.add_field(name = "🎌 `(tfadd <dict_form> <te_form> <ctype>`", value = "Add word to teform.json \n\u2800", inline = True)
     helpEmbedHidden.add_field(name = "🎌 `(tfread <list_index>` *****", value = "get word(dict) from teform.json \n\u2800", inline = True)
     helpEmbedHidden.add_field(name = "🎌 `(tftype` *****", value = "get len() of every conjugate type (ctype) \n\u2800", inline = True)
-    helpEmbedHidden.set_footer(text="Commands with * are not restricted to only creator. \n <args> are Required | [args] are Optional", icon_url=owner_pfp)
+    helpEmbedHidden.set_footer(text="Commands with * are not restricted to only creator. \n > = Required, [] = Optionall", icon_url=owner_pfp)
 
 
     if interaction.values[0] == "behavior":
@@ -239,7 +239,7 @@ class help(commands.Cog):
     )
     helpEmbedBehavioral.set_author(name = f"{self.client.user.name} Behavoiral Category <a:HoloPout:885845964466839563>", icon_url = self.client.user.avatar_url)
     helpEmbedBehavioral.add_field(name = "Greetings", value = "If you use any of the following greetings, I will greet you back! \n `hello`, `hi`, `yo`, `sup`, `wassup`, `yahhallo`, `nyahhallo`, `こんにちは`, `おはよう`, `こんばんは`, `ハロー`, `おっす`, `にゃっはろー`, `やっはろー`, `にゃんぱすー` \n\u2800", inline = True)
-    helpEmbedBehavioral.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedBehavioral.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
     helpEmbedGeneral = discord.Embed( #General Category
@@ -248,7 +248,7 @@ class help(commands.Cog):
     helpEmbedGeneral.set_author(name = f"{self.client.user.name} General Category", icon_url = self.client.user.avatar_url)
     helpEmbedGeneral.add_field(name = "`(help`", value = "get this help embed \n\u2800", inline = True)
     helpEmbedGeneral.add_field(name = "`(invite`", value = "get my invite link \n\u2800", inline = True)
-    helpEmbedGeneral.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedGeneral.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -259,7 +259,7 @@ class help(commands.Cog):
     helpEmbedFun.add_field(name = "`(funfact`", value = "Get a fun fact! \n\u2800", inline = True)
     helpEmbedFun.add_field(name = "`(joke`", value = "Allow me to tell you a joke! \n\u2800", inline = True)
     helpEmbedFun.add_field(name = "`(act <@user> <msg>`", value = "I will impersonate the user to say things. \n\u2800", inline = True)
-    helpEmbedFun.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedFun.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
     helpEmbedEmoji = discord.Embed( #Emoji Category
       title = "Use the nitro emoji perks!",
@@ -272,7 +272,7 @@ class help(commands.Cog):
     helpEmbedEmoji.add_field(name = "1 How to get the emoji id?", value = "If I'm in the emoji hosting server: \n `(getemoji [server_id]` \n\n *without giving [server_id] will return the current server's emoji* \n\n else: \n Use the emoji in that server with `\` in front of it \n\u2800\n Result: `<a:hyperYAY:885845967419633704>` \n\u2800", inline = False)
     helpEmbedEmoji.add_field(name = "2 Using the emoji", value = "Use this command, and make sure to remove the angle brackets from the id \n `(usemoji <the_emoji_id>`", inline = False)
     helpEmbedEmoji.add_field(name = "3 Reacting", value = "Using the same emoji id without the brackets! \n `(reactemoji <msg_id> <the_emoji_id>`", inline = False)
-    helpEmbedEmoji.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedEmoji.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -288,7 +288,7 @@ class help(commands.Cog):
     helpEmbedMusic.add_field(name = "`(skip`", value = "Skip current music \n\u2800", inline = True)
     helpEmbedMusic.add_field(name = "`(stop`", value = "Stop playing music \n\u2800", inline = True)
     helpEmbedMusic.add_field(name = "`(clear`", value = "Clear music queue \n\u2800", inline = True)
-    helpEmbedMusic.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedMusic.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -301,7 +301,7 @@ class help(commands.Cog):
     helpEmbedImage.add_field(name="SFW:", value="`(waifu`, `(maid`")
     helpEmbedImage.add_field(name="NSFW:", value="`(ass`, `(ecchi`, `(ero`, `(hentai`, `(nsfwmaid`, `(milf`, `(oppai`, `(oral`, `(paizuri`, `(selfies`, `(uniform` \n\u2800", inline=False)
     helpEmbedImage.add_field(name="Wildcard!", value="`(random`", inline=False)
-    helpEmbedImage.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedImage.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -314,7 +314,7 @@ class help(commands.Cog):
     helpEmbedJP.add_field(name = "`(teform`", value = "Start a teform quiz \n\u2800", inline = True)
     helpEmbedJP.add_field(name = "`(quiz_stop`", value = "Stop the current quiz \n\u2800", inline = False)
     helpEmbedJP.add_field(name = "`(info <quiz_name>`", value = "Get a cheat sheet / explanation of the topic \n\u2800", inline = False)
-    helpEmbedJP.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedJP.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -330,7 +330,7 @@ class help(commands.Cog):
     helpEmbedUtility.add_field(name = "`(prune [amount]`", value = "delete an amount of messages in channel, require *manage_messages* permission \n\u2800", inline = False),
     helpEmbedUtility.add_field(name = "`(epochtime`", value = "get brief doc for epochtime \n\u2800", inline = False)
     helpEmbedUtility.add_field(name = "`(ping`", value = "get ping time \n\u2800", inline = False)
-    helpEmbedUtility.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedUtility.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -340,7 +340,7 @@ class help(commands.Cog):
     )
     helpEmbedUwU.set_author(name = f"{self.client.user.name} UwU Category", icon_url = self.client.user.avatar_url)
     helpEmbedUwU.add_field(name = "Currently this category is __deprecated__", value = "But more commands are coming in the future \n\u2800", inline = True)
-    helpEmbedUwU.set_footer(text="<args> are Required | [args] are Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
+    helpEmbedUwU.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
 
@@ -359,7 +359,7 @@ class help(commands.Cog):
     helpEmbedHidden.add_field(name = "🎌 `(tfadd <dict_form> <te_form> <ctype>`", value = "Add word to teform.json \n\u2800", inline = True)
     helpEmbedHidden.add_field(name = "🎌 `(tfread <list_index>` *****", value = "get word(dict) from teform.json \n\u2800", inline = True)
     helpEmbedHidden.add_field(name = "🎌 `(tftype` *****", value = "get len() of every conjugate type (ctype) \n\u2800", inline = True)
-    helpEmbedHidden.set_footer(text="Commands with * are not restricted to only creator. \n <args> are Required | [args] are Optional", icon_url=owner_pfp)
+    helpEmbedHidden.set_footer(text="Commands with * are not restricted to only creator. \n > = Required, [] = Optionall", icon_url=owner_pfp)
 
 #--------------------------------------------------------------------------------------
     if category is not None:
