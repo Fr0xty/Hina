@@ -20,8 +20,7 @@ class general(commands.Cog):
     )
     
 
-  intents = discord.Intents().all()
-  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents=intents) 
+  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents = discord.Intents().all())
   
 
 

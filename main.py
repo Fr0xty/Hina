@@ -10,8 +10,7 @@ from keep_alive import keep_alive             #keep online
 
 
 
-intents = discord.Intents().all()
-client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents=intents)
+client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents = discord.Intents().all())
   
 client.remove_command('help')                 #remove default built-in help command
 

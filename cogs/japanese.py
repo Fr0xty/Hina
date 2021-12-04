@@ -16,8 +16,7 @@ class japanese(commands.Cog):
     self.stop_user = ''
 
 
-  intents = discord.Intents().all()
-  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents=intents)
+  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents = discord.Intents().all())
 
 
 
