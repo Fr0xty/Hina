@@ -10,8 +10,7 @@ from discord_components import *
 import math
 import json
 
-
-
+import config
 
 
 
@@ -27,11 +26,10 @@ class musicCommands(commands.Cog):
     self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
     self.vc = ""
     self.ctx = ""
-  
-  #declare prefix
-  commands = commands.Bot(command_prefix = '(')
-  
 
+
+  intents = discord.Intents().all()
+  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents=intents)
 
 
 
@@ -41,10 +39,7 @@ class musicCommands(commands.Cog):
 
     isYTList = False
 
-
-
     with YoutubeDL(self.YDL_OPTIONS) as  ydl:
-
 
         if 'youtube.com' in item and 'list' in item:                           #if it is YT playlist
           returning = []
@@ -69,26 +64,19 @@ class musicCommands(commands.Cog):
           isYTList = True
           return returning
         
-
-
-      
         elif 'youtube.com/watch?' in item or 'youtu.be' in item:            #test if is YT link
           info = ydl.extract_info(item, download=False)
           link = item
           dur = info['duration']
-
-
 
         else:                                                                  #search on yt because its not of the above
           info = ydl.extract_info("ytsearch:%s" % item, download=False)['entries'][0]    
           link = info['webpage_url']
           dur = info['duration']
           
-
     if isYTList == False:
       minute = math.trunc(dur / 60)
       second = int(((dur / 60) % 1) * 60)
-
 
       return {'source': info['formats'][0]['url'], 'title': info['title'], 'vid_url': link, 'duration': f"{minute}m {second}s"}   
 
@@ -102,10 +90,7 @@ class musicCommands(commands.Cog):
     if len(self.song_queue) > 0:
       self.is_playing = True
 
-      
-      
       m_url = self.song_queue[0][0]['source']
-
 
       np_title = self.song_queue[0][0]['title']
       np_url = self.song_queue[0][0]['vid_url']
@@ -120,8 +105,6 @@ class musicCommands(commands.Cog):
       
       
       
-
-
 
 
   async def play_music(self, voice_client):
@@ -155,7 +138,7 @@ class musicCommands(commands.Cog):
 
 
 
-  #Commands-----------------------------------------------------------------------
+
 
   @commands.command()
   async def play(self, ctx, *args):
@@ -195,8 +178,6 @@ YT playist and spotify support are under development so please be patient!
 
 
 
-
-
   @commands.command()
   async def join(self, ctx):
 
@@ -221,8 +202,6 @@ YT playist and spotify support are under development so please be patient!
 
 
 
-
-
   @commands.command()
   async def leave(self, ctx):
 
@@ -235,8 +214,6 @@ YT playist and spotify support are under development so please be patient!
 
     except:                           #if failed
       await ctx.reply("I'm not in a voice channel!")  #bot is not connected to a channel
-
-
 
 
 
@@ -263,7 +240,6 @@ YT playist and spotify support are under development so please be patient!
 
 
 
-
   @commands.command()
   async def resume(self, ctx):
 
@@ -285,8 +261,6 @@ YT playist and spotify support are under development so please be patient!
 
 
 
-
-
   @commands.command(aliases=['q'])
   async def queue(self, ctx):
 
@@ -303,13 +277,10 @@ YT playist and spotify support are under development so please be patient!
       s = 0                             #indicate how many songs the page is currently have
 
 
-
-
       current_page = 0
       pages = math.ceil(len(self.song_queue) / 12)       #calculate how many pages are needed if 1 page can fit 12 songs
-
-
         
+
       i = 1
       while i < len(self.song_queue):              #generated song list // will stop at number of songs in queue
         title = self.song_queue[i][0]['title']
@@ -331,9 +302,6 @@ YT playist and spotify support are under development so please be patient!
         queue.append('There is no more song in queue...') 
 
       
-
-
-
 
       qEmbed = discord.Embed(
         title = 'Music Queue',
@@ -359,14 +327,11 @@ YT playist and spotify support are under development so please be patient!
 
       timeout = False
 
-
       while timeout == False:
 
         try:
           interaction = await self.client.wait_for("button_click", timeout = 60)
           req = interaction.component.label
-
-
 
 
           if req == 'First Page' and current_page != 0:
@@ -379,7 +344,6 @@ YT playist and spotify support are under development so please be patient!
             await interaction.respond()
 
 
-
           elif req == 'Previous Page' and current_page != 0:
             current_page -= 1
             qEmbed.set_footer(text = f'Music queue for {ctx.guild.name}  |  Page {current_page + 1}/{pages}')
@@ -388,7 +352,6 @@ YT playist and spotify support are under development so please be patient!
 
             await m.edit(embed = qEmbed)
             await interaction.respond()
-
 
 
           elif req == 'Next Page' and current_page + 1 != pages:
@@ -401,7 +364,6 @@ YT playist and spotify support are under development so please be patient!
             await interaction.respond()
             
 
-
           if req == 'Last Page' and current_page + 1 != pages:
             current_page = pages - 1
             qEmbed.set_footer(text = f'Music queue for {ctx.guild.name}  |  Page {current_page + 1}/{pages}')
@@ -412,16 +374,9 @@ YT playist and spotify support are under development so please be patient!
             await interaction.respond()
             
 
-
-
-
         except Exception:
           await m.edit('Timed Out', components = [],)
           timeout = True
-      
-
-
-
 
     else:     #no music in queue
       await ctx.send("No music in queue")
@@ -430,15 +385,10 @@ YT playist and spotify support are under development so please be patient!
 
   
 
-
-
-
-
   @commands.command()
   async def skip(self, ctx):
     self.is_playing = False
     self.play_next()
-
 
 
 
@@ -475,8 +425,6 @@ YT playist and spotify support are under development so please be patient!
 
   
 
-
-
   @commands.command()
   async def np(self, ctx):
 
@@ -498,6 +446,7 @@ YT playist and spotify support are under development so please be patient!
 
     else:     #no music in queue
       await ctx.send("No music in queue")
+
 
 
 

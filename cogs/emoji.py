@@ -2,15 +2,20 @@ import discord
 import asyncio
 from discord.ext import commands
 
+import config
+
+
+
 class emoji(commands.Cog):
 
   def __init__(self, client):
     self.client = client
 
 
+  intents = discord.Intents().all()
+  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents=intents)
 
-  #declare prefix
-  commands = commands.Bot(command_prefix = '(')
+
 
 
 
@@ -19,17 +24,14 @@ class emoji(commands.Cog):
 
     if server_id is None:
       server = self.client.get_guild(ctx.guild.id)
-    
     else:
       server = self.client.get_guild(int(server_id))
     
-
     pages = []
     if server != None:      #bot in server
       n = 0
       var = ''
       num = 0
-
 
       for emoji in server.emojis:
         num += 1
@@ -43,20 +45,16 @@ class emoji(commands.Cog):
 
         n += 1
 
-        
       #after full pages
       if n >= 1:
           pages.append(var.replace("\\", ""))
-
 
       page = 0
       
       if server.icon:
         server_icon = server.icon_url
-
       else:
         server_icon = self.client.user.avatar_url
-
 
       eembed = discord.Embed(
         title = f"Emoji list for {server}",
@@ -106,18 +104,12 @@ class emoji(commands.Cog):
             await emoji_embed.edit(embed = eembed)          #flip
             await emoji_embed.remove_reaction('a<a:Aqua_right:879530551881637930>', user)
 
-
-
         except asyncio.TimeoutError:
           timedOut = True
           await emoji_embed.clear_reactions()
 
-        
-
-
     else:                   #bot not in server
       await ctx.reply("I'm not in the server!")
-
 
 
 
@@ -154,6 +146,8 @@ class emoji(commands.Cog):
     emoji_id = '<' + emoji_id + '>'         #complete the emoji id
     await msg.add_reaction(emoji_id)        #react
     await ctx.message.delete()                      #remove user command
+
+
 
 
 

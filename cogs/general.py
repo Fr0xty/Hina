@@ -5,8 +5,7 @@ import requests
 from discord_components import *
 import random
 
-
-client = discord.Client()
+import config
 
 
 
@@ -21,12 +20,9 @@ class general(commands.Cog):
     )
     
 
-
-  #declare prefix
-  commands = commands.Bot(command_prefix = '(')
-  commands.remove_command('help')                 #remove default built-in help command
+  intents = discord.Intents().all()
+  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents=intents) 
   
-
 
 
 

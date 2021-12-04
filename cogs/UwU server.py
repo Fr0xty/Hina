@@ -1,21 +1,20 @@
 import discord
 from discord.ext import commands
 
+import config
+
+
+
 class UwU(commands.Cog):
 
   def __init__(self, client):
     self.client = client
 
 
+  intents = discord.Intents().all()
+  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents=intents)
 
 
-
-
-
-
-
-  #declare prefix
-  commands = commands.Bot(command_prefix = '(')
 
 
 
@@ -76,6 +75,7 @@ __This is a small server and we want to give people freedom, but please be respo
 
 
 
+
   @commands.command()
   async def updateuwugmlinks(self, ctx):
     
@@ -109,10 +109,6 @@ __This is a small server and we want to give people freedom, but please be respo
     channel = self.client.get_channel(852870263019536394)
     msg = await channel.fetch_message(895138694296649730)
     await msg.edit(embed = embed)
-
-
-
-
 
 
 

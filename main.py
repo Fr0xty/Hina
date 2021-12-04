@@ -5,14 +5,15 @@ import asyncio
 import random
 from discord_components import *
 
+import config
 from keep_alive import keep_alive             #keep online
 
 
+
 intents = discord.Intents().all()
-
-client = commands.Bot(command_prefix = '(', case_insensitive=True, intents=intents)             #declare prefix
+client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents=intents)
+  
 client.remove_command('help')                 #remove default built-in help command
-
 
 
 
@@ -20,11 +21,10 @@ client.remove_command('help')                 #remove default built-in help comm
 
 @client.event                                  
 async def on_ready():
-  print('We have logged in as {0.user}'.format(client))     #to assure the bot is online
+
+  print(f"We have logged in as {client.user}")
   DiscordComponents(client)
   
-
-
 
 
   playingStatus = ['with my creator!', 'あたしの創造者と', 'in Japan']
@@ -51,21 +51,24 @@ async def on_ready():
 
 
 
+
 @client.event       #send errors
 async def on_command_error(ctx, error):
+
   await ctx.send(f"```{str(error)}```")
 
 
 
 
+
 for filename in os.listdir('./cogs'):                       #load all extensions in 'cogs' folder
+
   if filename.endswith('.py'):
     client.load_extension(f'cogs.{filename[:-3]}')
 
 client.load_extension("jishaku")
 
 help_command=None
-
 
 
 

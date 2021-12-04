@@ -3,21 +3,22 @@ from discord.ext import commands
 import requests
 from discord_components import *
 
+import config
+
+
+
 class hori_API(commands.Cog):
 
   def __init__(self, client):
     self.client = client
 
 
-
-  #declare prefix
-  commands = commands.Bot(command_prefix = '(')
-
+  intents = discord.Intents().all()
+  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents=intents)  
 
 
 
 
-  #Commands--------------------------------------------------------------------
 
   @commands.command()
   async def random(self, ctx, num=None):
@@ -303,6 +304,9 @@ class hori_API(commands.Cog):
         await ctx.send("The number is invalid!")
 
 
+
+
+
   @commands.command()
   async def nsfwmaid(self, ctx, num=None):
 
@@ -341,6 +345,9 @@ class hori_API(commands.Cog):
         await ctx.send("The number is invalid!")
 
 
+
+
+
   @commands.command()
   async def milf(self, ctx, num=None):
 
@@ -377,6 +384,9 @@ class hori_API(commands.Cog):
             )
       except:
         await ctx.send("The number is invalid!")
+
+
+
 
 
   @commands.command()
@@ -418,6 +428,8 @@ class hori_API(commands.Cog):
 
 
 
+
+
   @commands.command()
   async def oral(self, ctx, num=None):
 
@@ -454,6 +466,9 @@ class hori_API(commands.Cog):
             )
       except:
         await ctx.send("The number is invalid!")
+
+
+
 
 
   @commands.command()
@@ -494,6 +509,9 @@ class hori_API(commands.Cog):
         await ctx.send("The number is invalid!")
 
 
+
+
+
   @commands.command()
   async def selfies(self, ctx, num=None):
 
@@ -532,6 +550,10 @@ class hori_API(commands.Cog):
         await ctx.send("The number is invalid!")
 
 
+
+
+
+  @commands.command()
   async def uniform(self, ctx, num=None):
 
     if num is None: #not specified

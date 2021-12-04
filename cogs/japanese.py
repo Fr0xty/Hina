@@ -4,6 +4,7 @@ import random
 import json
 from discord.ext import commands
 
+import config
 
 
 
@@ -15,10 +16,10 @@ class japanese(commands.Cog):
     self.stop_user = ''
 
 
+  intents = discord.Intents().all()
+  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents=intents)
 
 
-  #declare prefix
-  commands = commands.Bot(command_prefix = '(')
 
 
 
@@ -27,6 +28,7 @@ class japanese(commands.Cog):
     self.stop = True
     self.stop_user = ctx.author.mention
     
+
 
 
 
@@ -43,9 +45,6 @@ class japanese(commands.Cog):
 
     await asyncio.sleep(5)                    #wait 5 seconds
     
-
-
-
 
     self.stop = False
     while self.stop != True:
@@ -88,7 +87,6 @@ class japanese(commands.Cog):
 
 
 
-
   @commands.command()
   async def info(self, ctx, quiz_name = None):
 
@@ -117,23 +115,10 @@ dictionary form: 待つ
 
         await ctx.send(embed=explanation)
 
-
-
     else:
       await ctx.send(f"'`{quiz_name}`' quiz: is not found!")
 
     
-
-
-
-
-
-
-
-
-
-
-
 
 
 

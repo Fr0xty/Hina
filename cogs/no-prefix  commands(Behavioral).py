@@ -10,11 +10,6 @@ class noPrefixCommands(commands.Cog):
 
 
 
-
-  #Commands-----------------------------------------------------------
-
-
-
   @commands.Cog.listener()
   async def on_message(self, ctx):
 
@@ -24,9 +19,6 @@ class noPrefixCommands(commands.Cog):
     for greeting in greetings:
       if greeting == ctx.content.lower():
         await ctx.reply(f'{greeting}, {ctx.author.mention}!')
-
-
-
 
 
 

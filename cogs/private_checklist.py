@@ -3,15 +3,20 @@ import json
 from discord.ext import commands
 import asyncio
 
+import config
+
+
 class checklist(commands.Cog):
 
   def __init__(self, client):
     self.client = client
 
 
+  intents = discord.Intents().all()
+  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents=intents)
 
-  #declare prefix
-  commands = commands.Bot(command_prefix = '(')
+
+
 
 
   @commands.command()
@@ -105,6 +110,7 @@ If you are sure please type 'CONFIRM' to confirm your action. Else, type 'no' to
 
       else:
         await ctx.send('Successfully cancelled!')
+
 
 
 

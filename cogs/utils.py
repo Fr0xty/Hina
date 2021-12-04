@@ -5,17 +5,21 @@ from datetime import datetime, date, time
 import requests, lxml
 from bs4 import BeautifulSoup
 
+import config
+
+
 
 class utils(commands.Cog):
 
   def __init__(self, client):
     self.client = client
 
-
   
   intents = discord.Intents().all()
+  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents=intents)
 
-  client = commands.Bot(command_prefix = '(', case_insensitive=True, intents=intents)   
+
+
 
 
   @commands.command()
@@ -67,14 +71,22 @@ class utils(commands.Cog):
         await ctx.send("The provided <user_id> is incorrect.")
         return
       
+    png = member.avatar_url_as(format="png", size=1024)
+    jpg = member.avatar_url_as(format="jpg", size=1024)
+    jpeg = member.avatar_url_as(format="jpeg", size=1024)
+    webp = member.avatar_url_as(format="webp", size=1024)
+
+    links = f"[`.png`]({png}) [`.jpg`]({jpg}) [`.jpeg`]({jpeg}) [`.webp`]({webp})"
+    
     embed = discord.Embed(
-      description = member.avatar_url,
+      description = links,
       color = 14982399
     )
     embed.set_author(name = f"{member}'s User Avatar", icon_url = self.client.user.avatar_url)
     embed.set_image(url=member.avatar_url)
 
     await ctx.send(embed=embed)
+
 
 
 
@@ -158,11 +170,8 @@ class utils(commands.Cog):
         else:
           return
           
-      if public_flags == '':
-        public_flags = "None"
-
-
-
+    if public_flags == '':
+      public_flags = "None"
 
 
     embed = discord.Embed(
@@ -184,13 +193,11 @@ class utils(commands.Cog):
     embed.add_field(name="Pending Server Verification", value=member.pending, inline=False)
     embed.add_field(name="Is bot", value=user.bot)
 
-
     await ctx.send(embed=embed)
 
 
 
   
-
 
   @commands.command()
   async def epochtime(self, ctx):
@@ -215,6 +222,7 @@ class utils(commands.Cog):
     embed.set_image(url="https://cdn.discordapp.com/attachments/907586559719645204/908234637380288552/sheeeeeeeesh.jpeg")
     embed.set_footer(text=f"Requested by {ctx.author}", icon_url = ctx.author.avatar_url)
     await ctx.send(embed = embed)
+
 
 
 
@@ -336,10 +344,11 @@ class utils(commands.Cog):
 
     
 
+
+
   @commands.command()
   async def ping(self, ctx):
     await ctx.reply(f'Pong! {round (self.client.latency * 1000)}ms')
-
 
 
 
