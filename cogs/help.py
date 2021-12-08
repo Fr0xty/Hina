@@ -39,6 +39,7 @@ class help(commands.Cog):
     helpEmbedGeneral.set_author(name = f"{self.client.user.name} General Category", icon_url = self.client.user.avatar_url)
     helpEmbedGeneral.add_field(name = "`help`", value = "get this help embed \n\u2800", inline = True)
     helpEmbedGeneral.add_field(name = "`invite`", value = "get my invite link \n\u2800", inline = True)
+    helpEmbedGeneral.add_field(name = "`translate <language> <text / reply to msg>`", value = "translate message or your text \n\u2800", inline = True)
     helpEmbedGeneral.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
@@ -225,6 +226,7 @@ class help(commands.Cog):
     helpEmbedGeneral.set_author(name = f"{self.client.user.name} General Category", icon_url = self.client.user.avatar_url)
     helpEmbedGeneral.add_field(name = "`help`", value = "get this help embed \n\u2800", inline = True)
     helpEmbedGeneral.add_field(name = "`invite`", value = "get my invite link \n\u2800", inline = True)
+    helpEmbedGeneral.add_field(name = "`translate <language> <text / reply to msg>`", value = "translate message or your text \n\u2800", inline = True)
     helpEmbedGeneral.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
 
 
@@ -457,7 +459,7 @@ class help(commands.Cog):
     while timedOut == False: 
 
       try:
-        interaction = await self.client.wait_for("button_click", timeout = 180)
+        interaction = await self.client.wait_for("button_click", timeout = 600)
         req = interaction.component.label
 
         if req == "Main Page":
@@ -470,7 +472,7 @@ class help(commands.Cog):
 
 
       except asyncio.TimeoutError:
-        await sent_help.edit("**Timedout.**", components=None)
+        await sent_help.delete()
         timedOut = True
         
 

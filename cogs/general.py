@@ -4,6 +4,7 @@ import asyncio
 import requests
 from discord_components import *
 import random
+import translators as ts
 
 import config
 
@@ -97,6 +98,7 @@ class general(commands.Cog):
 
 
 
+
   @commands.command()
   async def padoru(self, ctx, member: discord.Member=None):
     links = ['https://c.tenor.com/xYq4RnxDODEAAAAC/padoru-padoru-anime.gif',
@@ -131,6 +133,21 @@ class general(commands.Cog):
 
 
 
+
+
+  @commands.command()
+  async def translate(self, ctx, language, *, text=None):
+    
+    if not text:
+      if not ctx.message.reference:
+        await ctx.send("Please include a text to translate or reply to a message you want me to translate!")
+        return
+
+      message = await ctx.channel.fetch_message(ctx.message.reference.message_id)
+      await ctx.send(ts.google(message.content, to_language=language))
+
+    else:
+      await ctx.send(ts.google(text, to_language=language))
 
 
 
