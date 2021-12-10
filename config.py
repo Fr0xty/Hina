@@ -5,11 +5,11 @@ chars = "hina "
 prefixList = list(map(''.join, itertools.product(*zip(chars.upper(), chars.lower()))))
 
 
-class helpEmbed():
 
+
+class helpEmbed():
     def __init__(self, client):
       pass
-
 
 
     def main(client, ctx):
@@ -49,7 +49,7 @@ class helpEmbed():
         colour = 14982399
       )
       embed.set_author(name = f"{client.user.name} General Category", icon_url = client.user.avatar_url)
-      embed.add_field(name = "`help`", value = "get this help embed \n\u2800", inline = True)
+      embed.add_field(name = "`help [category]`", value = "get this help embed \n\u2800", inline = True)
       embed.add_field(name = "`invite`", value = "get my invite link \n\u2800", inline = True)
       embed.add_field(name = "`translate <language> <text / reply to msg>`", value = "translate message or your text \n\u2800", inline = True)
       embed.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")

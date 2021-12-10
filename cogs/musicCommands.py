@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 import os
-import youtube_dl
 from youtube_dl import YoutubeDL
 from discord import FFmpegPCMAudio
 import asyncio
@@ -22,7 +21,7 @@ class musicCommands(commands.Cog):
     self.is_playing = False
 
     self.song_queue = []
-    self.YDL_OPTIONS = {'format': 'bestaudio', 'yesplaylist':'True'}
+    self.YDL_OPTIONS = {'format': 'bestaudio', 'yesplaylist':'False'}
     self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
     self.vc = ""
     self.ctx = ""
@@ -340,7 +339,7 @@ YT playist and spotify support are under development so please be patient!
             qEmbed.add_field(name = 'Queue:', value = queue[current_page], inline = False)
 
             await m.edit(embed = qEmbed)
-            await interaction.respond()
+            await interaction.defer(edit_origin=True)
 
 
           elif req == 'Previous Page' and current_page != 0:
@@ -350,7 +349,7 @@ YT playist and spotify support are under development so please be patient!
             qEmbed.add_field(name = 'Queue:', value = queue[current_page], inline = False)
 
             await m.edit(embed = qEmbed)
-            await interaction.respond()
+            await interaction.defer(edit_origin=True)
 
 
           elif req == 'Next Page' and current_page + 1 != pages:
@@ -360,7 +359,7 @@ YT playist and spotify support are under development so please be patient!
             qEmbed.add_field(name = 'Queue:', value = queue[current_page], inline = False)
 
             await interaction.edit(embed = qEmbed)
-            await interaction.respond()
+            await interaction.defer(edit_origin=True)
             
 
           if req == 'Last Page' and current_page + 1 != pages:
@@ -370,7 +369,7 @@ YT playist and spotify support are under development so please be patient!
             qEmbed.add_field(name = 'Queue:', value = queue[current_page], inline = False)
 
             await m.edit(embed = qEmbed)
-            await interaction.respond()
+            await interaction.defer(edit_origin=True)
             
 
         except Exception:
