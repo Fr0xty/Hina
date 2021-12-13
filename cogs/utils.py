@@ -46,7 +46,7 @@ class utils(commands.Cog):
       
     embed = discord.Embed(
       description = links,
-      color = 14982399
+      color = config.hina_color
     )
     embed.set_author(name = f"{member}'s User Avatar", icon_url = self.client.user.avatar_url)
     embed.set_image(url=member.avatar_url)
@@ -79,7 +79,7 @@ class utils(commands.Cog):
     
     embed = discord.Embed(
       description = links,
-      color = 14982399
+      color = config.hina_color
     )
     embed.set_author(name = f"{member}'s User Avatar", icon_url = self.client.user.avatar_url)
     embed.set_image(url=member.avatar_url)
@@ -214,7 +214,7 @@ class utils(commands.Cog):
 `<t:1624855717:T>` 	<t:1624855717:T>
 `<t:1624855717:R>` 	<t:1624855717:R>
       """,
-      color = 14982399,
+      color = config.hina_color,
       timestamp = datetime.utcnow()
     )
     embed.set_author(name = "Epoch Time Example")
@@ -265,7 +265,7 @@ class utils(commands.Cog):
     embed = discord.Embed(
       title=f"Search Result for: {keyword}",
       description = r,
-      color = 14982399,
+      color = config.hina_color,
       timestamp = datetime.utcnow() 
     )
     embed.set_footer(text=f"{stats} \n Requested by: {ctx.author}", icon_url=ctx.author.avatar_url)
@@ -314,7 +314,7 @@ class utils(commands.Cog):
     embed = discord.Embed(
       title=f"Search Result for: {keyword}",
       description = r,
-      color = 14982399,
+      color = config.hina_color,
       timestamp = datetime.utcnow() 
     )
     embed.set_footer(text=f"{stats} \n Requested by: {ctx.author}", icon_url=ctx.author.avatar_url)

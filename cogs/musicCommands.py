@@ -92,7 +92,7 @@ class musicCommands(commands.Cog):
 
       np_title = self.song_queue[0][0]['title']
       np_url = self.song_queue[0][0]['vid_url']
-      npEmbed = discord.Embed(title = 'Now Playing', description = f"[{np_title}]({np_url})", colour = 14982399)
+      npEmbed = discord.Embed(title = 'Now Playing', description = f"[{np_title}]({np_url})", colour = config.hina_color)
       #self.ctx.send(embed = npEmbed)
 
       self.vc.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after = lambda e: self.play_next())
@@ -126,7 +126,7 @@ class musicCommands(commands.Cog):
 
         np_title = self.song_queue[0][0]['title']
         np_url = self.song_queue[0][0]['vid_url']
-        npEmbed = discord.Embed(title = 'Now Playing', description = f"[{np_title}]({np_url})", colour = 14982399)
+        npEmbed = discord.Embed(title = 'Now Playing', description = f"[{np_title}]({np_url})", colour = config.hina_color)
         await self.ctx.send(embed = npEmbed)
       except:
         return
@@ -304,7 +304,7 @@ YT playist and spotify support are under development so please be patient!
       qEmbed = discord.Embed(
         title = 'Music Queue',
         description = now_playing,
-        colour = 14982399
+        colour = config.hina_color
       )
       try:        #if author has a nick in guild, use nick
         qEmbed.set_author(name = 'Requested by: ' + ctx.message.author.nick, icon_url = ctx.message.author.avatar_url)
@@ -436,7 +436,7 @@ YT playist and spotify support are under development so please be patient!
       npEmbed = discord.Embed(
           title = 'Now Playing',
           description = now_playing,
-          colour = 14982399
+          colour = config.hina_color
         )
 
       await ctx.send(embed = npEmbed)

@@ -17,7 +17,7 @@ class general(commands.Cog):
 
     self.inviteEmbed = discord.Embed( #embed2
       description = 'https://discord.com/api/oauth2/authorize?client_id=769125937731338290&permissions=8&scope=bot',
-      colour = 14982399
+      colour = config.hina_color
     )
     
 

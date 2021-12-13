@@ -58,7 +58,7 @@ class emoji(commands.Cog):
       eembed = discord.Embed(
         title = f"Emoji list for {server}",
         description = pages[page],
-        color = 14982399
+        color = config.hina_color
       )
       eembed.set_author(name=f"Page ({page + 1} / {len(pages)})", icon_url = server_icon)
 
@@ -82,7 +82,7 @@ class emoji(commands.Cog):
             eembed = discord.Embed(
               title = f"Emoji list for {server} [{num}]",
               description = pages[page],
-              color = 14982399
+              color = config.hina_color
             )
             eembed.set_author(name=f"Page ({page + 1} / {len(pages)})", icon_url = server_icon)
 
@@ -96,7 +96,7 @@ class emoji(commands.Cog):
             eembed = discord.Embed(
               title = f"Emoji list for {server}",
               description = pages[page],
-              color = 14982399
+              color = config.hina_color
             )
             eembed.set_author(name=f"Page ({page + 1} / {len(pages)})", icon_url = server_icon)
 

@@ -38,7 +38,7 @@ class japanese(commands.Cog):
     startembed = discord.Embed(
       title = "~te Form Quiz (て型)",
       description = "Starting in 5 seconds",
-      color = 14982399
+      color = config.hina_color
     )
     await ctx.send(embed=startembed)          #send starting embed
 
@@ -57,7 +57,7 @@ class japanese(commands.Cog):
       que_Embed = discord.Embed(
         title = "~te Form Quiz",
         description = "Conjugate the verb into its ~te form!",
-        color = 14982399
+        color = config.hina_color
       )
       que_Embed.set_image(url=question['dict_form_url'])
     
@@ -107,7 +107,7 @@ class japanese(commands.Cog):
 __Example:__
 dictionary form: 待つ
 ~te form: 待って""",
-          color = 14982399
+          color = config.hina_color
         )
         explanation.set_image(url="https://cdn.discordapp.com/attachments/857205281409466368/857206260009140289/Screenshot_2020-02-15-21-16-10-708_com.google.android.youtube.jpg")
         explanation.add_field(name="Why do you need to use them?", value="It can be used to request someone, or futhur modified into a present progressive form(-ing) and many more. \n\n You can learn more about ~te forms [here](https://www.thoughtco.com/the-japanese-verb-form-te-2027918) \n\n\n **Cheat sheet:**")

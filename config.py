@@ -4,7 +4,7 @@ import discord
 chars = "hina "
 prefixList = list(map(''.join, itertools.product(*zip(chars.upper(), chars.lower()))))
 
-
+hina_color = 14982399
 
 
 class helpEmbed():
@@ -16,7 +16,7 @@ class helpEmbed():
       embed = discord.Embed( #embed help main page
         title = "Command Categories",
         description = "My commands are categorized for simpler searching and understanding. \n\n My prefix is `hina` \n ```<> = Required, [] = Optional.```",
-        colour = 14982399
+        colour = hina_color
       )
       embed.set_author(name = f"{client.user.name} help command!", icon_url = client.user.avatar_url)
       embed.add_field(name = "<:Blush:900570132210929715> Behavioral", value = "`hina help behavoiral`", inline = True)
@@ -35,7 +35,7 @@ class helpEmbed():
 
     def behavioral(client):
       embed = discord.Embed( #Bahavioral Category
-        colour = 14982399
+        colour = hina_color
       )
       embed.set_author(name = f"{client.user.name} Behavoiral Category", icon_url = client.user.avatar_url)
       embed.add_field(name = "Greetings", value = "If you use any of the following greetings, I will greet you back! \n `hello`, `hi`, `yo`, `sup`, `wassup`, `yahhallo`, `nyahhallo`, `こんにちは`, `おはよう`, `こんばんは`, `ハロー`, `おっす`, `にゃっはろー`, `やっはろー`, `にゃんぱすー` \n\u2800", inline = True)
@@ -46,7 +46,7 @@ class helpEmbed():
 
     def general(client):
       embed = discord.Embed( #General Category
-        colour = 14982399
+        colour = hina_color
       )
       embed.set_author(name = f"{client.user.name} General Category", icon_url = client.user.avatar_url)
       embed.add_field(name = "`help [category]`", value = "get this help embed \n\u2800", inline = True)
@@ -59,7 +59,7 @@ class helpEmbed():
 
     def fun(client):
       embed = discord.Embed( #Fun Category
-        colour = 14982399
+        colour = hina_color
       )
       embed.set_author(name = f"{client.user.name} Fun Category", icon_url = client.user.avatar_url)
       embed.add_field(name = "`funfact`", value = "Get a fun fact! \n\u2800", inline = True)
@@ -73,7 +73,7 @@ class helpEmbed():
     def emoji(client):
       embed = discord.Embed( #Emoji Category
         title = "Use the nitro emoji perks!",
-        colour = 14982399
+        colour = hina_color
       )
       embed.set_author(name = f"{client.user.name} Emoji Category", icon_url = client.user.avatar_url)
       embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/879574005860945930/884294956649414716/nitro_perk.png")
@@ -89,7 +89,7 @@ class helpEmbed():
 
     def music(client):
       embed = discord.Embed( #Music Category
-        colour = 14982399
+        colour = hina_color
       )
       embed.set_author(name = f"{client.user.name} Music Category", icon_url = client.user.avatar_url)
       embed.add_field(name = "`join`, `leave`", value = "I'll join and leave the channel \n\u2800", inline = True)
@@ -109,7 +109,7 @@ class helpEmbed():
       embed = discord.Embed( #Image Category
         title = "Get images with the following tags.",
         description = "The API used: https://waifu.im/ \n\u2800\n **Note:**\n`<tag> [amount]` \n This can be applied to every command in this category \n\u2800",
-        colour = 14982399
+        colour = hina_color
       )
       embed.set_author(name = f"{client.user.name} Image Category", icon_url = client.user.avatar_url)
       embed.add_field(name="SFW:", value="`waifu`, `maid`")
@@ -124,7 +124,7 @@ class helpEmbed():
       embed = discord.Embed( #Japanese Category
         title = "Japanese Learning Commands",
         description = "Provides cheat sheets, quizes and more!",
-        colour = 14982399
+        colour = hina_color
       )
       embed.set_author(name = f"{client.user.name} Japanese Category", icon_url = client.user.avatar_url)
       embed.add_field(name = "`teform`", value = "Start a teform quiz \n\u2800", inline = True)
@@ -137,7 +137,7 @@ class helpEmbed():
 
     def utility(client):
       embed = discord.Embed( #Utility Category
-        colour = 14982399
+        colour = hina_color
       )
       embed.set_author(name = f"{client.user.name} Utility Category", icon_url = client.user.avatar_url)
       embed.add_field(name = "`avatar [@user]`", value = "get user avatar, without [@user] will return your own avatar \n\u2800", inline = True)
@@ -156,7 +156,7 @@ class helpEmbed():
     def uwu(client):
       embed = discord.Embed( #UwU Category
         title = "UwU Discord Server Commands",
-        colour = 14982399
+        colour = hina_color
       )
       embed.set_author(name = f"{client.user.name} UwU Category", icon_url = client.user.avatar_url)
       embed.add_field(name = "Currently this category is __deprecated__", value = "But more commands are coming in the future \n\u2800", inline = True)
