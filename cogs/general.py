@@ -5,6 +5,7 @@ import requests
 from discord_components import *
 import random
 import translators as ts
+from datetime import datetime
 
 import config
 
@@ -149,6 +150,57 @@ class general(commands.Cog):
     else:
       await ctx.send(ts.google(text, to_language=language))
 
+
+
+
+  @commands.command()
+  async def spotify(self, ctx, member: discord.Member=None):
+
+    if not member:
+      member = ctx.author
+    spotify_activity = False
+
+    for activity in member.activities:
+      if isinstance(activity, discord.Spotify): # is listening to spotify
+        artists = ''
+        for artist in activity.artists:
+          artists += f"{artist}, "
+        artists = artists[:-2]
+
+        embed = discord.Embed(
+          title=activity.title,
+          url=f"https://open.spotify.com/track/{activity.track_id}",
+          color = activity.color,
+          timestamp=datetime.utcnow(),
+          description=f"""
+artist(s):
+`{artists}`
+
+album:
+`{activity.album}`
+
+song started:
+<t:{activity.start.strftime('%s')}:t> | <t:{activity.start.strftime('%s')}:R>
+
+ending song:
+<t:{activity.end.strftime('%s')}:t> | <t:{activity.end.strftime('%s')}:R>
+
+started listening curent song:
+<t:{activity.created_at.strftime('%s')}>
+
+song duration: `{config.convert_seconds(activity.duration.total_seconds())}`
+
+party id: `{activity.party_id}`
+          """
+        )
+        embed.set_author(name=f"{member}'s Spotify Activity", icon_url=member.avatar_url)
+        embed.set_thumbnail(url=activity.album_cover_url)
+        embed.set_footer(text=f"Requested by: {ctx.author}", icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=embed)
+        spotify_activity = True
+    
+    if not spotify_activity:
+      await ctx.send(f"{member.mention} is not listening to any songs on Spotify")
 
 
 def setup(client):

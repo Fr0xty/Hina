@@ -7,10 +7,27 @@ prefixList = list(map(''.join, itertools.product(*zip(chars.upper(), chars.lower
 hina_color = 14982399
 
 
+
+
+def convert_seconds(seconds):
+  seconds = seconds % (24 * 3600)
+  hour = seconds // 3600
+  seconds %= 3600
+  minutes = seconds // 60
+  seconds %= 60
+  if hour:
+    return "%dh %02dm %02ds" % (hour, minutes, seconds)
+  elif minutes:
+    return "%02dm %02ds" % (minutes, seconds)
+  else:
+    return "%02ds" % (seconds)
+    
+
+
+
 class helpEmbed():
     def __init__(self, client):
       pass
-
 
     def main(client, ctx):
       embed = discord.Embed( #embed help main page
@@ -52,6 +69,7 @@ class helpEmbed():
       embed.add_field(name = "`help [category]`", value = "get this help embed \n\u2800", inline = True)
       embed.add_field(name = "`invite`", value = "get my invite link \n\u2800", inline = True)
       embed.add_field(name = "`translate <language> <text / reply to msg>`", value = "translate message or your text \n\u2800", inline = True)
+      embed.add_field(name = "`spotify [@user]`", value = "get user spotify listening infos \n\u2800", inline = True)
       embed.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
       return embed
     

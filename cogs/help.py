@@ -155,10 +155,12 @@ class help(commands.Cog):
 
         if req == "Delete":
           await sent_help.delete()
+          await ctx.message.add_reaction(self.client.get_emoji(920600099556589569))
           return
 
       except asyncio.TimeoutError:
         await sent_help.delete()
+        await ctx.message.add_reaction(self.client.get_emoji(920600099556589569))
         timedOut = True
         
 
