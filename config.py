@@ -171,13 +171,13 @@ class helpEmbed():
 
       
 
-    def uwu(client):
+    def games(client):
       embed = discord.Embed( #UwU Category
         title = "UwU Discord Server Commands",
         colour = hina_color
       )
-      embed.set_author(name = f"{client.user.name} UwU Category", icon_url = client.user.avatar_url)
-      embed.add_field(name = "Currently this category is __deprecated__", value = "But more commands are coming in the future \n\u2800", inline = True)
+      embed.set_author(name = f"{client.user.name} Games Category", icon_url = client.user.avatar_url)
+      embed.add_field(name = "Currently in progress", value = "\n\u2800", inline = True)
       embed.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
       return embed
 

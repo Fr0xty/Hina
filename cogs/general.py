@@ -41,8 +41,7 @@ class general(commands.Cog):
     self.inviteEmbed.set_author(name = "My invite link♡", icon_url = self.client.user.avatar_url)
     await ctx.send(embed = self.inviteEmbed,
     components = [Button(style=5, url="https://discord.com/api/oauth2/authorize?client_id=769125937731338290&permissions=8&scope=bot", label = 'Invite Me!', emoji = self.client.get_emoji(884003530933944341))
-    ]
-    )
+    ])
 
 
 

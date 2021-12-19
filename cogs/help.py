@@ -56,8 +56,8 @@ class help(commands.Cog):
       await interaction.message.edit(embed = config.helpEmbed.utility(self.client))
       await interaction.defer(edit_origin=True)
 
-    if interaction.values[0] == "uwu":
-      await interaction.message.edit(embed = config.helpEmbed.uwu(self.client))
+    if interaction.values[0] == "games":
+      await interaction.message.edit(embed = config.helpEmbed.games(self.client))
       await interaction.defer(edit_origin=True)
 
     if interaction.values[0] == "creator":
@@ -104,8 +104,8 @@ class help(commands.Cog):
       elif category.lower() == "utility":
         await ctx.send(embed=config.helpEmbed.utility(self.client))
         return
-      elif category.lower() == "uwu":
-        await ctx.send(embed=config.helpEmbed.uwu(self.client))
+      elif category.lower() == "games":
+        await ctx.send(embed=config.helpEmbed.games(self.client))
         return
       elif category.lower() == "creator":
         await ctx.send(embed=config.helpEmbed.creator(self.client, owner))
@@ -129,7 +129,7 @@ class help(commands.Cog):
           SelectOption(label="Image", value="image", emoji=self.client.get_emoji(895182438064590879), description="Get all those waifu and hentai pics baby!"),
           SelectOption(label="Japanese", value="japanese", emoji="🎌", description="Japanese learning quizes and games!"),
           SelectOption(label="Utility", value="utility", emoji="🛠️", description="Useful technical commands"),
-          SelectOption(label="UwU", value="uwu", emoji=self.client.get_emoji(907573738369875998), description="UwU server commands."),
+          SelectOption(label="Games", value="games", emoji="🎲", description="Mini games!"),
           SelectOption(label="Creator", value="creator", emoji=self.client.get_emoji(885845967029551124), description="Hidden Commands")
           ]
         ),
