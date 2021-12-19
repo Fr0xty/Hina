@@ -29,7 +29,7 @@ class general(commands.Cog):
 
 
   @commands.command()
-  async def rename(self, ctx, name):
+  async def rename(self, ctx, *, name):
     if ctx.author.id == 395587171601350676:
       await self.client.user.edit(username=name)
 

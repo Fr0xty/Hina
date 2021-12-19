@@ -44,7 +44,7 @@ class helpEmbed():
       embed.add_field(name = "<:TGGasm:895182438064590879> Image", value = "`hina help image`", inline = True)
       embed.add_field(name = "🎌 Japanese", value = "`hina help japanese`", inline = True)
       embed.add_field(name = "🛠️ Utility", value = "`hina help utility`", inline = True)
-      embed.add_field(name = "<a:UwU:907573738369875998> UwU", value = "`hina help uwu`", inline = True)
+      embed.add_field(name = "🎲 Games", value = "`hina help games`", inline = True)
       embed.set_footer(text=f"{ctx.author} requested", icon_url=ctx.author.avatar_url)
       return embed
 
@@ -190,8 +190,7 @@ class helpEmbed():
       )
       embed.set_author(name = f"{client.user.name} Creator Category", icon_url = client.user.avatar_url)
       embed.add_field(name = "<a:UwU:907573738369875998> `updateuwurules`", value = "Update UwU server rules embed \n\u2800", inline = True)
-      embed.add_field(name = "<a:UwU:907573738369875998> `updateuwugmlinks`", value = "Update UwU server GM embed \n\u2800", inline = True)
-      embed.add_field(name = "<a:Menacing:885845967029551124> `rename`", value = "Renames bot name \n\u2800", inline = True)
+      embed.add_field(name = "<a:Menacing:885845967029551124> `rename <name>`", value = "Renames bot name \n\u2800", inline = True)
       embed.add_field(name = "📜 `cl` *****", value = "Get checklist \n\u2800", inline = True)
       embed.add_field(name = "📜 `cladd <songname>, <url>`", value = "Add to checklist \n\u2800", inline = True)
       embed.add_field(name = "📜 `clremove <num>`", value = "Remove from checklist \n\u2800", inline = True)
