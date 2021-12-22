@@ -95,11 +95,10 @@ class helpEmbed():
       )
       embed.set_author(name = f"{client.user.name} Emoji Category", icon_url = client.user.avatar_url)
       embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/879574005860945930/884294956649414716/nitro_perk.png")
-      embed.add_field(name = "__For native emoji in the server__", value = "`;<emoji_name>;` \n\n *Example:*\n name of emoji-  `nom` \n use-  `;nom;` \n\n \u2800", inline = True)
-      embed.add_field(name = "__For emoji outside of the server__", value = "You need the full emoji id first!", inline = False)
-      embed.add_field(name = "1 How to get the emoji id?", value = "If I'm in the emoji hosting server: \n `getemoji [server_id]` \n\n *without giving [server_id] will return the current server's emoji* \n\n else: \n Use the emoji in that server with `\` in front of it \n\u2800\n Result: `<a:hyperYAY:885845967419633704>` \n\u2800", inline = False)
-      embed.add_field(name = "2 Using the emoji", value = "Use this command, and make sure to remove the angle brackets from the id \n `usemoji <the_emoji_id>`", inline = False)
-      embed.add_field(name = "3 Reacting", value = "Using the same emoji id without the brackets! \n `reactemoji <msg_id> <the_emoji_id>`", inline = False)
+      embed.add_field(name = ";<emoji_name>;", value = "__only for native server emoji__ \n\n *Example:*\n name of emoji-  `nom` \n use-  `;nom;` \n\n \u2800")
+      embed.add_field(name = "`getemoji [server_id]`", value = "get all server emoji(s) \n\n \u2800", inline = False)
+      embed.add_field(name = "`usemoji <emoji_id>`", value = "send the emoji as you! \n\n \u2800", inline = False)
+      embed.add_field(name = "`reactemoji <emoji_id>`", value = "react to message with the emoji \n __reply to the message while using the command__ \n\n \u2800", inline = False)
       embed.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
       return embed
 

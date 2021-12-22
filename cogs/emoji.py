@@ -18,7 +18,7 @@ class emoji(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="getemoji <server_id>", help="get all server emoji(s)")
   async def getemoji(self, ctx, server_id=None):
 
     if server_id is None:
@@ -56,7 +56,7 @@ class emoji(commands.Cog):
         server_icon = self.client.user.avatar_url
 
       eembed = discord.Embed(
-        title = f"Emoji list for {server}",
+        title = f"Emoji list for {server} [{num}]",
         description = pages[page],
         color = config.hina_color
       )
@@ -114,7 +114,7 @@ class emoji(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="usemoji <emoji_id>", help="send the emoji as you")
   async def usemoji(self, ctx, given_id=None):
 
     if given_id == None:
@@ -137,15 +137,18 @@ class emoji(commands.Cog):
 
 
 
-  @commands.command()
-  async def reactemoji(self, ctx, msg_id, emoji_id):
+  @commands.command(usage="reactemoji <emoji_id>", help="react to message that you replied to while using the command with the emoji")
+  async def reactemoji(self, ctx, emoji_id):
 
-    msg = await ctx.fetch_message(msg_id)   #get msg user wants to react to
+    if not ctx.message.reference:
+      await ctx.reply("Please reply to the message you want to react to!")
+      return
 
     emoji_id = '<' + emoji_id + '>'         #complete the emoji id
+    msg = await ctx.channel.fetch_message(ctx.message.reference.message_id)
     await msg.add_reaction(emoji_id)        #react
     await ctx.message.delete()                      #remove user command
-
+    
 
 
 

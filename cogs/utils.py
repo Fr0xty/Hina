@@ -21,7 +21,7 @@ class utils(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="avatar [@user]", help="get avatar of user")
   async def avatar(self, ctx, member: discord.Member=None):
 
     if member is None:  #no <@user> given  //  use ctx.author
@@ -57,7 +57,7 @@ class utils(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="idavatar [user_id]", help="get avatar of user")
   async def idavatar(self, ctx, id=None):
 
     if id is None:  #no <user_id> given  //  use ctx.author
@@ -90,7 +90,7 @@ class utils(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="userinfo [@user]", help="get info of user")
   async def userinfo(self, ctx, member: discord.Member=None):
 
     if member is None:  #no <@user> given  //  use ctx.author
@@ -198,7 +198,7 @@ class utils(commands.Cog):
 
   
 
-  @commands.command()
+  @commands.command(usage="epochtime", help="get brief example of epochtime")
   async def epochtime(self, ctx):
 
     embed = discord.Embed(
@@ -226,7 +226,7 @@ class utils(commands.Cog):
 
 
 
-  @commands.command(aliases=['gs'])
+  @commands.command(aliases=['gs'], usage="googlesearch <keywords>", help="google search keywords")
   async def googlesearch(self, ctx, *, keyword):
 
     headers = {   #browse as human user
@@ -275,7 +275,7 @@ class utils(commands.Cog):
 
 
 
-  @commands.command(aliases=['adgs'])
+  @commands.command(aliases=['adgs'], usage="advancegooglesearch <region> <language> <keywords>", help="google search keywords, able to choose region and language therefore different from 'gs' command")
   async def advancegooglesearch(self, ctx, region, language, *, keyword):
 
     headers = {   #browse as human user
@@ -324,7 +324,7 @@ class utils(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="prune [num]", help="delete an amount of messages in the channel")
   @has_permissions(manage_messages=True)
   async def prune(self, ctx, num=None):
 
@@ -345,7 +345,7 @@ class utils(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="ping", help="get my latency")
   async def ping(self, ctx):
     await ctx.reply(f'Pong! {round (self.client.latency * 1000)}ms')
 

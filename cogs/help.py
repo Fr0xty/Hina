@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from discord_components import *
 import asyncio
+from datetime import datetime
 
 import config
 
@@ -74,7 +75,7 @@ class help(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="help [category]", help="get explanation on my commands")
   async def help(self, ctx, category=None):
 
     owner = await self.client.fetch_user(395587171601350676)
@@ -164,6 +165,30 @@ class help(commands.Cog):
         timedOut = True
         
 
+
+
+  @commands.command(usage="commandhelp <command_name>", help="get deeper explaination on a certain command")
+  async def commandhelp(self, ctx, command_name):
+    
+    for command in self.client.commands:
+      if command.name == command_name:
+        embed = discord.Embed(
+          title=f"Command: {command_name}",
+          color=config.hina_color,
+          timestamp=datetime.utcnow(),
+          description=f"""
+__Usage:__
+`{command.usage}`
+
+__What it does:__
+{command.help}
+          """
+        )
+        embed.set_footer(text=f"Requested by: {ctx.author}", icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=embed)
+        return
+
+    await ctx.send(f"Can't find command named: {command_name}")
 
 
 

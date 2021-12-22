@@ -18,7 +18,7 @@ class checklist(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="cladd <song_name>, <url>", help="add song to checklist")
   async def cladd(self, ctx, *, arg):
 
     if ctx.author.id != 395587171601350676:   #if not me then stop
@@ -44,7 +44,7 @@ class checklist(commands.Cog):
 
     
 
-  @commands.command()
+  @commands.command(usage="cl", help="get checklist")
   async def cl(self, ctx):
 
     with open('./json/checklist.json', 'r') as f:   #access json
@@ -70,7 +70,7 @@ class checklist(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="clremove <index>", help="remove song from checklist")
   async def clremove(self, ctx, num):
 
     if ctx.author.id != 395587171601350676:   #if not me then stop
@@ -116,7 +116,7 @@ If you are sure please type 'CONFIRM' to confirm your action. Else, type 'no' to
 
 
 
-  @commands.command()
+  @commands.command(usage="pls <tag_name>", help="get a certain message using a tag")
   async def pls(self, ctx, stuff):
     if stuff.lower() == "symbol":
       await ctx.reply("ø")
@@ -125,7 +125,7 @@ If you are sure please type 'CONFIRM' to confirm your action. Else, type 'no' to
 
 
 
-  @commands.command()
+  @commands.command(usage="updateuwurules", help="update UwU server rules")
   async def updateuwurules(self, ctx):
     
     if ctx.author.id != 395587171601350676:

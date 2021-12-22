@@ -22,7 +22,7 @@ class japanese(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="quiz_stop", help="stop the quiz")
   async def quiz_stop(self, ctx):
     self.stop = True
     self.stop_user = ctx.author.mention
@@ -31,7 +31,7 @@ class japanese(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="teform", help="start a teform quiz")
   async def teform(self, ctx):
 
 
@@ -86,7 +86,7 @@ class japanese(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="info <quiz_name>", help="get info of quizes from japanese category")
   async def info(self, ctx, quiz_name = None):
 
     if quiz_name == None:
@@ -122,7 +122,7 @@ dictionary form: 待つ
 
 
 #admin command--------------------------------------------------------------------------------
-  @commands.command()
+  @commands.command(usage="tfadd <dict_form> <te_form> <ctype>", help="add teform questions")
   async def tfadd(self, ctx, dict_form=None, te_form=None, ctype=None):
 
 
@@ -154,7 +154,7 @@ dictionary form: 待つ
 
 
 
-  @commands.command()
+  @commands.command(usage="tfread <index>", help="get a certain question's ans and question")
   async def tfread(self, ctx, index):
     
     if ctx.author.id == 395587171601350676:
@@ -179,7 +179,7 @@ dictionary form: 待つ
 
 
 
-  @commands.command()
+  @commands.command(usage="tftype", help="get number of each conjugation type")
   async def tftype(self, ctx):
     type1 = 0
     type2 = 0

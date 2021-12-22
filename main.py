@@ -4,6 +4,7 @@ from discord.ext import commands
 import asyncio
 import random
 from discord_components import *
+from datetime import datetime
 
 import config
 from keep_alive import keep_alive             #keep online
@@ -52,9 +53,45 @@ async def on_ready():
 
 
 @client.event       #send errors
-async def on_command_error(ctx, error):
+async def on_command_error(ctx, exception):
 
-  await ctx.send(f"```{str(error)}```")
+
+  if isinstance(exception, discord.ext.commands.errors.MissingRequiredArgument):
+    embed = discord.Embed(
+      title = "Missing Required Argument!",
+      color = config.hina_color,
+      timestamp = datetime.utcnow(),
+      description = f"""
+`<{exception.param}>` argument is missing!
+
+__Usage:__
+`{ctx.command.usage}`
+      """
+    )
+    embed.set_footer(text=f"Error invoked by {ctx.author}", icon_url=ctx.author.avatar_url)
+    await ctx.send(embed=embed)
+
+
+
+  elif isinstance(exception, discord.ext.commands.errors.CommandNotFound):
+    embed = discord.Embed(
+      title = "Command Not Found!",
+      color = config.hina_color,
+      timestamp = datetime.utcnow(),
+      description = f"""
+{exception.args[0]}
+
+__For more info on my commands do:__
+`hina help`
+      """
+    )
+    embed.set_footer(text=f"Error invoked by {ctx.author}", icon_url=ctx.author.avatar_url)
+    await ctx.send(embed=embed)
+
+
+
+  else:
+    await ctx.send(f"```{str(exception)}```")
 
 
 

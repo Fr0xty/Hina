@@ -19,7 +19,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="random [num]", help="get a random pic or multiple using [num] argument from image category")
   async def random(self, ctx, num=None):
 
     if num is None: #not specified
@@ -60,7 +60,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="waifu [num]", help="get a waifu pic or multiple using [num] argument")
   async def waifu(self, ctx, num=None):
 
     if num is None: #not specified
@@ -101,7 +101,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="maid [num]", help="get a maid pic or multiple using [num] argument")
   async def maid(self, ctx, num=None):
 
     if num is None: #not specified
@@ -142,7 +142,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="ass [num]", help="get an ass pic or multiple using [num] argument")
   async def ass(self, ctx, num=None):
 
     if num is None: #not specified
@@ -183,7 +183,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command(aliases=["lewd"])
+  @commands.command(aliases=["lewd"], usage="ecchi [num]", help="get an ecchi pic or multiple using [num] argument")
   async def ecchi(self, ctx, num=None):
 
     if num is None: #not specified
@@ -224,7 +224,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="ero [num]", help="get an ero pic or multiple using [num] argument")
   async def ero(self, ctx, num=None):
 
     if num is None: #not specified
@@ -265,7 +265,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="hentai [num]", help="get a hentai pic or multiple using [num] argument")
   async def hentai(self, ctx, num=None):
 
     if num is None: #not specified
@@ -306,7 +306,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="nsfwmaid [num]", help="get a nsfwmaid pic or multiple using [num] argument")
   async def nsfwmaid(self, ctx, num=None):
 
     if num is None: #not specified
@@ -347,7 +347,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="milf [num]", help="get a milf pic or multiple using [num] argument")
   async def milf(self, ctx, num=None):
 
     if num is None: #not specified
@@ -388,7 +388,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="oppai [num]", help="get an oppai pic or multiple using [num] argument")
   async def oppai(self, ctx, num=None):
 
     if num is None: #not specified
@@ -429,7 +429,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="oral [num]", help="get an oral pic or multiple using [num] argument")
   async def oral(self, ctx, num=None):
 
     if num is None: #not specified
@@ -470,7 +470,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="paizuri [num]", help="get a paizuri pic or multiple using [num] argument")
   async def paizuri(self, ctx, num=None):
 
     if num is None: #not specified
@@ -511,7 +511,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="selfies [num]", help="get a selfies pic or multiple using [num] argument")
   async def selfies(self, ctx, num=None):
 
     if num is None: #not specified
@@ -552,7 +552,7 @@ class hori_API(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="uniform [num]", help="get a uniform pic or multiple using [num] argument")
   async def uniform(self, ctx, num=None):
 
     if num is None: #not specified

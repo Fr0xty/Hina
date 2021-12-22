@@ -138,7 +138,7 @@ class musicCommands(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="play <yt_url / search keyword>", help="play a music or add to queue")
   async def play(self, ctx, *args):
 
     auth_channel = ctx.author.voice.channel
@@ -176,7 +176,7 @@ YT playist and spotify support are under development so please be patient!
 
 
 
-  @commands.command()
+  @commands.command(usage="join", help="I will join your voice channel")
   async def join(self, ctx):
 
     try:
@@ -200,7 +200,7 @@ YT playist and spotify support are under development so please be patient!
 
 
 
-  @commands.command()
+  @commands.command(usage="leave", help="I will leave your voice channel")
   async def leave(self, ctx):
 
     try:
@@ -217,7 +217,7 @@ YT playist and spotify support are under development so please be patient!
 
 
 
-  @commands.command()
+  @commands.command(usage="pause", help="pause current song")
   async def pause(self, ctx):
 
     voice = discord.utils.get(self.client.voice_clients, guild = ctx.guild)
@@ -238,7 +238,7 @@ YT playist and spotify support are under development so please be patient!
 
 
 
-  @commands.command()
+  @commands.command(usage="resume", help="resume current song")
   async def resume(self, ctx):
 
     voice = discord.utils.get(self.client.voice_clients, guild = ctx.guild)
@@ -259,7 +259,7 @@ YT playist and spotify support are under development so please be patient!
 
 
 
-  @commands.command(aliases=['q'])
+  @commands.command(aliases=['q'], usage="queue", help="get song queue")
   async def queue(self, ctx):
 
     if len(self.song_queue) > 0:    #if there is song in queue
@@ -383,7 +383,7 @@ YT playist and spotify support are under development so please be patient!
 
   
 
-  @commands.command()
+  @commands.command(usage="skip", help="skip current song")
   async def skip(self, ctx):
     self.is_playing = False
     self.play_next()
@@ -392,7 +392,7 @@ YT playist and spotify support are under development so please be patient!
 
 
 
-  @commands.command()
+  @commands.command(usage="stop", help="stop playing music")
   async def stop(self, ctx):
 
     voice = discord.utils.get(self.client.voice_clients, guild = ctx.guild)
@@ -413,7 +413,7 @@ YT playist and spotify support are under development so please be patient!
 
 
 
-  @commands.command()
+  @commands.command(usage="clear", help="clear song queue")
   async def clear(self, ctx):
     voice = discord.utils.get(self.client.voice_clients, guild = ctx.guild)
     self.song_queue = []
@@ -423,7 +423,7 @@ YT playist and spotify support are under development so please be patient!
 
   
 
-  @commands.command()
+  @commands.command(usage="np", help="get nowplaying song")
   async def np(self, ctx):
 
     if len(self.song_queue) > 0:    #if there is song in queue

@@ -28,7 +28,7 @@ class general(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="rename <name>", help="rename bot")
   async def rename(self, ctx, *, name):
     if ctx.author.id == 395587171601350676:
       await self.client.user.edit(username=name)
@@ -36,7 +36,7 @@ class general(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="invite", help="get my invite link")
   async def invite(self, ctx):
     self.inviteEmbed.set_author(name = "My invite link♡", icon_url = self.client.user.avatar_url)
     await ctx.send(embed = self.inviteEmbed,
@@ -45,7 +45,7 @@ class general(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="funfact", help="get a funfact")
   async def funfact(self, ctx):
 
     fact = requests.get('https://uselessfacts.jsph.pl/random.json?language=en').json()
@@ -56,7 +56,7 @@ class general(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="joke", help="I will tell a joke")
   async def joke(self, ctx):
 
     joke = requests.get('https://v2.jokeapi.dev/joke/Any').json()
@@ -73,7 +73,7 @@ class general(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="act <@user> <message>", help="impersonate someone sending a message")
   async def act(self, ctx, member: discord.Member, *, message=None):
 
     if message == None:
@@ -99,7 +99,7 @@ class general(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="padoru [@user]", help="get padoru'd")
   async def padoru(self, ctx, member: discord.Member=None):
     links = ['https://c.tenor.com/xYq4RnxDODEAAAAC/padoru-padoru-anime.gif',
     'https://c.tenor.com/ddSa-psbO3sAAAAS/fate-padoru-christmas.gif',
@@ -135,7 +135,7 @@ class general(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="translate <language> <text / reply_to_msg>", help="translate a text or a message")
   async def translate(self, ctx, language, *, text=None):
     
     if not text:
@@ -152,7 +152,7 @@ class general(commands.Cog):
 
 
 
-  @commands.command()
+  @commands.command(usage="spotify [@user]", help="know what someone is listening on spotify")
   async def spotify(self, ctx, member: discord.Member=None):
 
     if not member:
