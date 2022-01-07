@@ -7,11 +7,11 @@ import config
 
 class games(commands.Cog):
 
-  def __init__(self, client):
-    self.client = client
+    def __init__(self, client):
+        self.client = client
 
 
-  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents = discord.Intents().all())
+    client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents = discord.Intents().all())
 
 
 
@@ -24,4 +24,4 @@ class games(commands.Cog):
 
 
 def setup(client):
-  client.add_cog(games(client))
+    client.add_cog(games(client))

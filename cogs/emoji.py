@@ -8,150 +8,150 @@ import config
 
 class emoji(commands.Cog):
 
-  def __init__(self, client):
-    self.client = client
+    def __init__(self, client):
+        self.client = client
 
 
-  client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents = discord.Intents().all())
+    client = commands.Bot(command_prefix = config.prefixList, case_insensitive=True, intents = discord.Intents().all())
 
 
 
 
 
-  @commands.command(usage="getemoji <server_id>", help="get all server emoji(s)")
-  async def getemoji(self, ctx, server_id=None):
+    @commands.command(usage="getemoji <server_id>", help="get all server emoji(s)")
+    async def getemoji(self, ctx, server_id=None):
 
-    if server_id is None:
-      server = self.client.get_guild(ctx.guild.id)
-    else:
-      server = self.client.get_guild(int(server_id))
-    
-    pages = []
-    if server != None:      #bot in server
-      n = 0
-      var = ''
-      num = 0
+        if server_id is None:
+            server = self.client.get_guild(ctx.guild.id)
+        else:
+            server = self.client.get_guild(int(server_id))
+        
+        pages = []
+        if server != None:            #bot in server
+            n = 0
+            var = ''
+            num = 0
 
-      for emoji in server.emojis:
-        num += 1
+            for emoji in server.emojis:
+                num += 1
 
-        if n == 20:
-          pages.append(var.replace("\\", ""))
-          var = ''
-          n = 0
+                if n == 20:
+                    pages.append(var.replace("\\", ""))
+                    var = ''
+                    n = 0
 
-        var += f"{emoji} - `\{emoji}` \n"
+                var += f"{emoji} - `\{emoji}` \n"
 
-        n += 1
+                n += 1
 
-      #after full pages
-      if n >= 1:
-          pages.append(var.replace("\\", ""))
+            #after full pages
+            if n >= 1:
+                    pages.append(var.replace("\\", ""))
 
-      page = 0
-      
-      if server.icon:
-        server_icon = server.icon_url
-      else:
-        server_icon = self.client.user.avatar_url
+            page = 0
+            
+            if server.icon:
+                server_icon = server.icon_url
+            else:
+                server_icon = self.client.user.avatar_url
 
-      eembed = discord.Embed(
-        title = f"Emoji list for {server} [{num}]",
-        description = pages[page],
-        color = config.hina_color
-      )
-      eembed.set_author(name=f"Page ({page + 1} / {len(pages)})", icon_url = server_icon)
-
-      timedOut = False
-      emoji_embed = await ctx.reply(embed = eembed)
-      await emoji_embed.add_reaction('a<a:Aqua_left:879530551038603264>')
-      await emoji_embed.add_reaction('a<a:Aqua_right:879530551881637930>')
-
-      while timedOut == False: 
-
-        try:
-          def check(reaction, user):
-            return reaction.message.id == emoji_embed.id and user != self.client.user #check added reactions
-
-          reaction, user = await self.client.wait_for('reaction_add', timeout = 60.0, check = check)
-          
-
-          if reaction.emoji.id == 879530551038603264 and page > 0:  #detect flip left && not the first page
-
-            page -= 1
             eembed = discord.Embed(
-              title = f"Emoji list for {server} [{num}]",
-              description = pages[page],
-              color = config.hina_color
+                title = f"Emoji list for {server} [{num}]",
+                description = pages[page],
+                color = config.hina_color
             )
             eembed.set_author(name=f"Page ({page + 1} / {len(pages)})", icon_url = server_icon)
 
-            await emoji_embed.edit(embed = eembed)          #flip 
-            await emoji_embed.remove_reaction('a<a:Aqua_left:879530551038603264>', user)
+            timedOut = False
+            emoji_embed = await ctx.reply(embed = eembed)
+            await emoji_embed.add_reaction('a<a:Aqua_left:879530551038603264>')
+            await emoji_embed.add_reaction('a<a:Aqua_right:879530551881637930>')
+
+            while timedOut == False: 
+
+                try:
+                    def check(reaction, user):
+                        return reaction.message.id == emoji_embed.id and user != self.client.user #check added reactions
+
+                    reaction, user = await self.client.wait_for('reaction_add', timeout = 60.0, check = check)
+                    
+
+                    if reaction.emoji.id == 879530551038603264 and page > 0:    #detect flip left && not the first page
+
+                        page -= 1
+                        eembed = discord.Embed(
+                            title = f"Emoji list for {server} [{num}]",
+                            description = pages[page],
+                            color = config.hina_color
+                        )
+                        eembed.set_author(name=f"Page ({page + 1} / {len(pages)})", icon_url = server_icon)
+
+                        await emoji_embed.edit(embed = eembed)                    #flip 
+                        await emoji_embed.remove_reaction('a<a:Aqua_left:879530551038603264>', user)
 
 
-          if reaction.emoji.id == 879530551881637930 and page < len(pages) -1:  #detect flip right && not the last page
+                    if reaction.emoji.id == 879530551881637930 and page < len(pages) -1:    #detect flip right && not the last page
 
-            page += 1
-            eembed = discord.Embed(
-              title = f"Emoji list for {server}",
-              description = pages[page],
-              color = config.hina_color
-            )
-            eembed.set_author(name=f"Page ({page + 1} / {len(pages)})", icon_url = server_icon)
+                        page += 1
+                        eembed = discord.Embed(
+                            title = f"Emoji list for {server}",
+                            description = pages[page],
+                            color = config.hina_color
+                        )
+                        eembed.set_author(name=f"Page ({page + 1} / {len(pages)})", icon_url = server_icon)
 
-            await emoji_embed.edit(embed = eembed)          #flip
-            await emoji_embed.remove_reaction('a<a:Aqua_right:879530551881637930>', user)
+                        await emoji_embed.edit(embed = eembed)                    #flip
+                        await emoji_embed.remove_reaction('a<a:Aqua_right:879530551881637930>', user)
 
-        except asyncio.TimeoutError:
-          timedOut = True
-          await emoji_embed.clear_reactions()
+                except asyncio.TimeoutError:
+                    timedOut = True
+                    await emoji_embed.clear_reactions()
 
-    else:                   #bot not in server
-      await ctx.reply("I'm not in the server!")
-
-
+        else:                                     #bot not in server
+            await ctx.reply("I'm not in the server!")
 
 
 
-  @commands.command(usage="usemoji <emoji_id>", help="send the emoji as you")
-  async def usemoji(self, ctx, given_id=None):
-
-    if given_id == None:
-      await ctx.send("Please provide an emoji_id!")
-      return
-    
-    emoji_ID = f"<{given_id}>"
-
-    if ctx.author.nick:     #if user has nickname
-      webhook = await ctx.channel.create_webhook(name=ctx.author.nick)
-      await webhook.send(str(emoji_ID), username=ctx.author.nick, avatar_url=ctx.author.avatar_url)
-      await ctx.message.delete()
-      await webhook.delete()
-    
-    else:
-      webhook = await ctx.channel.create_webhook(name=ctx.author.name)
-      await webhook.send(str(emoji_ID), username=ctx.author.name, avatar_url=ctx.author.avatar_url)
-      await ctx.message.delete()
-      await webhook.delete()
 
 
+    @commands.command(usage="usemoji <emoji_id>", help="send the emoji as you")
+    async def usemoji(self, ctx, given_id=None):
 
-  @commands.command(usage="reactemoji <emoji_id>", help="react to message that you replied to while using the command with the emoji")
-  async def reactemoji(self, ctx, emoji_id):
+        if given_id == None:
+            await ctx.send("Please provide an emoji_id!")
+            return
+        
+        emoji_ID = f"<{given_id}>"
 
-    if not ctx.message.reference:
-      await ctx.reply("Please reply to the message you want to react to!")
-      return
+        if ctx.author.nick:         #if user has nickname
+            webhook = await ctx.channel.create_webhook(name=ctx.author.nick)
+            await webhook.send(str(emoji_ID), username=ctx.author.nick, avatar_url=ctx.author.avatar_url)
+            await ctx.message.delete()
+            await webhook.delete()
+        
+        else:
+            webhook = await ctx.channel.create_webhook(name=ctx.author.name)
+            await webhook.send(str(emoji_ID), username=ctx.author.name, avatar_url=ctx.author.avatar_url)
+            await ctx.message.delete()
+            await webhook.delete()
 
-    emoji_id = '<' + emoji_id + '>'         #complete the emoji id
-    msg = await ctx.channel.fetch_message(ctx.message.reference.message_id)
-    await msg.add_reaction(emoji_id)        #react
-    await ctx.message.delete()                      #remove user command
-    
+
+
+    @commands.command(usage="reactemoji <emoji_id>", help="react to message that you replied to while using the command with the emoji")
+    async def reactemoji(self, ctx, emoji_id):
+
+        if not ctx.message.reference:
+            await ctx.reply("Please reply to the message you want to react to!")
+            return
+
+        emoji_id = '<' + emoji_id + '>'                 #complete the emoji id
+        msg = await ctx.channel.fetch_message(ctx.message.reference.message_id)
+        await msg.add_reaction(emoji_id)                #react
+        await ctx.message.delete()                                            #remove user command
+        
 
 
 
 
 def setup(client):
-  client.add_cog(emoji(client))
+    client.add_cog(emoji(client))
