@@ -7,16 +7,16 @@ Due to discord.py not being maintain anymore, hinamaru will also follow suite, a
 I wasn't very verse in Python when I first started this project, As a result, a lot of code can be optimized, but it is too much effort now for a discord bot that will soon be broken.
 
 
-#### A few things I would improve for example:
-##### Hori_API cog
+### A few things I would improve for example:
+#### Hori_API cog
 * use dataclass to store responses
 * use aiohttp instead of requests
 
-##### Music Cog
+#### Music Cog
 * use dataclass to store server profiles
 * make every player related function async
 
-##### Others
+#### Others
 * implement sqlite3 instead of json
 * make config file a cog
 * mess around with jishaku extension settings
