@@ -11,6 +11,7 @@ I wasn't very verse in Python when I first started this project, As a result, a 
 #### Hori_API cog
 * use dataclass to store responses
 * use aiohttp instead of requests
+* make multi-requests a paginator instead of spamming the channel (getting in trouble with discord rate limit)
 
 #### Music Cog
 * use dataclass to store server profiles
