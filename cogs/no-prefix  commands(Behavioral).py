@@ -15,6 +15,9 @@ class noPrefixCommands(commands.Cog):
 
         greetings = ["hello", "hi", "yo", "sup", "wassup", "yahhallo", "nyahhallo","こんにちは", "おはよう", "こんばんは", "ハロー", "おっす", "にゃっはろー", "やっはろー", "にゃんぱすー"]
 
+        # if its myself
+        if ctx.author.id == 769125937731338290:
+            return
 
         for greeting in greetings:
             if greeting == ctx.content.lower():
