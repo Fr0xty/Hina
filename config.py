@@ -44,7 +44,7 @@ class helpEmbed():
             embed.add_field(name = "<:TGGasm:895182438064590879> Image", value = "`hina help image`", inline = True)
             embed.add_field(name = "🎌 Japanese", value = "`hina help japanese`", inline = True)
             embed.add_field(name = "🛠️ Utility", value = "`hina help utility`", inline = True)
-            embed.add_field(name = "🎲 Games", value = "`hina help games`", inline = True)
+            embed.add_field(name = "🎲 Code Runner", value = "`hina help coderunner`", inline = True)
             embed.set_footer(text=f"{ctx.author} requested", icon_url=ctx.author.avatar_url)
             return embed
 
@@ -170,13 +170,14 @@ class helpEmbed():
 
             
 
-        def games(client):
+        def code_runner(client):
             embed = discord.Embed( #UwU Category
-                title = "UwU Discord Server Commands",
+                title = "Code Runner",
                 colour = hina_color
             )
-            embed.set_author(name = f"{client.user.name} Games Category", icon_url = client.user.avatar_url)
-            embed.add_field(name = "Currently in progress", value = "\n\u2800", inline = True)
+            embed.set_author(name = f"{client.user.name} Code Runner", icon_url = client.user.avatar_url)
+            embed.add_field(name = "How to use?", value = "The picture is an example. \n replace 'py' with your language \n\n more info about Discord's code blocks [here](https://gist.github.com/matthewzring/9f7bbfd102003963f9be7dbcf7d40e51#syntax-highlighting)", inline = True)
+            embed.set_image(url="https://media.discordapp.net/attachments/907586559719645204/930374092723470336/Screenshot_246.png")
             embed.set_footer(text="<> = Required, [] = Optional", icon_url="https://cdn.discordapp.com/attachments/907586559719645204/913010359936372746/amasiro_natuki.png")
             return embed
 

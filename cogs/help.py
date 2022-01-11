@@ -57,8 +57,8 @@ class help(commands.Cog):
             await interaction.message.edit(embed = config.helpEmbed.utility(self.client))
             await interaction.defer(edit_origin=True)
 
-        if interaction.values[0] == "piston":
-            await interaction.message.edit(embed = config.helpEmbed.piston(self.client))
+        if interaction.values[0] == "coderunner":
+            await interaction.message.edit(embed = config.helpEmbed.code_runner(self.client))
             await interaction.defer(edit_origin=True)
 
         if interaction.values[0] == "creator":
@@ -105,8 +105,8 @@ class help(commands.Cog):
             elif category.lower() == "utility":
                 await ctx.send(embed=config.helpEmbed.utility(self.client))
                 return
-            elif category.lower() == "piston":
-                await ctx.send(embed=config.helpEmbed.games(self.client))
+            elif category.lower() == "coderunner":
+                await ctx.send(embed=config.helpEmbed.code_runner(self.client))
                 return
             elif category.lower() == "creator":
                 await ctx.send(embed=config.helpEmbed.creator(self.client, owner))
@@ -130,7 +130,7 @@ class help(commands.Cog):
                     SelectOption(label="Image", value="image", emoji=self.client.get_emoji(895182438064590879), description="Get all those waifu and hentai pics baby!"),
                     SelectOption(label="Japanese", value="japanese", emoji="🎌", description="Japanese learning quizes and games!"),
                     SelectOption(label="Utility", value="utility", emoji="🛠️", description="Useful technical commands"),
-                    SelectOption(label="Code Runner", value="piston", emoji="🎲", description="Sandbox for various programming languages"),
+                    SelectOption(label="Code Runner", value="coderunner", emoji="🎲", description="Sandbox for various programming languages"),
                     SelectOption(label="Creator", value="creator", emoji=self.client.get_emoji(885845967029551124), description="Hidden Commands")
                     ]
                 ),

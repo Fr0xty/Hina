@@ -2,6 +2,7 @@ import discord
 import asyncio
 from pyston import PystonClient, File
 from discord.ext import commands
+from datetime import datetime
 
 import config
 
@@ -17,12 +18,9 @@ class games(commands.Cog):
 
     @commands.command()
     async def run(self, ctx, *, code):
-        if ctx.author.id != 395587171601350676:
-            await ctx.reply("You have no permission to use this command!")
-            return
 
         if not code.startswith("```"):
-            await ctx.send("Wrong Format")
+            await ctx.send("Wrong Format, pls do `hina help coderunner`")
             return
         
         code = code.replace("`", "")
@@ -31,7 +29,20 @@ class games(commands.Cog):
         
         client = PystonClient()
         output = await client.execute(lang, [File(code)])
-        await ctx.send(f"```{output}```")
+
+        if not output:
+            await ctx.send("Code ran with no exceptions.")
+        else:
+            embed = discord.Embed(
+                title="Result:",
+                description = f"```{output}```",
+                timestamp=datetime.utcnow(),
+                color=config.hina_color
+            )
+            embed.set_author(name=f"Language: {lang}")
+            embed.set_footer(text=f"Requested by: {ctx.author}", icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
+        await ctx.message.add_reaction(self.client.get_emoji(920600099556589569))
 
 
 
