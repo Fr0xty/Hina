@@ -23,7 +23,7 @@ class games(commands.Cog):
             await ctx.send("Wrong Format, pls do `hina help coderunner`")
             return
         
-        code = code.replace("`", "")
+        code = code.replace("```", "")
         lang = code.splitlines()[0]
         code = '\n'.join(code.splitlines()[1:])
         
