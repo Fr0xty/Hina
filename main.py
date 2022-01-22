@@ -109,6 +109,5 @@ help_command=None
 
 
 
-keep_alive()                                                    #stay online
-my_secret = os.environ['Token']        
-client.run(my_secret)                                                                                #login
+keep_alive()    #stay online      
+client.run(os.environ['Token'])

@@ -29,19 +29,25 @@ class games(commands.Cog):
         
         client = PystonClient()
         output = await client.execute(lang, [File(code)])
-
-        if not output:
-            await ctx.send("Code ran with no exceptions.")
-        else:
+        if output.raw_json['run']['output'] == '' and output.raw_json['run']['code'] == 0:
             embed = discord.Embed(
                 title="Result:",
-                description = f"```{output}```",
+                description = "Code ran without any exceptions...\n\u2800",
                 timestamp=datetime.utcnow(),
                 color=config.hina_color
             )
-            embed.set_author(name=f"Language: {lang}")
-            embed.set_footer(text=f"Requested by: {ctx.author}", icon_url=ctx.author.avatar_url)
-            await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(
+                title="Result:",
+                description = f"```{output}```\n\u2800",
+                timestamp=datetime.utcnow(),
+                color=config.hina_color
+            )
+
+        embed.add_field(name="info", value=f"Language: `{output.langauge}`\nVersion: `{output.version}`\nExtension: `{lang}`")
+        embed.set_author(name="Code Runner")
+        embed.set_footer(text=f"Requested by: {ctx.author}", icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=embed)
         await ctx.message.add_reaction(self.client.get_emoji(920600099556589569))
 
 
