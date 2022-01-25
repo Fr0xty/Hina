@@ -1,4 +1,4 @@
-# ひなまる　Discord Bot
+# ひなまる Discord Bot (discord.py)
 ひなまる is the first discord bot I've ever create.
 
 ## Notice
