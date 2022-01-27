@@ -18,7 +18,7 @@ client.remove_command('help')                                 #remove default bu
 
 
 
-@client.event                                                                    
+@client.event
 async def on_ready():
 
     print(f"We have logged in as {client.user}")

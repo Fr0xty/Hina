@@ -149,23 +149,23 @@ class utils(commands.Cog):
                 elif i[0] == "partner":
                     public_flags += "<:discord_partner:908517486113202287>"
                 elif i[0] == "hypesquad":
-                    public_flags += "<:HypeSquad_Event_Badge:908246675108266024>"
+                    public_flags += "<:hypeSquad_event:908246675108266024>"
                 elif i[0] == "bug_hunter":
-                    public_flags += "<:Bug_hunter:908516650133897287>"
+                    public_flags += "<:bug_hunter:908516650133897287>"
                 elif i[0] == "hypesquad_bravery":
-                    public_flags += "<:Hypesquad_bravery_badge:908246674818871306>"
+                    public_flags += "<:Hypesquad_bravery:908246674818871306>"
                 elif i[0] == "hypesquad_brilliance":
-                    public_flags += "<:Hypesquad_brilliance_badge:908246675116670986>"
+                    public_flags += "<:hypesquad_brilliance:908246675116670986>"
                 elif i[0] == "hypesquad_balance":
-                    public_flags += "<:Hypesquad_balance_badge:908246674755964978>"
+                    public_flags += "<:hypesquad_balance:908246674755964978>"
                 elif i[0] == "early_supporter":
-                    public_flags += "<:Early_supporter_badge:908246674743365632>"
+                    public_flags += "<:early_supporter:908246674743365632>"
                 elif i[0] == "bug_hunter_level_2":
                     public_flags += "<:bug_buster:908516650326843412>"
                 elif i[0] == "verified_bot":
-                    public_flags += ""
+                    public_flags += "<:verified_bot:936164801674100746>"
                 elif i[0] == "verified_bot_developer":
-                    public_flags += "<:Verified_developer_badge:908246675267657759>"
+                    public_flags += "<:verified_developer:908246675267657759>"
                 else:
                     return
                     
