@@ -1,0 +1,28 @@
+{
+  "name": "hinamaru-discordjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "@discordjs/rest": "^0.2.0-canary.0",
+    "@discordjs/voice": "^0.7.5",
+    "bufferutil": "^4.0.6",
+    "discord-api-types": "^0.26.1",
+    "discord.js": "^13.6.0",
+    "express": "^4.17.2",
+    "piston-client": "^1.0.2",
+    "utf-8-validate": "^5.0.8",
+    "zlib-sync": "^0.1.7"
+  },
+  "devDependencies": {
+    "node": "^16.13.1"
+  },
+  "scripts": {
+    "start": "node .",
+    "node-update": "npm i --save-dev node@16 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",
+    "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i",
+    "node-update-then-clean": "npm run node-update && npm run node-clean"
+  },
+  "author": "",
+  "license": "ISC"
+}
