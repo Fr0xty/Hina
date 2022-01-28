@@ -137,7 +137,7 @@ class help(commands.Cog):
                 [self.main_page_button, self.delete_button],
                 [Button(label="Invite Me!", style=5, url="https://discord.com/api/oauth2/authorize?client_id=769125937731338290&permissions=8&scope=bot", emoji = self.client.get_emoji(884003530933944341)),
                 Button(label="Join UwU Server", style=5, url="https://discord.gg/VtQRrVCxg8", emoji=self.client.get_emoji(907573738369875998)),
-                Button(label="Github Repo", style=5, url="https://github.com/Fr0xty/Hina", emoji=self.client.get_emoji(913019791743262772))]
+                Button(label="Github Repo", style=5, url="https://github.com/Fr0xty/Hina/tree/discord.py", emoji=self.client.get_emoji(913019791743262772))]
         ]
         MAIN = config.helpEmbed.main(self.client, ctx)
 
