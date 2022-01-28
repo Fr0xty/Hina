@@ -4,7 +4,7 @@ const { Client, Intents, MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
 const fs = require('fs');
 
-const config = require('./res/config.js');
+const config = require('./res/config');
 
 
 const client = new Client({ 
@@ -25,7 +25,13 @@ const CLIENT_ID = '882840863154270289';
 const GUILD_ID = '744786416327721050';
 
 
-// message commands
+
+
+
+
+
+
+// loading commands
 client.commands = new Discord.Collection();
 
 const commandsFolder = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -37,7 +43,21 @@ commandsFolder.forEach(file => {
         client.commands.set(comm.name, comm);
     });
 });
-console.log('Commands are Successfully added!');
+console.log('Commands are successfully added!');
+
+
+
+// loading event handlers
+const eventsFolder = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+
+eventsFolder.forEach(file => {
+    const event = require(`./events/${file}`);
+
+    client.on(event.eventType, event.callback);
+});
+console.log('Events are successfully added!');
+
+
 
 // register slash commands
 const rest = new REST({ version: '9' }).setToken(config.token);
@@ -58,7 +78,13 @@ const rest = new REST({ version: '9' }).setToken(config.token);
 });
 
 
-// message command handler
+
+
+
+
+
+
+// command handler
 client.on('messageCreate', async (msg) => {
     if (!msg.content.toLowerCase().startsWith(config.prefix) || msg.author.bot) return;
 
@@ -90,7 +116,9 @@ client.on('messageCreate', async (msg) => {
 });
 
 
+
 // slash command handler
+/*
 client.on('interactionCreate', async (interaction) => {
 
     if (!interaction.isCommand()) return;
@@ -103,6 +131,17 @@ client.on('interactionCreate', async (interaction) => {
     }
 
 });
+*/
+
+
+
+
+
+
+
+
+
+
 
 
 
