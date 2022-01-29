@@ -11,7 +11,7 @@ module.exports = {
                 if (emoji.name === emojiName) {
                     
                     const webhook = await msg.channel.createWebhook(msg.member.displayName, {
-                        avatar: msg.author.avatarURL(),
+                        avatar: msg.author.displayAvatarURL(),
                     });
 
                     await webhook.send(emoji.toString());

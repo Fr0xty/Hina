@@ -15,7 +15,7 @@
     "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
-    "node": "^16.13.1"
+    "node": "^16.13.2"
   },
   "scripts": {
     "start": "node .",

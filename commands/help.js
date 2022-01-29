@@ -25,10 +25,7 @@ module.exports = [
                     await msg.channel.send({ embeds: [embed[cat]] });
                     return;
                 }
-
             }
-            
-            
             await msg.channel.send({ 
                 embeds: [embed.mainPage],
                 components: [

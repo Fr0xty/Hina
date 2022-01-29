@@ -1,6 +1,6 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const { Client, Intents, MessageEmbed } = require('discord.js');
+const { Client, Intents } = require('discord.js');
 const Discord = require('discord.js');
 const fs = require('fs');
 
@@ -150,5 +150,5 @@ client.on('ready', () => {
 });
 
 
-require('./server.js')();
+require('./server')();
 client.login(config.token);

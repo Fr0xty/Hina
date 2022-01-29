@@ -25,7 +25,6 @@ class Help {
 
 
 
-
         this.components = {
 
             actionRow: new MessageActionRow()
@@ -130,9 +129,8 @@ class Help {
 
 
 
-
         this.mainPage = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} Commands!`, iconURL: this.client.user.avatarURL()})
+            .setAuthor({name: `${this.client.user.username} Commands!`, iconURL: this.client.user.displayAvatarURL()})
             .setColor(hinaColor)
             .setTitle('Command Categories')
             .setDescription(`
@@ -151,14 +149,13 @@ class Help {
                 {name: '🛠️ Utility', value: '`hina help utility`', inline: true},
                 {name: '🎲 Code Runner', value: '`hina help coderunner`', inline: true}
             )
-            .setFooter({text: `Requested by: ${this.author.tag}`, iconURL: this.author.avatarURL()})
+            .setFooter({text: `Requested by: ${this.author.tag}`, iconURL: this.author.displayAvatarURL()})
             .setTimestamp();
 
-        
 
 
         this.behavoiral = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} Behavoiral Category`, iconURL: this.client.user.avatarURL()})
+            .setAuthor({name: `${this.client.user.username} Behavoiral Category`, iconURL: this.client.user.displayAvatarURL()})
             .setColor(hinaColor)
             .addFields(
                 {name: 'Greetings', value: 'If you use any of the following greetings, I will greet you back!\n`hello`, `hi`, `yo`, `sup`, `wassup`, `yahhallo`, `nyahhallo`, `こんにちは`, `おはよう`, `こんばんは`, `ハロー`, `おっす`, `にゃっはろー`, `やっはろー`, `にゃんぱすー`'},
@@ -168,22 +165,27 @@ class Help {
 
 
 
-
         this.general = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} General Category`, iconURL: this.client.user.avatarURL()})
+            .setAuthor({name: `${this.client.user.username} General Category`, iconURL: this.client.user.displayAvatarURL()})
             .setColor(hinaColor)
             .addFields(
                 {name: '`help [category]`', value: 'get this help embed.', inline: true},
                 {name: '`invite`', value: 'get my invite link.', inline: true},
-                {name: '`translate <language> <text / reply to msg>`', value: 'translate message or your text.', inline: true},
                 {name: '`spotify [@user/userid]`', value: 'get user spotify listening info.', inline: true},
             )
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
 
 
 
-    
-
+        this.fun = new MessageEmbed()
+            .setAuthor({name: `${this.client.user.username} Fun Category`, iconURL: this.client.user.displayAvatarURL()})
+            .setColor(hinaColor)
+            .addFields(
+                {name: '`funfact`', value: 'get a fun fact!', inline: true},
+                {name: '`joke`', value: 'Allow me to tell you a joke.', inline: true},
+                {name: '`act <@user> <msg>`', value: 'I will impersonate the user to say things.', inline: true},
+            )
+            .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
 
     };
     

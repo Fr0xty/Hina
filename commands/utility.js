@@ -10,7 +10,10 @@ module.exports = [
         name: 'run',
         description: 'Running code snippets in a sandbox.',
         async execute(client, msg, args) {
-            
+
+            await msg.channel.send('in progress..');
+            return;
+
             args = args.replaceAll('```', '');
             let lang = args.split('\n')[0];
             args.split('\n').shift();
@@ -35,20 +38,19 @@ module.exports = [
             
             const embed = new MessageEmbed()
                 .setDescription(`
-                    discord.js: \`${djsVer}\`
-                    Node JS: \`${nodeVer}\`
+discord.js: \`${djsVer}\`
+Node JS: \`${nodeVer}\`
 
-                    bot latency: \`${Date.now() - msg.createdTimestamp}ms\`
-                    websocket latency: \`${Math.round(client.ws.ping)}ms\`
-                    bot uptime: \`${uptime}\`
-                    `
-                )
-                .setAuthor({name: client.user.tag, iconURL: client.user.avatarURL({size:4096})})
+bot latency: \`${Date.now() - msg.createdTimestamp}ms\`
+websocket latency: \`${Math.round(client.ws.ping)}ms\`
+bot uptime: \`${uptime}\`
+                `)
+                .setAuthor({name: client.user.tag, iconURL: client.user.displayAvatarURL({size:4096})})
                 .setColor(hinaColor)
                 .setTitle(`Hina's Application Info`)
-                .setThumbnail(client.user.avatarURL({size: 4096}))
+                .setThumbnail(client.user.displayAvatarURL({size: 4096}))
                 .setTimestamp()
-                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.avatarURL({size:4096})});
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size:4096})});
             await msg.channel.send({ embeds: [embed] });
         }
     },
@@ -89,12 +91,12 @@ module.exports = [
 
 
             const embed = new MessageEmbed()
-                .setAuthor({name: `${member.displayName}'s User Info`, iconURL: member.user.avatarURL({size:4096})})
+                .setAuthor({name: `${member.displayName}'s User Info`, iconURL: member.user.displayAvatarURL({size:4096})})
                 .setTitle(member.user.tag)
                 .setColor(member.displayHexColor)
-                .setThumbnail(member.user.avatarURL({size:4096}))
+                .setThumbnail(member.user.displayAvatarURL({size:4096}))
                 .setTimestamp()
-                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.avatarURL({size:4096})})
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size:4096})})
                 .addFields(
                     {name: 'nickname', value: nickname, inline: true},
                     {name: 'mention', value: member.toString(), inline: true},
@@ -109,17 +111,5 @@ module.exports = [
             await msg.channel.send({ embeds: [embed] });
         }
     },
-
-
-
-    {
-        name: 'stuff',
-        description: 'testing stuff',
-        async execute(client, msg, args) {
-            let member = await msg.guild.members.fetch('768099933840343120');
-            console.log(member)
-            await msg.channel.send(member.user.tag);
-        }
-    }
 
 ];
