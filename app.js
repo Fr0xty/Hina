@@ -6,7 +6,6 @@ const fs = require('fs');
 
 const config = require('./res/config');
 
-
 const client = new Client({ 
     intents: [
         Intents.FLAGS.GUILDS,
@@ -20,10 +19,6 @@ const client = new Client({
         Intents.FLAGS.GUILD_MESSAGE_REACTIONS
     ] 
 });
-
-const CLIENT_ID = '882840863154270289';
-const GUILD_ID = '744786416327721050';
-
 
 
 
@@ -60,6 +55,9 @@ console.log('Events are successfully added!');
 
 
 // register slash commands
+const CLIENT_ID = '882840863154270289';
+const GUILD_ID = '859029044942471208';
+
 const rest = new REST({ version: '9' }).setToken(config.token);
 
 (async () => {
@@ -75,7 +73,7 @@ const rest = new REST({ version: '9' }).setToken(config.token);
   } catch (error) {
     console.error(error);
   }
-});
+})();
 
 
 
@@ -105,7 +103,15 @@ client.on('messageCreate', async (msg) => {
     }
     finally {
         try {
-            theCommand = client.commands.get(command);
+            theCommand = client.commands.get(command)
+
+            if (!theCommand) {
+                for (const [key, value] of client.commands) {
+                    if (value.aliases.includes(command)) theCommand = client.commands.get(key);
+                };
+            }
+            if (!theCommand) return await msg.channel.send('No such command found!');            
+            
             await theCommand.execute(client, msg, args);
         }
         catch (e) {

@@ -8,6 +8,7 @@ module.exports = [
     
     {
         name: 'run',
+        aliases: [],
         description: 'Running code snippets in a sandbox.',
         async execute(client, msg, args) {
 
@@ -29,6 +30,7 @@ module.exports = [
 
     {
         name: 'appinfo',
+        aliases: [],
         description: 'Get my information!',
         async execute(client, msg, args) {
 
@@ -59,6 +61,7 @@ bot uptime: \`${uptime}\`
 
     {
         name: 'userinfo',
+        aliases: [],
         description: 'get all user information',
         async execute(client, msg, args) {
 

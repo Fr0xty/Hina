@@ -1,4 +1,5 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+
 const { hinaColor } = require('../res/config');
 const { generateClientInvite } = require('../utils/general');
 const { convertSeconds } = require('../utils/convert');
@@ -8,6 +9,7 @@ module.exports = [
 
     {
         name: 'invite',
+        aliases: [],
         description: 'get my invite link.',
         async execute(client, msg, args) {
             
@@ -37,6 +39,7 @@ module.exports = [
 
     {
         name: 'spotify',
+        aliases: [],
         description: 'get user spotify listening info.',
         async execute(client, msg, args) {
 
@@ -105,5 +108,17 @@ party id: \`${partyID}\`
             await msg.channel.send(`${member} is not listening to Spotify!`);     
         }
     },
+
+
+
+    {
+        name: 'translate',
+        aliases: ['trans'],
+        description: 'translate your text or a message.',
+        async execute(client, msg, args) {
+
+            await msg.channel.send('not implemented yet');
+        }
+    }
 
 ];

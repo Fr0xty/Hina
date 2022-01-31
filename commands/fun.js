@@ -7,6 +7,7 @@ module.exports = [
 
     {
         name: 'funfact',
+        aliases: [],
         desciption: 'get a fun fact!',
         async execute(client, msg, args) {
 
@@ -36,6 +37,7 @@ source: [here](${fact.source_url})
 
     {
         name: 'joke',
+        aliases: [],
         desciption: 'I will tell you a joke.',
         async execute(client, msg, args) {
 
@@ -52,7 +54,6 @@ source: [here](${fact.source_url})
                     .setTimestamp()
                     .setDescription(`${content}\n\n[source](https://v2.jokeapi.dev/)`)
                 await msg.channel.send({ embeds: [embed] });
-
             }
             catch (err) {
                 await msg.channel.send('Sorry, something went wrong went making the request. Please try again.')
@@ -65,6 +66,7 @@ source: [here](${fact.source_url})
 
     {
         name: 'act',
+        aliases: [],
         description: 'I will impersonate the user to say things.',
         async execute(client, msg, args) {
 

@@ -1,11 +1,12 @@
 const { hinaColor } = require('../res/config');
-const { Help: HinaHelpEmbed } = require('../res/hinaEmbeds');
+const { Help: HinaHelpEmbed } = require('../res/models/HinaEmbeds');
 
 
 module.exports = [
 
     {
         name: 'help',
+        aliases: [],
         description: 'get help on my commands!',
         async execute(client, msg, args) {
 

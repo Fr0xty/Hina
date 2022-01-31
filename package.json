@@ -4,14 +4,19 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "@discordjs/opus": "^0.7.0",
     "@discordjs/rest": "^0.2.0-canary.0",
     "@discordjs/voice": "^0.7.5",
     "bufferutil": "^4.0.6",
     "discord-api-types": "^0.26.1",
     "discord.js": "^13.6.0",
     "express": "^4.17.2",
+    "ffmpeg-static": "^4.4.1",
     "piston-client": "^1.0.2",
+    "tweetnacl": "^1.0.3",
     "utf-8-validate": "^5.0.8",
+    "yt-search": "^2.10.3",
+    "ytdl-core": "^4.10.0",
     "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
