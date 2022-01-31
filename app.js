@@ -73,7 +73,7 @@ const rest = new REST({ version: '9' }).setToken(config.token);
   } catch (error) {
     console.error(error);
   }
-})();
+});
 
 
 
