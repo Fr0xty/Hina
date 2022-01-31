@@ -1,0 +1,39 @@
+{
+  "name": "hina",
+  "version": "1.0.0",
+  "description": "A discord bot",
+  "main": "bot.js",
+  "dependencies": {
+    "@discordjs/opus": "^0.7.0",
+    "@discordjs/rest": "^0.3.0",
+    "@discordjs/voice": "^0.8.0",
+    "bufferutil": "^4.0.6",
+    "discord.js": "^13.6.0",
+    "express": "^4.17.2",
+    "ffmpeg-static": "^4.4.1",
+    "sodium": "^3.0.2",
+    "utf-8-validate": "^5.0.8",
+    "yt-search": "^2.10.3",
+    "ytdl-core": "^4.10.0",
+    "zlib-sync": "^0.1.7"
+  },
+  "devDependencies": {
+    "node": "^16.13.2"
+  },
+  "scripts": {
+    "start": "node .",
+    "node-update": "npm i --save-dev node@16 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",
+    "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i",
+    "node-update-then-clean": "npm run node-update && npm run node-clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fr0xty/Hina.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fr0xty/Hina/issues"
+  },
+  "homepage": "https://github.com/Fr0xty/Hina#readme"
+}
