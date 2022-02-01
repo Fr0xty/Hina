@@ -17,17 +17,17 @@ module.exports = [
                 const cat = args[0].toLowerCase();
                 if (!embed.categories.includes(cat)) {
 
-                    await msg.channel.send(`
+                    await msg.reply(`
                     There is no category called: \`${cat}\`.\nUse \`hina help\` instead or to check the category.
                     `);
                     return;
                 }
                 else {
-                    await msg.channel.send({ embeds: [embed[cat]] });
+                    await msg.reply({ embeds: [embed[cat]] });
                     return;
                 }
             }
-            await msg.channel.send({ 
+            await msg.reply({ 
                 embeds: [embed.mainPage],
                 components: [
                     embed.components.actionRow,

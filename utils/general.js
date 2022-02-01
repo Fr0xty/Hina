@@ -4,19 +4,22 @@ const https = require('https');
 module.exports = {
 
     generateClientInvite: (client) => {
+        return new Promise((resolve, reject) => {
 
-        return client.generateInvite({
-            permissions: [Permissions.FLAGS.MODERATE_MEMBERS],
-            scopes: ['bot', 'applications.commands'],
+            resolve(
+                client.generateInvite({
+                    permissions: [Permissions.FLAGS.MODERATE_MEMBERS],
+                    scopes: ['bot', 'applications.commands'],
+                })
+            );
         });
-        
     },
 
 
 
     hinaAsyncRequest: (url) => {
-
         return new Promise((resolve, reject) => {
+
             https
                 .get(url, resp => {
 
@@ -34,5 +37,7 @@ module.exports = {
                     reject(err.message);
                 });
         });
-    }
+    },
+
+
 }

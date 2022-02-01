@@ -13,7 +13,7 @@ module.exports = [
         description: 'get my invite link.',
         async execute(client, msg, args) {
             
-            const clientInvite = generateClientInvite(client);
+            const clientInvite = await generateClientInvite(client);
 
             const embed = new MessageEmbed()
                 .setAuthor({name: 'My invite link♡', iconURL: client.user.displayAvatarURL()})
@@ -31,7 +31,7 @@ module.exports = [
                         .setEmoji('<a:AquaBounce:884003530933944341>')
                 );
 
-            await msg.channel.send({ embeds: [embed], components: [button] });
+            await msg.reply({ embeds: [embed], components: [button] });
         }
     },
     
@@ -52,7 +52,7 @@ module.exports = [
                 try {
                     member = await msg.guild.members.fetch({user: args[0].match(/[0-9]+/)[0], withPresences: true});
                 } catch (e) {
-                    return await msg.channel.send('Invalid member! Either the user isn\'t in the server or invalid id / mention.');
+                    return await msg.reply('Invalid member! Either the user isn\'t in the server or invalid id / mention.');
                 };
              };
 
@@ -60,7 +60,7 @@ module.exports = [
                 
                 let spotifyAct = activities.filter(act => act.name === 'Spotify' && act.type === 'LISTENING');
                 if (spotifyAct.length === 0) {
-                    await msg.channel.send(`${member} is not listening to Spotify!`);
+                    await msg.reply(`${member} is not listening to Spotify!`);
                     return;
                 };
                 spotifyAct = spotifyAct.shift();
@@ -72,7 +72,7 @@ module.exports = [
                 const albumName = spotifyAct.assets.largeText;
                 const startTime = Math.round(Math.abs(spotifyAct.timestamps.start / 1000));
                 const endTime = Math.round(Math.abs(spotifyAct.timestamps.end / 1000));
-                const songDuration = convertSeconds(Math.abs(endTime - startTime));
+                const songDuration = await convertSeconds(Math.abs(endTime - startTime));
                 const partyID = spotifyAct.party.id;
 
                 const embed = new MessageEmbed()
@@ -102,10 +102,10 @@ party id: \`${partyID}\`
                     `);
                     
                 
-                await msg.channel.send({ embeds: [embed] });
+                await msg.reply({ embeds: [embed] });
                 return;
             }
-            await msg.channel.send(`${member} is not listening to Spotify!`);     
+            await msg.reply(`${member} is not listening to Spotify!`);     
         }
     },
 
@@ -117,7 +117,7 @@ party id: \`${partyID}\`
         description: 'translate your text or a message.',
         async execute(client, msg, args) {
 
-            await msg.channel.send('not implemented yet');
+            await msg.reply('not implemented yet');
         }
     }
 

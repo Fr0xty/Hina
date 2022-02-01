@@ -24,10 +24,10 @@ ${fact.text.replace('`', '\\`')}
 
 source: [here](${fact.source_url})
                     `)
-                await msg.channel.send({ embeds: [embed] });
+                await msg.reply({ embeds: [embed] });
             }
             catch (err) {
-                await msg.channel.send('Sorry, something went wrong went making the request. Please try again.')
+                await msg.reply('Sorry, something went wrong went making the request. Please try again.')
                 console.log(err);
             }
         }
@@ -53,10 +53,10 @@ source: [here](${fact.source_url})
                     .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
                     .setTimestamp()
                     .setDescription(`${content}\n\n[source](https://v2.jokeapi.dev/)`)
-                await msg.channel.send({ embeds: [embed] });
+                await msg.reply({ embeds: [embed] });
             }
             catch (err) {
-                await msg.channel.send('Sorry, something went wrong went making the request. Please try again.')
+                await msg.reply('Sorry, something went wrong went making the request. Please try again.')
                 console.log(err);
             }
         }
@@ -71,7 +71,7 @@ source: [here](${fact.source_url})
         async execute(client, msg, args) {
 
             if (args.length < 2) {
-                await msg.channel.send('Please provide a user and a message');
+                await msg.reply('Please provide a user and a message');
                 return;
             }
             let id = args.shift();
@@ -92,7 +92,7 @@ source: [here](${fact.source_url})
             }
             catch (err) {
                 console.log(err);
-                await msg.channel.send('User is invalid or is not in the server!');
+                await msg.reply('User is invalid or is not in the server!');
             };
         }
     }

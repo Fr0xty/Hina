@@ -3,6 +3,8 @@ module.exports = {
     eventType: 'messageCreate',
     callback: async (msg) => {
 
+        if (msg.author.bot) return;
+
         if (msg.content.length >= 3 && msg.content.startsWith(';') && msg.content.endsWith(';')) {
 
             let emojiName = msg.content.replaceAll(';', '');

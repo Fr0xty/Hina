@@ -1,0 +1,88 @@
+const { MessageEmbed } = require('discord.js');
+
+const { hinaColor, okEmoji } = require('../res/config');
+const { paginator } = require('../utils/paginator');
+
+module.exports = [
+
+    {
+        name: 'getemoji',
+        aliases: [],
+        description: 'get all server emoji(s)',
+        async execute(client, msg, args) {
+
+            if (!msg.guild.emojis.cache.size) return msg.reply('The server doesn\'t have any emoji!');
+            
+            const emojiAmount = msg.guild.emojis.cache.size;
+            const pageAmount = Math.ceil(emojiAmount / 20);
+            let pages = [];
+            let page = '';
+            let _ = 0;
+            for (const [id, emoji] of msg.guild.emojis.cache.entries()) {
+
+                page += `${emoji}- ${id}\n`;
+                _++;
+                
+                if (_ === 20) {
+                    const embed = new MessageEmbed()
+                        .setColor(hinaColor)
+                        .setAuthor({name: `${client.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: client.user.displayAvatarURL()})
+                        .setTitle(`Emoji Id(s) for ${msg.guild.name} [${msg.guild.emojis.cache.size}]`)
+                        .setDescription(page)
+                        .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
+                        .setTimestamp();
+                    
+                    pages.push(embed);
+                    page = '';
+                    _ = 0;
+                };
+            };
+            if (_)  {
+                const embed = new MessageEmbed()
+                    .setColor(hinaColor)
+                    .setAuthor({name: `${client.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: client.user.displayAvatarURL()})
+                    .setTitle(`Emoji Id(s) for ${msg.guild.name} [${msg.guild.emojis.cache.size}]`)
+                    .setDescription(page)
+                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
+                    .setTimestamp();
+
+                pages.push(embed);
+            }
+
+            await paginator(msg, pages, 120_000);
+        }
+    },
+
+
+
+    {
+        name: 'usemoji',
+        aliases: [],
+        description: 'send the emoji as you!',
+        async execute(client, msg, args) {
+
+        }
+    },
+
+
+
+    {
+        name: 'reactemoji',
+        aliases: [],
+        description: 'react to messages using the emoji.',
+        async execute(client, msg, args) {
+
+            if (!msg.reference) return msg.reply('Please reply to the message you want to react to while using the command!');
+            if (!args) return msg.reply('Please provide the emoji id.');
+
+            const theMsg = await msg.fetchReference();
+            
+            try { 
+                await theMsg.react(args[0]);
+                await msg.delete();
+            }
+            catch { await msg.reply(`Invalid emoji id: ${args[0]}`)};
+            
+        }
+    },
+];

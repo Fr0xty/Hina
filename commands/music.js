@@ -23,8 +23,8 @@ module.exports = [
         async execute(client, msg, args) {
             
             // return if author not in vc || no query provided
-            if (!msg.member.voice.channel) return msg.channel.send('Please join a voice channel!');
-            if(!args.length) return msg.channel.send('Please provide a search keyword or a url.');
+            if (!msg.member.voice.channel) return msg.reply('Please join a voice channel!');
+            if(!args.length) return msg.reply('Please provide a search keyword or a url.');
 
             // if not already joined, join vc
             let connection;
@@ -55,11 +55,19 @@ module.exports = [
             };
 
             // search URL or keyword
-            const query = args.join(' ');
-            const video = await searchYT(query);
-            if (!video) return msg.channel.send(`No YouTube videos is found with the keyword: \`${keyword}\``);
+            let video;
+            const ytLinkRegex = /(?:https?:\/\/)?(?:www\.|m\.)?youtu(?:\.be\/|be.com\/\S*(?:watch|embed)(?:(?:(?=\/[^&\s\?]+(?!\S))\/)|(?:\S*v=|v\/)))([^&\s\?]+)/;
+
+            if (!ytLinkRegex.test(args[0])) {
+                await msg.reply('not yt link')
+                const query = args.join(' ');
+                video = await searchYT(query);
+                if (!video) return await msg.reply(`No YouTube videos is found with the keyword: \`${query}\``);
+            }
+            else { video = { url: args[0]} };
 
             const stream = ytdl(video.url, {filter: 'audioonly'});
+            const videoInfo = await ytdl.getInfo(video.url);
             const resource = createAudioResource(stream);
 
             // push resource to queue
@@ -70,11 +78,11 @@ module.exports = [
                 .setColor(hinaColor)
                 .setAuthor({name: client.user.username, iconURL: client.user.displayAvatarURL()})
                 .setTitle('Song added to queue!')
-                .setDescription(`[${video.title}](${video.url})`)
+                .setDescription(`[${videoInfo.videoDetails.title}](${videoInfo.videoDetails.url})`)
                 .setFooter({text: `Song added by ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
                 .setTimestamp();
             
-            await msg.channel.send({ embeds: [embed] });
+            await msg.reply({ embeds: [embed] });
             
             // if no previous songs, play
             if(guildInfo.songs.length === 1) {
@@ -87,9 +95,9 @@ module.exports = [
                     .setColor(hinaColor)
                     .setAuthor({name: client.user.username, iconURL: client.user.displayAvatarURL()})
                     .setTitle('Now Playing:')
-                    .setDescription(`[${video.title}](${video.url})`)
+                    .setDescription(`[${videoInfo.videoDetails.title}](${videoInfo.videoDetails.url})`)
                     .setTimestamp();
-                await msg.channel.send({ embeds: [embed] });
+                await msg.reply({ embeds: [embed] });
             }
             else {
                 guildInfo.songs.push();
@@ -106,7 +114,7 @@ module.exports = [
         async execute(client, msg, args) {
 
             // author not in vc
-            if (!msg.member.voice.channel) return msg.channel.send('Please join a voice channel!');
+            if (!msg.member.voice.channel) return msg.reply('Please join a voice channel!');
 
             // join vc & register playingGuilds
             try {
@@ -128,7 +136,7 @@ module.exports = [
                 await msg.react(okEmoji);
             }
             catch (err) {
-                await msg.channel.send('Error trying to join voice channel! Please check permissions and server settings.');
+                await msg.reply('Error trying to join voice channel! Please check permissions and server settings.');
             };
         }
     },
@@ -142,7 +150,7 @@ module.exports = [
         async execute(client, msg, args) {
             
             const connection = getVoiceConnection(msg.guild.id);
-            if (!connection) return msg.channel.send('I\'m not in any voice channel!');
+            if (!connection) return msg.reply('I\'m not in any voice channel!');
 
             connection.destroy();
             playingGuilds.delete(msg.guildId);
@@ -150,16 +158,4 @@ module.exports = [
         }
     },
 
-
-
-    {
-        name: 'search',
-        aliases: [],
-        description: 'debugging command (temporary)',
-        async execute(client, msg, args) {
-
-            const video = await searchYT(args[0]);
-            console.log(video.title);
-        }
-    }
 ];

@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const { hinaColor } = require('../res/config');
 const pjson = require('../package');
-const { convertSeconds, convertMention, convertFlags, convertPresence, convertPermissions } = require('../utils/convert');
+const { convertSeconds, convertFlags, convertPresence, convertPermissions } = require('../utils/convert');
 
 
 module.exports = [
@@ -12,7 +12,7 @@ module.exports = [
         description: 'Running code snippets in a sandbox.',
         async execute(client, msg, args) {
 
-            await msg.channel.send('in progress..');
+            await msg.reply('in progress..');
             return;
 
             args = args.replaceAll('```', '');
@@ -22,7 +22,7 @@ module.exports = [
             const pistonClient = piston({server: "https://emkc.org"});
             const runtimes = await pistonClient.runtimes();
             const result = await pistonClient.execute(lang, args);
-            await msg.channel.send(result);
+            await msg.reply(result);
         }
     },
 
@@ -36,7 +36,7 @@ module.exports = [
 
             const djsVer = pjson.dependencies['discord.js'];
             const nodeVer = pjson.devDependencies['node'];
-            const uptime = convertSeconds(client.uptime / 1000);
+            const uptime = await convertSeconds(client.uptime / 1000);
             
             const embed = new MessageEmbed()
                 .setDescription(`
@@ -53,7 +53,7 @@ bot uptime: \`${uptime}\`
                 .setThumbnail(client.user.displayAvatarURL({size: 4096}))
                 .setTimestamp()
                 .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size:4096})});
-            await msg.channel.send({ embeds: [embed] });
+            await msg.reply({ embeds: [embed] });
         }
     },
 
@@ -72,22 +72,22 @@ bot uptime: \`${uptime}\`
                 try {
                     member = await msg.guild.members.fetch({user: args[0].match(/[0-9]+/)[0], withPresences: true});
                 } catch (e) {
-                    await msg.channel.send('Invalid member! Either the user isn\'t in the server or invalid id / mention.')
+                    await msg.reply('Invalid member! Either the user isn\'t in the server or invalid id / mention.')
                 };
             };
 
-            if (member == undefined) return msg.channel.send('User does not exist!');
+            if (member == undefined) return msg.reply('User does not exist!');
 
             if (member.user.flags == null) { flags = 'None' }
-            else { flags = convertFlags(member.user.flags.bitfield) };
+            else { flags = await convertFlags(member.user.flags.bitfield) };
 
             if (!member.nickname) { nickname = 'None' }
             else { nickname = member.nickname };
             
             if (!member.presence) { presence = `desktop: <:status_offline:908249115505332234>\nmobile:<:status_offline:908249115505332234>\nweb: <:status_offline:908249115505332234>`}
-            else { presence = convertPresence(member.presence.clientStatus) };
+            else { presence = await convertPresence(member.presence.clientStatus) };
             
-            const permissions = convertPermissions(member.permissions.bitfield);
+            const permissions = await convertPermissions(member.permissions.bitfield);
 
             if (!member.roles.highest) { roles = 'None' }
             else { roles = `highest: ${member.roles.highest}\nhoist: ${member.roles.hoist}` };
@@ -111,7 +111,7 @@ bot uptime: \`${uptime}\`
                     {name: 'roles', value: roles},
                     {name: `permissions [${permissions.length}]`, value: `${permissions.perms}\n[for more info...](https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags)`}
                 );
-            await msg.channel.send({ embeds: [embed] });
+            await msg.reply({ embeds: [embed] });
         }
     },
 

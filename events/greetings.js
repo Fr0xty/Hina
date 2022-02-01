@@ -2,6 +2,8 @@ module.exports = {
 
     eventType: 'messageCreate',
     callback: async (msg) => {
+
+        if (msg.author.bot) return;
         
         const greets = [
             'hello',
@@ -22,7 +24,7 @@ module.exports = {
         ];
 
         if (greets.includes(msg.content.toLowerCase())) {
-            await msg.channel.send(`${msg}, ${msg.author.toString()}!`);
+            await msg.reply(`${msg}, ${msg.author}!`);
         }
 
     }

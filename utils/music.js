@@ -2,10 +2,13 @@ const ytSearch = require('yt-search');
 
 module.exports = {
 
-    searchYT: async (query) => {
+    searchYT: (query) => {
+        return new Promise(async (resolve, reject) => {
 
-        const videoResult = await ytSearch(query);
-
-        return (videoResult.videos.length > 1) ? videoResult.videos[0] : null;
-    }
+            const videoResult = await ytSearch(query);
+            if (videoResult.videos.length > 1) resolve(videoResult.videos[0]);
+            resolve(null);
+            
+        });
+    },
 };
