@@ -1,12 +1,11 @@
 const { MessageEmbed, MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
-
-const { generateClientInvite } = require('../../utils/general');
 const { hinaColor } = require('../config');
+
 
 
 class Help {
 
-    constructor(client, author) {
+    constructor(client, author, _clientInvite) {
         this.client = client;
         this.author = author;
         this.categories = [
@@ -20,9 +19,6 @@ class Help {
             'coderunner',
             'creator',
         ];
-
-        const clientInvite = generateClientInvite(client);
-
 
 
         this.components = {
@@ -110,7 +106,7 @@ class Help {
                         new MessageButton()
                             .setLabel('Invite me!')
                             .setStyle('LINK')
-                            .setURL(clientInvite)
+                            .setURL(_clientInvite)
                             .setEmoji('<a:AquaBounce:884003530933944341>'),
 
                         new MessageButton()
@@ -192,4 +188,6 @@ class Help {
     
 };
 
-module.exports = Help;
+module.exports = {
+    Help: Help,
+};

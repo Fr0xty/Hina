@@ -1,5 +1,6 @@
-const { hinaColor } = require('../res/config');
 const { Help: HinaHelpEmbed } = require('../res/models/HinaEmbeds');
+const { generateClientInvite } = require('../utils/general');
+const { hinaColor } = require('../res/config');
 
 
 module.exports = [
@@ -10,7 +11,9 @@ module.exports = [
         description: 'get help on my commands!',
         async execute(client, msg, args) {
 
-            const embed = new HinaHelpEmbed(client, msg.author);
+            const clientInvite = await generateClientInvite(client);
+
+            const embed = new HinaHelpEmbed(client, msg.author, clientInvite);
 
             if (args.length != 0) {
 

@@ -1,7 +1,6 @@
 const { MessageActionRow, MessageButton } = require('discord.js');
 
 
-
 const _aquaButtons = new MessageActionRow()
     .addComponents(
 
@@ -38,9 +37,7 @@ module.exports = {
             await i.deferUpdate();
         });
         collector.on('end', async collected => {
-            console.log('ended');
             await sentMsg.edit({ components: [] });
         });
-    }
-
+    },
 };

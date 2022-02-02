@@ -1,17 +1,17 @@
 const { Permissions } = require('discord.js');
 const https = require('https');
 
+
 module.exports = {
 
     generateClientInvite: (client) => {
         return new Promise((resolve, reject) => {
 
-            resolve(
-                client.generateInvite({
-                    permissions: [Permissions.FLAGS.MODERATE_MEMBERS],
-                    scopes: ['bot', 'applications.commands'],
-                })
-            );
+            const invite = client.generateInvite({
+                permissions: [Permissions.FLAGS.MODERATE_MEMBERS],
+                scopes: ['bot', 'applications.commands'],
+            });
+            resolve(invite);
         });
     },
 

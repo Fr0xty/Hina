@@ -1,4 +1,5 @@
 const { MessageEmbed } = require('discord.js');
+
 const { hinaColor } = require('../res/config');
 const pjson = require('../package');
 const { convertSeconds, convertFlags, convertPresence, convertPermissions } = require('../utils/convert');
@@ -76,7 +77,7 @@ bot uptime: \`${uptime}\`
                 };
             };
 
-            if (member == undefined) return msg.reply('User does not exist!');
+            if (member == undefined) return await msg.reply('User does not exist!');
 
             if (member.user.flags == null) { flags = 'None' }
             else { flags = await convertFlags(member.user.flags.bitfield) };

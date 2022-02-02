@@ -3,6 +3,7 @@ const { MessageEmbed } = require('discord.js');
 const { hinaColor, okEmoji } = require('../res/config');
 const { paginator } = require('../utils/paginator');
 
+
 module.exports = [
 
     {
@@ -11,7 +12,7 @@ module.exports = [
         description: 'get all server emoji(s)',
         async execute(client, msg, args) {
 
-            if (!msg.guild.emojis.cache.size) return msg.reply('The server doesn\'t have any emoji!');
+            if (!msg.guild.emojis.cache.size) return await msg.reply('The server doesn\'t have any emoji!');
             
             const emojiAmount = msg.guild.emojis.cache.size;
             const pageAmount = Math.ceil(emojiAmount / 20);
@@ -20,7 +21,7 @@ module.exports = [
             let _ = 0;
             for (const [id, emoji] of msg.guild.emojis.cache.entries()) {
 
-                page += `${emoji}- ${id}\n`;
+                page += `${emoji}- \`${emoji}\`\n`;
                 _++;
                 
                 if (_ === 20) {
@@ -61,6 +62,18 @@ module.exports = [
         description: 'send the emoji as you!',
         async execute(client, msg, args) {
 
+            emojiRegex = /^a?:.+:([0-9]{18})$/;
+
+            if (!emojiRegex.test(args[0])) return await msg.reply('Invalid emoji id! Please make sure to copy the whole emoji id without the angle brackets.');
+            else {
+                const webhook = await msg.channel.createWebhook(msg.member.displayName, {
+                    avatar: msg.author.displayAvatarURL(),
+                });
+
+                await webhook.send(`<${args}>`);
+                await webhook.delete();
+                await msg.delete();
+            };
         }
     },
 
@@ -72,8 +85,8 @@ module.exports = [
         description: 'react to messages using the emoji.',
         async execute(client, msg, args) {
 
-            if (!msg.reference) return msg.reply('Please reply to the message you want to react to while using the command!');
-            if (!args) return msg.reply('Please provide the emoji id.');
+            if (!msg.reference) return await msg.reply('Please reply to the message you want to react to while using the command!');
+            if (!args) return await msg.reply('Please provide the emoji id.');
 
             const theMsg = await msg.fetchReference();
             
@@ -82,7 +95,6 @@ module.exports = [
                 await msg.delete();
             }
             catch { await msg.reply(`Invalid emoji id: ${args[0]}`)};
-            
         }
     },
 ];
