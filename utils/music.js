@@ -7,30 +7,28 @@ const ytLinkRegex = /(?:https?:\/\/)?(?:www\.|m\.)?youtu(?:\.be\/|be.com\/\S*(?:
 
 module.exports = {
 
-    queryYT: (query) => {
-        return new Promise(async (resolve, reject) => {
+    queryYT: async (query) => {
 
-            let data;
-            let video;
+        let data;
+        let video;
 
-            if (ytLinkRegex.test(query[0])) { video = {url: query[0]} }
-            else {
-                query = query.join(' ');
-                data = await ytSearch(query);
-                if (!data.videos.length) reject(`No search result using the keyword \`${query}\``);
-                video = data.videos.shift();
-            };
-            // TODO check playability
+        if (ytLinkRegex.test(query[0])) { video = {url: query[0]} }
+        else {
+            query = query.join(' ');
+            data = await ytSearch(query);
+            if (!data.videos.length) throw `No search result using the keyword \`${query}\``;
+            video = data.videos.shift();
+        };
+        // TODO check playability
 
-            const stream = await ytdl(video.url, {filter: 'audioonly'});
+        const stream = await ytdl(video.url, {filter: 'audioonly'});
 
-            const videoInfo = await ytdl.getInfo(video.url);
-            const resource = createAudioResource(stream);
+        const videoInfo = await ytdl.getInfo(video.url);
+        const resource = createAudioResource(stream);
 
-            resolve({
-                resource: resource,
-                videoInfo: videoInfo,
-            });
-        });
+        return {
+            resource: resource,
+            videoInfo: videoInfo,
+        };
     },
 };

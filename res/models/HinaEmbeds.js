@@ -17,7 +17,7 @@ class Help {
             'image',
             'utility',
             'coderunner',
-            'creator',
+            // 'creator',
         ];
 
 
@@ -126,7 +126,7 @@ class Help {
 
 
         this.mainPage = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} Commands!`, iconURL: this.client.user.displayAvatarURL()})
+            .setAuthor({name: `${this.client.user.username} Commands!`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
             .setColor(hinaColor)
             .setTitle('Command Categories')
             .setDescription(`
@@ -145,13 +145,13 @@ class Help {
                 {name: '🛠️ Utility', value: '`hina help utility`', inline: true},
                 {name: '🎲 Code Runner', value: '`hina help coderunner`', inline: true}
             )
-            .setFooter({text: `Requested by: ${this.author.tag}`, iconURL: this.author.displayAvatarURL()})
+            .setFooter({text: `Requested by: ${this.author.tag}`, iconURL: this.author.displayAvatarURL({size: 4096, dynamic: true})})
             .setTimestamp();
 
 
 
         this.behavoiral = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} Behavoiral Category`, iconURL: this.client.user.displayAvatarURL()})
+            .setAuthor({name: `${this.client.user.username} Behavoiral Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
             .setColor(hinaColor)
             .addFields(
                 {name: 'Greetings', value: 'If you use any of the following greetings, I will greet you back!\n`hello`, `hi`, `yo`, `sup`, `wassup`, `yahhallo`, `nyahhallo`, `こんにちは`, `おはよう`, `こんばんは`, `ハロー`, `おっす`, `にゃっはろー`, `やっはろー`, `にゃんぱすー`'},
@@ -162,7 +162,7 @@ class Help {
 
 
         this.general = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} General Category`, iconURL: this.client.user.displayAvatarURL()})
+            .setAuthor({name: `${this.client.user.username} General Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
             .setColor(hinaColor)
             .addFields(
                 {name: '`help [category]`', value: 'get this help embed.', inline: true},
@@ -175,7 +175,7 @@ class Help {
 
 
         this.fun = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} Fun Category`, iconURL: this.client.user.displayAvatarURL()})
+            .setAuthor({name: `${this.client.user.username} Fun Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
             .setColor(hinaColor)
             .addFields(
                 {name: '`funfact`', value: 'get a fun fact!', inline: true},
@@ -184,6 +184,88 @@ class Help {
             )
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
 
+        
+
+        this.emoji = new MessageEmbed()
+            .setAuthor({name: `${this.client.user.username} Fun Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setColor(hinaColor)
+            .setThumbnail('https://media.discordapp.net/attachments/907586559719645204/938784511838273586/nitro_perk.png')
+            .setTitle('Use the nitro emoji perks!')
+            .setDescription(`
+**;<emoji_name>;**
+__only for native server emoji__
+
+*Example:*
+name of emoji- \`nom\`
+use- \`;nom;\`
+
+-------------------------------
+
+\`getemoji [server_id]\`
+get all server emoji id(s)
+
+⠀
+\`usemoji <emoji_id>\`
+send the emoji as you! Remember to remove the angle brackets!
+
+*Example:*
+\`hina usemoji a:AquaBounce:884003530933944341\`
+
+⠀
+\`reactemoji <emoji_id>\`
+react to message with the emoji
+__reply to the message while using the command__
+            `)
+            .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
+
+
+
+        this.music = new MessageEmbed()
+            .setAuthor({name: `${this.client.user.username} Fun Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setColor(hinaColor)
+            .addFields(
+                {name: '`play <YT_URL/search keywords>`', value: 'Add music to queue.', inline: true},
+                {name: '`join`', value: 'I will join your voice channel.', inline: true},
+                {name: '`leave`', value: 'I will leave your voice channel.', inline: true},
+                {name: '`pause`', value: 'pause the current song.', inline: true},
+                {name: '`resume`', value: 'resume the current song.', inline: true},
+                {name: '`skip`', value: 'skip the current song.', inline: true},
+                {name: '`queue`, `q`', value: 'get song queue of the server.', inline: true},
+                {name: '`clearqueue`, `clearq`', value: 'clear server song queue.', inline: true},
+            )
+            .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
+
+
+
+
+        this.image = new MessageEmbed()
+            .setAuthor({name: `${this.client.user.username} Image Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setColor(hinaColor)
+            .addFields(
+                {name: 'waifu pics category', value: 'coming soon', inline: true},
+            )
+            .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
+
+
+
+        this.utility = new MessageEmbed()
+            .setAuthor({name: `${this.client.user.username} Utility Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setColor(hinaColor)
+            .addFields(
+                {name: '`appinfo`', value: 'Get my information!', inline: true},
+                {name: '`userinfo [@user/userid]`', value: 'Get my information!', inline: true},
+            )
+            .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
+
+
+
+        this.coderunner = new MessageEmbed()
+            .setAuthor({name: `${this.client.user.username} Code Runner Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setColor(hinaColor)
+            .addFields(
+                {name: 'category is coming soon', value: 'cominggggggggggggggggg', inline: true},
+            )
+            .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
     };
     
 };

@@ -11,6 +11,8 @@ const { MessageEmbed } = require('discord.js');
 const { GuildMusic } = require('../res/models/GuildMusic');
 const { hinaColor, okEmoji } = require('../res/config');
 const { queryYT } = require('../utils/music');
+const { paginator } = require('../utils/paginator');
+const { guildOrClientIcon } = require('../utils/general');
 
 
 const guildProfile = new Map();
@@ -42,7 +44,7 @@ module.exports = [
             }
             else {
                 // update channel
-                await profile.updateChannels(msg.member.voice.channel, msg.channel);
+                await profile.updateChannels(null, msg.channel);
             }
 
             // search URL or keyword
@@ -118,6 +120,7 @@ module.exports = [
             const profile = guildProfile.get(msg.guildId);
             if (!profile) return await msg.reply('I\'m not currently playing in this server!');
 
+            await profile.updateChannels(null, msg.channel);
             await profile.player.pause();
             await msg.react(okEmoji);
         }
@@ -134,8 +137,70 @@ module.exports = [
             const profile = guildProfile.get(msg.guildId);
             if (!profile) return await msg.reply('I\'m not currently playing in this server!');
 
+            await profile.updateChannels(null, msg.channel);
             await profile.player.unpause();
             await msg.react(okEmoji);
+        }
+    },
+
+
+
+    {
+        name: 'skip',
+        aliases: [],
+        description: 'skip the current song.',
+        async execute(client, msg, args) {
+
+            const profile = guildProfile.get(msg.guildId);
+            if (!profile) return await msg.reply('I\'m not currently playing in this server!');
+
+            await profile.updateChannels(null, msg.channel);
+            await profile.player.stop();
+            await msg.react(okEmoji);
+        }
+    },
+
+
+
+    {
+        name: 'queue',
+        aliases: ['q'],
+        description: 'get song queue of the server.',
+        async execute(client, msg, args) {
+
+            const profile = guildProfile.get(msg.guildId);
+            if (!profile) return await msg.reply('I\'m not currently playing in this server!');
+            if (!profile.songs.length) return await msg.reply('There is no songs in queue currently.');
+
+            await profile.updateChannels(null, msg.channel);
+            const pages = await profile.getQueue();
+            await paginator(msg, pages, 120_000);
+        }
+    },
+
+
+
+    {
+        name: 'clearqueue',
+        aliases: ['clearq'],
+        description: 'clear server song queue.',
+        async execute(client, msg, args) {
+
+            const profile = guildProfile.get(msg.guildId);
+            if (!profile) return await msg.reply('I\'m not currently playing in this server!');
+            if (!profile.songs.length) return await msg.reply('There is no songs in queue currently.');
+
+            await profile.updateChannels(null, msg.channel);
+            await profile.clearQueue();
+            await profile.player.stop();
+            
+            const authorIcon = await guildOrClientIcon(client, msg.guild);
+            const embed = new MessageEmbed()
+                .setColor(hinaColor)
+                .setAuthor({name: `${msg.guild.name} Song Queue`, iconURL: authorIcon})
+                .setDescription('Server song queue cleared successfully!')
+                .setFooter({text: `Queue cleared by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})});
+            await msg.reply({ embeds: [embed] });
         }
     },
 ];

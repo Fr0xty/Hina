@@ -27,10 +27,10 @@ module.exports = [
                 if (_ === 20) {
                     const embed = new MessageEmbed()
                         .setColor(hinaColor)
-                        .setAuthor({name: `${client.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: client.user.displayAvatarURL()})
+                        .setAuthor({name: `${client.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: client.user.displayAvatarURL({size: 4096})})
                         .setTitle(`Emoji Id(s) for ${msg.guild.name} [${msg.guild.emojis.cache.size}]`)
                         .setDescription(page)
-                        .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
+                        .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
                         .setTimestamp();
                     
                     pages.push(embed);
@@ -41,10 +41,10 @@ module.exports = [
             if (_)  {
                 const embed = new MessageEmbed()
                     .setColor(hinaColor)
-                    .setAuthor({name: `${client.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: client.user.displayAvatarURL()})
+                    .setAuthor({name: `${client.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: client.user.displayAvatarURL({size: 4096})})
                     .setTitle(`Emoji Id(s) for ${msg.guild.name} [${msg.guild.emojis.cache.size}]`)
                     .setDescription(page)
-                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
+                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
                     .setTimestamp();
 
                 pages.push(embed);
@@ -67,7 +67,7 @@ module.exports = [
             if (!emojiRegex.test(args[0])) return await msg.reply('Invalid emoji id! Please make sure to copy the whole emoji id without the angle brackets.');
             else {
                 const webhook = await msg.channel.createWebhook(msg.member.displayName, {
-                    avatar: msg.author.displayAvatarURL(),
+                    avatar: msg.author.displayAvatarURL({size: 4096, dynamic: true}),
                 });
 
                 await webhook.send(`<${args}>`);

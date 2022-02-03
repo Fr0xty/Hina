@@ -1,5 +1,7 @@
 const { MessageActionRow, MessageButton } = require('discord.js');
 
+const { okEmoji } = require('../res/config');
+
 
 const _aquaButtons = new MessageActionRow()
     .addComponents(
@@ -38,6 +40,7 @@ module.exports = {
         });
         collector.on('end', async collected => {
             await sentMsg.edit({ components: [] });
+            await msg.react(okEmoji);
         });
     },
 };

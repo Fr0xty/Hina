@@ -16,10 +16,10 @@ module.exports = [
             const clientInvite = await generateClientInvite(client);
 
             const embed = new MessageEmbed()
-                .setAuthor({name: 'My invite link♡', iconURL: client.user.displayAvatarURL()})
+                .setAuthor({name: 'My invite link♡', iconURL: client.user.displayAvatarURL({size: 4096})})
                 .setColor(hinaColor)
                 .setDescription(clientInvite)
-                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
                 .setTimestamp();
 
             const button = new MessageActionRow()
@@ -82,7 +82,7 @@ module.exports = [
                     .setURL(songUrl)
                     .setThumbnail(albumArt)
                     .setTimestamp()
-                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
+                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
                     .setDescription(`
 artist(s):
 \`${artists}\`

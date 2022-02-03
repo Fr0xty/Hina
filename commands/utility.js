@@ -53,7 +53,7 @@ bot uptime: \`${uptime}\`
                 .setTitle(`Hina's Application Info`)
                 .setThumbnail(client.user.displayAvatarURL({size: 4096}))
                 .setTimestamp()
-                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size:4096})});
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})});
             await msg.reply({ embeds: [embed] });
         }
     },
@@ -63,7 +63,7 @@ bot uptime: \`${uptime}\`
     {
         name: 'userinfo',
         aliases: [],
-        description: 'get all user information',
+        description: 'get all user information.',
         async execute(client, msg, args) {
 
             let member, flags, nickname, roles;
@@ -95,12 +95,12 @@ bot uptime: \`${uptime}\`
 
 
             const embed = new MessageEmbed()
-                .setAuthor({name: `${member.displayName}'s User Info`, iconURL: member.user.displayAvatarURL({size:4096})})
+                .setAuthor({name: `${member.displayName}'s User Info`, iconURL: member.user.displayAvatarURL({size: 4096, dynamic: true})})
                 .setTitle(member.user.tag)
                 .setColor(member.displayHexColor)
-                .setThumbnail(member.user.displayAvatarURL({size:4096}))
+                .setThumbnail(member.user.displayAvatarURL({size: 4096, dynamic: true}))
                 .setTimestamp()
-                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size:4096})})
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
                 .addFields(
                     {name: 'nickname', value: nickname, inline: true},
                     {name: 'mention', value: member.toString(), inline: true},

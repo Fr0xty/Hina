@@ -17,8 +17,8 @@ module.exports = [
                 
                 const embed = new MessageEmbed()
                     .setColor(hinaColor)
-                    .setAuthor({name: 'Fun fact with Hina!', iconURL: client.user.displayAvatarURL()})
-                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
+                    .setAuthor({name: 'Fun fact with Hina!', iconURL: client.user.displayAvatarURL({size: 4096})})
+                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
                     .setTimestamp()
                     .setDescription(`
 ${fact.text.replace('`', '\\`')}
@@ -50,8 +50,8 @@ source: [here](${fact.source_url})
                 else { content = `${joke.setup.replace('`', '\\`')}\n||${joke.delivery.replace('`', '\\`')}||` };
                 const embed = new MessageEmbed()
                     .setColor(hinaColor)
-                    .setAuthor({name: `Joke (${joke.category})`, iconURL: client.user.displayAvatarURL()})
-                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
+                    .setAuthor({name: `Joke (${joke.category})`, iconURL: client.user.displayAvatarURL({size: 4096})})
+                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
                     .setTimestamp()
                     .setDescription(`${content}\n\n[source](https://v2.jokeapi.dev/)`)
                 await msg.reply({ embeds: [embed] });
@@ -83,7 +83,7 @@ source: [here](${fact.source_url})
                 const member = msg.mentions.members.first();
                 
                 const webhook = await msg.channel.createWebhook(member.displayName, {
-                    avatar: member.displayAvatarURL({size: 4096})
+                    avatar: member.displayAvatarURL({size: 4096, dynamic: true})
                 });
 
                 await webhook.send(userMsg);
