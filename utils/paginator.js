@@ -26,7 +26,7 @@ module.exports = {
 
         let currentPage = 0;
         const sentMsg = await msg.channel.send({ embeds: [pages[currentPage]], components: [_aquaButtons]  });
-        const collector = sentMsg.createMessageComponentCollector({ idle: timeout });
+        const collector = sentMsg.createMessageComponentCollector({ idle: timeout, dispose: true });
         collector.on('collect', async i => {
 
             if (i.customId === 'pageLeft' && currentPage !== 0) currentPage--

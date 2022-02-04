@@ -28,7 +28,8 @@ class Help {
                     new MessageButton()
                         .setCustomId('mainPage')
                         .setLabel('Main Page')
-                        .setStyle('PRIMARY'),
+                        .setStyle('PRIMARY')
+                        .setDisabled(true),
 
                     new MessageButton()
                         .setCustomId('delete')
@@ -90,13 +91,13 @@ class Help {
                                 description: 'Sandbox for various programming languages.',
                                 emoji: '🎲',
                                 value: 'coderunner',
-                            },
+                            }, /*
                             {
                                 label: 'Creator',
                                 description: 'Creator only / debugging commands.',
                                 emoji: '885845967029551124',
                                 value: 'creator',
-                            },
+                            },*/
                         ]),
                 ),
 
@@ -130,10 +131,10 @@ class Help {
             .setColor(hinaColor)
             .setTitle('Command Categories')
             .setDescription(`
-                My commands are categorized for simpler searching and understanding.
+My commands are categorized for simpler searching and understanding.
 
-                My prefix is \`hina\`
-                \`\`\`<> = Required, [] = Optional.\`\`\`
+My prefix is \`hina\`
+\`\`\`<> = Required, [] = Optional.\`\`\`
             `)
             .addFields(
                 {name: '<:Blushing:900570132210929715> Behavoiral', value: '`hina help behavoiral`', inline: true},
