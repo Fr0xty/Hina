@@ -4,7 +4,7 @@ A bot originally written with `discord.py` library. Hina is a multi-purpose bot,
 ### Bot Info
 - Invite Link: [Invite Hine!](https://discord.com/api/oauth2/authorize?client_id=769125937731338290&permissions=8&scope=bot)
 
-![](https://dcbadge.vercel.app/api/shield/bot/769125937731338290)
+![](https://dcbadge.vercel.app/api/shield/bot/769125937731338290?theme=discord-inverted)
 
 - [Discord.js](https://discord.js.org) Version: `13.6.0`
 - [Node.js](https://nodejs.org/en) Version: `16.13.2`
