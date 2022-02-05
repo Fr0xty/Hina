@@ -247,8 +247,20 @@ __reply to the message while using the command__
         this.image = new MessageEmbed()
             .setAuthor({name: `${this.client.user.username} Image Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
             .setColor(hinaColor)
+            .setTitle('Get images with the following tags.')
+            .setDescription(`
+The API used: https://waifu.im/
+⠀
+**Note:**
+\`<tag> [amount]\`
+This can be applied to every command in this category. Must be >0 and <31.
+\u2800
+\u2800
+            `)
             .addFields(
-                {name: 'waifu pics category', value: 'coming soon', inline: true},
+                {name: 'SFW', value: '`waifu`, `maid`\n\u2800'},
+                {name: 'NSFW', value: '`ass`, `ecchi`, `ero`, `hentai`, `nsfwmaid`, `milf`, `oppai`, `oral`, `paizuri`, `selfies`, `uniform`\n\u2800\n\u2800'},
+                {name: 'Wildcard!', value: '`random`\n\u2800'},
             )
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
 

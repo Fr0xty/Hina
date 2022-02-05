@@ -1,6 +1,6 @@
 import { MessageEmbed } from 'discord.js';
 
-import { hinaAsyncRequest } from '../utils/general.js';
+import { hinaRequest } from '../utils/general.js';
 import { hinaColor } from '../res/config.js';
 
 

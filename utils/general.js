@@ -1,5 +1,5 @@
 import { Permissions } from 'discord.js';
-import https from 'https';
+import fetch from 'node-fetch';
 
 
 
@@ -15,24 +15,10 @@ export const generateClientInvite = async (client) => {
 
 
 
-export const hinaAsyncRequest = async (url) => {
+export const hinaRequest = async (url) => {
 
-    https
-        .get(url, resp => {
-
-            let data = '';
-
-            resp.on('data', chunk => {
-                data += chunk;
-            });
-
-            resp.on('end', () => {
-                return JSON.parse(data);
-            });
-        })
-        .on('error', err => {
-            throw err.message;
-        });
+    const data = await fetch(url);
+    return await data.json();
 };
 
 
