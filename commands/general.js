@@ -1,11 +1,11 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+import { MessageEmbed, MessageActionRow, MessageButton } from 'discord.js';
 
-const { hinaColor } = require('../res/config');
-const { generateClientInvite } = require('../utils/general');
-const { convertSeconds } = require('../utils/convert');
+import { hinaColor } from '../res/config.js';
+import { generateClientInvite } from '../utils/general.js';
+import { convertSeconds } from '../utils/convert.js';
 
 
-module.exports = [
+export const commands = [
 
     {
         name: 'invite',
@@ -119,6 +119,5 @@ party id: \`${partyID}\`
 
             await msg.reply('not implemented yet');
         }
-    }
-
+    },
 ];

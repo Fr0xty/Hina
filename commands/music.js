@@ -1,23 +1,18 @@
-const {
-    joinVoiceChannel,
-    getVoiceConnection,
-    createAudioPlayer,
-    createAudioResource,
-} = require('@discordjs/voice');
-const ytdl = require('ytdl-core');
-const ffmpeg = require('ffmpeg-static');
-const { MessageEmbed } = require('discord.js');
+import { joinVoiceChannel, getVoiceConnection } from '@discordjs/voice';
+import ytdl from 'ytdl-core';
+import ffmpeg from 'ffmpeg-static';
+import { MessageEmbed } from 'discord.js';
 
-const { GuildMusic } = require('../res/models/GuildMusic');
-const { hinaColor, okEmoji } = require('../res/config');
-const { queryYT } = require('../utils/music');
-const { paginator } = require('../utils/paginator');
-const { guildOrClientIcon } = require('../utils/general');
+import { GuildMusic } from '../res/models/GuildMusic.js';
+import { hinaColor, okEmoji } from '../res/config.js';
+import { queryYT } from '../utils/music.js';
+import { paginator } from '../utils/paginator.js';
+import { guildOrClientIcon } from '../utils/general.js';
 
 
 const guildProfile = new Map();
 
-module.exports = [
+export const commands = [
 
     {
         name: 'play',
@@ -65,6 +60,8 @@ module.exports = [
 
             // author not in vc
             if (!msg.member.voice.channel) return await msg.reply('Please join a voice channel!');
+
+            if (!msg.guild.me.permissions.has('CONNECT') || !msg.guild.me.permissions.has('SPEAK')) return await msg.reply('Please enable "Connect" and "Speak" permissions for me in order to use this feature.');
 
             // join vc
             try {

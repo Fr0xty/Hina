@@ -1,11 +1,12 @@
-const { MessageEmbed } = require('discord.js');
+import { MessageEmbed } from 'discord.js';
+import { readFile } from 'fs/promises';
 
-const { hinaColor } = require('../res/config');
-const pjson = require('../package');
-const { convertSeconds, convertFlags, convertPresence, convertPermissions } = require('../utils/convert');
+import { hinaColor } from '../res/config.js';
+const packageJSON = JSON.parse(await readFile(new URL('../package.json', import.meta.url)));
+import { convertSeconds, convertFlags, convertPresence, convertPermissions } from '../utils/convert.js';
 
 
-module.exports = [
+export const commands = [
     
     {
         name: 'run',
@@ -35,8 +36,8 @@ module.exports = [
         description: 'Get my information!',
         async execute(client, msg, args) {
 
-            const djsVer = pjson.dependencies['discord.js'];
-            const nodeVer = pjson.devDependencies['node'];
+            const djsVer = packageJSON.dependencies['discord.js'];
+            const nodeVer = packageJSON.devDependencies['node'];
             const uptime = await convertSeconds(client.uptime / 1000);
             
             const embed = new MessageEmbed()
@@ -115,5 +116,4 @@ bot uptime: \`${uptime}\`
             await msg.reply({ embeds: [embed] });
         }
     },
-
 ];

@@ -1,9 +1,14 @@
-const { MessageEmbed, MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
-const { hinaColor } = require('../config');
+import {
+    MessageEmbed,
+    MessageActionRow,
+    MessageButton,
+    MessageSelectMenu
+} from 'discord.js';
+import { hinaColor } from '../config.js';
 
 
 
-class Help {
+export class Help {
 
     constructor(client, author, _clientInvite) {
         this.client = client;
@@ -269,8 +274,4 @@ __reply to the message while using the command__
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
     };
     
-};
-
-module.exports = {
-    Help: Help,
 };

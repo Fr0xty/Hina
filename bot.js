@@ -1,10 +1,10 @@
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
-const { Client, Intents } = require('discord.js');
-const Discord = require('discord.js');
-const fs = require('fs');
+import { REST } from '@discordjs/rest';
+import { Routes } from 'discord-api-types/v9';
+import { Client, Intents } from 'discord.js';
+import Discord from 'discord.js';
+import fs from 'fs';
 
-const config = require('./res/config');
+import { prefix, token } from './res/config.js';
 
 const client = new Client({ 
     intents: [
@@ -31,10 +31,10 @@ client.commands = new Discord.Collection();
 
 const commandsFolder = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-commandsFolder.forEach(file => {
-    const category = require(`./commands/${file}`);
+commandsFolder.forEach(async file => {
+    const category = await import(`./commands/${file}`);
 
-    category.forEach(comm => {
+    category.commands.forEach(comm => {
         client.commands.set(comm.name, comm);
     });
 });
@@ -45,10 +45,9 @@ console.log('Commands are successfully added!');
 // loading event handlers
 const eventsFolder = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
-eventsFolder.forEach(file => {
-    const event = require(`./events/${file}`);
-
-    client.on(event.eventType, event.callback);
+eventsFolder.forEach(async file => {
+    const event = await import(`./events/${file}`);
+    client.on(event.default.eventType, event.default.callback);
 });
 console.log('Events are successfully added!');
 
@@ -58,7 +57,7 @@ console.log('Events are successfully added!');
 const CLIENT_ID = '882840863154270289';
 const GUILD_ID = '859029044942471208';
 
-const rest = new REST({ version: '9' }).setToken(config.token);
+const rest = new REST({ version: '9' }).setToken(token);
 
 (async () => {
   try {
@@ -84,9 +83,9 @@ const rest = new REST({ version: '9' }).setToken(config.token);
 
 // command handler
 client.on('messageCreate', async (msg) => {
-    if (!msg.content.toLowerCase().startsWith(config.prefix) || msg.author.bot) return;
+    if (!msg.content.toLowerCase().startsWith(prefix) || msg.author.bot) return;
 
-    noPrefixMsg = msg.content.slice(config.prefix.length).trim();
+    const noPrefixMsg = msg.content.slice(prefix.length).trim();
 
     try {
         if (noPrefixMsg.match(/^[a-zA-Z]+/)[0] === 'run') {
@@ -103,7 +102,7 @@ client.on('messageCreate', async (msg) => {
     }
     finally {
         try {
-            theCommand = client.commands.get(command)
+            let theCommand = client.commands.get(command)
 
             if (!theCommand) {
                 for (const [key, value] of client.commands) {
@@ -147,5 +146,9 @@ client.on('ready', () => {
 });
 
 
-require('./server')();
-client.login(config.token);
+
+
+import server from './server.js';
+server();
+
+client.login(token);

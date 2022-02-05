@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A discord bot",
   "main": "bot.js",
+  "type": "module",
   "dependencies": {
     "@discordjs/opus": "^0.7.0",
     "@discordjs/rest": "^0.3.0",

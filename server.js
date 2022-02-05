@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 
 app.get('/', (req, res) => res.send('Hina is online!'));
 
-module.exports = () => {
+export default () => {
     app.listen(3000);
 }

@@ -1,10 +1,10 @@
-const { MessageEmbed } = require('discord.js');
+import { MessageEmbed } from 'discord.js';
 
-const { hinaColor, okEmoji } = require('../res/config');
-const { paginator } = require('../utils/paginator');
+import { hinaColor, okEmoji } from '../res/config.js';
+import { paginator } from '../utils/paginator.js';
 
 
-module.exports = [
+export const commands = [
 
     {
         name: 'getemoji',
@@ -62,7 +62,7 @@ module.exports = [
         description: 'send the emoji as you!',
         async execute(client, msg, args) {
 
-            emojiRegex = /^a?:.+:([0-9]{18})$/;
+            const emojiRegex = /^a?:.+:([0-9]{18})$/;
 
             if (!emojiRegex.test(args[0])) return await msg.reply('Invalid emoji id! Please make sure to copy the whole emoji id without the angle brackets.');
             else {

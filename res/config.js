@@ -1,7 +1,5 @@
-module.exports = {
-    token: process.env.TOKEN,
-    prefix: 'test ',
-    hinaColor: '#E49CFF',
+export const token = process.env.TOKEN;
+export const prefix = 'test ';
+export const hinaColor = '#E49CFF';
 
-    okEmoji: '902096184645124146',
-};
+export const okEmoji = '902096184645124146';

@@ -1,10 +1,9 @@
-const { Help: HinaHelpEmbed } = require('../res/models/HinaEmbeds');
-const { generateClientInvite } = require('../utils/general');
-const { hinaColor, okEmoji } = require('../res/config');
+import { Help as HinaHelpEmbed } from '../res/models/HinaEmbeds.js';
+import { generateClientInvite } from '../utils/general.js';
+import { hinaColor, okEmoji } from '../res/config.js';
 
 
-
-module.exports = [
+export const commands = [
 
     {
         name: 'help',
@@ -118,6 +117,5 @@ module.exports = [
                 } catch {};
             });
         }
-    }
-
+    },
 ];

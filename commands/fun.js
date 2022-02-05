@@ -1,10 +1,10 @@
-const { MessageEmbed } = require('discord.js');
+import { MessageEmbed } from 'discord.js';
 
-const { hinaAsyncRequest } = require('../utils/general');
-const { hinaColor} = require('../res/config');
+import { hinaAsyncRequest } from '../utils/general.js';
+import { hinaColor } from '../res/config.js';
 
 
-module.exports = [
+export const commands = [
 
     {
         name: 'funfact',
@@ -28,9 +28,9 @@ source: [here](${fact.source_url})
                 await msg.reply({ embeds: [embed] });
             }
             catch (err) {
-                await msg.reply('Sorry, something went wrong went making the request. Please try again.')
+                await msg.reply('Sorry, something went wrong went making the request. Please try again.');
                 console.log(err);
-            }
+            };
         }
     },
 
@@ -57,9 +57,9 @@ source: [here](${fact.source_url})
                 await msg.reply({ embeds: [embed] });
             }
             catch (err) {
-                await msg.reply('Sorry, something went wrong went making the request. Please try again.')
+                await msg.reply('Sorry, something went wrong went making the request. Please try again.');
                 console.log(err);
-            }
+            };
         }
     },
 
@@ -96,6 +96,5 @@ source: [here](${fact.source_url})
                 await msg.reply('User is invalid or is not in the server!');
             };
         }
-    }
-
-]
+    },
+];
