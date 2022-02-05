@@ -2,8 +2,8 @@ import { MessageEmbed } from 'discord.js';
 import { readFile } from 'fs/promises';
 import piston from 'piston-client';
 
-import { hinaColor } from '../res/config.js';
 const packageJSON = JSON.parse(await readFile(new URL('../package.json', import.meta.url)));
+import { hinaColor } from '../res/config.js';
 import { convertSeconds, convertFlags, convertPresence, convertPermissions } from '../utils/convert.js';
 
 
@@ -15,16 +15,47 @@ export const commands = [
         description: 'Running code snippets in a sandbox.',
         async execute(client, msg, args) {
 
-            let code = args.replaceAll('```', '');
+            // TODO properly handle language
+
+            let code = args.replaceAll('```', '').trim();
             const lang = code.match(/.+/)[0];
             code = code.replace(/.+/, '');
-            await msg.reply(`code: ${code}\nlang: ${lang}`);
-            // TODO
+
             const pistonClient = piston({server: "https://emkc.org"});
             const runtimes = await pistonClient.runtimes();
-            const result = await pistonClient.execute(lang, code);
-            console.log(result);
-            await msg.reply(result);
+            let language;
+            runtimes.forEach(runtime => {
+                if (runtime.aliases.includes(lang)) language = runtime.language;
+            })
+            const result = await pistonClient.execute(language, code);
+
+            let consoleMsg;
+            if (result.run.stdout === '' && result.run.code === 0) {
+                consoleMsg = 'Code ran with no exceptions...';
+            }
+            else if (result.run.code != 0) {
+                consoleMsg = result.run.stderr;
+            }
+            else {
+                consoleMsg = result.run.stdout;
+            };
+            
+            const embed = new MessageEmbed()
+                .setColor(hinaColor)
+                .setAuthor({name: 'Hina\'s Code Runner', iconURL: client.user.displayAvatarURL()})
+                .setDescription(`
+\`\`\`\n${consoleMsg}\`\`\`
+
+exit code: \`${result.run.code}\`
+
+**Info:**
+language: \`${result.language}\`
+version: \`${result.version}\`
+                `)
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
+                .setTimestamp()
+
+            await msg.reply({ embeds: [embed] });
         }
     },
 
