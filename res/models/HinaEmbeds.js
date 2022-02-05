@@ -272,6 +272,8 @@ This can be applied to every command in this category. Must be >0 and <31.
             .addFields(
                 {name: '`appinfo`', value: 'Get my information!', inline: true},
                 {name: '`userinfo [@user/userid]`', value: 'Get my information!', inline: true},
+                {name: '`epochtime`, `epoch`', value: 'get a quick example of epochtime.', inline: true},
+                {name: '`prune [number]`', value: 'delete a certain amount of messages in the channel.', inline: true},
             )
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
 
