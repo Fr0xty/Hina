@@ -283,8 +283,13 @@ This can be applied to every command in this category. Must be >0 and <31.
             .setAuthor({name: `${this.client.user.username} Code Runner Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
             .setColor(hinaColor)
             .addFields(
-                {name: 'category is coming soon', value: 'cominggggggggggggggggg', inline: true},
+                {name: 'How to use?', value: `
+The following picture is an example. Replace \`py\` with the language you want to use. More on Discord code blocks [here](https://gist.github.com/matthewzring/9f7bbfd102003963f9be7dbcf7d40e51#syntax-highlighting).
+                
+List of languages [here](https://hina.fr0xty.repl.co/help/runtimes). Both language and aliases are usable.
+                `},
             )
+            .setImage('https://media.discordapp.net/attachments/907586559719645204/930374092723470336/Screenshot_246.png')
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
     };
     

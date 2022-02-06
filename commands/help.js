@@ -1,4 +1,4 @@
-import { Help as HinaHelpEmbed } from '../res/models/HinaEmbeds.js';
+import { Help as HinaHelpEmbed } from '../res/models/HinaHelpEmbed.js';
 import { generateClientInvite } from '../utils/general.js';
 import { hinaColor, okEmoji } from '../res/config.js';
 

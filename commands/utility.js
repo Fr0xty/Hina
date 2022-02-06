@@ -15,8 +15,6 @@ export const commands = [
         description: 'Running code snippets in a sandbox.',
         async execute(client, msg, args) {
 
-            // TODO properly handle language
-
             let code = args.replaceAll('```', '').trim();
             const lang = code.match(/.+/)[0];
             code = code.replace(/.+/, '');
@@ -25,8 +23,8 @@ export const commands = [
             const runtimes = await pistonClient.runtimes();
             let language;
             runtimes.forEach(runtime => {
-                if (runtime.aliases.includes(lang)) language = runtime.language;
-            })
+                if (runtime.aliases.includes(lang) || runtime.language === lang) language = runtime.language;
+            });
             const result = await pistonClient.execute(language, code);
 
             let consoleMsg;
