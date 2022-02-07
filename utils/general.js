@@ -1,5 +1,4 @@
 import { Permissions } from 'discord.js';
-import fetch from 'node-fetch';
 
 
 
@@ -11,14 +10,6 @@ export const generateClientInvite = async (client) => {
         scopes: ['bot', 'applications.commands'],
     });
     return invite;
-};
-
-
-
-export const hinaRequest = async (url) => {
-
-    const data = await fetch(url);
-    return await data.json();
 };
 
 

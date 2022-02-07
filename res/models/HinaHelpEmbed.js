@@ -258,8 +258,8 @@ This can be applied to every command in this category. Must be >0 and <31.
 \u2800
             `)
             .addFields(
-                {name: 'SFW', value: '`waifu`, `maid`\n\u2800'},
-                {name: 'NSFW', value: '`ass`, `ecchi`, `ero`, `hentai`, `nsfwmaid`, `milf`, `oppai`, `oral`, `paizuri`, `selfies`, `uniform`\n\u2800\n\u2800'},
+                {name: 'SFW', value: '`waifu`, `maid`, `neko`, `shinobu`, `megumin`, `awoo`\n\u2800'},
+                {name: 'NSFW', value: '`ass`, `ecchi`, `ero`, `hentai`, `nsfwmaid`, `milf`, `oppai`, `oral`, `paizuri`, `selfies`, `uniform`, `nsfwneko`, `trap`, `blowjob`\n\u2800\n\u2800'},
                 {name: 'Wildcard!', value: '`random`\n\u2800'},
             )
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});

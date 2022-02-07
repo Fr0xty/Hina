@@ -1,6 +1,6 @@
 import { MessageEmbed } from 'discord.js';
+import fetch from 'node-fetch';
 
-import { hinaRequest } from '../utils/general.js';
 import { hinaColor } from '../res/config.js';
 
 
@@ -13,7 +13,8 @@ export const commands = [
         async execute(client, msg, args) {
 
             try {
-                const fact = await hinaAsyncRequest('https://uselessfacts.jsph.pl/random.json?language=en');
+                let fact = await fetch('https://uselessfacts.jsph.pl/random.json?language=en');
+                fact = await fact.json();
                 
                 const embed = new MessageEmbed()
                     .setColor(hinaColor)
@@ -43,7 +44,8 @@ source: [here](${fact.source_url})
         async execute(client, msg, args) {
 
             try {
-                let joke = await hinaAsyncRequest('https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,racist,sexist');
+                let joke = await fetch('https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,racist,sexist');
+                joke = await joke.json();
                 let content;
 
                 if (joke.type === 'single') { content = joke.joke }
