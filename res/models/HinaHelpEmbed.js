@@ -20,6 +20,7 @@ export class Help {
             'emoji',
             'music',
             'image',
+            'language',
             'utility',
             'coderunner',
             // 'creator',
@@ -86,6 +87,12 @@ export class Help {
                                 value: 'image',
                             },
                             {
+                                label: 'Language',
+                                description: 'Commands related to languages.',
+                                emoji: '🌏',
+                                value: 'language',
+                            },
+                            {
                                 label: 'Utility',
                                 description: 'Useful commands.',
                                 emoji: '🛠️',
@@ -148,6 +155,7 @@ My prefix is \`hina\`
                 {name: '<a:dekuHYPE:885845965469253632> Emoji', value: '`hina help emoji`', inline: true},
                 {name: '🎶 Music', value: '`hina help music`', inline: true},
                 {name: '<:TGGasm:895182438064590879> Image', value: '`hina help image`', inline: true},
+                {name: '🌏 Language', value: '`hina help language`', inline: true},
                 {name: '🛠️ Utility', value: '`hina help utility`', inline: true},
                 {name: '🎲 Code Runner', value: '`hina help coderunner`', inline: true}
             )
@@ -261,6 +269,16 @@ This can be applied to every command in this category. Must be >0 and <31.
                 {name: 'SFW', value: '`waifu`, `maid`, `neko`, `shinobu`, `megumin`, `awoo`\n\u2800'},
                 {name: 'NSFW', value: '`ass`, `ecchi`, `ero`, `hentai`, `nsfwmaid`, `milf`, `oppai`, `oral`, `paizuri`, `selfies`, `uniform`, `nsfwneko`, `trap`, `blowjob`\n\u2800\n\u2800'},
                 {name: 'Wildcard!', value: '`random`\n\u2800'},
+            )
+            .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
+
+
+
+        this.language = new MessageEmbed()
+            .setAuthor({name: `${this.client.user.username} Language Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setColor(hinaColor)
+            .addFields(
+                {name: '`jisho <word>`', value: 'searches word on jisho.org', inline: true},
             )
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
 

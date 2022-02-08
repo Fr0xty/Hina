@@ -75,6 +75,11 @@ export const commands = [
                             category = 'image';
                             embed.components.actionRow.components[0].setDisabled(false);
                             break;
+
+                        case ('language'):
+                            category = 'language';
+                            embed.components.actionRow.components[0].setDisabled(false);
+                            break;
                         
                         case ('utility'):
                             category = 'utility';
