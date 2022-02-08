@@ -96,7 +96,7 @@ bot uptime: \`${uptime}\`
         description: 'get all user information.',
         async execute(client, msg, args) {
 
-            let member, flags, nickname, roles;
+            let member, flags, nickname, roles, presence;
 
             if (args.length == 0) { member = msg.member }
             else { 

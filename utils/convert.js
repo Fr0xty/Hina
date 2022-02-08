@@ -37,7 +37,7 @@ export const convertMention = async (client, mention) => {
 
 export const convertPresence = async (presence) => {
 
-    platform = ['desktop', 'mobile', 'web'];
+    const platform = ['desktop', 'mobile', 'web'];
     let result = '';
 
     platform.forEach((pf) => {
