@@ -3,7 +3,7 @@ import { readFile } from 'fs/promises';
 import piston from 'piston-client';
 
 const packageJSON = JSON.parse(await readFile(new URL('../package.json', import.meta.url)));
-import { hinaColor } from '../res/config.js';
+import { hinaColor, hinaImageOption } from '../res/config.js';
 import { convertSeconds, convertFlags, convertPresence, convertPermissions } from '../utils/convert.js';
 
 
@@ -40,7 +40,7 @@ export const commands = [
             
             const embed = new MessageEmbed()
                 .setColor(hinaColor)
-                .setAuthor({name: 'Hina\'s Code Runner', iconURL: client.user.displayAvatarURL()})
+                .setAuthor({name: 'Hina\'s Code Runner', iconURL: client.user.displayAvatarURL(hinaImageOption)})
                 .setDescription(`
 \`\`\`\n${consoleMsg}\`\`\`
 
@@ -50,7 +50,7 @@ exit code: \`${result.run.code}\`
 language: \`${result.language}\`
 version: \`${result.version}\`
                 `)
-                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
                 .setTimestamp()
 
             await msg.reply({ embeds: [embed] });
@@ -78,12 +78,12 @@ bot latency: \`${Date.now() - msg.createdTimestamp}ms\`
 websocket latency: \`${Math.round(client.ws.ping)}ms\`
 bot uptime: \`${uptime}\`
                 `)
-                .setAuthor({name: client.user.tag, iconURL: client.user.displayAvatarURL({size:4096})})
+                .setAuthor({name: client.user.tag, iconURL: client.user.displayAvatarURL(hinaImageOption)})
                 .setColor(hinaColor)
                 .setTitle(`Hina's Application Info`)
-                .setThumbnail(client.user.displayAvatarURL({size: 4096}))
+                .setThumbnail(client.user.displayAvatarURL(hinaImageOption))
                 .setTimestamp()
-                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})});
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)});
             await msg.reply({ embeds: [embed] });
         }
     },
@@ -125,12 +125,12 @@ bot uptime: \`${uptime}\`
 
 
             const embed = new MessageEmbed()
-                .setAuthor({name: `${member.displayName}'s User Info`, iconURL: member.user.displayAvatarURL({size: 4096, dynamic: true})})
+                .setAuthor({name: `${member.displayName}'s User Info`, iconURL: member.user.displayAvatarURL(hinaImageOption)})
                 .setTitle(member.user.tag)
                 .setColor(member.displayHexColor)
                 .setThumbnail(member.user.displayAvatarURL({size: 4096, dynamic: true}))
                 .setTimestamp()
-                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
                 .addFields(
                     {name: 'nickname', value: nickname, inline: true},
                     {name: 'mention', value: member.toString(), inline: true},
@@ -149,6 +149,35 @@ bot uptime: \`${uptime}\`
 
 
     {
+        name: 'avatar',
+        aliases: [],
+        description: 'get user profile avatar.',
+        async execute(client, msg, args) {
+
+            let user;
+            if (!args.length) { user = msg.author }
+            else { user = await client.users.fetch(args[0]) };
+
+            if (!user) return await msg.reply('Invalid user id / mention!');
+
+            const embed = new MessageEmbed()
+                .setColor(hinaColor)
+                .setAuthor({name: 'Hina\'s Avatar Fetcher', iconURL: client.user.displayAvatarURL(hinaImageOption)})
+                .setTitle(`${user.tag}'s Avatar'`)
+                .setDescription(`
+[\`webp\`](${user.displayAvatarURL({dynamic: true, format: 'webp', size:4096})}) [\`png\`](${user.displayAvatarURL({dynamic: true, format: 'png', size:4096})}) [\`jpg\`](${user.displayAvatarURL({dynamic: true, format: 'jpg', size:4096})}) [\`jpeg\`](${user.displayAvatarURL({dynamic: true, format: 'jpeg', size:4096})}) 
+                `)
+                .setImage(user.displayAvatarURL(hinaImageOption))
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
+                .setTimestamp();
+
+            await msg.reply({ embeds: [embed] });
+        }
+    },
+
+
+
+    {
         name: 'epochtime',
         aliases: ['epoch'],
         description: 'get quick example of epochtime in discord.',
@@ -156,7 +185,7 @@ bot uptime: \`${uptime}\`
 
             const embed = new MessageEmbed()
                 .setColor(hinaColor)
-                .setAuthor({name: 'Epoch Time Example', iconURL: client.user.displayAvatarURL()})
+                .setAuthor({name: 'Epoch Time Example', iconURL: client.user.displayAvatarURL(hinaImageOption)})
                 .setDescription(`
 [Epoch Time Converter](https://www.epochconverter.com/) 
 
@@ -169,7 +198,7 @@ bot uptime: \`${uptime}\`
 \`<t:1624855717:T>\` 	<t:1624855717:T>
 \`<t:1624855717:R>\` 	<t:1624855717:R>
                 `)
-                .setFooter({text: `Requested by ${msg.author.tag}さま`, iconURL: msg.author.displayAvatarURL()})
+                .setFooter({text: `Requested by ${msg.author.tag}さま`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
                 .setImage('https://cdn.discordapp.com/attachments/907586559719645204/908234637380288552/sheeeeeeeesh.jpeg')
                 .setTimestamp();
 

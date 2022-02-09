@@ -1,5 +1,7 @@
 import { Permissions } from 'discord.js';
 
+import { hinaImageOption } from '../res/config.js';
+
 
 
 
@@ -16,6 +18,6 @@ export const generateClientInvite = async (client) => {
 
 export const guildOrClientIcon = async (client, guild) => {
 
-    if (guild.iconURL()) return guild.iconURL({size: 4096, dynamic: true});
-    return client.user.displayAvatarURL({size: 4096});
+    if (guild.iconURL()) return guild.iconURL(hinaImageOption);
+    return client.user.displayAvatarURL(hinaImageOption);
 };

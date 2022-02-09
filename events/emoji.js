@@ -1,3 +1,6 @@
+import { hinaImageOption } from '../res/config.js';
+
+
 export default {
 
     eventType: 'messageCreate',
@@ -17,7 +20,7 @@ export default {
                     };
 
                     const webhook = await msg.channel.createWebhook(msg.member.displayName, {
-                        avatar: msg.author.displayAvatarURL({size: 4096, dynamic: true}),
+                        avatar: msg.author.displayAvatarURL(hinaImageOption),
                     });
                     await webhook.send(emoji.toString());
                     await webhook.delete();

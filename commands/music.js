@@ -4,7 +4,7 @@ import ffmpeg from 'ffmpeg-static';
 import { MessageEmbed } from 'discord.js';
 
 import { GuildMusic } from '../res/models/GuildMusic.js';
-import { hinaColor, okEmoji } from '../res/config.js';
+import { hinaColor, okEmoji, hinaImageOption } from '../res/config.js';
 import { queryYT } from '../utils/music.js';
 import { paginator } from '../utils/paginator.js';
 import { guildOrClientIcon } from '../utils/general.js';
@@ -196,7 +196,7 @@ export const commands = [
                 .setColor(hinaColor)
                 .setAuthor({name: `${msg.guild.name} Song Queue`, iconURL: authorIcon})
                 .setDescription('Server song queue cleared successfully!')
-                .setFooter({text: `Queue cleared by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})});
+                .setFooter({text: `Queue cleared by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)});
             await msg.reply({ embeds: [embed] });
         }
     },

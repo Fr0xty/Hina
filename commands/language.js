@@ -1,7 +1,7 @@
 import { MessageEmbed } from 'discord.js';
 import fetch from 'node-fetch';
 
-import { hinaColor } from '../res/config.js';
+import { hinaColor, hinaImageOption } from '../res/config.js';
 import { paginator } from '../utils/paginator.js';
 
 
@@ -57,7 +57,7 @@ export const commands = [
 
                 const embed = new MessageEmbed()
                     .setColor(hinaColor)
-                    .setAuthor({name: `Hina Jisho (Page ${result.data.indexOf(word) + 1} / ${result.data.length})`, iconURL: client.user.displayAvatarURL({size: 4096})})
+                    .setAuthor({name: `Hina Jisho (Page ${result.data.indexOf(word) + 1} / ${result.data.length})`, iconURL: client.user.displayAvatarURL(hinaImageOption)})
                     .setTitle(`${firstReading.word} (${firstReading.reading})`)
                     .setURL(`https://jisho.org/search/${word.slug}`)
                     .setDescription(`
@@ -68,7 +68,7 @@ ${alternativeKanji}
 ${dbpediaRedirect}
 -------------------------
                     `)
-                    .setFooter({text: `Requested by ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
+                    .setFooter({text: `Requested by ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
                     .setTimestamp();
                 
                 pages.push(embed);

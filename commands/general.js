@@ -1,6 +1,6 @@
 import { MessageEmbed, MessageActionRow, MessageButton } from 'discord.js';
 
-import { hinaColor } from '../res/config.js';
+import { hinaColor, hinaImageOption } from '../res/config.js';
 import { generateClientInvite } from '../utils/general.js';
 import { convertSeconds } from '../utils/convert.js';
 
@@ -16,10 +16,10 @@ export const commands = [
             const clientInvite = await generateClientInvite(client);
 
             const embed = new MessageEmbed()
-                .setAuthor({name: 'My invite link♡', iconURL: client.user.displayAvatarURL({size: 4096})})
+                .setAuthor({name: 'My invite link♡', iconURL: client.user.displayAvatarURL(hinaImageOption)})
                 .setColor(hinaColor)
                 .setDescription(clientInvite)
-                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
                 .setTimestamp();
 
             const button = new MessageActionRow()
@@ -82,7 +82,7 @@ export const commands = [
                     .setURL(songUrl)
                     .setThumbnail(albumArt)
                     .setTimestamp()
-                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
+                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
                     .setDescription(`
 artist(s):
 \`${artists}\`

@@ -2,7 +2,7 @@ import { MessageEmbed } from 'discord.js';
 import fetch from 'node-fetch';
 
 import { paginator } from '../utils/paginator.js';
-import { prefix, hinaColor } from '../res/config.js';
+import { prefix, hinaColor, hinaImageOption } from '../res/config.js';
 
 
 export const commands = [
@@ -81,7 +81,7 @@ export const commands = [
                     .setTitle(tag)
                     .setDescription(`[source](${images[i].source})`)
                     .setImage(images[i].url)
-                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
+                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
                     .setTimestamp();
 
                 pages.push(embed);
@@ -150,7 +150,7 @@ export const commands = [
                     .setColor(hinaColor)
                     .setTitle(tag)
                     .setImage(images[i])
-                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL()})
+                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
                     .setTimestamp();
 
                 pages.push(embed);
