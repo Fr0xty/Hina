@@ -1,18 +1,18 @@
-const {
+import {
     joinVoiceChannel,
     getVoiceConnection,
     createAudioPlayer,
     createAudioResource,
     AudioPlayerStatus,
-} = require('@discordjs/voice');
-const { MessageEmbed } = require('discord.js');
+} from '@discordjs/voice';
+import { MessageEmbed } from 'discord.js';
 
-const { hinaColor } = require('../config');
-const { guildOrClientIcon } = require('../../utils/general');
-const { convertSeconds } = require('../../utils/convert');
+import { hinaColor } from '../config.js';
+import { guildOrClientIcon } from '../../utils/general.js';
+import { convertSeconds } from '../../utils/convert.js';
 
 
-class GuildMusic {
+export class GuildMusic {
 
     constructor(client, vc, mc) {
         this._client = client;
@@ -173,10 +173,4 @@ class GuildMusic {
 
         this.songs = [];
     };
-};
-
-
-
-module.exports = {
-    GuildMusic: GuildMusic,
 };

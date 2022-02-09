@@ -1,10 +1,9 @@
-const { Help: HinaHelpEmbed } = require('../res/models/HinaEmbeds');
-const { generateClientInvite } = require('../utils/general');
-const { hinaColor, okEmoji } = require('../res/config');
+import { Help as HinaHelpEmbed } from '../res/models/HinaHelpEmbed.js';
+import { generateClientInvite } from '../utils/general.js';
+import { hinaColor, okEmoji } from '../res/config.js';
 
 
-
-module.exports = [
+export const commands = [
 
     {
         name: 'help',
@@ -76,6 +75,11 @@ module.exports = [
                             category = 'image';
                             embed.components.actionRow.components[0].setDisabled(false);
                             break;
+
+                        case ('language'):
+                            category = 'language';
+                            embed.components.actionRow.components[0].setDisabled(false);
+                            break;
                         
                         case ('utility'):
                             category = 'utility';
@@ -118,6 +122,5 @@ module.exports = [
                 } catch {};
             });
         }
-    }
-
+    },
 ];

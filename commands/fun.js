@@ -1,10 +1,10 @@
-const { MessageEmbed } = require('discord.js');
+import { MessageEmbed } from 'discord.js';
+import fetch from 'node-fetch';
 
-const { hinaAsyncRequest } = require('../utils/general');
-const { hinaColor} = require('../res/config');
+import { hinaColor, hinaImageOption } from '../res/config.js';
 
 
-module.exports = [
+export const commands = [
 
     {
         name: 'funfact',
@@ -13,12 +13,13 @@ module.exports = [
         async execute(client, msg, args) {
 
             try {
-                const fact = await hinaAsyncRequest('https://uselessfacts.jsph.pl/random.json?language=en');
+                let fact = await fetch('https://uselessfacts.jsph.pl/random.json?language=en');
+                fact = await fact.json();
                 
                 const embed = new MessageEmbed()
                     .setColor(hinaColor)
-                    .setAuthor({name: 'Fun fact with Hina!', iconURL: client.user.displayAvatarURL({size: 4096})})
-                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
+                    .setAuthor({name: 'Fun fact with Hina!', iconURL: client.user.displayAvatarURL(hinaImageOption)})
+                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
                     .setTimestamp()
                     .setDescription(`
 ${fact.text.replace('`', '\\`')}
@@ -28,9 +29,9 @@ source: [here](${fact.source_url})
                 await msg.reply({ embeds: [embed] });
             }
             catch (err) {
-                await msg.reply('Sorry, something went wrong went making the request. Please try again.')
+                await msg.reply('Sorry, something went wrong went making the request. Please try again.');
                 console.log(err);
-            }
+            };
         }
     },
 
@@ -43,23 +44,24 @@ source: [here](${fact.source_url})
         async execute(client, msg, args) {
 
             try {
-                let joke = await hinaAsyncRequest('https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,racist,sexist');
+                let joke = await fetch('https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,racist,sexist');
+                joke = await joke.json();
                 let content;
 
                 if (joke.type === 'single') { content = joke.joke }
                 else { content = `${joke.setup.replace('`', '\\`')}\n||${joke.delivery.replace('`', '\\`')}||` };
                 const embed = new MessageEmbed()
                     .setColor(hinaColor)
-                    .setAuthor({name: `Joke (${joke.category})`, iconURL: client.user.displayAvatarURL({size: 4096})})
-                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
+                    .setAuthor({name: `Joke (${joke.category})`, iconURL: client.user.displayAvatarURL(hinaImageOption)})
+                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
                     .setTimestamp()
                     .setDescription(`${content}\n\n[source](https://v2.jokeapi.dev/)`)
                 await msg.reply({ embeds: [embed] });
             }
             catch (err) {
-                await msg.reply('Sorry, something went wrong went making the request. Please try again.')
+                await msg.reply('Sorry, something went wrong went making the request. Please try again.');
                 console.log(err);
-            }
+            };
         }
     },
 
@@ -83,7 +85,7 @@ source: [here](${fact.source_url})
                 const member = msg.mentions.members.first();
                 
                 const webhook = await msg.channel.createWebhook(member.displayName, {
-                    avatar: member.displayAvatarURL({size: 4096, dynamic: true})
+                    avatar: member.displayAvatarURL(hinaImageOption)
                 });
 
                 await webhook.send(userMsg);
@@ -96,6 +98,5 @@ source: [here](${fact.source_url})
                 await msg.reply('User is invalid or is not in the server!');
             };
         }
-    }
-
-]
+    },
+];

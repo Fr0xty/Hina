@@ -1,13 +1,14 @@
 # Hina Discord Bot (discord.js)
-A bot originally written with `discord.py` library. Hina is a multi-purpose bot, and still in development...
-
-### Bot Info
-- Invite Link: [Invite Hine!](https://discord.com/api/oauth2/authorize?client_id=769125937731338290&permissions=8&scope=bot)
+A bot originally written with discord.py library, migrated to discord.js library after discord.py became deprecated. Hina is a multi-purpose bot, equiped with features like allowing users to use animated emojis without having to pay for nitro, tell jokes, fetch pictures etc...
+<br>
 
 ![](https://dcbadge.vercel.app/api/shield/bot/769125937731338290?theme=discord-inverted)
+[Invite Hina!](https://discord.com/api/oauth2/authorize?client_id=769125937731338290&scope=bot+applications.commands&permissions=1099511627776)
+<br>
 
-- [Discord.js](https://discord.js.org) Version: `13.6.0`
-- [Node.js](https://nodejs.org/en) Version: `16.13.2`
+### Teaser:
+* Hina's own bot website is coming soon!
+* More commands are added constantly.
+<br>
 
-It Is Hosted On [Repl.it](https://replit.com) Container. If you want to host it locally or for your bot, then please contact me for permission over my:
-[`YouTube Channel`](https://m.youtube.com/c/Fr0xty)
+<img src="https://media.discordapp.net/attachments/907586559719645204/908234637380288552/sheeeeeeeesh.jpeg?width=963&height=681" width="800px">

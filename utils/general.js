@@ -1,47 +1,23 @@
-const { Permissions } = require('discord.js');
-const https = require('https');
+import { Permissions } from 'discord.js';
 
-
-module.exports = {
-
-    generateClientInvite: async (client) => {
-
-        const invite = client.generateInvite({
-            permissions: [Permissions.FLAGS.MODERATE_MEMBERS],
-            scopes: ['bot', 'applications.commands'],
-        });
-        return invite;
-    },
+import { hinaImageOption } from '../res/config.js';
 
 
 
-    hinaAsyncRequest: async (url) => {
 
-        https
-            .get(url, resp => {
+export const generateClientInvite = async (client) => {
 
-                let data = '';
-
-                resp.on('data', chunk => {
-                    data += chunk;
-                });
-
-                resp.on('end', () => {
-                    return JSON.parse(data);
-                });
-            })
-            .on('error', err => {
-                throw err.message;
-            });
-    },
+    const invite = client.generateInvite({
+        permissions: [Permissions.FLAGS.MODERATE_MEMBERS],
+        scopes: ['bot', 'applications.commands'],
+    });
+    return invite;
+};
 
 
 
-    guildOrClientIcon: async (client, guild) => {
+export const guildOrClientIcon = async (client, guild) => {
 
-        if (guild.iconURL()) return guild.iconURL({size: 4096, dynamic: true});
-        return client.user.displayAvatarURL({size: 4096});
-    },
-
-
-}
+    if (guild.iconURL()) return guild.iconURL(hinaImageOption);
+    return client.user.displayAvatarURL(hinaImageOption);
+};

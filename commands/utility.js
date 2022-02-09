@@ -1,11 +1,13 @@
-const { MessageEmbed } = require('discord.js');
+import { MessageEmbed } from 'discord.js';
+import { readFile } from 'fs/promises';
+import piston from 'piston-client';
 
-const { hinaColor } = require('../res/config');
-const pjson = require('../package');
-const { convertSeconds, convertFlags, convertPresence, convertPermissions } = require('../utils/convert');
+const packageJSON = JSON.parse(await readFile(new URL('../package.json', import.meta.url)));
+import { hinaColor, hinaImageOption } from '../res/config.js';
+import { convertSeconds, convertFlags, convertPresence, convertPermissions } from '../utils/convert.js';
 
 
-module.exports = [
+export const commands = [
     
     {
         name: 'run',
@@ -13,17 +15,45 @@ module.exports = [
         description: 'Running code snippets in a sandbox.',
         async execute(client, msg, args) {
 
-            await msg.reply('in progress..');
-            return;
+            let code = args.replaceAll('```', '').trim();
+            const lang = code.match(/.+/)[0];
+            code = code.replace(/.+/, '');
 
-            args = args.replaceAll('```', '');
-            let lang = args.split('\n')[0];
-            args.split('\n').shift();
-            
             const pistonClient = piston({server: "https://emkc.org"});
             const runtimes = await pistonClient.runtimes();
-            const result = await pistonClient.execute(lang, args);
-            await msg.reply(result);
+            let language;
+            runtimes.forEach(runtime => {
+                if (runtime.aliases.includes(lang) || runtime.language === lang) language = runtime.language;
+            });
+            const result = await pistonClient.execute(language, code);
+
+            let consoleMsg;
+            if (result.run.stdout === '' && result.run.code === 0) {
+                consoleMsg = 'Code ran with no exceptions...';
+            }
+            else if (result.run.code != 0) {
+                consoleMsg = result.run.stderr;
+            }
+            else {
+                consoleMsg = result.run.stdout;
+            };
+            
+            const embed = new MessageEmbed()
+                .setColor(hinaColor)
+                .setAuthor({name: 'Hina\'s Code Runner', iconURL: client.user.displayAvatarURL(hinaImageOption)})
+                .setDescription(`
+\`\`\`\n${consoleMsg}\`\`\`
+
+exit code: \`${result.run.code}\`
+
+**Info:**
+language: \`${result.language}\`
+version: \`${result.version}\`
+                `)
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
+                .setTimestamp()
+
+            await msg.reply({ embeds: [embed] });
         }
     },
 
@@ -35,8 +65,8 @@ module.exports = [
         description: 'Get my information!',
         async execute(client, msg, args) {
 
-            const djsVer = pjson.dependencies['discord.js'];
-            const nodeVer = pjson.devDependencies['node'];
+            const djsVer = packageJSON.dependencies['discord.js'];
+            const nodeVer = packageJSON.devDependencies['node'];
             const uptime = await convertSeconds(client.uptime / 1000);
             
             const embed = new MessageEmbed()
@@ -48,12 +78,12 @@ bot latency: \`${Date.now() - msg.createdTimestamp}ms\`
 websocket latency: \`${Math.round(client.ws.ping)}ms\`
 bot uptime: \`${uptime}\`
                 `)
-                .setAuthor({name: client.user.tag, iconURL: client.user.displayAvatarURL({size:4096})})
+                .setAuthor({name: client.user.tag, iconURL: client.user.displayAvatarURL(hinaImageOption)})
                 .setColor(hinaColor)
                 .setTitle(`Hina's Application Info`)
-                .setThumbnail(client.user.displayAvatarURL({size: 4096}))
+                .setThumbnail(client.user.displayAvatarURL(hinaImageOption))
                 .setTimestamp()
-                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})});
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)});
             await msg.reply({ embeds: [embed] });
         }
     },
@@ -66,7 +96,7 @@ bot uptime: \`${uptime}\`
         description: 'get all user information.',
         async execute(client, msg, args) {
 
-            let member, flags, nickname, roles;
+            let member, flags, nickname, roles, presence;
 
             if (args.length == 0) { member = msg.member }
             else { 
@@ -95,12 +125,12 @@ bot uptime: \`${uptime}\`
 
 
             const embed = new MessageEmbed()
-                .setAuthor({name: `${member.displayName}'s User Info`, iconURL: member.user.displayAvatarURL({size: 4096, dynamic: true})})
+                .setAuthor({name: `${member.displayName}'s User Info`, iconURL: member.user.displayAvatarURL(hinaImageOption)})
                 .setTitle(member.user.tag)
                 .setColor(member.displayHexColor)
                 .setThumbnail(member.user.displayAvatarURL({size: 4096, dynamic: true}))
                 .setTimestamp()
-                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
                 .addFields(
                     {name: 'nickname', value: nickname, inline: true},
                     {name: 'mention', value: member.toString(), inline: true},
@@ -116,4 +146,86 @@ bot uptime: \`${uptime}\`
         }
     },
 
+
+
+    {
+        name: 'avatar',
+        aliases: [],
+        description: 'get user profile avatar.',
+        async execute(client, msg, args) {
+
+            let user;
+            if (!args.length) { user = msg.author }
+            else { user = await client.users.fetch(args[0].match(/\d+/)[0]) };
+
+            if (!user) return await msg.reply('Invalid user id / mention!');
+
+            const embed = new MessageEmbed()
+                .setColor(hinaColor)
+                .setAuthor({name: 'Hina\'s Avatar Fetcher', iconURL: client.user.displayAvatarURL(hinaImageOption)})
+                .setTitle(`${user.tag}'s Avatar'`)
+                .setDescription(`
+[\`webp\`](${user.displayAvatarURL({dynamic: true, format: 'webp', size:4096})}) [\`png\`](${user.displayAvatarURL({dynamic: true, format: 'png', size:4096})}) [\`jpg\`](${user.displayAvatarURL({dynamic: true, format: 'jpg', size:4096})}) [\`jpeg\`](${user.displayAvatarURL({dynamic: true, format: 'jpeg', size:4096})}) 
+                `)
+                .setImage(user.displayAvatarURL(hinaImageOption))
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
+                .setTimestamp();
+
+            await msg.reply({ embeds: [embed] });
+        }
+    },
+
+
+
+    {
+        name: 'epochtime',
+        aliases: ['epoch'],
+        description: 'get quick example of epochtime in discord.',
+        async execute(client, msg, args) {
+
+            const embed = new MessageEmbed()
+                .setColor(hinaColor)
+                .setAuthor({name: 'Epoch Time Example', iconURL: client.user.displayAvatarURL(hinaImageOption)})
+                .setDescription(`
+[Epoch Time Converter](https://www.epochconverter.com/) 
+
+\`<t:1624855717>\` 	    <t:1624855717>	
+\`<t:1624855717:f>\` 	<t:1624855717:f>
+\`<t:1624855717:F>\` 	<t:1624855717:F>
+\`<t:1624855717:d>\` 	<t:1624855717:d>
+\`<t:1624855717:D>\` 	<t:1624855717:D>
+\`<t:1624855717:t>\` 	<t:1624855717:t>
+\`<t:1624855717:T>\` 	<t:1624855717:T>
+\`<t:1624855717:R>\` 	<t:1624855717:R>
+                `)
+                .setFooter({text: `Requested by ${msg.author.tag}さま`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
+                .setImage('https://cdn.discordapp.com/attachments/907586559719645204/908234637380288552/sheeeeeeeesh.jpeg')
+                .setTimestamp();
+
+            await msg.channel.send({ embeds: [embed] });
+        }
+    },
+
+
+
+    {
+        name: 'prune',
+        aliases: [],
+        description: 'bulk delete a certain amount of messages in the channel.',
+        async execute(client, msg, args) {
+
+            if (!msg.member.permissions.has('MANAGE_MESSAGES')) return await msg.reply('You don\'t have the permission to use this command!\nrequire: `Manage Messages`');
+            
+            let num;
+            if (!args.length) {
+                num = 2;
+            } 
+            else if (!(args[0] > 0 && args[0] < 1001)) {
+                return await msg.reply('Please provide 0 < __num__ < 1001.');
+            }
+            else { num = args[0]++ };
+
+            await msg.channel.bulkDelete(num);
+        }
+    },
 ];

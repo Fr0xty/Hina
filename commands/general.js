@@ -1,11 +1,11 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+import { MessageEmbed, MessageActionRow, MessageButton } from 'discord.js';
 
-const { hinaColor } = require('../res/config');
-const { generateClientInvite } = require('../utils/general');
-const { convertSeconds } = require('../utils/convert');
+import { hinaColor, hinaImageOption } from '../res/config.js';
+import { generateClientInvite } from '../utils/general.js';
+import { convertSeconds } from '../utils/convert.js';
 
 
-module.exports = [
+export const commands = [
 
     {
         name: 'invite',
@@ -16,10 +16,10 @@ module.exports = [
             const clientInvite = await generateClientInvite(client);
 
             const embed = new MessageEmbed()
-                .setAuthor({name: 'My invite link♡', iconURL: client.user.displayAvatarURL({size: 4096})})
+                .setAuthor({name: 'My invite link♡', iconURL: client.user.displayAvatarURL(hinaImageOption)})
                 .setColor(hinaColor)
                 .setDescription(clientInvite)
-                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
+                .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
                 .setTimestamp();
 
             const button = new MessageActionRow()
@@ -82,7 +82,7 @@ module.exports = [
                     .setURL(songUrl)
                     .setThumbnail(albumArt)
                     .setTimestamp()
-                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL({size: 4096, dynamic: true})})
+                    .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
                     .setDescription(`
 artist(s):
 \`${artists}\`
@@ -119,6 +119,5 @@ party id: \`${partyID}\`
 
             await msg.reply('not implemented yet');
         }
-    }
-
+    },
 ];

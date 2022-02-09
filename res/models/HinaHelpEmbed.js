@@ -1,9 +1,14 @@
-const { MessageEmbed, MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
-const { hinaColor } = require('../config');
+import {
+    MessageEmbed,
+    MessageActionRow,
+    MessageButton,
+    MessageSelectMenu
+} from 'discord.js';
+import { hinaColor, hinaImageOption } from '../config.js';
 
 
 
-class Help {
+export class Help {
 
     constructor(client, author, _clientInvite) {
         this.client = client;
@@ -15,6 +20,7 @@ class Help {
             'emoji',
             'music',
             'image',
+            'language',
             'utility',
             'coderunner',
             // 'creator',
@@ -81,6 +87,12 @@ class Help {
                                 value: 'image',
                             },
                             {
+                                label: 'Language',
+                                description: 'Commands related to languages.',
+                                emoji: '🌏',
+                                value: 'language',
+                            },
+                            {
                                 label: 'Utility',
                                 description: 'Useful commands.',
                                 emoji: '🛠️',
@@ -127,7 +139,7 @@ class Help {
 
 
         this.mainPage = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} Commands!`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setAuthor({name: `${this.client.user.username} Commands!`, iconURL: this.client.user.displayAvatarURL(hinaImageOption)})
             .setColor(hinaColor)
             .setTitle('Command Categories')
             .setDescription(`
@@ -143,16 +155,17 @@ My prefix is \`hina\`
                 {name: '<a:dekuHYPE:885845965469253632> Emoji', value: '`hina help emoji`', inline: true},
                 {name: '🎶 Music', value: '`hina help music`', inline: true},
                 {name: '<:TGGasm:895182438064590879> Image', value: '`hina help image`', inline: true},
+                {name: '🌏 Language', value: '`hina help language`', inline: true},
                 {name: '🛠️ Utility', value: '`hina help utility`', inline: true},
                 {name: '🎲 Code Runner', value: '`hina help coderunner`', inline: true}
             )
-            .setFooter({text: `Requested by: ${this.author.tag}`, iconURL: this.author.displayAvatarURL({size: 4096, dynamic: true})})
+            .setFooter({text: `Requested by: ${this.author.tag}`, iconURL: this.author.displayAvatarURL(hinaImageOption)})
             .setTimestamp();
 
 
 
         this.behavoiral = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} Behavoiral Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setAuthor({name: `${this.client.user.username} Behavoiral Category`, iconURL: this.client.user.displayAvatarURL(hinaImageOption)})
             .setColor(hinaColor)
             .addFields(
                 {name: 'Greetings', value: 'If you use any of the following greetings, I will greet you back!\n`hello`, `hi`, `yo`, `sup`, `wassup`, `yahhallo`, `nyahhallo`, `こんにちは`, `おはよう`, `こんばんは`, `ハロー`, `おっす`, `にゃっはろー`, `やっはろー`, `にゃんぱすー`'},
@@ -163,7 +176,7 @@ My prefix is \`hina\`
 
 
         this.general = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} General Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setAuthor({name: `${this.client.user.username} General Category`, iconURL: this.client.user.displayAvatarURL(hinaImageOption)})
             .setColor(hinaColor)
             .addFields(
                 {name: '`help [category]`', value: 'get this help embed.', inline: true},
@@ -176,7 +189,7 @@ My prefix is \`hina\`
 
 
         this.fun = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} Fun Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setAuthor({name: `${this.client.user.username} Fun Category`, iconURL: this.client.user.displayAvatarURL(hinaImageOption)})
             .setColor(hinaColor)
             .addFields(
                 {name: '`funfact`', value: 'get a fun fact!', inline: true},
@@ -188,7 +201,7 @@ My prefix is \`hina\`
         
 
         this.emoji = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} Fun Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setAuthor({name: `${this.client.user.username} Fun Category`, iconURL: this.client.user.displayAvatarURL(hinaImageOption)})
             .setColor(hinaColor)
             .setThumbnail('https://media.discordapp.net/attachments/907586559719645204/938784511838273586/nitro_perk.png')
             .setTitle('Use the nitro emoji perks!')
@@ -222,7 +235,7 @@ __reply to the message while using the command__
 
 
         this.music = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} Fun Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setAuthor({name: `${this.client.user.username} Fun Category`, iconURL: this.client.user.displayAvatarURL(hinaImageOption)})
             .setColor(hinaColor)
             .addFields(
                 {name: '`play <YT_URL/search keywords>`', value: 'Add music to queue.', inline: true},
@@ -240,37 +253,63 @@ __reply to the message while using the command__
 
 
         this.image = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} Image Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setAuthor({name: `${this.client.user.username} Image Category`, iconURL: this.client.user.displayAvatarURL(hinaImageOption)})
+            .setColor(hinaColor)
+            .setTitle('Get images with the following tags.')
+            .setDescription(`
+The API used: https://waifu.im/
+⠀
+**Note:**
+\`<tag> [amount]\`
+This can be applied to every command in this category. Must be >0 and <31.
+\u2800
+\u2800
+            `)
+            .addFields(
+                {name: 'SFW', value: '`waifu`, `maid`, `neko`, `shinobu`, `megumin`, `awoo`\n\u2800'},
+                {name: 'NSFW', value: '`ass`, `ecchi`, `ero`, `hentai`, `nsfwmaid`, `milf`, `oppai`, `oral`, `paizuri`, `selfies`, `uniform`, `nsfwneko`, `trap`, `blowjob`\n\u2800\n\u2800'},
+                {name: 'Wildcard!', value: '`random`\n\u2800'},
+            )
+            .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
+
+
+
+        this.language = new MessageEmbed()
+            .setAuthor({name: `${this.client.user.username} Language Category`, iconURL: this.client.user.displayAvatarURL(hinaImageOption)})
             .setColor(hinaColor)
             .addFields(
-                {name: 'waifu pics category', value: 'coming soon', inline: true},
+                {name: '`jisho <word>`', value: 'searches word on jisho.org', inline: true},
             )
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
 
 
 
         this.utility = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} Utility Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setAuthor({name: `${this.client.user.username} Utility Category`, iconURL: this.client.user.displayAvatarURL(hinaImageOption)})
             .setColor(hinaColor)
             .addFields(
                 {name: '`appinfo`', value: 'Get my information!', inline: true},
                 {name: '`userinfo [@user/userid]`', value: 'Get my information!', inline: true},
+                {name: '`avatar [@user/userId]`', value: 'get user\'s profile avatar.', inline: true},
+                {name: '`epochtime`, `epoch`', value: 'get a quick example of epochtime.', inline: true},
+                {name: '`prune [number]`', value: 'delete a certain amount of messages in the channel.', inline: true},
             )
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
 
 
 
         this.coderunner = new MessageEmbed()
-            .setAuthor({name: `${this.client.user.username} Code Runner Category`, iconURL: this.client.user.displayAvatarURL({size: 4096})})
+            .setAuthor({name: `${this.client.user.username} Code Runner Category`, iconURL: this.client.user.displayAvatarURL(hinaImageOption)})
             .setColor(hinaColor)
             .addFields(
-                {name: 'category is coming soon', value: 'cominggggggggggggggggg', inline: true},
+                {name: 'How to use?', value: `
+The following picture is an example. Replace \`py\` with the language you want to use. More on Discord code blocks [here](https://gist.github.com/matthewzring/9f7bbfd102003963f9be7dbcf7d40e51#syntax-highlighting).
+                
+List of languages [here](https://hina.fr0xty.repl.co/help/runtimes). Both language and aliases are usable.
+                `},
             )
+            .setImage('https://media.discordapp.net/attachments/907586559719645204/930374092723470336/Screenshot_246.png')
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
     };
     
-};
-
-module.exports = {
-    Help: Help,
 };
