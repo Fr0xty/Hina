@@ -290,6 +290,7 @@ This can be applied to every command in this category. Must be >0 and <31.
             .addFields(
                 {name: '`appinfo`', value: 'Get my information!', inline: true},
                 {name: '`userinfo [@user/userid]`', value: 'Get my information!', inline: true},
+                {name: '`avatar [@user/userId]`', value: 'get user\'s profile avatar.', inline: true},
                 {name: '`epochtime`, `epoch`', value: 'get a quick example of epochtime.', inline: true},
                 {name: '`prune [number]`', value: 'delete a certain amount of messages in the channel.', inline: true},
             )

@@ -156,7 +156,7 @@ bot uptime: \`${uptime}\`
 
             let user;
             if (!args.length) { user = msg.author }
-            else { user = await client.users.fetch(args[0]) };
+            else { user = await client.users.fetch(args[0].match(/\d+/)[0]) };
 
             if (!user) return await msg.reply('Invalid user id / mention!');
 
