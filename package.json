@@ -33,8 +33,8 @@
     "type": "git",
     "url": "git+https://github.com/Fr0xty/Hina.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Fr0xty",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Fr0xty/Hina/issues"
   },
