@@ -1,6 +1,6 @@
 export default {
 
-    eventType: 'messageCreate',
+    eventName: 'messageCreate',
     callback: async (msg) => {
 
         if (msg.author.bot) return;

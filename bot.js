@@ -1,7 +1,7 @@
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
-import { Client, Intents } from 'discord.js';
-import Discord from 'discord.js';
+import Discord, { Client, Intents } from 'discord.js';
+import { SlashCommandBuilder } from '@discordjs/builders';
 import fs from 'fs';
 
 import { prefix, token } from './res/config.js';
@@ -22,67 +22,79 @@ const client = new Client({
 
 
 
-
-
+// for music commands: to store guild info
+client.musicGuildProfile = new Map();
 
 
 // loading commands
 client.commands = new Discord.Collection();
 
-const commandsFolder = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-
-commandsFolder.forEach(async file => {
-    const category = await import(`./commands/${file}`);
-
-    category.commands.forEach(comm => {
-        client.commands.set(comm.name, comm);
+// folder: [emoji, fun, general...]
+fs.readdir('./commands', (err, commandCategoryFolders) => {
+    commandCategoryFolders.forEach(categoryFolder => {
+        
+        // file: [getemoji.js, reactemoji.js...]
+        fs.readdir(`./commands/${categoryFolder}`, (err, commandFiles) => {
+            commandFiles.forEach(async file => {
+                
+                const command = await import(`./commands/${categoryFolder}/${file}`);
+                client.commands.set(command.default.name, command.default);
+            });
+        });
     });
 });
 console.log('Commands are successfully added!');
 
 
 
-// loading event handlers
-const eventsFolder = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
-eventsFolder.forEach(async file => {
-    const event = await import(`./events/${file}`);
-    client.on(event.default.eventType, event.default.callback);
+// loading event handlers
+fs.readdir('./events', (err, eventFiles) => {
+    eventFiles.forEach(async eventFile => {
+
+        const event = await import(`./events/${eventFile}`);
+        client.on(event.default.eventName, event.default.callback);
+    });
 });
 console.log('Events are successfully added!');
 
 
 
+
+/*
 // register slash commands
-const CLIENT_ID = '882840863154270289';
-const GUILD_ID = '859029044942471208';
+const clientId = '769125937731338290';
+const guildId = '744786416327721050';
 
 const rest = new REST({ version: '9' }).setToken(token);
 
-(async () => {
-  try {
-    console.log('Started refreshing application (/) commands.');
+const commands = [
+    new SlashCommandBuilder()
+        .setName('test')
+        .setDescription('testing slash commands args.')
+        .addStringOption(option =>
+            option.setName('category')
+                .setDescription('The gif category')
+                .setRequired(true)
+                .addChoice('Funny', 'gif_funny')
+                .addChoice('Meme', 'gif_meme')
+                .addChoice('Movie', 'gif_movie'))
 
-    await rest.put(
-      Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
-      { body: client.commands },
-    );
+]
+    .map(command => command.toJSON());
 
-    console.log('Successfully reloaded application (/) commands.');
-  } catch (error) {
-    console.error(error);
-  }
-});
+rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
+    .then(() => console.log('Successfully registered application commands.'))
+    .catch(console.error);
 
-
-
-
+*/
 
 
 
 
 // command handler
-client.on('messageCreate', async (msg) => {
+client.on('messageCreate', async msg => {
+
     if (!msg.content.toLowerCase().startsWith(prefix) || msg.author.bot) return;
 
     const noPrefixMsg = msg.content.slice(prefix.length).trim();
@@ -115,32 +127,14 @@ client.on('messageCreate', async (msg) => {
         }
         catch (e) {
             console.log(e);
-        }
-        
-    }
+        };
+    };
 });
 
 
 
-// slash command handler
-/*
-client.on('interactionCreate', async (interaction) => {
 
-    if (!interaction.isCommand()) return;
-
-    try {
-        result = Discord.commands.get(interaction.commandName).executeSlash(interaction);
-    }
-    catch (err) {
-        console.log(err);
-    }
-
-});
-*/
-
-
-
-
+// online alert
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });

@@ -1,8 +1,6 @@
 import {
-    joinVoiceChannel,
     getVoiceConnection,
     createAudioPlayer,
-    createAudioResource,
     AudioPlayerStatus,
 } from '@discordjs/voice';
 import { MessageEmbed } from 'discord.js';

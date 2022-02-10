@@ -3,7 +3,7 @@ import { hinaImageOption } from '../res/config.js';
 
 export default {
 
-    eventType: 'messageCreate',
+    eventName: 'messageCreate',
     callback: async (msg) => {
         
         try {
