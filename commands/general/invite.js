@@ -1,4 +1,4 @@
-import { MessageEmbed, MessageActionRow } from 'discord.js';
+import { MessageEmbed, MessageActionRow, MessageButton } from 'discord.js';
 
 import { generateClientInvite } from '../../utils/general.js';
 import { hinaColor, hinaImageOption } from '../../res/config.js';

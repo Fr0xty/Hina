@@ -1,3 +1,6 @@
+import { SlashCommandBuilder } from '@discordjs/builders';
+
+
 export default {
 
     name: 'reactemoji',
@@ -26,7 +29,44 @@ export default {
 
 
 
+    slashCommandProfile: new SlashCommandBuilder()
+        .setName('reactemoji')
+        .setDescription('react any emoji (include animated) to a message.')
+	    .addStringOption(option => 
+            option
+                .setName('message_id')
+                .setDescription('the message id to react to, enable developer mode on discord to copy id.')
+                .setRequired(true)
+        )
+	    .addStringOption(option => 
+            option
+                .setName('emoji_id')
+                .setDescription('full emoji id without `<>`, can get using `getemoji` command.')
+                .setRequired(true)
+        ),
+
+
+
+
     async slashExecute(client, interaction) {
-        return;
+
+        // TODO fix
+        return await interaction.reply('Command in progress.');
+        
+        const msgId = interaction.options.get('message_id');
+        const emojiId = interaction.options.get('emoji_id');
+
+        const fetchedMsgs = await interaction.channel.messages.fetch(msgId);
+        if (!fetchedMsgs) return await interaction.reply('Invalid message id / not in this text channel.');
+        
+        try { 
+            const msg = fetchedMsgs.first();
+            await msg.react(emojiId);
+            await interaction.reply({
+                content: 'reacted to the message!',
+                ephemeral: true,
+            });
+        }
+        catch (err) { await interaction.reply(`Invalid emoji id: ${emojiId.value}`); console.log(err) };
     },
 };

@@ -41,3 +41,28 @@ export const paginator =  async (msg, pages, timeout) => {
         await msg.react(okEmoji);
     });
 };
+
+
+
+export const interactionPaginator =  async (interaction, pages, timeout) => {
+
+    if (pages.length === 1) return await interaction.reply({ embeds: [pages[0]] });
+
+    let currentPage = 0;
+    const sentMsg = await interaction.reply({ embeds: [pages[currentPage]], components: [_aquaButtons], fetchReply: true  });
+    const collector = sentMsg.createMessageComponentCollector({ idle: timeout, dispose: true });
+    collector.on('collect', async i => {
+
+        if (i.customId === 'pageLeft' && currentPage !== 0) currentPage--
+        else if (i.customId === 'pageRight' && currentPage !== pages.length - 1) currentPage++
+
+        else if (i.customId === 'pageLeft' && currentPage === 0) currentPage = pages.length - 1
+        else if (i.customId === 'pageRight' && currentPage === pages.length - 1) currentPage = 0;
+
+        await sentMsg.edit({ embeds: [pages[currentPage]] });
+        await i.deferUpdate();
+    });
+    collector.on('end', async collected => {
+        await sentMsg.edit({ components: [] });
+    });
+};

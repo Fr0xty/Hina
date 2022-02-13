@@ -66,7 +66,6 @@ export default {
                 .setURL(`https://jisho.org/search/${word.slug}`)
                 .setDescription(`
 \`${tags}\`
-\`${partOfSpeech}\`
 ${definitions}
 ${alternativeKanji}
 ${dbpediaRedirect}

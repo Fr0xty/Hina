@@ -1,7 +1,6 @@
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 import Discord, { Client, Intents } from 'discord.js';
-import { SlashCommandBuilder } from '@discordjs/builders';
 import fs from 'fs';
 
 import { prefix, token } from './res/config.js';
@@ -22,72 +21,73 @@ const client = new Client({
 
 
 
+
 // for music commands: to store guild info
 client.musicGuildProfile = new Map();
 
 
+
+// register slash commands
+const registerSlashCommands = async (slashCommandProfiles) => {
+
+    const clientId = '769125937731338290';
+    const guildId = '744786416327721050';
+
+    const rest = new REST({ version: '9' }).setToken(token);
+
+
+    await rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: slashCommandProfiles });
+    console.log('Successfully registered application commands.');
+};
+
+
+
 // loading commands
 client.commands = new Discord.Collection();
+const slashCommandProfiles = [];
 
-// folder: [emoji, fun, general...]
-fs.readdir('./commands', (err, commandCategoryFolders) => {
-    commandCategoryFolders.forEach(categoryFolder => {
+const loadCommands = async () => {
+
+    // folder: [emoji, fun, general...]
+    const commandCategoryFolders = fs.readdirSync('./commands');
+    for (const categoryFolder of commandCategoryFolders) {
         
         // file: [getemoji.js, reactemoji.js...]
-        fs.readdir(`./commands/${categoryFolder}`, (err, commandFiles) => {
-            commandFiles.forEach(async file => {
-                
-                const command = await import(`./commands/${categoryFolder}/${file}`);
-                client.commands.set(command.default.name, command.default);
-            });
-        });
-    });
-});
-console.log('Commands are successfully added!');
+        const commandFiles = fs.readdirSync(`./commands/${categoryFolder}`);
+        for (const file of commandFiles) {
+
+            const command = await import(`./commands/${categoryFolder}/${file}`);
+            client.commands.set(command.default.name, command.default);
+
+            if (command.default.slashCommandProfile) {
+                slashCommandProfiles.push(command.default.slashCommandProfile.toJSON());
+            };
+        };
+    };
+    console.log('Commands are successfully added!');
+};
+
+
+await loadCommands();
+await registerSlashCommands(slashCommandProfiles);
+
+
+
+
+
+
 
 
 
 
 // loading event handlers
-fs.readdir('./events', (err, eventFiles) => {
-    eventFiles.forEach(async eventFile => {
+const eventFiles = fs.readdirSync('./events');
+eventFiles.forEach(async eventFile => {
 
-        const event = await import(`./events/${eventFile}`);
-        client.on(event.default.eventName, event.default.callback);
-    });
+    const event = await import(`./events/${eventFile}`);
+    client.on(event.default.eventName, event.default.callback);
 });
 console.log('Events are successfully added!');
-
-
-
-
-/*
-// register slash commands
-const clientId = '769125937731338290';
-const guildId = '744786416327721050';
-
-const rest = new REST({ version: '9' }).setToken(token);
-
-const commands = [
-    new SlashCommandBuilder()
-        .setName('test')
-        .setDescription('testing slash commands args.')
-        .addStringOption(option =>
-            option.setName('category')
-                .setDescription('The gif category')
-                .setRequired(true)
-                .addChoice('Funny', 'gif_funny')
-                .addChoice('Meme', 'gif_meme')
-                .addChoice('Movie', 'gif_movie'))
-
-]
-    .map(command => command.toJSON());
-
-rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
-    .then(() => console.log('Successfully registered application commands.'))
-    .catch(console.error);
-
-*/
 
 
 
@@ -130,6 +130,27 @@ client.on('messageCreate', async msg => {
         };
     };
 });
+
+
+
+
+// slash command handler
+client.on('interactionCreate', async interaction => {
+
+    if (!interaction.isCommand()) return;
+
+    const command = client.commands.get(interaction.commandName);
+    if (!command) return;
+
+    try {
+        await command.slashExecute(client, interaction);
+    }
+    catch (err) {
+        console.log(err);
+    }
+    
+});
+
 
 
 
