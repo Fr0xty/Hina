@@ -1,5 +1,5 @@
 import { MessageEmbed } from 'discord.js';
-import piston from 'piston-Hina';
+import piston from 'piston-client';
 
 import { hinaColor, hinaImageOption } from '../../res/config.js';
 
@@ -20,13 +20,13 @@ export default {
         const lang = code.match(/.+/)[0];
         code = code.replace(/.+/, '');
 
-        const pistonHina = piston({server: "https://emkc.org"});
-        const runtimes = await pistonHina.runtimes();
+        const pistonClient = piston({server: "https://emkc.org"});
+        const runtimes = await pistonClient.runtimes();
         let language;
         runtimes.forEach(runtime => {
             if (runtime.aliases.includes(lang) || runtime.language === lang) language = runtime.language;
         });
-        const result = await pistonHina.execute(language, code);
+        const result = await pistonClient.execute(language, code);
 
         let consoleMsg;
         if (result.run.stdout === '' && result.run.code === 0) {
