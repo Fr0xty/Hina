@@ -5,7 +5,7 @@ import fs from 'fs';
 
 import { prefix, token } from './res/config.js';
 
-const client = new Client({ 
+const Hina = new Client({ 
     intents: [
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MESSAGES,
@@ -23,27 +23,27 @@ const client = new Client({
 
 
 // for music commands: to store guild info
-client.musicGuildProfile = new Map();
+Hina.musicGuildProfile = new Map();
 
 
 
 // register slash commands
 const registerSlashCommands = async (slashCommandProfiles) => {
 
-    const clientId = '769125937731338290';
+    const hinaId = '769125937731338290';
     const guildId = '744786416327721050';
 
     const rest = new REST({ version: '9' }).setToken(token);
 
 
-    await rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: slashCommandProfiles });
+    await rest.put(Routes.applicationGuildCommands(hinaId, guildId), { body: slashCommandProfiles });
     console.log('Successfully registered application commands.');
 };
 
 
 
 // loading commands
-client.commands = new Discord.Collection();
+Hina.commands = new Discord.Collection();
 const slashCommandProfiles = [];
 
 const loadCommands = async () => {
@@ -57,7 +57,7 @@ const loadCommands = async () => {
         for (const file of commandFiles) {
 
             const command = await import(`./commands/${categoryFolder}/${file}`);
-            client.commands.set(command.default.name, command.default);
+            Hina.commands.set(command.default.name, command.default);
 
             if (command.default.slashCommandProfile) {
                 slashCommandProfiles.push(command.default.slashCommandProfile.toJSON());
@@ -85,7 +85,7 @@ const eventFiles = fs.readdirSync('./events');
 eventFiles.forEach(async eventFile => {
 
     const event = await import(`./events/${eventFile}`);
-    client.on(event.default.eventName, event.default.callback);
+    Hina.on(event.default.eventName, event.default.callback);
 });
 console.log('Events are successfully added!');
 
@@ -93,7 +93,7 @@ console.log('Events are successfully added!');
 
 
 // command handler
-client.on('messageCreate', async msg => {
+Hina.on('messageCreate', async msg => {
 
     if (!msg.content.toLowerCase().startsWith(prefix) || msg.author.bot) return;
 
@@ -114,16 +114,16 @@ client.on('messageCreate', async msg => {
     }
     finally {
         try {
-            let theCommand = client.commands.get(command)
+            let theCommand = Hina.commands.get(command)
 
             if (!theCommand) {
-                for (const [key, value] of client.commands) {
-                    if (value.aliases.includes(command)) theCommand = client.commands.get(key);
+                for (const [key, value] of Hina.commands) {
+                    if (value.aliases.includes(command)) theCommand = Hina.commands.get(key);
                 };
             }
             if (!theCommand) return await msg.channel.send('No such command found!');            
             
-            await theCommand.execute(client, msg, args);
+            await theCommand.execute(Hina, msg, args);
         }
         catch (e) {
             console.log(e);
@@ -135,15 +135,15 @@ client.on('messageCreate', async msg => {
 
 
 // slash command handler
-client.on('interactionCreate', async interaction => {
+Hina.on('interactionCreate', async interaction => {
 
     if (!interaction.isCommand()) return;
 
-    const command = client.commands.get(interaction.commandName);
+    const command = Hina.commands.get(interaction.commandName);
     if (!command) return;
 
     try {
-        await command.slashExecute(client, interaction);
+        await command.slashExecute(Hina, interaction);
     }
     catch (err) {
         console.log(err);
@@ -156,8 +156,8 @@ client.on('interactionCreate', async interaction => {
 
 
 // online alert
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
+Hina.on('ready', () => {
+    console.log(`Logged in as ${Hina.user.tag}!`);
 });
 
 
@@ -166,4 +166,4 @@ client.on('ready', () => {
 import server from './server.js';
 server();
 
-client.login(token);
+Hina.login(token);
