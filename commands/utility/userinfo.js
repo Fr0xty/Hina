@@ -14,7 +14,7 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
 
         let member, flags, nickname, roles, presence;
 
@@ -36,7 +36,7 @@ export default {
         else { nickname = member.nickname };
         
         if (!member.presence) { presence = `desktop: <:status_offline:908249115505332234>\nmobile:<:status_offline:908249115505332234>\nweb: <:status_offline:908249115505332234>`}
-        else { presence = await convertPresence(member.presence.clientStatus) };
+        else { presence = await convertPresence(member.presence.HinaStatus) };
         
         const permissions = await convertPermissions(member.permissions.bitfield);
 
@@ -69,7 +69,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

@@ -1,5 +1,5 @@
 import { Help as HinaHelpEmbed } from '../../res/models/HinaHelpEmbed.js';
-import { generateClientInvite } from '../../utils/general.js';
+import { generateHinaInvite } from '../../utils/general.js';
 import { hinaColor, okEmoji } from '../../res/config.js';
 
 
@@ -13,10 +13,10 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
 
-        const clientInvite = await generateClientInvite(client);
-        const embed = new HinaHelpEmbed(client, msg.author, clientInvite);
+        const HinaInvite = await generateHinaInvite(Hina);
+        const embed = new HinaHelpEmbed(Hina, msg.author, HinaInvite);
 
         if (args.length != 0) {
 
@@ -130,7 +130,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

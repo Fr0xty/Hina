@@ -13,11 +13,11 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
 
         const embed = new MessageEmbed()
             .setColor(hinaColor)
-            .setAuthor({name: 'Epoch Time Example', iconURL: client.user.displayAvatarURL(hinaImageOption)})
+            .setAuthor({name: 'Epoch Time Example', iconURL: Hina.user.displayAvatarURL(hinaImageOption)})
             .setDescription(`
 [Epoch Time Converter](https://www.epochconverter.com/) 
 
@@ -41,7 +41,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

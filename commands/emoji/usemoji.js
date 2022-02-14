@@ -11,7 +11,7 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
         
         const emojiRegex = /^a?:.+:([0-9]{18})$/;
 
@@ -30,7 +30,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

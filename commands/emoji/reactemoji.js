@@ -11,7 +11,7 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
 
         if (!msg.reference) return await msg.reply('Please reply to the message you want to react to while using the command!');
         if (!args) return await msg.reply('Please provide the emoji id.');
@@ -48,7 +48,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
 
         // TODO fix
         return await interaction.reply('Command in progress.');

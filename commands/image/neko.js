@@ -15,7 +15,7 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
         
         // amount
         let num;
@@ -64,7 +64,7 @@ export default {
         for (let i = 0; i < num; i++) {
 
             const embed = new MessageEmbed()
-                .setAuthor({name: `${client.user.username} Page ${_++} / ${num}`})
+                .setAuthor({name: `${Hina.user.username} Page ${_++} / ${num}`})
                 .setColor(hinaColor)
                 .setTitle(tag)
                 .setImage(images[i])
@@ -81,7 +81,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

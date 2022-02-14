@@ -5,9 +5,9 @@ import { hinaImageOption } from '../res/config.js';
 
 
 
-export const generateClientInvite = async (client) => {
+export const generateHinaInvite = async (Hina) => {
 
-    const invite = client.generateInvite({
+    const invite = Hina.generateInvite({
         permissions: [Permissions.FLAGS.MODERATE_MEMBERS],
         scopes: ['bot', 'applications.commands'],
     });
@@ -16,8 +16,8 @@ export const generateClientInvite = async (client) => {
 
 
 
-export const guildOrClientIcon = async (client, guild) => {
+export const guildOrHinaIcon = async (Hina, guild) => {
 
     if (guild.iconURL()) return guild.iconURL(hinaImageOption);
-    return client.user.displayAvatarURL(hinaImageOption);
+    return Hina.user.displayAvatarURL(hinaImageOption);
 };

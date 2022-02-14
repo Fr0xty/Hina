@@ -3,7 +3,7 @@ A bot originally written with discord.py library, migrated to discord.js library
 
 <br>
 
-[**Invite Hina!**](https://discord.com/api/oauth2/authorize?client_id=769125937731338290&scope=bot+applications.commands&permissions=1099511627776)
+[**Invite Hina!**](https://discord.com/api/oauth2/authorize?Hina_id=769125937731338290&scope=bot+applications.commands&permissions=1099511627776)
 
 ![](https://dcbadge.vercel.app/api/shield/bot/769125937731338290?theme=discord-inverted)
 

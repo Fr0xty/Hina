@@ -6,14 +6,14 @@ import {
 import { MessageEmbed } from 'discord.js';
 
 import { hinaColor } from '../config.js';
-import { guildOrClientIcon } from '../../utils/general.js';
+import { guildOrHinaIcon } from '../../utils/general.js';
 import { convertSeconds } from '../../utils/convert.js';
 
 
 export class GuildMusic {
 
-    constructor(client, vc, mc) {
-        this._client = client;
+    constructor(Hina, vc, mc) {
+        this._Hina = Hina;
         this.vc = vc;
         this.mc = mc;
         this.songs = [];
@@ -50,7 +50,7 @@ export class GuildMusic {
 
 
     async _nowPlayingAnnounce() {
-        const authorIcon = await guildOrClientIcon(this._client, this.vc.guild);
+        const authorIcon = await guildOrHinaIcon(this._Hina, this.vc.guild);
         const npSongInfo = this.songs[0].videoInfo;
         const likes = String(npSongInfo.videoDetails.likes) || 'Hidden';
 
@@ -72,7 +72,7 @@ export class GuildMusic {
 
 
     async _songAddAnnounce() {
-        const authorIcon = await guildOrClientIcon(this._client, this.vc.guild);
+        const authorIcon = await guildOrHinaIcon(this._Hina, this.vc.guild);
 
         const embed = new MessageEmbed()
             .setAuthor({name: `${this.vc.guild.name} Music Queue`, iconURL: authorIcon})
@@ -86,7 +86,7 @@ export class GuildMusic {
 
 
     async _noSongAnnounce() {
-        const authorIcon = await guildOrClientIcon(this._client, this.vc.guild);
+        const authorIcon = await guildOrHinaIcon(this._Hina, this.vc.guild);
 
         const embed = new MessageEmbed()
             .setAuthor({name: `${this.vc.guild.name} Music Queue`, iconURL: authorIcon})
@@ -124,7 +124,7 @@ export class GuildMusic {
         // no songs
         if (!this.songs.length) return null;
 
-        const authorIcon = await guildOrClientIcon(this._client, this.vc.guild);
+        const authorIcon = await guildOrHinaIcon(this._Hina, this.vc.guild);
         const npSongThumbnail = this.songs[0].videoInfo.videoDetails.thumbnails.at(-1).url;
 
         let page = `**Now Playing:**\n[${this.songs[0].videoInfo.videoDetails.title}](${this.songs[0].videoInfo.videoDetails.video_url}) \`${await convertSeconds(this.songs[0].videoInfo.videoDetails.lengthSeconds)}\`\n\n`;

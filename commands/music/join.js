@@ -14,7 +14,7 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
         
         // author not in vc
         if (!msg.member.voice.channel) return await msg.reply('Please join a voice channel!');
@@ -29,12 +29,12 @@ export default {
         });
 
         // if first time joining, register
-        if (!client.musicGuildProfile.get(msg.guildId)) {
-            client.musicGuildProfile.set(msg.guildId, new GuildMusic(client, msg.member.voice.channel, msg.channel));
+        if (!Hina.musicGuildProfile.get(msg.guildId)) {
+            Hina.musicGuildProfile.set(msg.guildId, new GuildMusic(Hina, msg.member.voice.channel, msg.channel));
         }
         else {
             // update channel
-            const profile = client.musicGuildProfile.get(msg.guildId);
+            const profile = Hina.musicGuildProfile.get(msg.guildId);
             await profile.updateChannels(msg.member.voice.channel, msg.channel);
         }
         await msg.react(okEmoji);
@@ -44,7 +44,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

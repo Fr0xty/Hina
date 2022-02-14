@@ -15,7 +15,7 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
         
         // return if author not in vc || no query provided
         if (!msg.member.voice.channel) return await msg.reply('Please join a voice channel!');
@@ -31,7 +31,7 @@ export default {
         // first time ? register guildProfile
         let profile = guildProfile.get(msg.guildId);
         if (!profile) {
-            guildProfile.set(msg.guildId, new GuildMusic(client, msg.member.voice.channel, msg.channel));
+            guildProfile.set(msg.guildId, new GuildMusic(Hina, msg.member.voice.channel, msg.channel));
             profile = guildProfile.get(msg.guildId);
         }
         else {
@@ -50,7 +50,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

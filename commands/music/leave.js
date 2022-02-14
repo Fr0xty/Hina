@@ -13,13 +13,13 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
         
         const connection = getVoiceConnection(msg.guild.id);
         if (!connection) return await msg.reply('I\'m not currently playing in this server!');
 
         connection.destroy();
-        client.musicGuildProfile.delete(msg.guildId);
+        Hina.musicGuildProfile.delete(msg.guildId);
         await msg.react(okEmoji);
     },
 
@@ -27,7 +27,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

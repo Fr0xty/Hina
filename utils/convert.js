@@ -19,7 +19,7 @@ export const convertSeconds = async (seconds) => {
 
 
 
-export const convertMention = async (client, mention) => {
+export const convertMention = async (Hina, mention) => {
         
     if (!mention) return 'no mentions provided';
 
@@ -29,7 +29,7 @@ export const convertMention = async (client, mention) => {
         if (mention.startsWith('!')) {
             mention = mention.slice(1);
         };
-        return client.users.cache.get(mention);
+        return Hina.users.cache.get(mention);
     };
 };
 

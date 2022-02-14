@@ -1,5 +1,5 @@
 import { MessageEmbed } from 'discord.js';
-import piston from 'piston-client';
+import piston from 'piston-Hina';
 
 import { hinaColor, hinaImageOption } from '../../res/config.js';
 
@@ -14,19 +14,19 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
 
         let code = args.replaceAll('```', '').trim();
         const lang = code.match(/.+/)[0];
         code = code.replace(/.+/, '');
 
-        const pistonClient = piston({server: "https://emkc.org"});
-        const runtimes = await pistonClient.runtimes();
+        const pistonHina = piston({server: "https://emkc.org"});
+        const runtimes = await pistonHina.runtimes();
         let language;
         runtimes.forEach(runtime => {
             if (runtime.aliases.includes(lang) || runtime.language === lang) language = runtime.language;
         });
-        const result = await pistonClient.execute(language, code);
+        const result = await pistonHina.execute(language, code);
 
         let consoleMsg;
         if (result.run.stdout === '' && result.run.code === 0) {
@@ -41,7 +41,7 @@ export default {
         
         const embed = new MessageEmbed()
             .setColor(hinaColor)
-            .setAuthor({name: 'Hina\'s Code Runner', iconURL: client.user.displayAvatarURL(hinaImageOption)})
+            .setAuthor({name: 'Hina\'s Code Runner', iconURL: Hina.user.displayAvatarURL(hinaImageOption)})
             .setDescription(`
 \`\`\`\n${consoleMsg}\`\`\`
 
@@ -61,7 +61,7 @@ version: \`${result.version}\`
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

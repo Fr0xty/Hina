@@ -11,7 +11,7 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
         
         if (args.length < 2) {
             await msg.reply('Please provide a user and a message');
@@ -43,7 +43,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

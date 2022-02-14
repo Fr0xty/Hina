@@ -12,7 +12,7 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
         
         let member;
         const activities = msg.member.presence.activities;
@@ -83,7 +83,7 @@ party id: \`${partyID}\`
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

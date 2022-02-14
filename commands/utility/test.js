@@ -10,7 +10,7 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
 
         const data = new SlashCommandBuilder()
             .setName('info')

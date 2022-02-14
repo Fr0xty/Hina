@@ -16,11 +16,11 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
 
         const djsVer = packageJSON.dependencies['discord.js'];
         const nodeVer = packageJSON.devDependencies['node'];
-        const uptime = await convertSeconds(client.uptime / 1000);
+        const uptime = await convertSeconds(Hina.uptime / 1000);
         
         const embed = new MessageEmbed()
             .setDescription(`
@@ -28,13 +28,13 @@ discord.js: \`${djsVer}\`
 Node JS: \`${nodeVer}\`
 
 bot latency: \`${Date.now() - msg.createdTimestamp}ms\`
-websocket latency: \`${Math.round(client.ws.ping)}ms\`
+websocket latency: \`${Math.round(Hina.ws.ping)}ms\`
 bot uptime: \`${uptime}\`
             `)
-            .setAuthor({name: client.user.tag, iconURL: client.user.displayAvatarURL(hinaImageOption)})
+            .setAuthor({name: Hina.user.tag, iconURL: Hina.user.displayAvatarURL(hinaImageOption)})
             .setColor(hinaColor)
             .setTitle(`Hina's Application Info`)
-            .setThumbnail(client.user.displayAvatarURL(hinaImageOption))
+            .setThumbnail(Hina.user.displayAvatarURL(hinaImageOption))
             .setTimestamp()
             .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)});
         await msg.reply({ embeds: [embed] });
@@ -44,7 +44,7 @@ bot uptime: \`${uptime}\`
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

@@ -1,6 +1,6 @@
 import { MessageEmbed, MessageActionRow, MessageButton } from 'discord.js';
 
-import { generateClientInvite } from '../../utils/general.js';
+import { generateHinaInvite } from '../../utils/general.js';
 import { hinaColor, hinaImageOption } from '../../res/config.js';
 
 
@@ -14,14 +14,14 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
 
-        const clientInvite = await generateClientInvite(client);
+        const HinaInvite = await generateHinaInvite(Hina);
 
         const embed = new MessageEmbed()
-            .setAuthor({name: 'My invite link♡', iconURL: client.user.displayAvatarURL(hinaImageOption)})
+            .setAuthor({name: 'My invite link♡', iconURL: Hina.user.displayAvatarURL(hinaImageOption)})
             .setColor(hinaColor)
-            .setDescription(clientInvite)
+            .setDescription(HinaInvite)
             .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
             .setTimestamp();
 
@@ -30,7 +30,7 @@ export default {
                 new MessageButton()
                     .setLabel('Invite Me!')
                     .setStyle('LINK')
-                    .setURL(clientInvite)
+                    .setURL(HinaInvite)
                     .setEmoji('<a:AquaBounce:884003530933944341>')
             );
 
@@ -41,7 +41,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

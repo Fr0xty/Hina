@@ -11,9 +11,9 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
 
-        const profile = client.musicGuildProfile.get(msg.guildId);
+        const profile = Hina.musicGuildProfile.get(msg.guildId);
         if (!profile) return await msg.reply('I\'m not currently playing in this server!');
         if (!profile.songs.length) return await msg.reply('There is no songs in queue currently.');
 
@@ -26,7 +26,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

@@ -8,7 +8,7 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
 
         if (!msg.member.permissions.has('MANAGE_MESSAGES')) return await msg.reply('You don\'t have the permission to use this command!\nrequire: `Manage Messages`');
         
@@ -28,7 +28,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

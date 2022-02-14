@@ -15,7 +15,7 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
 
         if (!args.length) return await msg.reply('Please provide a search term!');
         
@@ -61,7 +61,7 @@ export default {
 
             const embed = new MessageEmbed()
                 .setColor(hinaColor)
-                .setAuthor({name: `Hina Jisho (Page ${result.data.indexOf(word) + 1} / ${result.data.length})`, iconURL: client.user.displayAvatarURL(hinaImageOption)})
+                .setAuthor({name: `Hina Jisho (Page ${result.data.indexOf(word) + 1} / ${result.data.length})`, iconURL: Hina.user.displayAvatarURL(hinaImageOption)})
                 .setTitle(`${firstReading.word} (${firstReading.reading})`)
                 .setURL(`https://jisho.org/search/${word.slug}`)
                 .setDescription(`
@@ -83,7 +83,7 @@ ${dbpediaRedirect}
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

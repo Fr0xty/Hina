@@ -1,7 +1,7 @@
 import { MessageEmbed } from 'discord.js';
 
 import { hinaColor, hinaImageOption } from '../../res/config.js';
-import { guildOrClientIcon } from '../../utils/general.js';
+import { guildOrHinaIcon } from '../../utils/general.js';
 
 
 export default {
@@ -14,9 +14,9 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
         
-        const profile = client.musicGuildProfile.get(msg.guildId);
+        const profile = Hina.musicGuildProfile.get(msg.guildId);
         if (!profile) return await msg.reply('I\'m not currently playing in this server!');
         if (!profile.songs.length) return await msg.reply('There is no songs in queue currently.');
 
@@ -24,7 +24,7 @@ export default {
         await profile.clearQueue();
         await profile.player.stop();
         
-        const authorIcon = await guildOrClientIcon(client, msg.guild);
+        const authorIcon = await guildOrHinaIcon(Hina, msg.guild);
         const embed = new MessageEmbed()
             .setColor(hinaColor)
             .setAuthor({name: `${msg.guild.name} Song Queue`, iconURL: authorIcon})
@@ -37,7 +37,7 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         return;
     },
 };

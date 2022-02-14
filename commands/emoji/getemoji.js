@@ -15,12 +15,12 @@ export default {
 
 
 
-    async execute(client, msg, args) {
+    async execute(Hina, msg, args) {
 
         let guild;
         if (!args.length) { guild = msg.guild }
         else {
-            try { guild = await client.guilds.fetch(args[0]) }
+            try { guild = await Hina.guilds.fetch(args[0]) }
             catch { return await msg.reply('Invalid server id / I\'m not in the server.') };
         };
         
@@ -45,7 +45,7 @@ export default {
             if (_ === 20) {
                 const embed = new MessageEmbed()
                     .setColor(hinaColor)
-                    .setAuthor({name: `${client.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: client.user.displayAvatarURL(hinaImageOption)})
+                    .setAuthor({name: `${Hina.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: Hina.user.displayAvatarURL(hinaImageOption)})
                     .setTitle(`Emoji Id(s) for ${guild.name} [${emojiAmount}]`)
                     .setDescription(page)
                     .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
@@ -59,7 +59,7 @@ export default {
         if (_)  {
             const embed = new MessageEmbed()
                 .setColor(hinaColor)
-                .setAuthor({name: `${client.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: client.user.displayAvatarURL(hinaImageOption)})
+                .setAuthor({name: `${Hina.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: Hina.user.displayAvatarURL(hinaImageOption)})
                 .setTitle(`Emoji Id(s) for ${guild.name} [${emojiAmount}]`)
                 .setDescription(page)
                 .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})
@@ -88,13 +88,13 @@ export default {
 
 
 
-    async slashExecute(client, interaction) {
+    async slashExecute(Hina, interaction) {
         
         let guild;
         const serverId = interaction.options.get('server_id');
         if (!serverId) { guild = interaction.guild }
         else {
-            try { guild = await client.guilds.fetch(serverId.value) }
+            try { guild = await Hina.guilds.fetch(serverId.value) }
             catch { return await interaction.reply('Invalid server id / I\'m not in the server.') };
         };
         
@@ -120,7 +120,7 @@ export default {
             if (_ === 20) {
                 const embed = new MessageEmbed()
                     .setColor(hinaColor)
-                    .setAuthor({name: `${client.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: client.user.displayAvatarURL(hinaImageOption)})
+                    .setAuthor({name: `${Hina.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: Hina.user.displayAvatarURL(hinaImageOption)})
                     .setTitle(`Emoji Id(s) for ${guild.name} [${emojiAmount}]`)
                     .setDescription(page)
                     .setFooter({text: `Requested by: ${interaction.user.tag}`, iconURL: interaction.member.displayAvatarURL(hinaImageOption)})
@@ -134,7 +134,7 @@ export default {
         if (_)  {
             const embed = new MessageEmbed()
                 .setColor(hinaColor)
-                .setAuthor({name: `${client.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: client.user.displayAvatarURL(hinaImageOption)})
+                .setAuthor({name: `${Hina.user.username} Page ${pages.length + 1} / ${pageAmount}`, iconURL: Hina.user.displayAvatarURL(hinaImageOption)})
                 .setTitle(`Emoji Id(s) for ${guild.name} [${emojiAmount}]`)
                 .setDescription(page)
                 .setFooter({text: `Requested by: ${interaction.user.tag}`, iconURL: interaction.member.displayAvatarURL(hinaImageOption)})
