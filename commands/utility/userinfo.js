@@ -36,7 +36,7 @@ export default {
         else { nickname = member.nickname };
         
         if (!member.presence) { presence = `desktop: <:status_offline:908249115505332234>\nmobile:<:status_offline:908249115505332234>\nweb: <:status_offline:908249115505332234>`}
-        else { presence = await convertPresence(member.presence.HinaStatus) };
+        else { presence = await convertPresence(member.presence.clientStatus) };
         
         const permissions = await convertPermissions(member.permissions.bitfield);
 
