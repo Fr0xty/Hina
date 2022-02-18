@@ -26,7 +26,7 @@ export default {
             .setAuthor({name: 'Hina\'s Avatar Fetcher', iconURL: Hina.user.displayAvatarURL(hinaImageOption)})
             .setTitle(`${user.tag}'s Avatar'`)
             .setDescription(`
-[\`webp\`](${user.displayAvatarURL({dynamic: true, format: 'webp', size:4096})}) [\`png\`](${user.displayAvatarURL({dynamic: true, format: 'png', size:4096})}) [\`jpg\`](${user.displayAvatarURL({dynamic: true, format: 'jpg', size:4096})}) [\`jpeg\`](${user.displayAvatarURL({dynamic: true, format: 'jpeg', size:4096})}) 
+[\`webp\`](${user.displayAvatarURL({dynamic: true, format: 'webp'})}) [\`png\`](${user.displayAvatarURL({dynamic: true, format: 'png'})}) [\`jpg\`](${user.displayAvatarURL({dynamic: true, format: 'jpg'})}) [\`jpeg\`](${user.displayAvatarURL({dynamic: true, format: 'jpeg'})}) 
             `)
             .setImage(user.displayAvatarURL(hinaImageOption))
             .setFooter({text: `Requested by: ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL(hinaImageOption)})

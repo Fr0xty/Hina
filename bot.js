@@ -56,11 +56,17 @@ const loadCommands = async () => {
         const commandFiles = fs.readdirSync(`./commands/${categoryFolder}`);
         for (const file of commandFiles) {
 
-            const command = await import(`./commands/${categoryFolder}/${file}`);
-            Hina.commands.set(command.default.name, command.default);
+            const { default: command } = await import(`./commands/${categoryFolder}/${file}`);
+            Hina.commands.set(command.name, command);
 
-            if (command.default.slashCommandProfile) {
-                slashCommandProfiles.push(command.default.slashCommandProfile.toJSON());
+            if (command.aliases.length) {
+                for (const alias of command.aliases) {
+                    Hina.commands.set(alias, command);
+                };
+            };
+
+            if (command.slashCommandProfile) {
+                slashCommandProfiles.push(command.slashCommandProfile.toJSON());
             };
         };
     };
@@ -98,36 +104,17 @@ Hina.on('messageCreate', async msg => {
     if (!msg.content.toLowerCase().startsWith(prefix) || msg.author.bot) return;
 
     const noPrefixMsg = msg.content.slice(prefix.length).trim();
+    const args = noPrefixMsg.split(/ +/);
+    const command = args.shift().toLowerCase();
 
+    let theCommand = Hina.commands.get(command)
+    if (!theCommand) return await msg.channel.send('No such command found!');            
+    
     try {
-        if (noPrefixMsg.match(/^[a-zA-Z]+/)[0] === 'run') {
-            var command = 'run';
-            var args = noPrefixMsg.slice(command.length);
-        }
-        else {
-            var args = noPrefixMsg.split(/ +/);
-            var command = args.shift().toLowerCase();
-        }
+        await theCommand.execute(Hina, msg, args);
     }
-    catch { 
-        msg.channel.send('Invalid command call!');
-    }
-    finally {
-        try {
-            let theCommand = Hina.commands.get(command)
-
-            if (!theCommand) {
-                for (const [key, value] of Hina.commands) {
-                    if (value.aliases.includes(command)) theCommand = Hina.commands.get(key);
-                };
-            }
-            if (!theCommand) return await msg.channel.send('No such command found!');            
-            
-            await theCommand.execute(Hina, msg, args);
-        }
-        catch (e) {
-            console.log(e);
-        };
+    catch (err) {
+        console.log(err);
     };
 });
 
