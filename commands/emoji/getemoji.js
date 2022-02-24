@@ -9,12 +9,20 @@ export default {
 
     name: 'getemoji',
     aliases: [],
+
     description: 'get all server emoji(s).',
+    args: [
+        {
+            name: 'serverId',
+            description: 'server id of the emoji hosting server',
+            type: 'single',
+        }
+    ],
 
 
 
 
-
+    // TODO
     async execute(Hina, msg, args) {
 
         let guild;

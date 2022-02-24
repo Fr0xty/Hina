@@ -115,6 +115,7 @@ Hina.on('messageCreate', async msg => {
     }
     catch (err) {
         console.log(err);
+        await msg.channel.send('Sorry, something went wrong. <@395587171601350676>');
     };
 });
 

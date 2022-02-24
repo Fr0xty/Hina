@@ -29,10 +29,10 @@ export default {
         });
 
         // first time ? register guildProfile
-        let profile = guildProfile.get(msg.guildId);
+        let profile = Hina.musicGuildProfile.get(msg.guildId);
         if (!profile) {
-            guildProfile.set(msg.guildId, new GuildMusic(Hina, msg.member.voice.channel, msg.channel));
-            profile = guildProfile.get(msg.guildId);
+            Hina.musicGuildProfile.set(msg.guildId, new GuildMusic(Hina, msg.member.voice.channel, msg.channel));
+            profile = Hina.musicGuildProfile.get(msg.guildId);
         }
         else {
             // update channel

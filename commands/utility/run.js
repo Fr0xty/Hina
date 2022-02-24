@@ -15,7 +15,7 @@ export default {
 
 
     async execute(Hina, msg, args) {
-
+        args = args.join(' ');
         let code = args.replaceAll('```', '').trim();
         const lang = code.match(/.+/)[0];
         code = code.replace(/.+/, '');
