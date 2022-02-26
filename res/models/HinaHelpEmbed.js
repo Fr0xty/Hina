@@ -103,13 +103,7 @@ export class Help {
                                 description: 'Sandbox for various programming languages.',
                                 emoji: '🎲',
                                 value: 'coderunner',
-                            }, /*
-                            {
-                                label: 'Creator',
-                                description: 'Creator only / debugging commands.',
-                                emoji: '885845967029551124',
-                                value: 'creator',
-                            },*/
+                            },
                         ]),
                 ),
 
@@ -182,7 +176,6 @@ My prefix is \`hina\`
                 {name: '`help [category]`', value: 'get this help embed.', inline: true},
                 {name: '`invite`', value: 'get my invite link.', inline: true},
                 {name: '`spotify [@user/userid]`', value: 'get user spotify listening info.', inline: true},
-                {name: '`translate <language> <text / reply to msg>`', value: 'translate your text or a message.', inline: true},
             )
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
 
@@ -246,6 +239,7 @@ __reply to the message while using the command__
                 {name: '`skip`', value: 'skip the current song.', inline: true},
                 {name: '`queue`, `q`', value: 'get song queue of the server.', inline: true},
                 {name: '`clearqueue`, `clearq`', value: 'clear server song queue.', inline: true},
+                {name: '`nowplaying`, `np`', value: 'get now playing song.', inline: true},
             )
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
 
@@ -278,6 +272,7 @@ This can be applied to every command in this category. Must be >0 and <31.
             .setAuthor({name: `${this.Hina.user.username} Language Category`, iconURL: this.Hina.user.displayAvatarURL(hinaImageOption)})
             .setColor(hinaColor)
             .addFields(
+                {name: '`translate [fromLanguage] [toLanguage]`', value: 'reply to the message to translate, default {from: detect, to: en}', inline: true},
                 {name: '`jisho <word>`', value: 'searches word on jisho.org', inline: true},
             )
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});
