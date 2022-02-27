@@ -251,7 +251,9 @@ __reply to the message while using the command__
             .setColor(hinaColor)
             .setTitle('Get images with the following tags.')
             .setDescription(`
-The API used: https://waifu.im/
+The API used: 
+https://waifu.im/
+https://waifu.pics/
 ⠀
 **Note:**
 \`<tag> [amount]\`
