@@ -98,6 +98,7 @@ export default {
         if (result.code === 404) return await msg.reply(JSON.stringify(result));
 
         const images = result.images;
+        if (images.length < num) { return await msg.reply(`Sorry, currently there are only \`${images.length}\` images with the tag \`${tag}\`, please try a smaller value.`) };
 
         let pages = [];
         let _ = 1;
