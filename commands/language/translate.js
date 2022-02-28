@@ -8,7 +8,7 @@ export default {
 
     name: 'translate',
     aliases: ['trans'],
-    description: 'translate your text or a message.',
+    description: 'translate a message.',
 
 
 
