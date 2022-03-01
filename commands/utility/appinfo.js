@@ -18,12 +18,17 @@ export default {
 
     async execute(Hina, msg, args) {
 
+        const guildIn = await Hina.guilds.fetch();
+        const memberCount = Hina.users.cache.size;
         const djsVer = packageJSON.dependencies['discord.js'];
         const nodeVer = packageJSON.devDependencies['node'];
         const uptime = await convertSeconds(Hina.uptime / 1000);
         
         const embed = new MessageEmbed()
             .setDescription(`
+Hina is in \`${guildIn.size}\` guilds!
+Serving approximately \`${memberCount}\` total unique members.
+
 discord.js: \`${djsVer}\`
 Node JS: \`${nodeVer}\`
 
