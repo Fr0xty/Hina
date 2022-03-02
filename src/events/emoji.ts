@@ -1,6 +1,9 @@
+import { NewsChannel, TextChannel } from 'discord.js';
 import { Hina, hinaImageOption } from '../res/config.js';
 
 Hina.on('messageCreate', async (msg): Promise<any> => {
+    if (!(msg.channel instanceof NewsChannel || msg.channel instanceof TextChannel)) return;
+
     try {
         if (msg.webhookId || msg.author.bot) return;
         if (!(msg.content.length >= 3 && msg.content.startsWith(';') && msg.content.endsWith(';'))) return;
@@ -14,8 +17,8 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
                         'Please enable "Manage Webhooks" permission for me in order to use this feature!'
                     );
                 }
-                // @ts-ignore
-                const webhook = await msg.channel.createWebhook(msg.member.displayName, {
+
+                const webhook = await msg.channel.createWebhook(msg.member!.displayName, {
                     avatar: msg.author.displayAvatarURL(hinaImageOption),
                 });
                 await webhook.send(emoji.toString());
