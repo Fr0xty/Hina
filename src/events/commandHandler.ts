@@ -9,14 +9,17 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
     const commandName = args.shift()!.toLowerCase();
 
     const command = Hina.commands.get(commandName);
+    console.log(command);
+
     if (!command)
         return await msg.reply(
             `Sorry, there's no command named: \`${commandName}\`.\nDo \`hina help\` for more information.`
         );
 
     try {
-        command.execute();
-    } catch {
+        await command.execute(msg, args);
+    } catch (err) {
+        console.log(err);
         return await msg.reply('Sorry, something went wrong.');
     }
 });

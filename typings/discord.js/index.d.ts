@@ -1,5 +1,5 @@
 import { Collection } from 'discord.js';
-import Command from '../../src/res/models/Command';
+import Command from '../hina/classes/Command';
 
 declare module 'discord.js' {
     export interface Client {

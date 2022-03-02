@@ -32,22 +32,22 @@ const loadCommands = async () => {
         // file: [getemoji.js, reactemoji.js...]
         const commandFiles = fs.readdirSync(`./dist/commands/${categoryFolder}`);
         for (const file of commandFiles) {
-            const { default: command } = await import(`./dist/commands/${categoryFolder}/${file}`);
+            const { default: commandClass } = await import(`./commands/${categoryFolder}/${file}`);
+            const command = new commandClass();
             Hina.commands.set(command.name, command);
 
-            if (command.aliases.length) {
+            if (command.aliases) {
                 for (const alias of command.aliases) {
                     Hina.commands.set(alias, command);
                 }
             }
-
             if (command.slashCommandProfile) slashCommandProfiles.push(command.slashCommandProfile.toJSON());
         }
     }
     console.log('Commands are successfully added!');
 };
 
-// await loadCommands();
+await loadCommands();
 // await registerSlashCommands(slashCommandProfiles);
 
 /**
