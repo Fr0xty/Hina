@@ -58,7 +58,8 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
 **Command usage:**
 \`hina ${command.commandUsage}\`
 
-Missing\`${command.args[i].name}\`
+Missing: \`${command.args[i].name}\`
+__Description:__
 ${command.args[i].description}`
                     )
                     .setFooter({ text: `Invoked by ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL() })

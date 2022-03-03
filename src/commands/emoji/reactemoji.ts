@@ -1,9 +1,7 @@
-import { Message, MessageEmbed } from 'discord.js';
+import { Message } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
-import { paginator } from '../../utils/paginator.js';
 
 export default class reactemoji implements BaseCommand {
     name: String;
