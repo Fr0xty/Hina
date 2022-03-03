@@ -8,11 +8,13 @@ import { paginator } from '../../utils/paginator.js';
 export default class getemoji implements BaseCommand {
     name: String;
     description: String;
+    commandUsage: String;
     args: CommandArgument[];
 
     constructor() {
         this.name = 'getemoji';
-        this.description = 'get all emojis.';
+        this.description = 'get all server emoji ids.';
+        this.commandUsage = 'getemoji [server_id]';
         this.args = [
             new CommandArgument({ optional: true })
                 .setName('server_id')
@@ -22,10 +24,10 @@ export default class getemoji implements BaseCommand {
     }
 
     async execute(msg: Message, commandName: string, args: string[]) {
-        const [serverId] = args;
+        const [server_id] = args;
 
         try {
-            const guild = serverId ? await Hina.guilds.fetch(serverId) : msg.guild;
+            const guild = server_id ? await Hina.guilds.fetch(server_id) : msg.guild;
             const guildEmoji = await guild!.emojis.fetch();
             if (!guildEmoji.size) return await msg.reply("The server doesn't have any emoji!");
             const emojiAmount = guildEmoji.size;

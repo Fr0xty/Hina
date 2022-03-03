@@ -1,5 +1,6 @@
+import { MessageEmbed } from 'discord.js';
 import { BaseCommand } from 'hina';
-import { Hina, prefix } from '../res/config.js';
+import { Hina, hinaColor, prefix } from '../res/config.js';
 import { validateArgument } from '../utils/command.js';
 
 // TODO add nice embeds for each errors
@@ -20,16 +21,25 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
     const noPrefixMsg = msg.content.slice(prefix.length).trim();
     const args = noPrefixMsg?.split(/ +/);
     if (!args) return;
-    const commandName = args.shift()!.toLowerCase();
+    const commandName = args.shift()!.toLowerCase().replace(/\s+/g, '');
 
     /**
-     * get command from Collection, return error if no such command
+     * get command from Collection, return error embed if no such command
      */
     const command: BaseCommand = Hina.commands.get(commandName);
-    if (!command)
-        return await msg.reply(
-            `Sorry, there's no command named: \`${commandName}\`.\nDo \`hina help\` for more information.`
-        );
+    if (!command) {
+        const embed = new MessageEmbed()
+            .setColor(hinaColor)
+            .setTitle(
+                `No command named "${
+                    commandName.length < 10 ? commandName : commandName.slice(0, 10).concat('...')
+                }" found`
+            )
+            .setDescription('Use `hina help` for more information about my commands.')
+            .setFooter({ text: `Invoked by ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL() })
+            .setTimestamp();
+        return await msg.reply({ embeds: [embed] });
+    }
 
     /**
      * validate command arguments if theres any
@@ -39,8 +49,22 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
         // loop through all arguments
         for (let i = 0; i < command.args.length; i++) {
             // missing required argument
-            if (!command.args[i].optional && !args.length)
-                return await msg.reply(`missing arg named ${command.args[i].name}`);
+            if (!command.args[i].optional && !args.length) {
+                const embed = new MessageEmbed()
+                    .setColor(hinaColor)
+                    .setTitle(`Missing command argument "${command.args[i].name}"`)
+                    .setDescription(
+                        `
+**Command usage:**
+\`hina ${command.commandUsage}\`
+
+Missing\`${command.args[i].name}\`
+${command.args[i].description}`
+                    )
+                    .setFooter({ text: `Invoked by ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL() })
+                    .setTimestamp();
+                return await msg.reply({ embeds: [embed] });
+            }
             // optional argument not provided, break because cannot have arguments behind optional arguments
             if (command.args[i].optional && !args.length) break;
 
@@ -53,7 +77,16 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
 
             // validate the argument
             const validateResult = validateArgument(structuredArguments.at(-1)!, command.args[i]);
-            if (!validateResult) return await msg.reply(`invalid argument for ${command.args[i].name}`);
+            if (!validateResult) {
+                const embed = new MessageEmbed().setTitle(`Invalid argument for "${command.args[i].name}"`)
+                    .setDescription(`
+**Command usage:**
+\`hina ${command.commandUsage}\`
+
+**${command.args[i].name}**
+${command.args[i].description}`);
+                return await msg.reply({ embeds: [embed] });
+            }
             /**
              * break because cannot have more args behind
              * -optional args
