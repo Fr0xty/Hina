@@ -274,7 +274,7 @@ This can be applied to every command in this category. Must be \`>0\` and \`<31\
             .setAuthor({name: `${this.Hina.user.username} Language Category`, iconURL: this.Hina.user.displayAvatarURL(hinaImageOption)})
             .setColor(hinaColor)
             .addFields(
-                {name: '`translate [fromLanguage] [toLanguage]`', value: 'reply to the message to translate, default {from: detect, to: en}', inline: true},
+                {name: '`translate [toLanguage] [fromLanguage]`', value: 'reply to the message to translate,\nAccept only \`ISO 639-1 & 2\` language codes, [get here](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)\ndefault {to: en, from: detect}', inline: true},
                 {name: '`jisho <word>`', value: 'searches word on jisho.org', inline: true},
             )
             .setFooter({text: '<> = Required, [] = Optional', iconURL: 'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png'});

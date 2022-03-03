@@ -75,7 +75,7 @@ const loadCommands = async () => {
 
 
 await loadCommands();
-await registerSlashCommands(slashCommandProfiles);
+// await registerSlashCommands(slashCommandProfiles);
 
 
 
