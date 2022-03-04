@@ -30,7 +30,7 @@ export default class usemoji implements BaseCommand {
             avatar: msg.author.displayAvatarURL(hinaImageOption),
         });
 
-        await webhook.send(`<${args}>`);
+        await webhook.send(`<${emoji_id}>`);
         await webhook.delete();
         await msg.delete();
     }
