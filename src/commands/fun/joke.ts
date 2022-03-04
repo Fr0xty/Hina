@@ -5,7 +5,7 @@ import { BaseCommand } from 'hina';
 import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
 import { Message } from 'discord.js';
 
-export default class funfact implements BaseCommand {
+export default class joke implements BaseCommand {
     name: String;
     description: String;
     commandUsage: String;
