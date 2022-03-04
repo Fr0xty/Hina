@@ -3,8 +3,6 @@ import { BaseCommand } from 'hina';
 import { Hina, hinaColor, prefix } from '../res/config.js';
 import { validateArgument } from '../utils/command.js';
 
-// TODO add nice embeds for each errors
-
 /**
  * handles every command starting with 'hina ' prefix
  */
