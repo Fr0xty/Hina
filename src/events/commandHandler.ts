@@ -54,7 +54,7 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
                     .setDescription(
                         `
 **Command usage:**
-\`hina ${command.commandUsage}\`
+\`hina ${command.name} ${command.commandUsage}\`
 
 Missing: \`${command.args[i].name}\`
 __Description:__
@@ -83,7 +83,7 @@ ${command.args[i].description}`
                     .setDescription(
                         `
 **Command usage:**
-\`hina ${command.commandUsage}\`
+\`hina ${command.name} ${command.commandUsage}\`
 
 **${command.args[i].name}**
 > ${command.args[i].description}
