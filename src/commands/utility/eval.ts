@@ -1,7 +1,6 @@
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { hinaImageOption } from '../../res/config.js';
-import { Message, NewsChannel, TextChannel } from 'discord.js';
+import { Message } from 'discord.js';
 
 export default class evaluation implements BaseCommand {
     name: String;
