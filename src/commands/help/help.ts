@@ -15,7 +15,7 @@ export default class help implements BaseCommand {
     constructor() {
         this.name = 'help';
         this.description = 'get help on my commands.';
-        this.commandUsage = 'help [command_category]';
+        this.commandUsage = '[command_category]';
         this.args = [
             new CommandArgument({ optional: true })
                 .setName('command_category')

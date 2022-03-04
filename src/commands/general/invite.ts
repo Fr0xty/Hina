@@ -8,12 +8,10 @@ import { generateHinaInvite } from '../../utils/general.js';
 export default class invite implements BaseCommand {
     name: String;
     description: String;
-    commandUsage: String;
 
     constructor() {
         this.name = 'invite';
         this.description = 'get my invite link.';
-        this.commandUsage = 'invite';
     }
 
     async execute(msg: Message, args: string[]) {

@@ -14,7 +14,7 @@ export default class act implements BaseCommand {
     constructor() {
         this.name = 'act';
         this.description = 'act as someone to say dumb things.';
-        this.commandUsage = 'act <@user> <msg>';
+        this.commandUsage = '<@user> <msg>';
         this.args = [
             new CommandArgument()
                 .setName('user')

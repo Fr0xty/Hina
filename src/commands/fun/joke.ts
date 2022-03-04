@@ -8,12 +8,10 @@ import { Message } from 'discord.js';
 export default class joke implements BaseCommand {
     name: String;
     description: String;
-    commandUsage: String;
 
     constructor() {
         this.name = 'joke';
         this.description = 'Allow me to tell you a joke.';
-        this.commandUsage = 'joke';
     }
 
     async execute(msg: Message, args: string[]) {

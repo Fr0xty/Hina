@@ -2,7 +2,7 @@ import { Message, MessageEmbed } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Hina, hinaImageOption } from '../../res/config.js';
+import { hinaImageOption } from '../../res/config.js';
 import { convertSeconds } from '../../utils/convert.js';
 
 export default class spotify implements BaseCommand {
@@ -14,7 +14,7 @@ export default class spotify implements BaseCommand {
     constructor() {
         this.name = 'spotify';
         this.description = 'get user spotify listening info.';
-        this.commandUsage = 'spotify [@user/user_id]';
+        this.commandUsage = '[@user/user_id]';
         this.args = [
             new CommandArgument({ optional: true })
                 .setName('@user/user_id')

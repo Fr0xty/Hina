@@ -9,12 +9,10 @@ import { Message } from 'discord.js';
 export default class funfact implements BaseCommand {
     name: String;
     description: String;
-    commandUsage: String;
 
     constructor() {
         this.name = 'funfact';
         this.description = 'get a fun fact.';
-        this.commandUsage = 'funfact';
     }
 
     async execute(msg: Message, args: string[]) {

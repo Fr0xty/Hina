@@ -14,7 +14,7 @@ export default class getemoji implements BaseCommand {
     constructor() {
         this.name = 'getemoji';
         this.description = 'get all server emoji ids.';
-        this.commandUsage = 'getemoji [server_id]';
+        this.commandUsage = '[server_id]';
         this.args = [
             new CommandArgument({ optional: true })
                 .setName('server_id')

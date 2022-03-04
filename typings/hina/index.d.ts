@@ -5,7 +5,7 @@ declare module 'hina' {
     export class BaseCommand {
         name: String;
         description: String;
-        commandUsage: String;
+        commandUsage?: String;
         aliases?: String[];
         args?: CommandArgument[];
         execute(msg: Message, args: string[]): Promise<any>;

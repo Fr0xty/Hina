@@ -13,7 +13,7 @@ export default class usemoji implements BaseCommand {
     constructor() {
         this.name = 'usemoji';
         this.description = 'use animated emojis.';
-        this.commandUsage = 'usemoji <emoji_id>';
+        this.commandUsage = '<emoji_id>';
         this.args = [
             new CommandArgument()
                 .setName('emoji_id')

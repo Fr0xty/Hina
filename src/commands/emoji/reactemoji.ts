@@ -12,7 +12,7 @@ export default class reactemoji implements BaseCommand {
     constructor() {
         this.name = 'reactemoji';
         this.description = 'react to message using the emoji id.';
-        this.commandUsage = 'reactemoji <emoji_id>';
+        this.commandUsage = '<emoji_id>';
         this.args = [
             new CommandArgument()
                 .setName('emoji_id')
