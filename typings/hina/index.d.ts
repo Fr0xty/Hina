@@ -8,7 +8,7 @@ declare module 'hina' {
         commandUsage: String;
         aliases?: String[];
         args?: CommandArgument[];
-        execute(msg: Message, commandName: string, args: string[]): Promise<any>;
+        execute(msg: Message, args: string[]): Promise<any>;
         slashExecute?(interaction: CommandInteraction): Promise<any>;
     }
 }

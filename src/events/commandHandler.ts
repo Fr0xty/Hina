@@ -101,7 +101,7 @@ ${command.args[i].description}`);
      * running the command
      */
     try {
-        await command.execute(msg, commandName, structuredArguments);
+        await command.execute(msg, structuredArguments);
     } catch (err) {
         console.log('\n-----------------------\n');
         console.log(err);

@@ -20,7 +20,7 @@ export default class reactemoji implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, commandName: string, args: string[]) {
+    async execute(msg: Message, args: string[]) {
         const [emoji_id] = args;
 
         if (!msg.reference)

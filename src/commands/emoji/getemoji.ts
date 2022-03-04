@@ -23,7 +23,7 @@ export default class getemoji implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, commandName: string, args: string[]) {
+    async execute(msg: Message, args: string[]) {
         const [server_id] = args;
 
         try {

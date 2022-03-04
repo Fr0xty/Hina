@@ -22,7 +22,7 @@ export default class usemoji implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, commandName: string, args: string[]) {
+    async execute(msg: Message, args: string[]) {
         const [emoji_id] = args;
 
         if (!(msg.channel instanceof NewsChannel || msg.channel instanceof TextChannel)) return;
