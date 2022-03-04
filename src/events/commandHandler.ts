@@ -77,13 +77,19 @@ ${command.args[i].description}`
             // validate the argument
             const validateResult = validateArgument(structuredArguments.at(-1)!, command.args[i]);
             if (!validateResult) {
-                const embed = new MessageEmbed().setTitle(`Invalid argument for "${command.args[i].name}"`)
-                    .setDescription(`
+                const embed = new MessageEmbed()
+                    .setColor(hinaColor)
+                    .setTitle(`Invalid argument for "${command.args[i].name}"`)
+                    .setDescription(
+                        `
 **Command usage:**
 \`hina ${command.commandUsage}\`
 
 **${command.args[i].name}**
-${command.args[i].description}`);
+> ${command.args[i].description}
+
+**Given:** \`${structuredArguments.at(-1)}\``
+                    );
                 return await msg.reply({ embeds: [embed] });
             }
             /**
