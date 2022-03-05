@@ -49,7 +49,6 @@ Use \`hina help\` instead or to check the categories.
         const collector = sentEmbed.createMessageComponentCollector({ idle: 600_000, dispose: true });
         collector.on('collect', async (i) => {
             let category;
-            console.log(i);
 
             if (i.customId === 'select') {
                 // @ts-ignore
