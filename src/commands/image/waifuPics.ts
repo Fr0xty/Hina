@@ -1,5 +1,5 @@
 import { Message, MessageEmbed } from 'discord.js';
-import fetch, { Response } from 'node-fetch';
+import fetch from 'node-fetch';
 
 import { BaseCommand } from 'hina';
 import { paginator } from '../../utils/paginator.js';
@@ -29,7 +29,7 @@ export default class waifuPics implements BaseCommand {
 
     async execute(msg: Message, args: string[]) {
         const [givenAmount] = args;
-        let amount = givenAmount ? Number(givenAmount) : 1;
+        const amount = givenAmount ? Number(givenAmount) : 1;
 
         const tag = msg.content.slice(prefix.length).split(' ').shift()!.toLowerCase();
         let endpoint;
