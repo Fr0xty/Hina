@@ -64,7 +64,7 @@ ${command.args[i].description}`
                     .setTimestamp();
                 return await msg.reply({ embeds: [embed] });
             }
-            // optional argument not provided, break because cannot have arguments behind optional arguments
+            // optional argument not provided, break because no more args
             if (command.args[i].optional && !args.length) break;
 
             // optional + provided & required + provided
@@ -93,11 +93,9 @@ ${command.args[i].description}`
                 return await msg.reply({ embeds: [embed] });
             }
             /**
-             * break because cannot have more args behind
-             * -optional args
-             * -args typed 'paragraph'
+             * break because cannot have more args behind args typed 'paragraph'
              */
-            if (command.args[i].optional || command.args[i].type === 'paragraph') break;
+            if (command.args[i].type === 'paragraph') break;
         }
     }
 
