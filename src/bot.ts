@@ -84,6 +84,12 @@ Hina.on('ready', () => {
 });
 
 /**
+ * error messages
+ */
+Hina.on('error', async (err) => {
+    console.log(err.message);
+});
+/**
  * run express server to keep alive on replit
  */
 import server from './server.js';

@@ -1,6 +1,7 @@
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { Message } from 'discord.js';
+import { joinVoiceChannel, getVoiceConnection } from '@discordjs/voice';
 
 export default class evaluation implements BaseCommand {
     name: String;
@@ -30,7 +31,7 @@ export default class evaluation implements BaseCommand {
         } catch (err) {
             console.log(err);
             // @ts-ignore
-            await msg.reply(err);
+            await msg.reply(err.message);
         }
     }
 }
