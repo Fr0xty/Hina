@@ -9,9 +9,8 @@ A bot originally written with discord.py library, migrated to discord.js library
 
 <br>
 
-### Teaser:
-* Hina's own bot website is coming soon!
-* More commands are added constantly.
+### Notice
+Music commands are temporarily down, but will be added back into the next minor update ASAP.
 
 <br>
 
