@@ -307,8 +307,8 @@ This can be applied to every command in this category. Must be \`>0\` and \`<31\
             .setColor(hinaColor)
             .addFields(
                 {
-                    name: '`translate [fromLanguage] [toLanguage]`',
-                    value: 'reply to the message to translate, default {from: detect, to: en}',
+                    name: '`translate [toLanguage] [fromLanguage]`',
+                    value: 'reply to the message to translate,\nAccept only `ISO 639-1 & 2` language codes, [get here](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)\ndefault {to: en, from: detect}',
                     inline: true,
                 },
                 { name: '`jisho <word>`', value: 'searches word on jisho.org', inline: true }
@@ -347,13 +347,15 @@ This can be applied to every command in this category. Must be \`>0\` and \`<31\
             .addFields({
                 name: 'How to use?',
                 value: `
+\`hina repl <code block with syntax highlighting>\`
+
 The following picture is an example. Replace \`py\` with the language you want to use. More on Discord code blocks [here](https://gist.github.com/matthewzring/9f7bbfd102003963f9be7dbcf7d40e51#syntax-highlighting).
                 
 List of languages [here](https://hina.fr0xty.repl.co/help/runtimes). Both language and aliases are usable.
                 `,
             })
             .setImage(
-                'https://media.discordapp.net/attachments/907586559719645204/930374092723470336/Screenshot_246.png'
+                'https://media.discordapp.net/attachments/907586559719645204/949567262359183401/BESTGIRLLLLLLLLL.png'
             )
             .setFooter({
                 text: '<> = Required, [] = Optional',
