@@ -33,6 +33,7 @@ const loadCommands = async () => {
         const commandFiles = fs.readdirSync(`./dist/commands/${categoryFolder}`);
         for (const file of commandFiles) {
             const { default: commandClass } = await import(`./commands/${categoryFolder}/${file}`);
+
             const command = new commandClass();
             Hina.commands.set(command.name, command);
 
