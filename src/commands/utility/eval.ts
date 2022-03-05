@@ -11,7 +11,7 @@ export default class evaluation implements BaseCommand {
     constructor() {
         this.name = 'eval';
         this.description = 'run code in discord.';
-        this.commandUsage = 'eval <script>';
+        this.commandUsage = '<script>';
         this.args = [
             new CommandArgument({ type: 'paragraph' }).setName('script').setDescription('javascript code to run.'),
         ];

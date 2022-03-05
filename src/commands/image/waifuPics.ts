@@ -21,7 +21,7 @@ export default class waifuPics implements BaseCommand {
         this.args = [
             new CommandArgument({ optional: true })
                 .setName('amount')
-                .setDescription('amount of pictures, has to be > 0 and < 31')
+                .setDescription('amount of pictures, has to be >0 and <31')
                 .setMin(1)
                 .setMax(30),
         ];

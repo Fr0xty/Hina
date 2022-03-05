@@ -1,0 +1,53 @@
+import { BaseCommand } from 'hina';
+import CommandArgument from '../../res/models/CommandArgument.js';
+import { Message, MessageEmbed } from 'discord.js';
+import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
+
+export default class avatar implements BaseCommand {
+    name: String;
+    description: String;
+    commandUsage: String;
+    args: CommandArgument[];
+
+    constructor() {
+        this.name = 'avatar';
+        this.description = 'get user profile avatar.';
+        this.commandUsage = '[@user/user_id]';
+        this.args = [
+            new CommandArgument({ optional: true })
+                .setName('user')
+                .setDescription('user of the avatar you want to get, leaving blank will default to yourself.'),
+        ];
+    }
+
+    async execute(msg: Message, args: string[]) {
+        const [user] = args;
+
+        const User = user ? await Hina.users.fetch(user.match(/\d+/)![0]) : msg.author;
+        if (!User) return await msg.reply('Invalid user id / mention!');
+
+        const embed = new MessageEmbed()
+            .setColor(hinaColor)
+            .setAuthor({ name: "Hina's Avatar Fetcher", iconURL: Hina.user!.displayAvatarURL(hinaImageOption) })
+            .setTitle(`${User.tag}'s Avatar'`)
+            .setDescription(
+                `
+[\`webp\`](${User.displayAvatarURL({ dynamic: true, format: 'webp' })}) [\`png\`](${User.displayAvatarURL({
+                    dynamic: true,
+                    format: 'png',
+                })}) [\`jpg\`](${User.displayAvatarURL({
+                    dynamic: true,
+                    format: 'jpg',
+                })}) [\`jpeg\`](${User.displayAvatarURL({ dynamic: true, format: 'jpeg' })}) 
+            `
+            )
+            .setImage(User.displayAvatarURL(hinaImageOption))
+            .setFooter({
+                text: `Requested by: ${msg.author.tag}`,
+                iconURL: msg.author.displayAvatarURL(hinaImageOption),
+            })
+            .setTimestamp();
+
+        await msg.reply({ embeds: [embed] });
+    }
+}

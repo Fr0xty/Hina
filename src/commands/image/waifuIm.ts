@@ -1,9 +1,9 @@
-import { Message, MessageEmbed, ThreadMemberFlags } from 'discord.js';
+import { Message, MessageEmbed } from 'discord.js';
 import fetch from 'node-fetch';
 
 import { BaseCommand } from 'hina';
 import { paginator } from '../../utils/paginator.js';
-import { Hina, prefix, hinaColor, hinaImageOption } from '../../res/config.js';
+import { Hina, prefix, hinaImageOption } from '../../res/config.js';
 import CommandArgument from '../../res/models/CommandArgument.js';
 
 export default class waifuIm implements BaseCommand {
@@ -42,7 +42,7 @@ export default class waifuIm implements BaseCommand {
         this.args = [
             new CommandArgument({ optional: true })
                 .setName('amount')
-                .setDescription('amount of pictures, has to be > 0 and < 31')
+                .setDescription('amount of pictures, has to be >0 and <31')
                 .setMin(1)
                 .setMax(30),
         ];
