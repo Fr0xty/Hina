@@ -70,9 +70,9 @@ ${command.args[i].description}`
             // optional + provided & required + provided
             command.args[i].type === 'word'
                 ? // word: get 1 item from array
-                  structuredArguments.push(args.shift()!)
+                  structuredArguments.push(args.shift()!.trim())
                 : // paragraph: get every item as 1 string
-                  structuredArguments.push(args.join(' '));
+                  structuredArguments.push(args.join(' ').trim());
 
             // validate the argument
             const validateResult = validateArgument(structuredArguments.at(-1)!, command.args[i]);
