@@ -19,7 +19,7 @@ export default class act implements BaseCommand {
             new CommandArgument()
                 .setName('user')
                 .setDescription('mention user to impersonate.')
-                .setRegex(/^<@!?[0-9]{18}>$/),
+                .setRegex(/^(<@)?!?[0-9]{18}>?$/),
             new CommandArgument({ type: 'paragraph' }).setName('msg').setDescription('text to say.'),
         ];
     }

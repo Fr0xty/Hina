@@ -16,7 +16,8 @@ export default class avatar implements BaseCommand {
         this.args = [
             new CommandArgument({ optional: true })
                 .setName('user')
-                .setDescription('user of the avatar you want to get, leaving blank will default to yourself.'),
+                .setDescription('user of the avatar you want to get, leaving blank will default to yourself.')
+                .setRegex(/^(<@)?!?[0-9]{18}>?$/),
         ];
     }
 

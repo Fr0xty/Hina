@@ -18,7 +18,8 @@ export default class spotify implements BaseCommand {
         this.args = [
             new CommandArgument({ optional: true })
                 .setName('@user/user_id')
-                .setDescription('the user to fetch spotify info, leave blank will default to yourself.'),
+                .setDescription('the user to fetch spotify info, leave blank will default to yourself.')
+                .setRegex(/^(<@)?!?[0-9]{18}>?$/),
         ];
     }
 

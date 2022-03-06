@@ -16,7 +16,12 @@ export default class userinfo implements BaseCommand {
         this.name = 'userinfo';
         this.description = 'get all user information.';
         this.commandUsage = '[@user/user_id]';
-        this.args = [new CommandArgument({ optional: true }).setName('user').setDescription('user to get info on.')];
+        this.args = [
+            new CommandArgument({ optional: true })
+                .setName('user')
+                .setDescription('user to get info on.')
+                .setRegex(/^(<@)?!?[0-9]{18}>?$/),
+        ];
     }
 
     async execute(msg: Message, args: string[]) {
