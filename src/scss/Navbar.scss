@@ -1,0 +1,44 @@
+li {
+    list-style: none;
+}
+
+.Navbar {
+    background: #1b1625;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0.5em;
+
+    .title {
+        padding: auto 0;
+        margin: 1em 0;
+    }
+
+    h2 {
+        font-size: 2em;
+        border: black;
+        margin: 0;
+        text-align: center;
+
+        a {
+            color: #d4c2fc;
+        }
+    }
+
+    ul {
+        padding: 0.4em;
+        margin: 0;
+        display: inline-flex;
+    }
+    li {
+        font-size: 1.2em;
+        padding: 1em;
+        margin: 0 0.8em;
+        text-align: center;
+
+        a {
+            color: #998fc7;
+        }
+    }
+}
