@@ -33,13 +33,23 @@ export default class avatar implements BaseCommand {
             .setTitle(`${User.tag}'s Avatar'`)
             .setDescription(
                 `
-[\`webp\`](${User.displayAvatarURL({ dynamic: true, format: 'webp' })}) [\`png\`](${User.displayAvatarURL({
-                    dynamic: true,
-                    format: 'png',
-                })}) [\`jpg\`](${User.displayAvatarURL({
-                    dynamic: true,
-                    format: 'jpg',
-                })}) [\`jpeg\`](${User.displayAvatarURL({ dynamic: true, format: 'jpeg' })}) 
+[\`webp\`](${User.displayAvatarURL({
+    dynamic: true,
+    format: 'webp',
+    size: 4096
+})}) [\`png\`](${User.displayAvatarURL({
+    dynamic: true,
+    format: 'png',
+    size: 4096
+})}) [\`jpg\`](${User.displayAvatarURL({
+    dynamic: true,
+    format: 'jpg',
+    size: 4096
+})}) [\`jpeg\`](${User.displayAvatarURL({
+    dynamic: true,
+    format: 'jpeg',
+    size: 4096
+})})
             `
             )
             .setImage(User.displayAvatarURL(hinaImageOption))
