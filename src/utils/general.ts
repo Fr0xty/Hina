@@ -14,3 +14,7 @@ export const guildOrHinaIcon = async (Hina: Client, guild: Guild) => {
     if (guild.iconURL()) return guild.iconURL(hinaImageOption);
     return Hina.user!.displayAvatarURL(hinaImageOption);
 };
+
+export const sleep = (ms: number): Promise<void> => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+};

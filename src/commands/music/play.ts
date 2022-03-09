@@ -28,7 +28,7 @@ export default class play implements BaseCommand {
         // return if author not in vc
         if (!msg.member!.voice.channel) return await msg.reply('Please join a voice channel!');
 
-        let alreadyConnectedQueue: Queue<any> = Hina.player.getQueue(msg.guild!);
+        const alreadyConnectedQueue: Queue<any> = Hina.player.getQueue(msg.guild!);
         const queue = alreadyConnectedQueue
             ? alreadyConnectedQueue
             : Hina.player.createQueue(msg.guild!, {
@@ -41,6 +41,10 @@ export default class play implements BaseCommand {
                   metadata: {
                       channel: msg.channel,
                   },
+                  leaveOnEnd: false,
+                  leaveOnStop: false,
+                  leaveOnEmptyCooldown: 180000,
+                  initialVolume: 50,
               });
 
         const resource = await Hina.player.search(query, {

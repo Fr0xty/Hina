@@ -1,6 +1,7 @@
 import { Player, Queue } from 'discord-player';
 import { Client, Collection, Intents, ImageURLOptions, MessageEmbed, EmbedAuthorData } from 'discord.js';
 import 'dotenv/config';
+import { sleep } from '../utils/general';
 
 export const token = process.env.TOKEN;
 export const prefix = 'test ';
@@ -36,7 +37,6 @@ Hina.commands = new Collection();
 Hina.player = new Player(Hina);
 
 Hina.player.on('trackStart', (queue: Queue<any>, track) => {
-    const npMusic = queue.nowPlaying();
     const embed = new MessageEmbed()
         .setColor(hinaColor)
         .setAuthor({
@@ -45,12 +45,12 @@ Hina.player.on('trackStart', (queue: Queue<any>, track) => {
         })
         .setThumbnail(track.thumbnail)
         .setTitle('Now Playing:')
-        .setDescription(`[${npMusic.title}](${npMusic.url}) \`${npMusic.duration}\``)
+        .setDescription(`[${track.title}](${track.url}) \`${track.duration}\``)
         .addFields(
-            { name: 'Source', value: npMusic.source },
-            { name: 'Artist', value: npMusic.author },
-            { name: 'Views', value: String(npMusic.views) },
-            { name: 'Requested by', value: `<@${npMusic.requestedBy.id}>` }
+            { name: 'Source', value: track.source },
+            { name: 'Artist', value: track.author },
+            { name: 'Views', value: String(track.views) },
+            { name: 'Requested by', value: `<@${track.requestedBy.id}>` }
         );
     queue.metadata.channel.send({ embeds: [embed] });
 });
@@ -92,4 +92,5 @@ Hina.player.on('tracksAdd', async (queue: Queue<any>, track) => {
 Hina.player.on('queueEnd', async (queue: Queue<any>) => {
     await queue.metadata.channel.send('There is no more music in queue, use `play` to add more songs.');
 });
+
 export { Hina };

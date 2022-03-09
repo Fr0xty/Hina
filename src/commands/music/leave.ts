@@ -1,5 +1,6 @@
 import { Message } from 'discord.js';
 import { BaseCommand } from 'hina';
+import { Hina, okEmoji } from '../../res/config.js';
 
 export default class leave implements BaseCommand {
     name: String;
@@ -11,6 +12,10 @@ export default class leave implements BaseCommand {
     }
 
     async execute(msg: Message, args: string[]) {
-        await msg.reply('Sorry, music commands are currently down. They will be back in the next version. (v2.2.0)');
+        const queue = Hina.player.getQueue(msg.guild!);
+        if (!queue) return await msg.reply("I'm not currently playing in this server.");
+
+        queue.destroy();
+        await msg.reply(okEmoji);
     }
 }

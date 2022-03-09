@@ -1,5 +1,7 @@
+import { Queue } from 'discord-player';
 import { Message } from 'discord.js';
 import { BaseCommand } from 'hina';
+import { Hina, okEmoji } from '../../res/config.js';
 
 export default class join implements BaseCommand {
     name: String;
@@ -11,6 +13,31 @@ export default class join implements BaseCommand {
     }
 
     async execute(msg: Message, args: string[]) {
-        await msg.reply('Sorry, music commands are currently down. They will be back in the next version. (v2.2.0)');
+        if (!msg.member!.voice.channel) return await msg.reply('Please join a voice channel!');
+
+        const queue = Hina.player.getQueue(msg.guild!);
+        if (!queue) {
+            const queue = Hina.player.createQueue(msg.guild!, {
+                ytdlOptions: {
+                    quality: 'highest',
+                    filter: 'audioonly',
+                    highWaterMark: 1 << 25,
+                    dlChunkSize: 0,
+                },
+                metadata: {
+                    channel: msg.channel,
+                },
+                leaveOnEnd: false,
+                leaveOnStop: false,
+                leaveOnEmptyCooldown: 180000,
+                initialVolume: 50,
+            });
+            await queue.connect(msg.member!.voice.channel);
+        }
+        if (msg.member!.voice.channelId !== msg.guild!.me!.voice.channelId) {
+            await queue.connect(msg.member!.voice.channel);
+        }
+
+        await msg.reply(okEmoji);
     }
 }
