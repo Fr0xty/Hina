@@ -28,7 +28,7 @@ export default class help implements BaseCommand {
         if (command_category) command_category = command_category.toLowerCase();
 
         const HinaInvite = await generateHinaInvite(Hina);
-        const embed: any = new HinaHelpEmbed(Hina, msg.author, HinaInvite);
+        const embed: any = new HinaHelpEmbed(msg.author, HinaInvite);
 
         // command_category given
         if (command_category) {

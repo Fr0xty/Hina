@@ -1,9 +1,27 @@
-import { MessageEmbed, MessageActionRow, MessageButton, MessageSelectMenu } from 'discord.js';
-import { hinaColor, hinaImageOption } from '../config.js';
+import { MessageEmbed, MessageActionRow, MessageButton, MessageSelectMenu, Client, User, Message } from 'discord.js';
+import { Hina, hinaColor, hinaImageOption } from '../config.js';
 
 export class Help {
-    constructor(Hina, author, _hinaInvite) {
-        this.Hina = Hina;
+    author: User;
+    categories: string[];
+    components: {
+        actionRow: MessageActionRow;
+        selectCategory: MessageActionRow;
+        linkRow: MessageActionRow;
+    };
+
+    mainPage: MessageEmbed;
+    behavoiral: MessageEmbed;
+    general: MessageEmbed;
+    fun: MessageEmbed;
+    emoji: MessageEmbed;
+    music: MessageEmbed;
+    image: MessageEmbed;
+    language: MessageEmbed;
+    utility: MessageEmbed;
+    coderunner: MessageEmbed;
+
+    constructor(author: User, _hinaInvite: string) {
         this.author = author;
         this.categories = [
             'behavoiral',
@@ -110,8 +128,8 @@ export class Help {
 
         this.mainPage = new MessageEmbed()
             .setAuthor({
-                name: `${this.Hina.user.username} Commands!`,
-                iconURL: this.Hina.user.displayAvatarURL(hinaImageOption),
+                name: `${Hina.user!.username} Commands!`,
+                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
             })
             .setColor(hinaColor)
             .setTitle('Command Categories')
@@ -142,8 +160,8 @@ My prefix is \`hina\`
 
         this.behavoiral = new MessageEmbed()
             .setAuthor({
-                name: `${this.Hina.user.username} Behavoiral Category`,
-                iconURL: this.Hina.user.displayAvatarURL(hinaImageOption),
+                name: `${Hina.user!.username} Behavoiral Category`,
+                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
             })
             .setColor(hinaColor)
             .addFields(
@@ -164,8 +182,8 @@ My prefix is \`hina\`
 
         this.general = new MessageEmbed()
             .setAuthor({
-                name: `${this.Hina.user.username} General Category`,
-                iconURL: this.Hina.user.displayAvatarURL(hinaImageOption),
+                name: `${Hina.user!.username} General Category`,
+                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
             })
             .setColor(hinaColor)
             .addFields(
@@ -181,8 +199,8 @@ My prefix is \`hina\`
 
         this.fun = new MessageEmbed()
             .setAuthor({
-                name: `${this.Hina.user.username} Fun Category`,
-                iconURL: this.Hina.user.displayAvatarURL(hinaImageOption),
+                name: `${Hina.user!.username} Fun Category`,
+                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
             })
             .setColor(hinaColor)
             .addFields(
@@ -198,8 +216,8 @@ My prefix is \`hina\`
 
         this.emoji = new MessageEmbed()
             .setAuthor({
-                name: `${this.Hina.user.username} Fun Category`,
-                iconURL: this.Hina.user.displayAvatarURL(hinaImageOption),
+                name: `${Hina.user!.username} Fun Category`,
+                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
             })
             .setColor(hinaColor)
             .setThumbnail(
@@ -241,8 +259,8 @@ __reply to the message while using the command__
 
         this.music = new MessageEmbed()
             .setAuthor({
-                name: `${this.Hina.user.username} Fun Category`,
-                iconURL: this.Hina.user.displayAvatarURL(hinaImageOption),
+                name: `${Hina.user!.username} Fun Category`,
+                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
             })
             .setColor(hinaColor)
             .addFields(
@@ -264,8 +282,8 @@ __reply to the message while using the command__
 
         this.image = new MessageEmbed()
             .setAuthor({
-                name: `${this.Hina.user.username} Image Category`,
-                iconURL: this.Hina.user.displayAvatarURL(hinaImageOption),
+                name: `${Hina.user!.username} Image Category`,
+                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
             })
             .setColor(hinaColor)
             .setTitle('Get images with the following tags.')
@@ -301,8 +319,8 @@ This can be applied to every command in this category. Must be \`>0\` and \`<31\
 
         this.language = new MessageEmbed()
             .setAuthor({
-                name: `${this.Hina.user.username} Language Category`,
-                iconURL: this.Hina.user.displayAvatarURL(hinaImageOption),
+                name: `${Hina.user!.username} Language Category`,
+                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
             })
             .setColor(hinaColor)
             .addFields(
@@ -321,8 +339,8 @@ This can be applied to every command in this category. Must be \`>0\` and \`<31\
 
         this.utility = new MessageEmbed()
             .setAuthor({
-                name: `${this.Hina.user.username} Utility Category`,
-                iconURL: this.Hina.user.displayAvatarURL(hinaImageOption),
+                name: `${Hina.user!.username} Utility Category`,
+                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
             })
             .setColor(hinaColor)
             .addFields(
@@ -340,8 +358,8 @@ This can be applied to every command in this category. Must be \`>0\` and \`<31\
 
         this.coderunner = new MessageEmbed()
             .setAuthor({
-                name: `${this.Hina.user.username} Code Runner Category`,
-                iconURL: this.Hina.user.displayAvatarURL(hinaImageOption),
+                name: `${Hina.user!.username} Code Runner Category`,
+                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
             })
             .setColor(hinaColor)
             .addFields({
