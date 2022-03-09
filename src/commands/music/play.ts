@@ -32,6 +32,12 @@ export default class play implements BaseCommand {
         const queue = alreadyConnectedQueue
             ? alreadyConnectedQueue
             : Hina.player.createQueue(msg.guild!, {
+                  ytdlOptions: {
+                      quality: 'highest',
+                      filter: 'audioonly',
+                      highWaterMark: 1 << 25,
+                      dlChunkSize: 0,
+                  },
                   metadata: {
                       channel: msg.channel,
                   },
