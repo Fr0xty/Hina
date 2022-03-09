@@ -6,6 +6,7 @@ import GuildMusic from '../../res/models/GuildMusic.js';
 import { Hina, okEmoji } from '../../res/config.js';
 import { joinVoiceChannel } from '@discordjs/voice';
 import { queryYT } from '../../utils/music.js';
+import { hasUncaughtExceptionCaptureCallback } from 'process';
 
 export default class play implements BaseCommand {
     name: String;
@@ -25,12 +26,22 @@ export default class play implements BaseCommand {
     }
 
     async execute(msg: Message, args: string[]) {
-        await msg.reply('Sorry, music commands are currently down. They will be back in the next version. (v2.2.0)');
-        // const [query] = args;
-        // let profile = Hina.musicGuildProfile.get(msg.guildId!);
+        const [query] = args;
 
-        // // return if author not in vc
-        // if (!msg.member!.voice.channel) return await msg.reply('Please join a voice channel!');
+        // return if author not in vc
+        if (!msg.member!.voice.channel) return await msg.reply('Please join a voice channel!');
+
+        let _ = Hina.player.getQueue(msg.guild!);
+        const queue = _
+            ? _
+            : Hina.player.createQueue(msg.guild!, {
+                  metadata: {
+                      channel: msg.channel,
+                  },
+              });
+
+        //
+        //
         // if (!(msg.channel instanceof TextChannel || msg.channel instanceof NewsChannel)) return;
 
         // // join vc if not in the same vc
