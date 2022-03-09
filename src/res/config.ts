@@ -1,5 +1,5 @@
-import { Player } from 'discord-player';
-import { Client, Collection, Intents, ImageURLOptions } from 'discord.js';
+import { Player, Queue } from 'discord-player';
+import { Client, Collection, Intents, ImageURLOptions, MessageEmbed, EmbedAuthorData } from 'discord.js';
 import 'dotenv/config';
 
 export const token = process.env.TOKEN;
@@ -35,16 +35,56 @@ Hina.commands = new Collection();
  */
 Hina.player = new Player(Hina);
 
-Hina.player.on('trackStart', (queue, track) => {
-    // @ts-ignore
-    queue.metadata.channel.send('trackStart event called.');
+Hina.player.on('trackStart', (queue: Queue<any>, track) => {
+    const npMusic = queue.nowPlaying();
+    const embed = new MessageEmbed()
+        .setColor(hinaColor)
+        .setAuthor({
+            name: `Music queue for ${queue.guild.name}`,
+            iconURL: queue.guild.iconURL() ? queue.guild.iconURL()! : Hina.user!.displayAvatarURL(),
+        })
+        .setTitle('Now Playing:')
+        .setDescription(`[${npMusic.title}](${npMusic.url}) \`${npMusic.duration}\``)
+        .addFields(
+            { name: 'Source', value: npMusic.source },
+            { name: 'Artist', value: npMusic.author },
+            { name: 'Views', value: String(npMusic.views) },
+            { name: 'Requested by', value: `<@${npMusic.requestedBy.id}>` }
+        );
+    queue.metadata.channel.send({ embeds: [embed] });
 });
 
 Hina.player.on('error', (queue, error) => {
     console.log(error);
 });
+
 Hina.player.on('connectionError', (queue, error) => {
     console.log(error);
 });
 
+Hina.player.on('trackAdd', async (queue: Queue<any>, track) => {
+    const embed = new MessageEmbed()
+        .setColor(hinaColor)
+        .setAuthor({
+            name: `Music queue for ${queue.guild.name}`,
+            iconURL: queue.guild.iconURL() ? queue.guild.iconURL()! : Hina.user!.displayAvatarURL(),
+        })
+        .setTitle('Added to queue:')
+        .setDescription(`[${track.title}](${track.url})`)
+        .setFooter({ text: `Added by ${track.requestedBy.tag}`, iconURL: track.requestedBy.displayAvatarURL() });
+    await queue.metadata.channel.send({ embeds: [embed] });
+});
+
+Hina.player.on('tracksAdd', async (queue: Queue<any>, track) => {
+    const embed = new MessageEmbed()
+        .setColor(hinaColor)
+        .setAuthor({
+            name: `Music queue for ${queue.guild.name}`,
+            iconURL: queue.guild.iconURL() ? queue.guild.iconURL()! : Hina.user!.displayAvatarURL(),
+        })
+        .setDescription(`Added ${track.length} song.`);
+    await queue.metadata.channel.send({ embeds: [embed] });
+});
+
+// Hina.player.on('queueEnd', (queue, track) => {});
 export { Hina };

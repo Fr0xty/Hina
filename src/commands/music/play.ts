@@ -28,9 +28,9 @@ export default class play implements BaseCommand {
         // return if author not in vc
         if (!msg.member!.voice.channel) return await msg.reply('Please join a voice channel!');
 
-        let _: Queue<any> = Hina.player.getQueue(msg.guild!);
-        const queue = _
-            ? _
+        let alreadyConnectedQueue: Queue<any> = Hina.player.getQueue(msg.guild!);
+        const queue = alreadyConnectedQueue
+            ? alreadyConnectedQueue
             : Hina.player.createQueue(msg.guild!, {
                   metadata: {
                       channel: msg.channel,
@@ -42,23 +42,20 @@ export default class play implements BaseCommand {
             searchEngine: QueryType.AUTO,
         });
         if (!resource) return msg.reply('No results found with the query provided.');
-        queue.addTracks(resource.tracks);
+        if (query.includes('https://') && resource.tracks.length > 1) {
+            queue.addTracks(resource.tracks);
+        } else {
+            queue.addTrack(resource.tracks[0]);
+        }
 
-        if (msg.member!.voice.channelId !== msg.guild!.me!.voice.channelId) {
+        if (msg.member!.voice.channelId !== msg.guild!.me!.voice.channelId || !alreadyConnectedQueue) {
             try {
                 await queue.connect(msg.member!.voice.channel);
             } catch {
                 Hina.player.deleteQueue(msg.guild!);
                 return await msg.reply('Cannot join your voice channel! Try checking my permissions on the server.');
             }
-
-            if (!queue.playing) await queue.play();
         }
-
-        // // search URL or keyword
-        // let result = await queryYT(query);
-
-        // await profile!.addSong(result.resource, result.videoInfo);
-        // await msg.react(okEmoji);
+        if (!queue.playing) await queue.play();
     }
 }
