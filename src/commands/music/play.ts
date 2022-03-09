@@ -1,12 +1,9 @@
-import { Message, NewsChannel, StageChannel, TextChannel } from 'discord.js';
+import { Message } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import GuildMusic from '../../res/models/GuildMusic.js';
-import { Hina, okEmoji } from '../../res/config.js';
-import { joinVoiceChannel } from '@discordjs/voice';
-import { queryYT } from '../../utils/music.js';
-import { hasUncaughtExceptionCaptureCallback } from 'process';
+import { Hina } from '../../res/config.js';
+import { QueryType, Queue } from 'discord-player';
 
 export default class play implements BaseCommand {
     name: String;
@@ -31,7 +28,7 @@ export default class play implements BaseCommand {
         // return if author not in vc
         if (!msg.member!.voice.channel) return await msg.reply('Please join a voice channel!');
 
-        let _ = Hina.player.getQueue(msg.guild!);
+        let _: Queue<any> = Hina.player.getQueue(msg.guild!);
         const queue = _
             ? _
             : Hina.player.createQueue(msg.guild!, {
@@ -40,27 +37,23 @@ export default class play implements BaseCommand {
                   },
               });
 
-        //
-        //
-        // if (!(msg.channel instanceof TextChannel || msg.channel instanceof NewsChannel)) return;
+        const resource = await Hina.player.search(query, {
+            requestedBy: msg.member!,
+            searchEngine: QueryType.AUTO,
+        });
+        if (!resource) return msg.reply('No results found with the query provided.');
+        queue.addTracks(resource.tracks);
 
-        // // join vc if not in the same vc
-        // if (msg.member!.voice.channelId !== msg.guild!.me!.voice.channelId) {
-        //     const connection = joinVoiceChannel({
-        //         channelId: msg.member!.voice.channelId!,
-        //         guildId: msg.guildId!,
-        //         adapterCreator: msg.guild!.voiceAdapterCreator,
-        //     });
-        //     if (profile) {
-        //         await profile.updateChannels(null, msg.channel);
-        //         console.log('channels updated');
-        //     }
-        // }
-        // // first time ? register guildProfile
-        // if (!profile) {
-        //     Hina.musicGuildProfile.set(msg.guildId!, new GuildMusic(msg.member!.voice.channel, msg.channel));
-        //     profile = Hina.musicGuildProfile.get(msg.guildId!);
-        // }
+        if (msg.member!.voice.channelId !== msg.guild!.me!.voice.channelId) {
+            try {
+                await queue.connect(msg.member!.voice.channel);
+            } catch {
+                Hina.player.deleteQueue(msg.guild!);
+                return await msg.reply('Cannot join your voice channel! Try checking my permissions on the server.');
+            }
+
+            if (!queue.playing) await queue.play();
+        }
 
         // // search URL or keyword
         // let result = await queryYT(query);

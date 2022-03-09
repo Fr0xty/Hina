@@ -20,7 +20,8 @@
     "piston-client": "^1.0.2",
     "translate": "^1.4.1",
     "undici": "^4.15.1",
-    "utf-8-validate": "^5.0.8"
+    "utf-8-validate": "^5.0.8",
+    "ytdl-core": "^4.11.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

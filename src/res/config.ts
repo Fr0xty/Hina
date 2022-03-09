@@ -40,4 +40,11 @@ Hina.player.on('trackStart', (queue, track) => {
     queue.metadata.channel.send('trackStart event called.');
 });
 
+Hina.player.on('error', (queue, error) => {
+    console.log(error);
+});
+Hina.player.on('connectionError', (queue, error) => {
+    console.log(error);
+});
+
 export { Hina };
