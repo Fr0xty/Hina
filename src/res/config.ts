@@ -43,6 +43,7 @@ Hina.player.on('trackStart', (queue: Queue<any>, track) => {
             name: `Music queue for ${queue.guild.name}`,
             iconURL: queue.guild.iconURL() ? queue.guild.iconURL()! : Hina.user!.displayAvatarURL(),
         })
+        .setThumbnail(track.thumbnail)
         .setTitle('Now Playing:')
         .setDescription(`[${npMusic.title}](${npMusic.url}) \`${npMusic.duration}\``)
         .addFields(
@@ -69,6 +70,7 @@ Hina.player.on('trackAdd', async (queue: Queue<any>, track) => {
             name: `Music queue for ${queue.guild.name}`,
             iconURL: queue.guild.iconURL() ? queue.guild.iconURL()! : Hina.user!.displayAvatarURL(),
         })
+        .setThumbnail(track.thumbnail)
         .setTitle('Added to queue:')
         .setDescription(`[${track.title}](${track.url})`)
         .setFooter({ text: `Added by ${track.requestedBy.tag}`, iconURL: track.requestedBy.displayAvatarURL() });
@@ -82,9 +84,12 @@ Hina.player.on('tracksAdd', async (queue: Queue<any>, track) => {
             name: `Music queue for ${queue.guild.name}`,
             iconURL: queue.guild.iconURL() ? queue.guild.iconURL()! : Hina.user!.displayAvatarURL(),
         })
+        .setThumbnail(track[0].thumbnail)
         .setDescription(`Added ${track.length} song.`);
     await queue.metadata.channel.send({ embeds: [embed] });
 });
 
-// Hina.player.on('queueEnd', (queue, track) => {});
+Hina.player.on('queueEnd', async (queue: Queue<any>) => {
+    await queue.metadata.channel.send('There is no more music in queue, use `play` to add more songs.');
+});
 export { Hina };
