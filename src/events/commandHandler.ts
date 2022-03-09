@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { DMChannel, MessageEmbed } from 'discord.js';
 import { BaseCommand } from 'hina';
 import { Hina, hinaColor, prefix } from '../res/config.js';
 import { validateArgument } from '../utils/command.js';
@@ -8,9 +8,9 @@ import { validateArgument } from '../utils/command.js';
  */
 Hina.on('messageCreate', async (msg): Promise<any> => {
     /**
-     * filter out bots and no prefix
+     * filter out bots & no prefix & non guild channels
      */
-    if (!msg.content.toLowerCase().startsWith(prefix) || msg.author.bot) return;
+    if (!msg.content.toLowerCase().startsWith(prefix) || msg.author.bot || !msg.guild) return;
 
     /**
      * extract commandName: String and args: String[]
