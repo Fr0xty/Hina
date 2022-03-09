@@ -9,9 +9,4 @@ A bot originally written with discord.py library, migrated to discord.js library
 
 <br>
 
-### Notice
-Music commands are temporarily down, but will be added back into the next minor update ASAP.
-
-<br>
-
 <img src="https://media.discordapp.net/attachments/907586559719645204/908234637380288552/sheeeeeeeesh.jpeg?width=963&height=681" width="800px">
