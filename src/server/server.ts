@@ -1,11 +1,25 @@
 import express from 'express';
-import fetch from 'node-fetch';
+
+/**
+ * server app instance
+ */
 const app = express();
 
-app.set('json spaces', 2);
+/**
+ * express routers
+ */
+import hinawebRouter from './routes/api/hinaweb.js';
+app.use('/api/hinaweb', hinawebRouter);
 
+/**
+ * homepage
+ */
 app.get('/', async (req, res) => res.send('Hina is online!'));
 
+/**
+ * for repl command
+ * TODO: let react router handle this endpoint
+ */
 app.get('/help/runtimes', async (req, res) => {
     // just pretty print json
     const result = await fetch('https://emkc.org/api/v2/piston/runtimes');
