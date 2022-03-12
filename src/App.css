@@ -1,4 +1,17 @@
+:root {
+    --background-color: #888098;
+
+    --primary-color: #d4c2fc;
+    --dark-primary-color: #b29ce2;
+
+    --secondary-color: #d3ffe9;
+    --dark-secondary-color: #8dab7f;
+
+    --dark-color: #262626;
+    --navbar-color: 43, 25, 61;
+}
+
 body {
-    background: #888098;
+    background: var(--background-color);
     margin: 0;
 }

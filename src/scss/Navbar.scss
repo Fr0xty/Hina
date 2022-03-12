@@ -3,12 +3,13 @@ li {
 }
 
 .Navbar {
-    background: rgba($color: #2b193d, $alpha: 0.2);
     display: flex;
     justify-content: space-between;
     border-radius: 0.2em;
     position: fixed;
     width: 100vw;
+    transition: 0.5s;
+    z-index: 999;
 
     .title {
         padding: auto 0;
@@ -30,7 +31,7 @@ li {
             text-align: center;
 
             a {
-                color: #d4c2fc;
+                color: var(--primary-color);
             }
         }
     }
@@ -52,4 +53,8 @@ li {
             }
         }
     }
+}
+
+.Navbar.hasBackgroundColor {
+    background: rgba(var(--navbar-color), 0.7);
 }

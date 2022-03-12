@@ -5,7 +5,10 @@ import { useEffect } from 'react';
 const Navbar = () => {
     useEffect(() => {
         document.addEventListener('wheel', () => {
-            console.log(window.scrollY);
+            const navbarComponent = document.querySelector('.Navbar');
+            window.scrollY >= 100
+                ? navbarComponent!.classList.add('hasBackgroundColor')
+                : navbarComponent!.classList.remove('hasBackgroundColor');
         });
     }, []);
     return (

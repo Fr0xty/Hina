@@ -1,20 +1,9 @@
 const Statistics = () => {
     return (
         <div className="statistics">
-            hi
-            <br />
-            hi
-            <br />
-            hi
-            <br />
-            hi
-            <br />
-            hi
-            <br />
-            hi
-            <br />
-            hi
-            <br />
+            <div className="guild">Hina is in __ servers</div>
+            <div className="member"></div>
+            <div className="command"></div>
         </div>
     );
 };
