@@ -264,7 +264,7 @@ __reply to the message while using the command__
             })
             .setColor(hinaColor)
             .addFields(
-                { name: '`play <YT_URL/search keywords>`', value: 'Add music to queue.', inline: true },
+                { name: '`play <query/url>`', value: 'Add music to queue.', inline: true },
                 { name: '`join`', value: 'I will join your voice channel.', inline: true },
                 { name: '`leave`', value: 'I will leave your voice channel.', inline: true },
                 { name: '`pause`', value: 'pause the current song.', inline: true },
