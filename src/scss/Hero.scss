@@ -13,11 +13,15 @@ button {
 }
 
 .Hero {
+    box-shadow: 0 0 200px rgba(0, 0, 0, 0.2) inset;
+    height: 100vh;
     color: white;
-    margin-top: 6em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 
     .main {
-        margin: 0 auto 0 18%;
+        margin-left: 12%;
         width: 35vw;
 
         h1 {
@@ -27,5 +31,19 @@ button {
         p {
             font-size: 1.4em;
         }
+
+        .hero-btns {
+            width: 80%;
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+
+    img {
+        height: 30em;
+        border-radius: 1em;
+        margin: auto 0;
+        margin-right: 15%;
+        transform: rotate(4deg);
     }
 }

@@ -3,42 +3,53 @@ li {
 }
 
 .Navbar {
-    background: #1b1625;
-    padding-left: 5%;
-    padding-right: 5%;
+    background: rgba($color: #2b193d, $alpha: 0.2);
     display: flex;
     justify-content: space-between;
-    border-radius: 0.5em;
+    border-radius: 0.2em;
+    position: fixed;
+    width: 100vw;
 
     .title {
         padding: auto 0;
-        margin: 1em 0;
-    }
+        margin: 1.2em 0;
+        margin-left: 7%;
+        display: flex;
+        align-items: center;
 
-    h2 {
-        font-size: 2em;
-        border: black;
-        margin: 0;
-        text-align: center;
+        img {
+            height: 4em;
+            border-radius: 50%;
+            margin-left: 0.6em;
+        }
 
-        a {
-            color: #d4c2fc;
+        h2 {
+            font-size: 2em;
+            border: black;
+            margin: 0;
+            text-align: center;
+
+            a {
+                color: #d4c2fc;
+            }
         }
     }
 
     ul {
         padding: 0.4em;
         margin: 0;
+        margin-right: 5%;
         display: inline-flex;
-    }
-    li {
-        font-size: 1.2em;
-        padding: 1em;
-        margin: 0 0.8em;
-        text-align: center;
 
-        a {
-            color: #998fc7;
+        li {
+            font-size: 1.4em;
+            padding: 1em;
+            align-self: center;
+            margin: 0 1em;
+
+            a {
+                color: #bfb8dd;
+            }
         }
     }
 }
