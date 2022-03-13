@@ -1,3 +1,27 @@
 .Statistics {
-    min-height: 100vh;
+    background: var(--dark-color);
+    display: flex;
+    justify-content: space-around;
+    padding: 2em 7%;
+
+    img {
+        height: 6em;
+        color: var(--secondary-color);
+    }
+
+    div {
+        height: auto;
+        width: 12em;
+        text-align: center;
+        padding-top: 1em;
+
+        p {
+            color: var(--secondary-color);
+            font-size: 1.3em;
+        }
+    }
+
+    .user-stats {
+        width: 15em;
+    }
 }
