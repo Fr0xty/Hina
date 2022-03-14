@@ -24,7 +24,7 @@ const Hina = new Client({
  * properties
  */
 Hina.token = process.env.TOKEN!;
-Hina.prefix = 'hina ';
+Hina.prefix = 'test ';
 Hina.color = '#E49CFF';
 
 Hina.okEmoji = '902096184645124146';
@@ -106,7 +106,5 @@ const app = firebaseAdmin.initializeApp({
 });
 
 Hina.database = firebaseAdmin.firestore(app);
-const addition = await Hina.database.collection('users').doc('abc').add({ something: 'foo' });
 
-console.log(addition);
 export { Hina };
