@@ -2,7 +2,7 @@ import { Message, MessageEmbed } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import { convertSeconds } from '../../utils/convert.js';
 
 export default class spotify implements BaseCommand {
@@ -62,7 +62,7 @@ export default class spotify implements BaseCommand {
                 .setTimestamp()
                 .setFooter({
                     text: `Requested by: ${msg.author.tag}`,
-                    iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                    iconURL: msg.author.displayAvatarURL(Hina.imageOption),
                 }).setDescription(`
 artist(s):
 \`${artists}\`

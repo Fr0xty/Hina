@@ -1,6 +1,6 @@
 import { BaseCommand } from 'hina';
 import { Message, MessageEmbed } from 'discord.js';
-import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 
 export default class epochtime implements BaseCommand {
     name: String;
@@ -15,8 +15,8 @@ export default class epochtime implements BaseCommand {
 
     async execute(msg: Message, args: string[]) {
         const embed = new MessageEmbed()
-            .setColor(hinaColor)
-            .setAuthor({ name: 'Epoch Time Example', iconURL: Hina.user!.displayAvatarURL(hinaImageOption) })
+            .setColor(Hina.color)
+            .setAuthor({ name: 'Epoch Time Example', iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
             .setDescription(
                 `
 [Epoch Time Converter](https://www.epochconverter.com/) 
@@ -32,7 +32,7 @@ export default class epochtime implements BaseCommand {
             )
             .setFooter({
                 text: `Requested by ${msg.author.tag}さま`,
-                iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                iconURL: msg.author.displayAvatarURL(Hina.imageOption),
             })
             .setImage('https://cdn.discordapp.com/attachments/907586559719645204/908234637380288552/sheeeeeeeesh.jpeg')
             .setTimestamp();

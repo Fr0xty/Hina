@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 import { BaseCommand } from 'hina';
 import { paginator } from '../../utils/paginator.js';
-import { Hina, prefix, hinaColor, hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import CommandArgument from '../../res/models/CommandArgument.js';
 
 export default class waifuPics implements BaseCommand {
@@ -31,7 +31,7 @@ export default class waifuPics implements BaseCommand {
         const [givenAmount] = args;
         const amount = givenAmount ? Number(givenAmount) : 1;
 
-        const tag = msg.content.slice(prefix.length).split(' ').shift()!.toLowerCase();
+        const tag = msg.content.slice(Hina.prefix.length).split(' ').shift()!.toLowerCase();
         let endpoint;
         switch (tag) {
             case 'neko':
@@ -70,12 +70,12 @@ export default class waifuPics implements BaseCommand {
         for (let i = 0; i < amount; i++) {
             const embed = new MessageEmbed()
                 .setAuthor({ name: `${Hina.user!.username} Page ${_++} / ${amount}` })
-                .setColor(hinaColor)
+                .setColor(Hina.color)
                 .setTitle(tag)
                 .setImage(images[i])
                 .setFooter({
                     text: `Requested by: ${msg.author.tag}`,
-                    iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                    iconURL: msg.author.displayAvatarURL(Hina.imageOption),
                 })
                 .setTimestamp();
 

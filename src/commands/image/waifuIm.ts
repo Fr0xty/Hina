@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 import { BaseCommand } from 'hina';
 import { paginator } from '../../utils/paginator.js';
-import { Hina, prefix, hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import CommandArgument from '../../res/models/CommandArgument.js';
 
 export default class waifuIm implements BaseCommand {
@@ -52,7 +52,7 @@ export default class waifuIm implements BaseCommand {
         const [givenAmount] = args;
         const amount = givenAmount ? Number(givenAmount) : 1;
 
-        const tag = msg.content.slice(prefix.length).split(' ').shift()!.toLowerCase();
+        const tag = msg.content.slice(Hina.prefix.length).split(' ').shift()!.toLowerCase();
         let url;
         switch (tag) {
             // sfw
@@ -146,7 +146,7 @@ export default class waifuIm implements BaseCommand {
                 .setImage(images[i].url)
                 .setFooter({
                     text: `Requested by: ${msg.author.tag}`,
-                    iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                    iconURL: msg.author.displayAvatarURL(Hina.imageOption),
                 })
                 .setTimestamp();
 

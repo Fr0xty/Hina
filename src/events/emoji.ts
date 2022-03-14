@@ -1,5 +1,5 @@
 import { NewsChannel, TextChannel } from 'discord.js';
-import { Hina, hinaImageOption } from '../res/config.js';
+import { Hina } from '../res/config.js';
 
 Hina.on('messageCreate', async (msg): Promise<any> => {
     if (!(msg.channel instanceof NewsChannel || msg.channel instanceof TextChannel)) return;
@@ -19,7 +19,7 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
                 }
 
                 const webhook = await msg.channel.createWebhook(msg.member!.displayName, {
-                    avatar: msg.author.displayAvatarURL(hinaImageOption),
+                    avatar: msg.author.displayAvatarURL(Hina.imageOption),
                 });
                 await webhook.send(emoji.toString());
                 await webhook.delete();

@@ -1,6 +1,6 @@
 import { DMChannel, MessageEmbed } from 'discord.js';
 import { BaseCommand } from 'hina';
-import { Hina, hinaColor, prefix } from '../res/config.js';
+import { Hina } from '../res/config.js';
 import { validateArgument } from '../utils/command.js';
 
 /**
@@ -10,13 +10,13 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
     /**
      * filter out bots & no prefix & non guild channels
      */
-    if (!msg.content.toLowerCase().startsWith(prefix) || msg.author.bot || !msg.guild) return;
+    if (!msg.content.toLowerCase().startsWith(Hina.prefix) || msg.author.bot || !msg.guild) return;
 
     /**
      * extract commandName: String and args: String[]
      * if !commandName -> just prefix, return;
      */
-    const noPrefixMsg = msg.content.slice(prefix.length).trim();
+    const noPrefixMsg = msg.content.slice(Hina.prefix.length).trim();
     const args = noPrefixMsg?.split(/ +/);
     if (!args) return;
     const commandName = args.shift()!.toLowerCase().replace(/\s+/g, '');
@@ -27,7 +27,7 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
     const command: BaseCommand = Hina.commands.get(commandName);
     if (!command) {
         const embed = new MessageEmbed()
-            .setColor(hinaColor)
+            .setColor(Hina.color)
             .setTitle(
                 `No command named "${
                     commandName.length < 10 ? commandName : commandName.slice(0, 10).concat('...')
@@ -49,7 +49,7 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
             // missing required argument
             if (!command.args[i].optional && !args.length) {
                 const embed = new MessageEmbed()
-                    .setColor(hinaColor)
+                    .setColor(Hina.color)
                     .setTitle(`Missing command argument "${command.args[i].name}"`)
                     .setDescription(
                         `
@@ -78,7 +78,7 @@ ${command.args[i].description}`
             const validateResult = validateArgument(structuredArguments.at(-1)!, command.args[i]);
             if (!validateResult) {
                 const embed = new MessageEmbed()
-                    .setColor(hinaColor)
+                    .setColor(Hina.color)
                     .setTitle(`Invalid argument for "${command.args[i].name}"`)
                     .setDescription(
                         `

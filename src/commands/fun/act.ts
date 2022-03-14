@@ -1,6 +1,6 @@
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import { Message, NewsChannel, TextChannel } from 'discord.js';
 
 // TODO: fix avatar not working in webhook
@@ -34,7 +34,7 @@ export default class act implements BaseCommand {
         // sending the message as user using webhook
         if (!(msg.channel instanceof NewsChannel || msg.channel instanceof TextChannel)) return;
         const webhook = await msg.channel.createWebhook(member.displayName, {
-            avatar: member.displayAvatarURL(hinaImageOption),
+            avatar: member.displayAvatarURL(Hina.imageOption),
         });
         await webhook.send(message);
         await webhook.delete();

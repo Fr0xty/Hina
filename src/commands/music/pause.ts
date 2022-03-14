@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import { BaseCommand } from 'hina';
-import { Hina, okEmoji } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 
 export default class pause implements BaseCommand {
     name: String;
@@ -16,6 +16,6 @@ export default class pause implements BaseCommand {
         if (!queue) return await msg.reply("I'm not currently playing in this server.");
 
         queue.setPaused(true);
-        await msg.react(okEmoji);
+        await msg.react(Hina.okEmoji);
     }
 }

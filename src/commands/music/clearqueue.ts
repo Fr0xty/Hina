@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import { BaseCommand } from 'hina';
-import { Hina, okEmoji } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 
 export default class clearqueue implements BaseCommand {
     name: String;
@@ -19,6 +19,6 @@ export default class clearqueue implements BaseCommand {
         if (!queue.nowPlaying()) return await msg.reply('There is no music in queue.');
 
         queue.clear();
-        await msg.react(okEmoji);
+        await msg.react(Hina.okEmoji);
     }
 }

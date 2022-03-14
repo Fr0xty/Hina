@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import { MessageEmbed } from 'discord.js';
 
 import { BaseCommand } from 'hina';
-import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import { Message } from 'discord.js';
 
 export default class joke implements BaseCommand {
@@ -26,11 +26,11 @@ export default class joke implements BaseCommand {
                 : `${joke.setup.replace('`', '\\`')}\n||${joke.delivery.replace('`', '\\`')}||`;
 
         const embed = new MessageEmbed()
-            .setColor(hinaColor)
-            .setAuthor({ name: `Joke (${joke.category})`, iconURL: Hina.user!.displayAvatarURL(hinaImageOption) })
+            .setColor(Hina.color)
+            .setAuthor({ name: `Joke (${joke.category})`, iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
             .setFooter({
                 text: `Requested by: ${msg.author.tag}`,
-                iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                iconURL: msg.author.displayAvatarURL(Hina.imageOption),
             })
             .setTimestamp()
             .setDescription(`${content}\n\n[source](https://v2.jokeapi.dev/)`);

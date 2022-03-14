@@ -1,14 +1,7 @@
+import { Client, Collection, Intents, MessageEmbed } from 'discord.js';
 import { Player, Queue } from 'discord-player';
-import { Client, Collection, Intents, ImageURLOptions, MessageEmbed, EmbedAuthorData } from 'discord.js';
+import firebaseAdmin from 'firebase-admin';
 import 'dotenv/config';
-import { sleep } from '../utils/general';
-
-export const token = process.env.TOKEN;
-export const prefix = 'hina ';
-export const hinaColor = '#E49CFF';
-
-export const okEmoji = '902096184645124146';
-export const hinaImageOption: ImageURLOptions = { dynamic: true, size: 4096 };
 
 /************************************************
  * main Hina client
@@ -26,19 +19,30 @@ const Hina = new Client({
         Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
     ],
 });
+
+/**
+ * properties
+ */
+Hina.token = process.env.TOKEN!;
+Hina.prefix = 'hina ';
+Hina.color = '#E49CFF';
+
+Hina.okEmoji = '902096184645124146';
+Hina.imageOption = { dynamic: true, size: 4096 };
+
 /**
  * to store all commands
  */
 Hina.commands = new Collection();
 
-/**
+/************************************************
  * player instance for music commands
- */
+ ***********************************************/
 Hina.player = new Player(Hina);
 
 Hina.player.on('trackStart', (queue: Queue<any>, track) => {
     const embed = new MessageEmbed()
-        .setColor(hinaColor)
+        .setColor(Hina.color)
         .setAuthor({
             name: `Music queue for ${queue.guild.name}`,
             iconURL: queue.guild.iconURL() ? queue.guild.iconURL()! : Hina.user!.displayAvatarURL(),
@@ -65,7 +69,7 @@ Hina.player.on('connectionError', (queue, error) => {
 
 Hina.player.on('trackAdd', async (queue: Queue<any>, track) => {
     const embed = new MessageEmbed()
-        .setColor(hinaColor)
+        .setColor(Hina.color)
         .setAuthor({
             name: `Music queue for ${queue.guild.name}`,
             iconURL: queue.guild.iconURL() ? queue.guild.iconURL()! : Hina.user!.displayAvatarURL(),
@@ -79,7 +83,7 @@ Hina.player.on('trackAdd', async (queue: Queue<any>, track) => {
 
 Hina.player.on('tracksAdd', async (queue: Queue<any>, track) => {
     const embed = new MessageEmbed()
-        .setColor(hinaColor)
+        .setColor(Hina.color)
         .setAuthor({
             name: `Music queue for ${queue.guild.name}`,
             iconURL: queue.guild.iconURL() ? queue.guild.iconURL()! : Hina.user!.displayAvatarURL(),
@@ -93,4 +97,16 @@ Hina.player.on('queueEnd', async (queue: Queue<any>) => {
     await queue.metadata.channel.send('There is no more music in queue, use `play` to add more songs.');
 });
 
+/************************************************
+ * connect to firebase
+ ***********************************************/
+const app = firebaseAdmin.initializeApp({
+    credential: firebaseAdmin.credential.cert(JSON.parse(process.env.FIREBASE_CREDENTIALS!)),
+    databaseURL: 'https://hina-9a90d-default-rtdb.firebaseio.com/',
+});
+
+Hina.database = firebaseAdmin.firestore(app);
+const addition = await Hina.database.collection('users').doc('abc').add({ something: 'foo' });
+
+console.log(addition);
 export { Hina };

@@ -2,7 +2,7 @@ import { Message, NewsChannel, TextChannel } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 
 export default class usemoji implements BaseCommand {
     name: String;
@@ -27,7 +27,7 @@ export default class usemoji implements BaseCommand {
 
         if (!(msg.channel instanceof NewsChannel || msg.channel instanceof TextChannel)) return;
         const webhook = await msg.channel.createWebhook(msg.member!.displayName, {
-            avatar: msg.author.displayAvatarURL(hinaImageOption),
+            avatar: msg.author.displayAvatarURL(Hina.imageOption),
         });
 
         await webhook.send(`<${emoji_id}>`);

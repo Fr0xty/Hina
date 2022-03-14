@@ -15,6 +15,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "ffmpeg-static": "^4.4.1",
+    "firebase-admin": "^10.0.2",
     "node-fetch": "^3.2.2",
     "piston-client": "^1.0.2",
     "translate": "^1.4.1",

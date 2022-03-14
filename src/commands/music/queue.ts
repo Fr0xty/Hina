@@ -1,6 +1,6 @@
 import { Message, MessageEmbed } from 'discord.js';
 import { BaseCommand } from 'hina';
-import { Hina, hinaColor } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import { paginator } from '../../utils/paginator.js';
 
 export default class queue implements BaseCommand {
@@ -26,7 +26,7 @@ export default class queue implements BaseCommand {
          */
         if (!queue.tracks.length) {
             const embed = new MessageEmbed()
-                .setColor(hinaColor)
+                .setColor(Hina.color)
                 .setAuthor({
                     name: `Music queue for ${queue.guild.name}`,
                     iconURL: queue.guild.iconURL() ? queue.guild.iconURL()! : Hina.user!.displayAvatarURL(),
@@ -55,7 +55,7 @@ no more songs in queue...
 
             if (songNum % 15 === 0) {
                 const embed = new MessageEmbed()
-                    .setColor(hinaColor)
+                    .setColor(Hina.color)
                     .setAuthor({
                         name: `Music queue for ${queue.guild.name} | Page ${pages.length + 1} / ${Math.ceil(
                             (queue.tracks.length + 1) / 15
@@ -73,7 +73,7 @@ no more songs in queue...
         });
         if (page) {
             const embed = new MessageEmbed()
-                .setColor(hinaColor)
+                .setColor(Hina.color)
                 .setAuthor({
                     name: `Music queue for ${queue.guild.name} | Page ${pages.length + 1} / ${Math.ceil(
                         (queue.tracks.length + 1) / 15

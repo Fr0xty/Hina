@@ -2,7 +2,7 @@ import { Message } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Hina, hinaImageOption, okEmoji } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import { generateHinaInvite } from '../../utils/general.js';
 import { Help as HinaHelpEmbed } from '../../res/models/HinaHelpEmbed.js';
 
@@ -107,7 +107,7 @@ Use \`hina help\` instead or to check the categories.
 
                     case 'delete':
                         await sentEmbed.delete();
-                        await msg.react(okEmoji);
+                        await msg.react(Hina.okEmoji);
                         return;
                 }
             }
@@ -122,7 +122,7 @@ Use \`hina help\` instead or to check the categories.
         collector.on('end', async (collected) => {
             try {
                 await sentEmbed.edit({ components: [] });
-                await msg.react(okEmoji);
+                await msg.react(Hina.okEmoji);
             } catch {}
         });
     }
