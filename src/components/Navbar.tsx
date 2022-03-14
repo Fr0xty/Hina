@@ -2,8 +2,16 @@ import '../scss/Navbar.scss';
 import hina_pfp from '../images/hina_pfp.png';
 import { useEffect } from 'react';
 
-const Navbar = () => {
+const Navbar = ({ solidBackground }: { solidBackground?: boolean }) => {
     useEffect(() => {
+        if (solidBackground) {
+            const navbar = document.querySelector('.Navbar');
+            navbar!.classList.add('hasBackgroundColor');
+            // @ts-ignore
+            navbar!.style.position = 'relative';
+            return;
+        }
+
         document.addEventListener('wheel', () => {
             const navbarComponent = document.querySelector('.Navbar');
             window.scrollY >= 100

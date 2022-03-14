@@ -27,7 +27,7 @@ const Statistics = () => {
             <div>
                 <img src={guildIcon} alt="server icon" />
                 <p>
-                    is in <b>{statistics.guildCount}</b> servers!
+                    Hina is in <b>{statistics.guildCount}</b> servers!
                 </p>
             </div>
             <div className="user-stats">
@@ -39,7 +39,7 @@ const Statistics = () => {
             <div>
                 <img src={commandIcon} alt="command icon" />
                 <p>
-                    has <b>{statistics.commandCount}</b> commands!
+                    and has <b>{statistics.commandCount}</b> commands!
                 </p>
             </div>
         </div>

@@ -28,7 +28,7 @@ const Hero = () => {
                 </p>
                 <div className="hero-btns">
                     <button>
-                        <a href="/commandhelp">Command Help</a>
+                        <a href="/command-help">Command Help</a>
                     </button>
                     <button>
                         <a href="https://discord.gg/VtQRrVCxg8" target="_blank">
