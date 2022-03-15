@@ -5,12 +5,12 @@ const router = Router();
 
 router.get('/statistics', async (req, res) => {
     const guildCount = Hina.guilds.cache.size;
-    const memberCount = Hina.users.cache.size;
+    const userCount = Hina.users.cache.size;
     const commandCount = Hina.commands.size;
 
     res.json({
-        guildIn: guildCount,
-        memberCount: memberCount,
+        guildCount: guildCount,
+        userCount: userCount,
         commandCount: commandCount,
     });
 });
