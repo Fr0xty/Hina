@@ -1,6 +1,5 @@
-import { ImgHTMLAttributes, ReactElement, ReactHTMLElement, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { JsxSelfClosingElement } from 'typescript';
 
 const AvatarHistory = () => {
     const { userId } = useParams();
