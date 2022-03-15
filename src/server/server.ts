@@ -8,8 +8,10 @@ const app = express();
 /**
  * express routers
  */
-import hinawebRouter from './routes/api/hinaweb.js';
+import hinawebRouter from './routes/api/private/hinaweb.js';
+import avatarhistoryRouter from './routes/api/private/fetchavatarhistory.js';
 app.use('/api/hinaweb', hinawebRouter);
+app.use('/api/fetch-avatar-history', avatarhistoryRouter);
 
 /**
  * homepage
