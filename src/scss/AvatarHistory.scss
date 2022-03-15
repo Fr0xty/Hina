@@ -1,0 +1,11 @@
+.AvatarHistory {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    flex: 1 1 10%;
+    padding: 0.1em;
+    box-sizing: border-box;
+    text-align: center;
+}

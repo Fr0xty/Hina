@@ -31,13 +31,17 @@ const Hero = () => {
                         <a href="/command-help">Command Help</a>
                     </button>
                     <button>
-                        <a href="https://discord.gg/VtQRrVCxg8" target="_blank">
+                        <a
+                            href="https://discord.gg/VtQRrVCxg8"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             Join Server
                         </a>
                     </button>
                 </div>
             </div>
-            <img src={heroImage} alt="hero image" />
+            <img src={heroImage} alt="random waifu" />
         </div>
     );
 };

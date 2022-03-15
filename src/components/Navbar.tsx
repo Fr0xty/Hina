@@ -32,12 +32,17 @@ const Navbar = ({ solidBackground }: { solidBackground?: boolean }) => {
                     <a
                         href="https://discord.com/api/oauth2/authorize?client_id=769125937731338290&scope=bot+applications.commands&permissions=1099511627776"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         Invite
                     </a>
                 </li>
                 <li>
-                    <a href="https://github.com/Fr0xty/Hina" target="_blank">
+                    <a
+                        href="https://github.com/Fr0xty/Hina"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         Repository
                     </a>
                 </li>
