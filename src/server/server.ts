@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, '..', 'build')));
 import hinawebRouter from './routes/api/private/hinaweb.js';
 import fetchavatarhistoryRouter from './routes/api/private/fetchavatarhistory.js';
 app.use('/api/hinaweb', hinawebRouter);
-app.use('api/fetchavatarhistory', fetchavatarhistoryRouter);
+app.use('/api/fetch-avatar-history', fetchavatarhistoryRouter);
 
 /**
  * render React webapp
