@@ -38,6 +38,6 @@ export default class join implements BaseCommand {
             await queue.connect(msg.member!.voice.channel);
         }
 
-        await msg.reply(okEmoji);
+        await msg.react(okEmoji);
     }
 }

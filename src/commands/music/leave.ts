@@ -15,7 +15,7 @@ export default class leave implements BaseCommand {
         const queue = Hina.player.getQueue(msg.guild!);
         if (!queue) return await msg.reply("I'm not currently playing in this server.");
 
-        queue.destroy();
-        await msg.reply(okEmoji);
+        queue.destroy(true);
+        await msg.react(okEmoji);
     }
 }
