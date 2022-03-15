@@ -2,7 +2,7 @@ import { Message, MessageActionRow, MessageButton, MessageEmbed } from 'discord.
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import { generateHinaInvite } from '../../utils/general.js';
 
 export default class invite implements BaseCommand {
@@ -18,12 +18,12 @@ export default class invite implements BaseCommand {
         const HinaInvite = await generateHinaInvite(Hina);
 
         const embed = new MessageEmbed()
-            .setAuthor({ name: 'My invite link♡', iconURL: Hina.user!.displayAvatarURL(hinaImageOption) })
-            .setColor(hinaColor)
+            .setAuthor({ name: 'My invite link♡', iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
+            .setColor(Hina.color)
             .setDescription(HinaInvite)
             .setFooter({
                 text: `Requested by: ${msg.author.tag}`,
-                iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                iconURL: msg.author.displayAvatarURL(Hina.imageOption),
             })
             .setTimestamp();
 

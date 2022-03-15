@@ -3,7 +3,7 @@ import piston from 'piston-client';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 
 export default class repl implements BaseCommand {
     name: String;
@@ -47,8 +47,8 @@ export default class repl implements BaseCommand {
         }
 
         const embed = new MessageEmbed()
-            .setColor(hinaColor)
-            .setAuthor({ name: "Hina's Code Runner", iconURL: Hina.user!.displayAvatarURL(hinaImageOption) })
+            .setColor(Hina.color)
+            .setAuthor({ name: "Hina's Code Runner", iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
             .setDescription(
                 `
 \`\`\`\n${consoleMsg}\`\`\`
@@ -60,7 +60,7 @@ version: \`${result.version}\`
             )
             .setFooter({
                 text: `Requested by: ${msg.author.tag}`,
-                iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                iconURL: msg.author.displayAvatarURL(Hina.imageOption),
             })
             .setTimestamp();
 

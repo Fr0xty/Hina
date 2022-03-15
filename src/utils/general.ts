@@ -1,7 +1,5 @@
 import { Client, Guild, Permissions } from 'discord.js';
 
-import { hinaImageOption } from '../res/config.js';
-
 export const generateHinaInvite = async (Hina: Client) => {
     const invite = Hina.generateInvite({
         permissions: [Permissions.FLAGS.MODERATE_MEMBERS],
@@ -11,8 +9,8 @@ export const generateHinaInvite = async (Hina: Client) => {
 };
 
 export const guildOrHinaIcon = async (Hina: Client, guild: Guild) => {
-    if (guild.iconURL()) return guild.iconURL(hinaImageOption);
-    return Hina.user!.displayAvatarURL(hinaImageOption);
+    if (guild.iconURL()) return guild.iconURL(Hina.imageOption);
+    return Hina.user!.displayAvatarURL(Hina.imageOption);
 };
 
 export const sleep = (ms: number): Promise<void> => {

@@ -1,6 +1,6 @@
 import { Message, MessageEmbed } from 'discord.js';
 import { BaseCommand } from 'hina';
-import { Hina, hinaColor } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 
 export default class nowplaying implements BaseCommand {
     name: String;
@@ -24,7 +24,7 @@ export default class nowplaying implements BaseCommand {
         const timestamp = queue.getPlayerTimestamp();
 
         const embed = new MessageEmbed()
-            .setColor(hinaColor)
+            .setColor(Hina.color)
             .setAuthor({
                 name: `Music queue for ${queue.guild.name}`,
                 iconURL: queue.guild.iconURL() ? queue.guild.iconURL()! : Hina.user!.displayAvatarURL(),

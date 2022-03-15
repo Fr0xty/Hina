@@ -3,7 +3,7 @@ import { MessageEmbed } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import { Message } from 'discord.js';
 
 export default class funfact implements BaseCommand {
@@ -22,11 +22,11 @@ export default class funfact implements BaseCommand {
         const fact: any = await req.json();
 
         const embed = new MessageEmbed()
-            .setColor(hinaColor)
-            .setAuthor({ name: 'Fun fact with Hina!', iconURL: Hina.user!.displayAvatarURL(hinaImageOption) })
+            .setColor(Hina.color)
+            .setAuthor({ name: 'Fun fact with Hina!', iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
             .setFooter({
                 text: `Requested by: ${msg.author.tag}`,
-                iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                iconURL: msg.author.displayAvatarURL(Hina.imageOption),
             })
             .setTimestamp().setDescription(`
 ${fact.text.replace('`', '\\`')}

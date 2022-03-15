@@ -1,6 +1,6 @@
 import { BaseCommand } from 'hina';
 import { Message, MessageEmbed } from 'discord.js';
-import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import { convertSeconds } from '../../utils/convert.js';
 
 export default class appinfo implements BaseCommand {
@@ -31,14 +31,14 @@ websocket latency: \`${Math.round(Hina.ws.ping)}ms\`
 bot uptime: \`${uptime}\`
             `
             )
-            .setAuthor({ name: Hina.user!.tag, iconURL: Hina.user!.displayAvatarURL(hinaImageOption) })
-            .setColor(hinaColor)
+            .setAuthor({ name: Hina.user!.tag, iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
+            .setColor(Hina.color)
             .setTitle(`Hina's Application Info`)
-            .setThumbnail(Hina.user!.displayAvatarURL(hinaImageOption))
+            .setThumbnail(Hina.user!.displayAvatarURL(Hina.imageOption))
             .setTimestamp()
             .setFooter({
                 text: `Requested by: ${msg.author.tag}`,
-                iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                iconURL: msg.author.displayAvatarURL(Hina.imageOption),
             });
         await msg.reply({ embeds: [embed] });
     }

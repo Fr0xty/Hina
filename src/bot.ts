@@ -3,7 +3,7 @@ import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 import fs from 'fs';
 
-import { Hina, token } from './res/config.js';
+import { Hina } from './res/config.js';
 
 /**
  * register slash commands
@@ -12,7 +12,7 @@ const registerSlashCommands = async (slashCommandProfiles: Object) => {
     const hinaId = '769125937731338290';
     const guildId = '744786416327721050';
 
-    const rest = new REST({ version: '9' }).setToken(token!);
+    const rest = new REST({ version: '9' }).setToken(Hina.token!);
 
     await rest.put(Routes.applicationGuildCommands(hinaId, guildId), {
         body: slashCommandProfiles,
@@ -98,4 +98,4 @@ server();
 /**
  * login into bot
  */
-Hina.login(token);
+Hina.login(Hina.token!);

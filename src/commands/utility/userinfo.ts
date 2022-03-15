@@ -1,9 +1,8 @@
 import { Message, MessageEmbed } from 'discord.js';
-import piston from 'piston-client';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import { convertFlags, convertPermissions, convertPresence } from '../../utils/convert.js';
 
 export default class userinfo implements BaseCommand {
@@ -68,7 +67,7 @@ export default class userinfo implements BaseCommand {
         const embed = new MessageEmbed()
             .setAuthor({
                 name: `${member.displayName}'s User Info`,
-                iconURL: member.user.displayAvatarURL(hinaImageOption),
+                iconURL: member.user.displayAvatarURL(Hina.imageOption),
             })
             .setTitle(member.user.tag)
             .setColor(member.displayHexColor)
@@ -76,7 +75,7 @@ export default class userinfo implements BaseCommand {
             .setTimestamp()
             .setFooter({
                 text: `Requested by: ${msg.author.tag}`,
-                iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                iconURL: msg.author.displayAvatarURL(Hina.imageOption),
             })
             .addFields(
                 { name: 'nickname', value: nickname, inline: true },

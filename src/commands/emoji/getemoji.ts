@@ -2,7 +2,7 @@ import { Message, MessageEmbed } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import { paginator } from '../../utils/paginator.js';
 
 export default class getemoji implements BaseCommand {
@@ -44,16 +44,16 @@ export default class getemoji implements BaseCommand {
 
                 if (_ === 20) {
                     const embed: MessageEmbed = new MessageEmbed()
-                        .setColor(hinaColor)
+                        .setColor(Hina.color)
                         .setAuthor({
                             name: `${Hina.user!.username} Page ${pages.length + 1} / ${pageAmount}`,
-                            iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
+                            iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
                         })
                         .setTitle(`Emoji Id(s) for ${guild!.name} [${emojiAmount}]`)
                         .setDescription(page)
                         .setFooter({
                             text: `Requested by: ${msg.author.tag}`,
-                            iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                            iconURL: msg.author.displayAvatarURL(Hina.imageOption),
                         })
                         .setTimestamp();
 
@@ -64,16 +64,16 @@ export default class getemoji implements BaseCommand {
             }
             if (_) {
                 const embed = new MessageEmbed()
-                    .setColor(hinaColor)
+                    .setColor(Hina.color)
                     .setAuthor({
                         name: `${Hina.user!.username} Page ${pages.length + 1} / ${pageAmount}`,
-                        iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
+                        iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
                     })
                     .setTitle(`Emoji Id(s) for ${guild!.name} [${emojiAmount}]`)
                     .setDescription(page)
                     .setFooter({
                         text: `Requested by: ${msg.author.tag}`,
-                        iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                        iconURL: msg.author.displayAvatarURL(Hina.imageOption),
                     })
                     .setTimestamp();
 

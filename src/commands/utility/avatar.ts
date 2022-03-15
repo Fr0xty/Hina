@@ -1,7 +1,7 @@
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { Message, MessageEmbed } from 'discord.js';
-import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 
 export default class avatar implements BaseCommand {
     name: String;
@@ -28,34 +28,34 @@ export default class avatar implements BaseCommand {
         if (!User) return await msg.reply('Invalid user id / mention!');
 
         const embed = new MessageEmbed()
-            .setColor(hinaColor)
-            .setAuthor({ name: "Hina's Avatar Fetcher", iconURL: Hina.user!.displayAvatarURL(hinaImageOption) })
+            .setColor(Hina.color)
+            .setAuthor({ name: "Hina's Avatar Fetcher", iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
             .setTitle(`${User.tag}'s Avatar'`)
             .setDescription(
                 `
 [\`webp\`](${User.displayAvatarURL({
-    dynamic: true,
-    format: 'webp',
-    size: 4096
-})}) [\`png\`](${User.displayAvatarURL({
-    dynamic: true,
-    format: 'png',
-    size: 4096
-})}) [\`jpg\`](${User.displayAvatarURL({
-    dynamic: true,
-    format: 'jpg',
-    size: 4096
-})}) [\`jpeg\`](${User.displayAvatarURL({
-    dynamic: true,
-    format: 'jpeg',
-    size: 4096
-})})
+                    dynamic: true,
+                    format: 'webp',
+                    size: 4096,
+                })}) [\`png\`](${User.displayAvatarURL({
+                    dynamic: true,
+                    format: 'png',
+                    size: 4096,
+                })}) [\`jpg\`](${User.displayAvatarURL({
+                    dynamic: true,
+                    format: 'jpg',
+                    size: 4096,
+                })}) [\`jpeg\`](${User.displayAvatarURL({
+                    dynamic: true,
+                    format: 'jpeg',
+                    size: 4096,
+                })})
             `
             )
-            .setImage(User.displayAvatarURL(hinaImageOption))
+            .setImage(User.displayAvatarURL(Hina.imageOption))
             .setFooter({
                 text: `Requested by: ${msg.author.tag}`,
-                iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                iconURL: msg.author.displayAvatarURL(Hina.imageOption),
             })
             .setTimestamp();
 

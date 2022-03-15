@@ -1,5 +1,5 @@
-import { MessageEmbed, MessageActionRow, MessageButton, MessageSelectMenu, Client, User, Message } from 'discord.js';
-import { Hina, hinaColor, hinaImageOption } from '../config.js';
+import { MessageEmbed, MessageActionRow, MessageButton, MessageSelectMenu, User } from 'discord.js';
+import { Hina } from '../config.js';
 
 export class Help {
     author: User;
@@ -129,9 +129,9 @@ export class Help {
         this.mainPage = new MessageEmbed()
             .setAuthor({
                 name: `${Hina.user!.username} Commands!`,
-                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
+                iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
             })
-            .setColor(hinaColor)
+            .setColor(Hina.color)
             .setTitle('Command Categories')
             .setDescription(
                 `
@@ -154,16 +154,16 @@ My prefix is \`hina\`
             )
             .setFooter({
                 text: `Requested by: ${this.author.tag}`,
-                iconURL: this.author.displayAvatarURL(hinaImageOption),
+                iconURL: this.author.displayAvatarURL(Hina.imageOption),
             })
             .setTimestamp();
 
         this.behavoiral = new MessageEmbed()
             .setAuthor({
                 name: `${Hina.user!.username} Behavoiral Category`,
-                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
+                iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
             })
-            .setColor(hinaColor)
+            .setColor(Hina.color)
             .addFields(
                 {
                     name: 'Greetings',
@@ -183,9 +183,9 @@ My prefix is \`hina\`
         this.general = new MessageEmbed()
             .setAuthor({
                 name: `${Hina.user!.username} General Category`,
-                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
+                iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
             })
-            .setColor(hinaColor)
+            .setColor(Hina.color)
             .addFields(
                 { name: '`help [category]`', value: 'get this help embed.', inline: true },
                 { name: '`invite`', value: 'get my invite link.', inline: true },
@@ -200,9 +200,9 @@ My prefix is \`hina\`
         this.fun = new MessageEmbed()
             .setAuthor({
                 name: `${Hina.user!.username} Fun Category`,
-                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
+                iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
             })
-            .setColor(hinaColor)
+            .setColor(Hina.color)
             .addFields(
                 { name: '`funfact`', value: 'get a fun fact!', inline: true },
                 { name: '`joke`', value: 'Allow me to tell you a joke.', inline: true },
@@ -217,9 +217,9 @@ My prefix is \`hina\`
         this.emoji = new MessageEmbed()
             .setAuthor({
                 name: `${Hina.user!.username} Fun Category`,
-                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
+                iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
             })
-            .setColor(hinaColor)
+            .setColor(Hina.color)
             .setThumbnail(
                 'https://media.discordapp.net/attachments/907586559719645204/938784511838273586/nitro_perk.png'
             )
@@ -260,9 +260,9 @@ __reply to the message while using the command__
         this.music = new MessageEmbed()
             .setAuthor({
                 name: `${Hina.user!.username} Fun Category`,
-                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
+                iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
             })
-            .setColor(hinaColor)
+            .setColor(Hina.color)
             .addFields(
                 { name: '`play <query/url>`', value: 'Add music to queue.', inline: true },
                 { name: '`join`', value: 'I will join your voice channel.', inline: true },
@@ -283,9 +283,9 @@ __reply to the message while using the command__
         this.image = new MessageEmbed()
             .setAuthor({
                 name: `${Hina.user!.username} Image Category`,
-                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
+                iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
             })
-            .setColor(hinaColor)
+            .setColor(Hina.color)
             .setTitle('Get images with the following tags.')
             .setDescription(
                 `
@@ -320,9 +320,9 @@ This can be applied to every command in this category. Must be \`>0\` and \`<31\
         this.language = new MessageEmbed()
             .setAuthor({
                 name: `${Hina.user!.username} Language Category`,
-                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
+                iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
             })
-            .setColor(hinaColor)
+            .setColor(Hina.color)
             .addFields(
                 {
                     name: '`translate [toLanguage] [fromLanguage]`',
@@ -340,9 +340,9 @@ This can be applied to every command in this category. Must be \`>0\` and \`<31\
         this.utility = new MessageEmbed()
             .setAuthor({
                 name: `${Hina.user!.username} Utility Category`,
-                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
+                iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
             })
-            .setColor(hinaColor)
+            .setColor(Hina.color)
             .addFields(
                 { name: '`appinfo`', value: 'Get my information!', inline: true },
                 { name: '`userinfo [@user/userid]`', value: 'Get my information!', inline: true },
@@ -359,9 +359,9 @@ This can be applied to every command in this category. Must be \`>0\` and \`<31\
         this.coderunner = new MessageEmbed()
             .setAuthor({
                 name: `${Hina.user!.username} Code Runner Category`,
-                iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
+                iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
             })
-            .setColor(hinaColor)
+            .setColor(Hina.color)
             .addFields({
                 name: 'How to use?',
                 value: `

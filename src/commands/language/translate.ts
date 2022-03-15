@@ -4,7 +4,7 @@ import DetectLanguage from 'detectlanguage';
 import 'dotenv/config';
 
 import { BaseCommand } from 'hina';
-import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import CommandArgument from '../../res/models/CommandArgument.js';
 
 Translate.engine = 'google';
@@ -62,7 +62,7 @@ export default class translate implements BaseCommand {
         }
 
         const embed = new MessageEmbed()
-            .setColor(hinaColor)
+            .setColor(Hina.color)
             .setAuthor({ name: 'Hina Translate', iconURL: Hina.user!.displayAvatarURL() })
             .setDescription(
                 `

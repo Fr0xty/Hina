@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 import { BaseCommand } from 'hina';
 import { paginator } from '../../utils/paginator.js';
-import { Hina, hinaColor, hinaImageOption } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 import CommandArgument from '../../res/models/CommandArgument.js';
 
 export default class jisho implements BaseCommand {
@@ -70,10 +70,10 @@ export default class jisho implements BaseCommand {
             }
 
             const embed = new MessageEmbed()
-                .setColor(hinaColor)
+                .setColor(Hina.color)
                 .setAuthor({
                     name: `Hina Jisho (Page ${i + 1} / ${result.data.length})`,
-                    iconURL: Hina.user!.displayAvatarURL(hinaImageOption),
+                    iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
                 })
                 .setTitle(`${firstReading.word} (${firstReading.reading})`)
                 .setURL(`https://jisho.org/search/${wordResult.slug}`)
@@ -88,7 +88,7 @@ ${dbpediaRedirect}
                 )
                 .setFooter({
                     text: `Requested by ${msg.author.tag}`,
-                    iconURL: msg.author.displayAvatarURL(hinaImageOption),
+                    iconURL: msg.author.displayAvatarURL(Hina.imageOption),
                 })
                 .setTimestamp();
 

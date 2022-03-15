@@ -1,7 +1,6 @@
-import { Queue } from 'discord-player';
 import { Message } from 'discord.js';
 import { BaseCommand } from 'hina';
-import { Hina, okEmoji } from '../../res/config.js';
+import { Hina } from '../../res/config.js';
 
 export default class join implements BaseCommand {
     name: String;
@@ -38,6 +37,6 @@ export default class join implements BaseCommand {
             await queue.connect(msg.member!.voice.channel);
         }
 
-        await msg.react(okEmoji);
+        await msg.react(Hina.okEmoji);
     }
 }
