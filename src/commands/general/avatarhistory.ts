@@ -24,7 +24,7 @@ export default class avatarhistory implements BaseCommand {
 
     async execute(msg: Message, args: string[]) {
         let [userId] = args;
-        if (!userId) userId = msg.author.id;
+        userId = userId ? userId.match(/[0-9]+/)![0] : msg.author.id;
 
         const req = await fetch(`https://Hina.fr0xty.repl.co/Hina/fetch-avatar-history/${userId}`);
 

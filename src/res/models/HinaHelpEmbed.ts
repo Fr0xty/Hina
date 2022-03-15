@@ -189,7 +189,8 @@ My prefix is \`hina\`
             .addFields(
                 { name: '`help [category]`', value: 'get this help embed.', inline: true },
                 { name: '`invite`', value: 'get my invite link.', inline: true },
-                { name: '`spotify [@user/userid]`', value: 'get user spotify listening info.', inline: true }
+                { name: '`spotify [@user/userid]`', value: 'get user spotify listening info.', inline: true },
+                { name: '`avatarhistory [@user/userid]`', value: 'get user avatar history.', inline: true }
             )
             .setFooter({
                 text: '<> = Required, [] = Optional',
