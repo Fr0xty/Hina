@@ -25,3 +25,36 @@
         width: 15em;
     }
 }
+
+@media screen and (max-width: 1000px) {
+    .Statistics {
+        img {
+            height: 4em;
+        }
+
+        div p {
+            font-size: 1.1em;
+        }
+    }
+}
+@media screen and (max-width: 780px) {
+    .Statistics {
+        display: block;
+
+        div,
+        .user-stats {
+            width: auto;
+
+            img {
+                height: 5em;
+            }
+            p {
+                font-size: 1.4em;
+            }
+        }
+
+        .user-stats {
+            margin: 6em 0;
+        }
+    }
+}
