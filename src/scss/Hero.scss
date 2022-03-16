@@ -40,10 +40,74 @@ button {
     }
 
     img {
-        height: 30em;
+        max-width: 28em;
+        max-height: 30em;
         border-radius: 1em;
         margin: auto 0;
         margin-right: 15%;
         transform: rotate(4deg);
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .Hero {
+        .main {
+            h1 {
+                font-size: 3.3em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+        }
+        img {
+            max-width: 23em;
+            max-height: 25em;
+        }
+    }
+}
+@media screen and (max-width: 950px) {
+    .Hero {
+        img {
+            max-width: 20em;
+            max-height: 22em;
+        }
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .Hero {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+
+        .main {
+            margin: 0;
+            width: 80%;
+
+            h1 {
+                font-size: 3.3em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            .hero-btns button a {
+                font-size: 0.9em;
+            }
+
+            .hero-btns {
+                margin: 0 auto;
+
+                button {
+                    padding: 0.4em 0.5em;
+                }
+            }
+        }
+        img {
+            position: absolute;
+            right: 1em;
+            bottom: 8em;
+            opacity: 60%;
+            z-index: -1;
+        }
     }
 }
