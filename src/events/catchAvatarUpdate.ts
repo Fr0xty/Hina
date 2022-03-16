@@ -15,7 +15,7 @@ Hina.on('userUpdate', async (oldUser, newUser) => {
     // if for some reason user isn't registered, register now
     if (!fetchedUser.exists) {
         await userDocument.set({
-            avatars: [oldUser.displayAvatarURL(), newUser.displayAvatarURL()],
+            avatars: [oldUser.displayAvatarURL(Hina.imageOption), newUser.displayAvatarURL(Hina.imageOption)],
         });
         return;
     }
@@ -27,6 +27,6 @@ Hina.on('userUpdate', async (oldUser, newUser) => {
     if (fetchedUserData.avatars.length === 100) fetchedUserData.avatars.shift();
 
     // add new avatar and update
-    fetchedUserData.avatars.push(newUser.displayAvatarURL());
+    fetchedUserData.avatars.push(newUser.displayAvatarURL(Hina.imageOption));
     await userDocument.update(fetchedUserData);
 });

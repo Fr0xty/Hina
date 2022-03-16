@@ -23,7 +23,7 @@ Hina.on('guildCreate', async (guild) => {
             .collection('users')
             .doc(memberId)
             .set({
-                avatars: [member.displayAvatarURL()],
+                avatars: [member.displayAvatarURL(Hina.imageOption)],
             });
     }
 });
