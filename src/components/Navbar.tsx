@@ -4,8 +4,10 @@ import { useEffect } from 'react';
 
 const Navbar = ({ solidBackground }: { solidBackground?: boolean }) => {
     useEffect(() => {
+        const navbar = document.querySelector('.Navbar');
+        const burgerMenu = document.querySelector('input');
+
         if (solidBackground) {
-            const navbar = document.querySelector('.Navbar');
             navbar!.classList.add('hasBackgroundColor');
             // @ts-ignore
             navbar!.style.position = 'relative';
@@ -18,14 +20,27 @@ const Navbar = ({ solidBackground }: { solidBackground?: boolean }) => {
                 ? navbarComponent!.classList.add('hasBackgroundColor')
                 : navbarComponent!.classList.remove('hasBackgroundColor');
         });
+
+        burgerMenu?.addEventListener('change', () => {
+            navbar?.classList.toggle('toggleMobileMenu');
+        });
     }, []);
+
     return (
         <div className="Navbar">
-            <div className="title">
-                <h2>
-                    <a href="/">HinaWeb</a>
-                </h2>
-                <img src={hina_pfp} alt="logo" />
+            <div className="main">
+                <div className="title">
+                    <h2>
+                        <a href="/">HinaWeb</a>
+                    </h2>
+                    <img src={hina_pfp} alt="logo" />
+                </div>
+                <label className="burgerMenu" htmlFor="check">
+                    <input type="checkbox" id="check" />
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
             </div>
             <ul>
                 <li>
