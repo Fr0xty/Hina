@@ -1,8 +1,9 @@
-import { Message } from 'discord.js';
+import { Message, MessageEmbed } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
 import fetch from 'node-fetch';
+import { Hina } from '../../res/config.js';
 
 export default class avatarhistory implements BaseCommand {
     name: String;
@@ -34,6 +35,14 @@ The user is not registered in database.
 
 Either the user does not share a common server, or if the user does(for some reason the user is not registered automatically), try to change your profile picture to register.
         `);
-        await msg.reply(`https://Hina.fr0xty.repl.co/api/avatar-history/${userId}`);
+
+        const theUser = await Hina.users.fetch(userId);
+        const embed = new MessageEmbed()
+            .setColor(Hina.color)
+            .setAuthor({ name: `${theUser.tag}'s Avatar History`, iconURL: theUser.displayAvatarURL() })
+            .setDescription(`see them [HERE](https://Hina.fr0xty.repl.co/api/avatar-history/${userId})`)
+            .setFooter({ text: `Requested by ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL() })
+            .setTimestamp();
+        await msg.reply({ embeds: [embed] });
     }
 }

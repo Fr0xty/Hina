@@ -119,6 +119,12 @@ export class Help {
                     .setEmoji('<a:Koronom:885845966421372958>'),
 
                 new MessageButton()
+                    .setLabel('HinaWeb (NEW!)')
+                    .setStyle('LINK')
+                    .setURL('https://Hina.fr0xty.repl.co')
+                    .setEmoji('<:HinaWeb:953546770963628042>'),
+
+                new MessageButton()
                     .setLabel('Github Repo')
                     .setStyle('LINK')
                     .setURL('https://github.com/Fr0xty/Hina')
