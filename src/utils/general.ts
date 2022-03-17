@@ -1,4 +1,5 @@
-import { Client, Guild, Permissions } from 'discord.js';
+import { Client, Guild, PartialUser, Permissions, User } from 'discord.js';
+import { Hina } from '../res/config.js';
 
 export const generateHinaInvite = async (Hina: Client) => {
     const invite = Hina.generateInvite({
@@ -15,4 +16,19 @@ export const guildOrHinaIcon = async (Hina: Client, guild: Guild) => {
 
 export const sleep = (ms: number): Promise<void> => {
     return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+export const avatarURLToAttachment = async (user: User | PartialUser) => {
+    const avatarURL = user.displayAvatarURL({ dynamic: true, size: 4096, format: 'png' });
+    console.log(avatarURL);
+
+    const msg = await Hina.avatarHistoryChannel.send({
+        files: [
+            {
+                attachment: avatarURL,
+                name: `${user.id}.${avatarURL.includes('.gif') ? 'gif' : 'png'}`,
+            },
+        ],
+    });
+    return msg.attachments.first()!;
 };
