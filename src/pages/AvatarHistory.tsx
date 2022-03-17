@@ -12,7 +12,7 @@ const AvatarHistory = () => {
             if (req.status !== 200) return;
 
             const fetchedAvatars = await req.json();
-            setAvatars(fetchedAvatars);
+            setAvatars([...fetchedAvatars]);
         };
 
         fetching();
