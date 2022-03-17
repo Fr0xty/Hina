@@ -1,4 +1,4 @@
-import { Client, Collection, Intents, MessageEmbed } from 'discord.js';
+import { Client, Collection, Intents, MessageEmbed, TextChannel } from 'discord.js';
 import { Player, Queue } from 'discord-player';
 import firebaseAdmin from 'firebase-admin';
 import 'dotenv/config';

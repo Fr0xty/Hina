@@ -1,5 +1,10 @@
 # Hina Discord Bot (discord.js)
-A bot originally written with discord.py library, migrated to discord.js library after discord.py became deprecated. Hina is a multi-purpose bot, equiped with features like allowing users to use animated emojis without having to pay for nitro, tell jokes, fetch pictures etc...
+Hina is a very capable multi-purpose bot. Some powerful commands include music commands, avatarhistory of users (stored and fetched from Hina's database), and translating Discord messages to and from any language.
+
+## HinaWeb
+Currently still in progress, but you can get information about Hina, and help on commands etc... More features are coming soon to HinaWeb.
+
+Visit HinaWeb [HERE](https://hina.fr0xty.repl.co/)!
 
 <br>
 
