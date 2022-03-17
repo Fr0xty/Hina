@@ -27,16 +27,13 @@ export default class avatarhistory implements BaseCommand {
         let [userId] = args;
         userId = userId ? userId.match(/[0-9]+/)![0] : msg.author.id;
 
-        const req = await fetch(`https://Hina.fr0xty.repl.co/Hina/fetch-avatar-history/${userId}`);
+        let theUser;
+        try {
+            theUser = await Hina.users.fetch(userId);
+        } catch {
+            return await msg.reply('Invalid userId!');
+        }
 
-        if (req.status !== 200)
-            return await msg.reply(`
-The user is not registered in database.
-
-Either the user does not share a common server, or if the user does(for some reason the user is not registered automatically), try to change your profile picture to register.
-        `);
-
-        const theUser = await Hina.users.fetch(userId);
         const embed = new MessageEmbed()
             .setColor(Hina.color)
             .setAuthor({ name: `${theUser.tag}'s Avatar History`, iconURL: theUser.displayAvatarURL() })
