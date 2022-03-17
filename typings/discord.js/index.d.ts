@@ -11,7 +11,7 @@ declare module 'discord.js' {
         okEmoji: string;
         imageOption: Object;
 
-        avatarHistoryChannel: TextChannel;
+        avatarHistoryChannel: any;
 
         commands: Collection<String, Command>;
         player: Player;

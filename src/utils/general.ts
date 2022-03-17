@@ -1,5 +1,5 @@
 import { Client, Guild, PartialUser, Permissions, User } from 'discord.js';
-import { Hina } from '../res/config';
+import { Hina } from '../res/config.js';
 
 export const generateHinaInvite = async (Hina: Client) => {
     const invite = Hina.generateInvite({
@@ -20,6 +20,7 @@ export const sleep = (ms: number): Promise<void> => {
 
 export const avatarURLToAttachment = async (user: User | PartialUser) => {
     const avatarURL = user.displayAvatarURL({ dynamic: true, size: 4096, format: 'png' });
+    console.log(avatarURL);
 
     const msg = await Hina.avatarHistoryChannel.send({
         files: [

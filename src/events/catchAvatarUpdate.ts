@@ -25,7 +25,7 @@ Hina.on('userUpdate', async (oldUser, newUser) => {
         const oldAvatarAttachment = await avatarURLToAttachment(oldUser);
 
         await userDocument.set({
-            avatars: [oldAvatarAttachment, newAvatarAttachment],
+            avatars: [oldAvatarAttachment.url, newAvatarAttachment.url],
         });
         return;
     }
@@ -43,6 +43,6 @@ Hina.on('userUpdate', async (oldUser, newUser) => {
     /**
      * add new avatar and update
      */
-    fetchedUserData.avatars.push(newAvatarAttachment);
+    fetchedUserData.avatars.push(newAvatarAttachment.url);
     await userDocument.update(fetchedUserData);
 });

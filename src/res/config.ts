@@ -31,11 +31,6 @@ Hina.okEmoji = '902096184645124146';
 Hina.imageOption = { dynamic: true, size: 4096 };
 
 /**
- * special channel instances
- */
-Hina.avatarHistoryChannel = (await Hina.channels.fetch('953890455685333032')) as TextChannel;
-
-/**
  * to store all commands
  */
 Hina.commands = new Collection();

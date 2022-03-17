@@ -1,14 +1,35 @@
 import { Router } from 'express';
 import { Hina } from '../../../../res/config.js';
+import { avatarURLToAttachment } from '../../../../utils/general.js';
 
 const router = Router();
 
 router.get('/:userId', async (req, res) => {
     const userId = req.params.userId;
-    const userDocument = await Hina.database.collection('users').doc(userId).get();
+    const userDocument = await Hina.database.collection('users').doc(userId);
 
-    if (!userDocument.exists) return res.status(404).send('User is not recorded / invalid userId.');
-    res.send(userDocument.data().avatars);
+    const userDocumentData = await userDocument.get();
+    if (userDocumentData.exists) return res.send(userDocumentData.data().avatars);
+
+    /**
+     * Doesn't exists:
+     * - not yet registered
+     * - no common servers -> return 404
+     */
+    try {
+        const user = await Hina.users.fetch(userId);
+        console.log('fetch passed');
+
+        const avatarAttachment = await avatarURLToAttachment(user);
+
+        await userDocument.set({
+            avatars: [avatarAttachment.url],
+        });
+
+        res.send([avatarAttachment.url]);
+    } catch {
+        res.status(404);
+    }
 });
 
 export default router;
