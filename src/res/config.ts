@@ -24,7 +24,7 @@ const Hina = new Client({
  * properties
  */
 Hina.token = process.env.TOKEN!;
-Hina.prefix = 'test ';
+Hina.prefix = 'hina ';
 Hina.color = '#E49CFF';
 
 Hina.okEmoji = '902096184645124146';
