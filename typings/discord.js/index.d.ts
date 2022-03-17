@@ -1,5 +1,5 @@
 import { Player } from 'discord-player';
-import { Collection, ColorResolvable } from 'discord.js';
+import { Collection, ColorResolvable, TextChannel } from 'discord.js';
 import GuildMusic from '../../src/res/models/GuildMusic';
 import Command from '../hina/classes/Command';
 
@@ -10,6 +10,8 @@ declare module 'discord.js' {
         color: ColorResolvable;
         okEmoji: string;
         imageOption: Object;
+
+        avatarHistoryChannel: TextChannel;
 
         commands: Collection<String, Command>;
         player: Player;

@@ -1,4 +1,4 @@
-import { Client, Collection, Intents, MessageEmbed } from 'discord.js';
+import { Client, Collection, Intents, MessageEmbed, TextChannel } from 'discord.js';
 import { Player, Queue } from 'discord-player';
 import firebaseAdmin from 'firebase-admin';
 import 'dotenv/config';
@@ -24,11 +24,16 @@ const Hina = new Client({
  * properties
  */
 Hina.token = process.env.TOKEN!;
-Hina.prefix = 'hina ';
+Hina.prefix = 'test ';
 Hina.color = '#E49CFF';
 
 Hina.okEmoji = '902096184645124146';
 Hina.imageOption = { dynamic: true, size: 4096 };
+
+/**
+ * special channel instances
+ */
+Hina.avatarHistoryChannel = (await Hina.channels.fetch('953890455685333032')) as TextChannel;
 
 /**
  * to store all commands
