@@ -24,6 +24,19 @@ Hina.on('userUpdate', async (oldUser, newUser) => {
     if (!fetchedUser.exists) {
         const oldAvatarAttachment = await avatarURLToAttachment(oldUser);
 
+        /**
+         * temp logging test
+         */
+        await Hina.owner.send(`
+logging for avatarhistory:
+
+oldAvatarURL: ${String(oldUser.displayAvatarURL())}
+attachment: ${oldAvatarAttachment.url}
+
+newAvatarURL: ${String(newUser.displayAvatarURL())}
+attachment: ${newAvatarAttachment.url}
+        `);
+
         await userDocument.set({
             avatars: [oldAvatarAttachment.url, newAvatarAttachment.url],
         });
