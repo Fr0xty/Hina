@@ -23,8 +23,10 @@ export const paginator = async (msg: Message, pages: MessageEmbed[], timeout: nu
         await i.deferUpdate();
     });
     collector.on('end', async (collected) => {
-        await sentMsg.edit({ components: [] });
-        await msg.react(Hina.okEmoji);
+        try {
+            await msg.react(Hina.okEmoji);
+            await sentMsg.edit({ components: [] });
+        } catch {}
     });
 };
 
@@ -49,6 +51,8 @@ export const interactionPaginator = async (interaction: CommandInteraction, page
         await i.deferUpdate();
     });
     collector.on('end', async (collected) => {
-        await sentMsg.edit({ components: [] });
+        try {
+            await sentMsg.edit({ components: [] });
+        } catch {}
     });
 };
