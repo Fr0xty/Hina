@@ -12,6 +12,7 @@ declare module 'discord.js' {
         imageOption: Object;
 
         avatarHistoryChannel: any;
+        owner: User;
 
         commands: Collection<String, Command>;
         player: Player;
