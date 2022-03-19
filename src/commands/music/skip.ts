@@ -14,7 +14,7 @@ export default class skip implements BaseCommand {
     async execute(msg: Message, args: string[]) {
         const queue = Hina.player.getQueue(msg.guild!);
 
-        if (!queue) await msg.reply("I'm not currently playing in this server.");
+        if (!queue) return await msg.reply("I'm not currently playing in this server.");
         queue.skip();
     }
 }
