@@ -25,6 +25,7 @@ export const avatarURLToAttachment = async (user: User | PartialUser) => {
         files: [
             {
                 attachment: avatarURL,
+                name: `${user.id}.${avatarURL.includes('.gif') ? 'gif' : 'png'}`,
             },
         ],
     });
