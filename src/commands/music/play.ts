@@ -51,7 +51,7 @@ export default class play implements BaseCommand {
             requestedBy: msg.member!,
             searchEngine: QueryType.AUTO,
         });
-        if (!resource) return msg.reply('No results found with the query provided.');
+        if (!resource.tracks.length) return msg.reply('No results found with the query provided.');
         if (query.includes('https://') && resource.tracks.length > 1) {
             queue.addTracks(resource.tracks);
         } else {
