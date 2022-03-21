@@ -19,7 +19,7 @@ export const sleep = (ms: number): Promise<void> => {
 };
 
 export const avatarURLToAttachment = async (user: User | PartialUser) => {
-    const avatarURL = user.displayAvatarURL({ dynamic: true, size: 4096, format: 'png' });
+    const avatarURL = user.displayAvatarURL({ dynamic: true, size: 4096, format: 'webp' });
 
     const msg = await Hina.avatarHistoryChannel.send({
         files: [
