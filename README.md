@@ -8,7 +8,7 @@ Hina is a very capable multi-purpose bot. Some powerful commands include music c
 
 ## HinaWeb
 Hinaweb is dedicated to Hina where you can find Hina's information, detailed command help (coming), etc...
-Visit HinaWeb [HERE](https://hina.fr0xty.repl.co/)!
+Visit HinaWeb [**HERE**](https://hina.fr0xty.repl.co/)!
 
 ## Invite Me!
 Invite Hina [**HERE**](https://discord.com/api/oauth2/authorize?Hina_id=769125937731338290&scope=bot+applications.commands&permissions=1099511627776)!
