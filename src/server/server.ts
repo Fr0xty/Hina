@@ -40,6 +40,4 @@ app.get('/help/runtimes', async (req, res) => {
     res.json(await result.json());
 });
 
-export default () => {
-    app.listen(3000);
-};
+app.listen(3000);

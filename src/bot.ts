@@ -92,8 +92,7 @@ Hina.on('error', async (err) => {
 /**
  * run express server to keep alive on replit
  */
-import server from './server/server.js';
-server();
+import './server/server.js';
 
 /**
  * login into bot
