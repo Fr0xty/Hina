@@ -1,4 +1,4 @@
-import { User } from 'discord.js';
+import { PartialUser, User } from 'discord.js';
 
 import { Hina } from '../res/config.js';
 import { avatarURLToAttachment } from '../utils/general.js';
@@ -7,7 +7,7 @@ import { avatarURLToAttachment } from '../utils/general.js';
  * catches member's avatar update
  * - add to user avatar history in firebase
  */
-Hina.on('userUpdate', async (oldUser: User, newUser: User) => {
+Hina.on('userUpdate', async (oldUser: User | PartialUser, newUser: User | PartialUser) => {
     /**
      * return if it's not avatar that's changed
      */
