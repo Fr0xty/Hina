@@ -1,3 +1,5 @@
+import { User } from 'discord.js';
+
 import { Hina } from '../res/config.js';
 import { avatarURLToAttachment } from '../utils/general.js';
 
@@ -5,7 +7,7 @@ import { avatarURLToAttachment } from '../utils/general.js';
  * catches member's avatar update
  * - add to user avatar history in firebase
  */
-Hina.on('userUpdate', async (oldUser, newUser) => {
+Hina.on('userUpdate', async (oldUser: User, newUser: User) => {
     /**
      * return if it's not avatar that's changed
      */
@@ -22,12 +24,9 @@ Hina.on('userUpdate', async (oldUser, newUser) => {
      */
     const newAvatarAttachment = await avatarURLToAttachment(newUser);
     if (!fetchedUser.exists) {
-        const oldAvatarAttachment = await avatarURLToAttachment(oldUser);
-
-        await userDocument.set({
-            avatars: [oldAvatarAttachment.url, newAvatarAttachment.url],
+        return await userDocument.set({
+            avatars: [newAvatarAttachment.url],
         });
-        return;
     }
 
     /**
