@@ -7,11 +7,11 @@ import { avatarURLToAttachment } from '../utils/general.js';
  * catches member's avatar update
  * - add to user avatar history in firebase
  */
-Hina.on('userUpdate', async (oldUser: User | PartialUser, newUser: User | PartialUser) => {
+Hina.on('userUpdate', async (oldUser: User | PartialUser, newUser: User | PartialUser): Promise<any> => {
     /**
      * return if it's not avatar that's changed
      */
-    if (oldUser.displayAvatarURL() === newUser.displayAvatarURL()) return;
+    if (oldUser.avatar === newUser.avatar) return;
 
     /**
      * get user from firebase
