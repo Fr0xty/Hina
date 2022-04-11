@@ -11,7 +11,7 @@ Hina.on('userUpdate', async (oldUser: User | PartialUser, newUser: User | Partia
     /**
      * return if it's not avatar that's changed
      */
-    if (oldUser.avatar === newUser.avatar) return;
+    if (oldUser.displayAvatarURL() === newUser.displayAvatarURL()) return;
 
     /**
      * get user from firebase
