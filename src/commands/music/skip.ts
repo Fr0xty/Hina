@@ -15,6 +15,11 @@ export default class skip implements BaseCommand {
         const queue = Hina.player.getQueue(msg.guild!);
 
         if (!queue) return await msg.reply("I'm not currently playing in this server.");
+
+        const npMusic = queue.nowPlaying();
+        if (!npMusic) return await msg.reply("I'm not currently playing any songs.");
+
         queue.skip();
+        await msg.react(Hina.okEmoji);
     }
 }
