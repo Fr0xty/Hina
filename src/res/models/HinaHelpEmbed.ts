@@ -282,7 +282,8 @@ __reply to the message while using the command__
                 { name: '`nowplaying`, `np`', value: 'get now playing song.', inline: true },
                 { name: '`loopqueue`, `loopq`', value: 'loop the music queue.', inline: true },
                 { name: '`loopsong`', value: 'loop now playing song in queue.', inline: true },
-                { name: '`loopcancel`', value: 'cancel queue / song loop.', inline: true }
+                { name: '`loopcancel`', value: 'cancel queue / song loop.', inline: true },
+                { name: '`shuffle`', value: 'shuffle current queue.', inline: true }
             )
             .setFooter({
                 text: '<> = Required, [] = Optional',
