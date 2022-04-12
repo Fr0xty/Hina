@@ -5,10 +5,12 @@ import { Hina } from '../../res/config.js';
 export default class loopqueue implements BaseCommand {
     name: String;
     description: String;
+    aliases: String[];
 
     constructor() {
         this.name = 'loopqueue';
         this.description = 'loop the music queue.';
+        this.aliases = ['loopq'];
     }
 
     async execute(msg: Message, args: string[]) {
