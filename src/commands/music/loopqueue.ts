@@ -15,7 +15,7 @@ export default class loopqueue implements BaseCommand {
         const queue = Hina.player.getQueue(msg.guild!);
         if (!queue) return await msg.reply("I'm not currently playing in this server.");
 
-        const loopSuccess = queue.setRepeatMode(2);
+        queue.setRepeatMode(2);
         await msg.react(Hina.okEmoji);
     }
 }
