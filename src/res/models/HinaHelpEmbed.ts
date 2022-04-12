@@ -279,7 +279,10 @@ __reply to the message while using the command__
                 { name: '`skip`', value: 'skip the current song.', inline: true },
                 { name: '`queue`, `q`', value: 'get song queue of the server.', inline: true },
                 { name: '`clearqueue`, `clearq`', value: 'clear server song queue.', inline: true },
-                { name: '`nowplaying`, `np`', value: 'get now playing song.', inline: true }
+                { name: '`nowplaying`, `np`', value: 'get now playing song.', inline: true },
+                { name: '`loopqueue`, `loopq`', value: 'loop the music queue.', inline: true },
+                { name: '`loopsong`', value: 'loop now playing song in queue.', inline: true },
+                { name: '`loopcancel`', value: 'cancel queue / song loop.', inline: true }
             )
             .setFooter({
                 text: '<> = Required, [] = Optional',
