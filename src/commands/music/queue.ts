@@ -22,6 +22,23 @@ export default class queue implements BaseCommand {
         if (!npMusic) return await msg.reply('There is no more music in queue, use `play` to add more songs.');
 
         /**
+         * current loop option applied
+         */
+        let _;
+        switch (queue.repeatMode) {
+            case 0:
+                _ = 'No loop applied 🔄';
+                break;
+            case 1:
+                _ = 'Song loop applied 🔄';
+                break;
+            case 2:
+                _ = 'Queue loop applied 🔄';
+                break;
+        }
+        const loopMsg = _;
+
+        /**
          * only 1 song in queue
          */
         if (!queue.tracks.length) {
@@ -39,7 +56,10 @@ export default class queue implements BaseCommand {
 no more songs in queue...
                 `
                 )
-                .setFooter({ text: `Requested by ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL() })
+                .setFooter({
+                    text: `${loopMsg}\nRequested by ${msg.author.tag}`,
+                    iconURL: msg.author.displayAvatarURL(),
+                })
                 .setTimestamp();
             return await msg.reply({ embeds: [embed] });
         }
@@ -64,7 +84,10 @@ no more songs in queue...
                     })
                     .setDescription(page)
                     .setTimestamp()
-                    .setFooter({ text: `Requested by ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL() });
+                    .setFooter({
+                        text: `${loopMsg}\nRequested by ${msg.author.tag}`,
+                        iconURL: msg.author.displayAvatarURL(),
+                    });
                 if (!pages.length) embed.setTitle('Now Playing:');
 
                 pages.push(embed);
@@ -82,7 +105,10 @@ no more songs in queue...
                 })
                 .setDescription(page)
                 .setTimestamp()
-                .setFooter({ text: `Requested by ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL() });
+                .setFooter({
+                    text: `${loopMsg}\nRequested by ${msg.author.tag}`,
+                    iconURL: msg.author.displayAvatarURL(),
+                });
             if (!pages.length) embed.setTitle('Now Playing:');
 
             pages.push(embed);
