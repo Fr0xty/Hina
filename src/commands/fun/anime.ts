@@ -66,7 +66,7 @@ export default class anime implements BaseCommand {
         const embed = new MessageEmbed()
             .setTitle(`${animeInfo.title.native}\n${animeInfo.title.english}`)
             .setURL(`https://myanimelist.net/anime/${animeInfo.idMal}`)
-            .setDescription(animeInfo.description.replaceAll('<br>', '\n')) // TODO: format all html tags
+            .setDescription(animeInfo.description.replaceAll('<br><br>', '\n')) // TODO: format all html tags
             .setColor(Hina.color)
             .setThumbnail(animeInfo.coverImage[Object.keys(animeInfo.coverImage)[0]])
             .setFields([
