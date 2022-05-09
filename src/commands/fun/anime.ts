@@ -17,7 +17,7 @@ export default class anime implements BaseCommand {
 
     constructor() {
         this.name = 'anime';
-        this.description = 'get information on animes.';
+        this.description = 'search for information on anime.';
         this.commandUsage = '<anime_name>';
         this.args = [
             new CommandArgument({ type: 'paragraph' }).setName('anime_name').setDescription('anime to search for.'),

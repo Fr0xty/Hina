@@ -213,7 +213,8 @@ My prefix is \`hina\`
             .addFields(
                 { name: '`funfact`', value: 'get a fun fact!', inline: true },
                 { name: '`joke`', value: 'Allow me to tell you a joke.', inline: true },
-                { name: '`act <@user> <msg>`', value: 'I will impersonate the user to say things.', inline: true }
+                { name: '`act <@user> <msg>`', value: 'I will impersonate the user to say things.', inline: true },
+                { name: '`anime <anime_name>`', value: 'search for information on anime.', inline: true }
             )
             .setFooter({
                 text: '<> = Required, [] = Optional',
