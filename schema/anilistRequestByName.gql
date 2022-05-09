@@ -1,0 +1,23 @@
+query ($name: String, $type: MediaType) {
+    Media(search: $name, type: $type) {
+        idMal
+        title {
+            english
+            native
+        }
+        description(asHtml: false)
+        season
+        seasonYear
+        format
+        status
+        episodes
+        duration
+        genres
+        averageScore
+        popularity
+        source
+        coverImage {
+            extraLarge
+        }
+    }
+}

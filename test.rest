@@ -1,0 +1,17 @@
+GET https://kitsu.io/api/edge/anime
+Content-Type: application/json
+
+{
+    "title": "angel beats"
+}
+
+########
+
+GET  http://myanimelist.net/api/anime/search.xml
+Content-Type: application/json
+
+{
+    "params": {
+        "q": "angel beats"
+    }
+}
