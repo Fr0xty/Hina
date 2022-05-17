@@ -65,7 +65,9 @@ export default class manga implements BaseCommand {
         const embed = new MessageEmbed()
             .setTitle(`${mangaInfo.title.native}\n${mangaInfo.title.english}`)
             .setURL(`https://myanimelist.net/manga/${mangaInfo.idMal}`)
-            .setDescription(mangaInfo.description.replaceAll('<br><br>', '\n')) // TODO: format all html tags
+            .setDescription(
+                mangaInfo.description.replaceAll('<br><br>', '\n').replaceAll('<i>', '__').replaceAll('</i>', '__')
+            )
             .setColor(Hina.color)
             .setThumbnail(mangaInfo.coverImage[Object.keys(mangaInfo.coverImage)[0]])
             .setFields([
