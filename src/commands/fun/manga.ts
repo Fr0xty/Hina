@@ -66,7 +66,7 @@ export default class manga implements BaseCommand {
             .setTitle(`${mangaInfo.title.native}\n${mangaInfo.title.english}`)
             .setURL(`https://myanimelist.net/manga/${mangaInfo.idMal}`)
             .setDescription(
-                mangaInfo.description.replaceAll('<br><br>', '\n').replaceAll('<i>', '__').replaceAll('</i>', '__')
+                mangaInfo.description.replaceAll('<br><br>', '\n').replaceAll('<i>', '*').replaceAll('</i>', '*')
             )
             .setColor(Hina.color)
             .setThumbnail(mangaInfo.coverImage[Object.keys(mangaInfo.coverImage)[0]])
