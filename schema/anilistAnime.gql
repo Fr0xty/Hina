@@ -1,5 +1,6 @@
-query ($name: String, $type: MediaType) {
-    Media(search: $name, type: $type) {
+# get anime info from anilist by name
+query ($name: String) {
+    Media(search: $name, type: ANIME) {
         idMal
         title {
             english

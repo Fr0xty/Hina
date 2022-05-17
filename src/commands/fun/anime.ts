@@ -23,7 +23,7 @@ export default class anime implements BaseCommand {
             new CommandArgument({ type: 'paragraph' }).setName('anime_name').setDescription('anime to search for.'),
         ];
 
-        this.gqlSchema = loadFile('./schema/anilistRequestByName.gql');
+        this.gqlSchema = loadFile('./schema/anilistAnime.gql');
     }
 
     async execute(msg: Message, args: string[]) {
@@ -42,7 +42,6 @@ export default class anime implements BaseCommand {
                 query: this.gqlSchema,
                 variables: {
                     name: anime_name,
-                    type: 'ANIME',
                 },
             }),
         });
@@ -59,7 +58,7 @@ export default class anime implements BaseCommand {
         /**
          * destructure info and replacing null values with dash
          */
-        let {
+        const {
             data: { Media: animeInfo },
         }: any = JSON.parse(JSON.stringify(await req.json()).replaceAll(':null,', ':"-",'));
 
@@ -80,6 +79,7 @@ export default class anime implements BaseCommand {
                 { name: 'Episodes', value: String(animeInfo.episodes), inline: true },
                 { name: 'Duration', value: String(animeInfo.duration), inline: true },
                 { name: 'Popularity', value: `#${animeInfo.popularity}`, inline: true },
+                { name: 'Average Score', value: `${animeInfo.averageScore} / 100`, inline: true },
                 { name: 'Source', value: animeInfo.source, inline: true },
                 { name: 'Genres', value: animeInfo.genres.toString().replaceAll(',', ', '), inline: false },
             ]);
