@@ -61,7 +61,6 @@ export default class manga implements BaseCommand {
         const {
             data: { Media: mangaInfo },
         }: any = JSON.parse(JSON.stringify(await req.json()).replaceAll(':null,', ':"-",'));
-        console.log(mangaInfo);
 
         const embed = new MessageEmbed()
             .setTitle(`${mangaInfo.title.native}\n${mangaInfo.title.english}`)
