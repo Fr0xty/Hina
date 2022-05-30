@@ -66,7 +66,10 @@ export default class anime implements BaseCommand {
             .setTitle(`${animeInfo.title.native}\n${animeInfo.title.english}`)
             .setURL(`https://myanimelist.net/anime/${animeInfo.idMal}`)
             .setDescription(
-                animeInfo.description.replaceAll('<br><br>', '\n').replaceAll('<i>', '*').replaceAll('</i>', '*')
+                animeInfo.description
+                    .replace(/(\r\n|\n|\r)/gm, '') // removes linebreaks
+                    .replaceAll('<br>', '\n') // format <br> tags
+                    .replace(/<\/?i>/gm, '*') // format <i> and </i> tags
             )
             .setColor(Hina.color)
             .setThumbnail(animeInfo.coverImage[Object.keys(animeInfo.coverImage)[0]])
