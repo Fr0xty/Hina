@@ -1,7 +1,7 @@
 {
   "name": "hina",
   "version": "2.3.3",
-  "description": "A discord bot",
+  "description": "A multi-purpose discord bot.",
   "main": "bot.js",
   "type": "module",
   "dependencies": {
@@ -31,10 +31,7 @@
     "typescript": "^4.5.5"
   },
   "scripts": {
-    "start": "node ./dist/bot.js",
-    "node-update": "npm i --save-dev node@16 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",
-    "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i",
-    "node-update-then-clean": "npm run node-update && npm run node-clean"
+    "start": "node ./dist/bot.js"
   },
   "repository": {
     "type": "git",
