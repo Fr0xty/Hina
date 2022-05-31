@@ -61,35 +61,6 @@ eventFiles.forEach(async (eventFile) => {
 console.log('Events are successfully added!');
 
 /**
- * slash command handler
- */
-Hina.on('interactionCreate', async (interaction) => {
-    if (!interaction.isCommand()) return;
-
-    const command = Hina.commands.get(interaction.commandName);
-    if (!command) return;
-
-    try {
-        await command.slashExecute(Hina, interaction);
-    } catch (err) {
-        console.log(err);
-    }
-});
-
-/**
- * online alert
- */
-Hina.on('ready', () => {
-    console.log(`Logged in as ${Hina.user!.tag}!`);
-});
-
-/**
- * error messages
- */
-Hina.on('error', async (err) => {
-    console.log(err.message);
-});
-/**
  * run express server to keep alive on replit
  */
 import './server/server.js';
