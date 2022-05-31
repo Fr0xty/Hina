@@ -2,7 +2,7 @@
   "name": "hina",
   "version": "2.3.3",
   "description": "A multi-purpose discord bot.",
-  "main": "bot.js",
+  "main": "app.js",
   "type": "module",
   "dependencies": {
     "@discordjs/builders": "^0.12.0",
@@ -31,7 +31,7 @@
     "typescript": "^4.5.5"
   },
   "scripts": {
-    "start": "node ./dist/bot.js"
+    "start": "node ./dist/app.js"
   },
   "repository": {
     "type": "git",

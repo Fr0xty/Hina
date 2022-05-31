@@ -28,5 +28,5 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
                 return;
             }
         }
-    } catch {} // there is also a bot triggered by this event resulting in conflict)
+    } catch {} // there is also a bot triggered by this event resulting in conflict
 });
