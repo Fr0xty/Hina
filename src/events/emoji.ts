@@ -1,5 +1,5 @@
 import { NewsChannel, TextChannel } from 'discord.js';
-import { Hina } from '../res/config.js';
+import Hina from '../res/HinaClient.js';
 
 Hina.on('messageCreate', async (msg): Promise<any> => {
     if (!(msg.channel instanceof NewsChannel || msg.channel instanceof TextChannel)) return;

@@ -1,6 +1,6 @@
 import { Message, MessageEmbed } from 'discord.js';
 import { BaseCommand } from 'hina';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 
 export default class nowplaying implements BaseCommand {
     name: String;

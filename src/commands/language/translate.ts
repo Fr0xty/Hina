@@ -4,7 +4,7 @@ import DetectLanguage from 'detectlanguage';
 import 'dotenv/config';
 
 import { BaseCommand } from 'hina';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 import CommandArgument from '../../res/models/CommandArgument.js';
 
 Translate.engine = 'google';

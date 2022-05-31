@@ -1,5 +1,5 @@
 import { MessageEmbed, MessageActionRow, MessageButton, MessageSelectMenu, User } from 'discord.js';
-import { Hina } from '../config.js';
+import Hina from '../HinaClient.js';
 
 export class Help {
     author: User;

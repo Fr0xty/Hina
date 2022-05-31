@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 import { BaseCommand } from 'hina';
 import { paginator } from '../../utils/paginator.js';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 import CommandArgument from '../../res/models/CommandArgument.js';
 
 export default class jisho implements BaseCommand {

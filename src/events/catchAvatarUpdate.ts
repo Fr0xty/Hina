@@ -1,6 +1,6 @@
 import { PartialUser, User } from 'discord.js';
 
-import { Hina } from '../res/config.js';
+import Hina from '../res/HinaClient.js';
 import { avatarURLToAttachment } from '../utils/general.js';
 
 /**

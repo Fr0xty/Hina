@@ -2,8 +2,7 @@ import { Message, MessageEmbed } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import fetch from 'node-fetch';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 
 export default class avatarhistory implements BaseCommand {
     name: String;

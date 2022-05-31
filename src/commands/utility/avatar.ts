@@ -1,7 +1,7 @@
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { Message, MessageEmbed } from 'discord.js';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 
 export default class avatar implements BaseCommand {
     name: String;

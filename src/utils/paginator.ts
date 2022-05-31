@@ -1,6 +1,6 @@
 import { CommandInteraction, Message, MessageActionRow, MessageButton, MessageEmbed } from 'discord.js';
 
-import { Hina } from '../res/config.js';
+import Hina from '../res/HinaClient.js';
 
 const _aquaButtons = new MessageActionRow().addComponents(
     new MessageButton().setCustomId('pageLeft').setEmoji('879530551038603264').setStyle('SECONDARY'),

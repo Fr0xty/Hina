@@ -2,7 +2,7 @@ import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { Message } from 'discord.js';
 import { joinVoiceChannel, getVoiceConnection } from '@discordjs/voice';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 
 export default class evaluation implements BaseCommand {
     name: String;

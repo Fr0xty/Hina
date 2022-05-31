@@ -1,6 +1,6 @@
 import { BaseCommand } from 'hina';
 import { Message, MessageEmbed } from 'discord.js';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 
 export default class epochtime implements BaseCommand {
     name: String;

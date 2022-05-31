@@ -3,7 +3,7 @@ import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 import fs from 'fs';
 
-import { Hina } from './res/config.js';
+import Hina from './res/HinaClient.js';
 
 /**
  * register slash commands

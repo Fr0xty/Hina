@@ -2,7 +2,7 @@ import { Message, NewsChannel, TextChannel } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 
 export default class usemoji implements BaseCommand {
     name: String;

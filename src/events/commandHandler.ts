@@ -1,6 +1,6 @@
 import { DMChannel, MessageEmbed } from 'discord.js';
 import { BaseCommand } from 'hina';
-import { Hina } from '../res/config.js';
+import Hina from '../res/HinaClient.js';
 import { validateArgument } from '../utils/command.js';
 
 /**

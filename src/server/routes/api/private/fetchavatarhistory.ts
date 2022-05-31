@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { Hina } from '../../../../res/config.js';
+import Hina from '../../../../res/HinaClient.js';
 import { avatarURLToAttachment } from '../../../../utils/general.js';
 
 const router = Router();

@@ -2,7 +2,7 @@ import { Message } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 import { QueryType, Queue } from 'discord-player';
 
 export default class play implements BaseCommand {

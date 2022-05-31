@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import { BaseCommand } from 'hina';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 
 export default class loopcancel implements BaseCommand {
     name: String;

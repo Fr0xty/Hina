@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import { MessageEmbed } from 'discord.js';
 
 import { BaseCommand } from 'hina';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 import { Message } from 'discord.js';
 
 export default class joke implements BaseCommand {

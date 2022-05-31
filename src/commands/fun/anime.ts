@@ -4,7 +4,7 @@ import { loadFile } from 'graphql-import-files';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 
 // TODO: fix avatar not working in webhook
 

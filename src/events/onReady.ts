@@ -1,4 +1,4 @@
-import { Hina } from '../res/config.js';
+import Hina from '../res/HinaClient.js';
 
 Hina.on('ready', async () => {
     /**

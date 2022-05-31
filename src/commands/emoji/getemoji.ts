@@ -2,7 +2,7 @@ import { Message, MessageEmbed } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 import { paginator } from '../../utils/paginator.js';
 
 export default class getemoji implements BaseCommand {

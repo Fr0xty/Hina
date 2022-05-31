@@ -1,6 +1,6 @@
 import { BaseCommand } from 'hina';
 import { Message, MessageEmbed } from 'discord.js';
-import { Hina } from '../../res/config.js';
+import Hina from '../../res/HinaClient.js';
 import { convertSeconds } from '../../utils/convert.js';
 
 export default class appinfo implements BaseCommand {
