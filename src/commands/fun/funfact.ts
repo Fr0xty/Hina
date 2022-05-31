@@ -1,9 +1,7 @@
 import fetch from 'node-fetch';
-import { MessageEmbed } from 'discord.js';
+import { Client, Message, MessageEmbed } from 'discord.js';
 
 import { BaseCommand } from 'hina';
-import Hina from '../../res/HinaClient.js';
-import { Message } from 'discord.js';
 
 export default class funfact implements BaseCommand {
     name: String;
@@ -14,7 +12,7 @@ export default class funfact implements BaseCommand {
         this.description = 'get a fun fact.';
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const req = await fetch('https://uselessfacts.jsph.pl/random.json?language=en');
         if (req.status !== 200)
             return await msg.reply('Sorry, something went wrong went making the request. Please try again.');

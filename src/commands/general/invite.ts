@@ -1,7 +1,6 @@
-import { Message, MessageActionRow, MessageButton, MessageEmbed } from 'discord.js';
+import { Client, Message, MessageActionRow, MessageButton, MessageEmbed } from 'discord.js';
 
 import { BaseCommand } from 'hina';
-import Hina from '../../res/HinaClient.js';
 import { generateHinaInvite } from '../../utils/general.js';
 
 export default class invite implements BaseCommand {
@@ -13,7 +12,7 @@ export default class invite implements BaseCommand {
         this.description = 'get my invite link.';
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const HinaInvite = await generateHinaInvite(Hina);
 
         const embed = new MessageEmbed()

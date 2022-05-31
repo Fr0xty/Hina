@@ -1,4 +1,5 @@
 import { Client, Guild, PartialUser, Permissions, User } from 'discord.js';
+
 import Hina from '../res/HinaClient.js';
 
 export const generateHinaInvite = async (Hina: Client) => {

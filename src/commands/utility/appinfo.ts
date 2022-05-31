@@ -1,6 +1,6 @@
+import { Client, Message, MessageEmbed } from 'discord.js';
+
 import { BaseCommand } from 'hina';
-import { Message, MessageEmbed } from 'discord.js';
-import Hina from '../../res/HinaClient.js';
 import { convertSeconds } from '../../utils/convert.js';
 
 export default class appinfo implements BaseCommand {
@@ -12,7 +12,7 @@ export default class appinfo implements BaseCommand {
         this.description = 'get information about me.';
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const guildIn = await Hina.guilds.fetch();
         const memberCount = Hina.users.cache.size;
         const djsVer = '^13.6.0';

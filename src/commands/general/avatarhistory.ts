@@ -1,8 +1,7 @@
-import { Message, MessageEmbed } from 'discord.js';
+import { Client, Message, MessageEmbed } from 'discord.js';
 
-import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import Hina from '../../res/HinaClient.js';
+import { BaseCommand } from 'hina';
 
 export default class avatarhistory implements BaseCommand {
     name: String;
@@ -22,7 +21,7 @@ export default class avatarhistory implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         let [userId] = args;
         userId = userId ? userId.match(/[0-9]+/)![0] : msg.author.id;
 

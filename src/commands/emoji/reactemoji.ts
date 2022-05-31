@@ -1,7 +1,7 @@
-import { Message } from 'discord.js';
+import { Client, Message } from 'discord.js';
 
-import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
+import { BaseCommand } from 'hina';
 
 export default class reactemoji implements BaseCommand {
     name: String;
@@ -20,7 +20,7 @@ export default class reactemoji implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const [emoji_id] = args;
 
         if (!msg.reference)

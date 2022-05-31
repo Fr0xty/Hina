@@ -1,6 +1,6 @@
-import { Message, MessageEmbed } from 'discord.js';
+import { Client, Message, MessageEmbed } from 'discord.js';
+
 import { BaseCommand } from 'hina';
-import Hina from '../../res/HinaClient.js';
 import { paginator } from '../../utils/paginator.js';
 
 export default class queue implements BaseCommand {
@@ -14,7 +14,7 @@ export default class queue implements BaseCommand {
         this.aliases = ['q'];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const queue = Hina.player.getQueue(msg.guild!);
         if (!queue) return await msg.reply("I'm not currently playing in this server.");
 

@@ -1,6 +1,7 @@
-import { DMChannel, MessageEmbed } from 'discord.js';
-import { BaseCommand } from 'hina';
+import { MessageEmbed } from 'discord.js';
+
 import Hina from '../res/HinaClient.js';
+import { BaseCommand } from 'hina';
 import { validateArgument } from '../utils/command.js';
 
 /**
@@ -103,7 +104,7 @@ ${command.args[i].description}`
      * running the command
      */
     try {
-        await command.execute(msg, structuredArguments);
+        await command.execute(Hina, msg, structuredArguments);
     } catch (err) {
         console.log('\n-----------------------\n');
         console.log(err);

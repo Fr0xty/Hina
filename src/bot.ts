@@ -1,7 +1,7 @@
+import fs from 'fs';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
-import fs from 'fs';
 
 import Hina from './res/HinaClient.js';
 

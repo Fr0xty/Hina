@@ -1,9 +1,8 @@
-import { Message } from 'discord.js';
-
-import { BaseCommand } from 'hina';
-import CommandArgument from '../../res/models/CommandArgument.js';
-import Hina from '../../res/HinaClient.js';
 import { QueryType, Queue } from 'discord-player';
+import { Client, Message } from 'discord.js';
+
+import CommandArgument from '../../res/models/CommandArgument.js';
+import { BaseCommand } from 'hina';
 
 export default class play implements BaseCommand {
     name: String;
@@ -22,7 +21,7 @@ export default class play implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const [query] = args;
 
         // return if author not in vc

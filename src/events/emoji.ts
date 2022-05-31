@@ -1,4 +1,5 @@
 import { NewsChannel, TextChannel } from 'discord.js';
+
 import Hina from '../res/HinaClient.js';
 
 Hina.on('messageCreate', async (msg): Promise<any> => {

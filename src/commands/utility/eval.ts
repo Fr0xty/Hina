@@ -1,8 +1,7 @@
-import { BaseCommand } from 'hina';
+import { Client, Message } from 'discord.js';
+
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Message } from 'discord.js';
-import { joinVoiceChannel, getVoiceConnection } from '@discordjs/voice';
-import Hina from '../../res/HinaClient.js';
+import { BaseCommand } from 'hina';
 
 export default class evaluation implements BaseCommand {
     name: String;
@@ -19,7 +18,7 @@ export default class evaluation implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         let [script] = args;
         script = script.trim();
 

@@ -1,7 +1,7 @@
-import { BaseCommand } from 'hina';
+import { Client, Message, MessageEmbed } from 'discord.js';
+
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Message, MessageEmbed } from 'discord.js';
-import Hina from '../../res/HinaClient.js';
+import { BaseCommand } from 'hina';
 
 export default class avatar implements BaseCommand {
     name: String;
@@ -21,7 +21,7 @@ export default class avatar implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const [user] = args;
 
         const User = user ? await Hina.users.fetch(user.match(/\d+/)![0]) : msg.author;

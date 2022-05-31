@@ -1,10 +1,9 @@
-import { Message, MessageEmbed } from 'discord.js';
 import fetch from 'node-fetch';
+import { Client, Message, MessageEmbed } from 'discord.js';
 
+import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
 import { paginator } from '../../utils/paginator.js';
-import Hina from '../../res/HinaClient.js';
-import CommandArgument from '../../res/models/CommandArgument.js';
 
 export default class waifuIm implements BaseCommand {
     name: String;
@@ -48,7 +47,7 @@ export default class waifuIm implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const [givenAmount] = args;
         const amount = givenAmount ? Number(givenAmount) : 1;
 

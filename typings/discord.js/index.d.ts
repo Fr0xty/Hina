@@ -1,7 +1,8 @@
 import { Player } from 'discord-player';
 import { Collection, ColorResolvable, TextChannel } from 'discord.js';
-import GuildMusic from '../../src/res/models/GuildMusic';
+
 import Command from '../hina/classes/Command';
+import GuildMusic from '../../src/res/models/GuildMusic';
 
 declare module 'discord.js' {
     export interface Client {

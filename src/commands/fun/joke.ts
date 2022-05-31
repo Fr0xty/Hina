@@ -1,9 +1,7 @@
 import fetch from 'node-fetch';
-import { MessageEmbed } from 'discord.js';
+import { Client, Message, MessageEmbed } from 'discord.js';
 
 import { BaseCommand } from 'hina';
-import Hina from '../../res/HinaClient.js';
-import { Message } from 'discord.js';
 
 export default class joke implements BaseCommand {
     name: String;
@@ -14,7 +12,7 @@ export default class joke implements BaseCommand {
         this.description = 'Allow me to tell you a joke.';
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const req = await fetch('https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,racist,sexist');
         if (req.status !== 200)
             return await msg.reply('Sorry, something went wrong went making the request. Please try again.');

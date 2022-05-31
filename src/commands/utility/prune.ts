@@ -1,6 +1,7 @@
-import { BaseCommand } from 'hina';
+import { Client, Message, NewsChannel, TextChannel } from 'discord.js';
+
 import CommandArgument from '../../res/models/CommandArgument.js';
-import { Message, NewsChannel, TextChannel } from 'discord.js';
+import { BaseCommand } from 'hina';
 
 export default class prune implements BaseCommand {
     name: String;
@@ -21,7 +22,7 @@ export default class prune implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const [givenAmount] = args;
 
         if (!msg.member!.permissions.has('MANAGE_MESSAGES'))

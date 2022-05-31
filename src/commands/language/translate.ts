@@ -1,11 +1,10 @@
-import { Message, MessageEmbed } from 'discord.js';
-import Translate from 'translate';
-import DetectLanguage from 'detectlanguage';
 import 'dotenv/config';
+import DetectLanguage from 'detectlanguage';
+import Translate from 'translate';
+import { Client, Message, MessageEmbed } from 'discord.js';
 
-import { BaseCommand } from 'hina';
-import Hina from '../../res/HinaClient.js';
 import CommandArgument from '../../res/models/CommandArgument.js';
+import { BaseCommand } from 'hina';
 
 Translate.engine = 'google';
 const DetectClient = new DetectLanguage(process.env.DETECTLANGUAGE_API_KEY!);
@@ -37,7 +36,7 @@ export default class translate implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         let [to_language, from_language] = args;
 
         if (!msg.reference) return await msg.reply('Please reply to the message you want to translate.');

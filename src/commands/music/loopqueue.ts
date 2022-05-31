@@ -1,6 +1,6 @@
-import { Message } from 'discord.js';
+import { Client, Message } from 'discord.js';
+
 import { BaseCommand } from 'hina';
-import Hina from '../../res/HinaClient.js';
 
 export default class loopqueue implements BaseCommand {
     name: String;
@@ -13,7 +13,7 @@ export default class loopqueue implements BaseCommand {
         this.aliases = ['loopq'];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const queue = Hina.player.getQueue(msg.guild!);
         if (!queue) return await msg.reply("I'm not currently playing in this server.");
 

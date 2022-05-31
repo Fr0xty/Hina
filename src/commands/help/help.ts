@@ -1,10 +1,9 @@
-import { Message } from 'discord.js';
+import { Client, Message } from 'discord.js';
 
-import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import Hina from '../../res/HinaClient.js';
-import { generateHinaInvite } from '../../utils/general.js';
+import { BaseCommand } from 'hina';
 import { Help as HinaHelpEmbed } from '../../res/models/HinaHelpEmbed.js';
+import { generateHinaInvite } from '../../utils/general.js';
 
 export default class help implements BaseCommand {
     name: String;
@@ -23,7 +22,7 @@ export default class help implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         let [command_category] = args;
         if (command_category) command_category = command_category.toLowerCase();
 

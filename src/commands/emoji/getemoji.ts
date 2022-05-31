@@ -1,8 +1,7 @@
-import { Message, MessageEmbed } from 'discord.js';
+import { Client, Message, MessageEmbed } from 'discord.js';
 
-import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import Hina from '../../res/HinaClient.js';
+import { BaseCommand } from 'hina';
 import { paginator } from '../../utils/paginator.js';
 
 export default class getemoji implements BaseCommand {
@@ -23,7 +22,7 @@ export default class getemoji implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const [server_id] = args;
 
         try {

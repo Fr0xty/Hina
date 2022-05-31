@@ -1,7 +1,7 @@
-import { Client, Collection, Intents, MessageEmbed } from 'discord.js';
-import { Player, Queue } from 'discord-player';
-import firebaseAdmin from 'firebase-admin';
 import 'dotenv/config';
+import firebaseAdmin from 'firebase-admin';
+import { Player, Queue } from 'discord-player';
+import { Client, Collection, Intents, MessageEmbed } from 'discord.js';
 
 /************************************************
  * main Hina client

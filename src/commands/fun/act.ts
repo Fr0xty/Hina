@@ -1,9 +1,7 @@
-import { BaseCommand } from 'hina';
-import CommandArgument from '../../res/models/CommandArgument.js';
-import Hina from '../../res/HinaClient.js';
-import { Message, NewsChannel, TextChannel } from 'discord.js';
+import { Client, Message, NewsChannel, TextChannel } from 'discord.js';
 
-// TODO: fix avatar not working in webhook
+import CommandArgument from '../../res/models/CommandArgument.js';
+import { BaseCommand } from 'hina';
 
 export default class act implements BaseCommand {
     name: String;
@@ -24,7 +22,7 @@ export default class act implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const [user, message] = args;
 
         // get mentioned member

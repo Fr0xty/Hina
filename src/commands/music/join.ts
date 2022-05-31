@@ -1,6 +1,6 @@
-import { Message } from 'discord.js';
+import { Client, Message } from 'discord.js';
+
 import { BaseCommand } from 'hina';
-import Hina from '../../res/HinaClient.js';
 
 export default class join implements BaseCommand {
     name: String;
@@ -11,7 +11,7 @@ export default class join implements BaseCommand {
         this.description = 'I will join your voice channel.';
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         if (!msg.member!.voice.channel) return await msg.reply('Please join a voice channel!');
 
         const queue = Hina.player.getQueue(msg.guild!);

@@ -1,8 +1,7 @@
-import { Message, NewsChannel, TextChannel } from 'discord.js';
+import { Client, Message, NewsChannel, TextChannel } from 'discord.js';
 
-import { BaseCommand } from 'hina';
 import CommandArgument from '../../res/models/CommandArgument.js';
-import Hina from '../../res/HinaClient.js';
+import { BaseCommand } from 'hina';
 
 export default class usemoji implements BaseCommand {
     name: String;
@@ -22,7 +21,7 @@ export default class usemoji implements BaseCommand {
         ];
     }
 
-    async execute(msg: Message, args: string[]) {
+    async execute(Hina: Client, msg: Message, args: string[]) {
         const [emoji_id] = args;
 
         if (!(msg.channel instanceof NewsChannel || msg.channel instanceof TextChannel)) return;
