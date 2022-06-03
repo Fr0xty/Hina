@@ -6,7 +6,7 @@
     // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
     // Placeholders with the same ids are connected.
 
-    "Print to console": {
+    "Hina command template": {
         "scope": "typescript",
         "prefix": "HinaCommandTemplate",
         "body": [
