@@ -1,8 +1,13 @@
 :root {
     --background-color: #888098;
 
+    --light-primary-color: #e5d8ff;
     --primary-color: #d4c2fc;
     --dark-primary-color: #8067b6;
+
+    --celadon: #a5e6ba;
+    --vivid-sky-blue: #54c6eb;
+    --nadeshiko-pink: #f5b0cb;
 
     --secondary-color: #96f3c9;
     --dark-secondary-color: #8dab7f;

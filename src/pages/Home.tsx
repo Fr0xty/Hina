@@ -5,7 +5,7 @@ import Statistics from '../components/Statistics';
 const Home = () => {
     return (
         <div className="Home">
-            <Navbar />
+            <Navbar currentPage="home" />
             <Hero />
             <Statistics />
         </div>

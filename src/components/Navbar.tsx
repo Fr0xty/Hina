@@ -2,66 +2,51 @@ import '../scss/Navbar.scss';
 import hina_pfp from '../images/hina_pfp.png';
 import { useEffect } from 'react';
 
-const Navbar = ({ solidBackground }: { solidBackground?: boolean }) => {
+const Navbar = ({ currentPage }: { currentPage?: 'home' | 'about' | 'products' }) => {
     useEffect(() => {
-        const navbar = document.querySelector('.Navbar');
-        const burgerMenu = document.querySelector('input');
-
-        if (solidBackground) {
-            navbar!.classList.add('hasBackgroundColor');
-            // @ts-ignore
-            navbar!.style.position = 'relative';
-            return;
-        }
-
-        document.addEventListener('wheel', () => {
-            const navbarComponent = document.querySelector('.Navbar');
-            window.scrollY >= 100
-                ? navbarComponent!.classList.add('hasBackgroundColor')
-                : navbarComponent!.classList.remove('hasBackgroundColor');
-        });
-
-        burgerMenu?.addEventListener('change', () => {
-            navbar?.classList.toggle('toggleMobileMenu');
-        });
+        if (!currentPage) return;
+        document.querySelector(`.navbar a.${currentPage}-nav`)?.classList.add('current-page');
     }, []);
 
     return (
-        <div className="Navbar">
-            <div className="main">
-                <div className="title">
-                    <h2>
-                        <a href="/">HinaWeb</a>
-                    </h2>
-                    <img src={hina_pfp} alt="logo" />
-                </div>
-                <label className="burgerMenu" htmlFor="check">
-                    <input type="checkbox" id="check" />
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </label>
+        <div className="navbar-wrapper">
+            <div className="mobile-menu-backgrounds">
+                <div className="background-1" />
+                <div className="background-2" />
+                <div className="background-3" />
             </div>
-            <ul>
-                <li>
-                    <a
-                        href="https://discord.com/api/oauth2/authorize?client_id=769125937731338290&scope=bot+applications.commands&permissions=1099511627776"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Invite
+            <div className="navbar no-select">
+                <a href="/">
+                    <h1>HinaWeb</h1>
+                    <img src={hina_pfp} alt="tajimise logo" />
+                </a>
+
+                <nav>
+                    <a href="/" className="home-nav">
+                        Home
                     </a>
-                </li>
-                <li>
-                    <a
-                        href="https://github.com/Fr0xty/Hina"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
+                    <a href="/about" className="products-nav">
+                        About
+                    </a>
+                    <a href="/repository" className="about-nav">
                         Repository
                     </a>
-                </li>
-            </ul>
+                    <a target="_blank" rel="noreferrer" href="/api/redirect/discord-server">
+                        Discord_Server
+                    </a>
+                </nav>
+
+                <div
+                    className="burger-menu"
+                    onClick={() =>
+                        document.querySelector('.navbar-wrapper')?.classList.toggle('open-nav')
+                    }
+                >
+                    <span />
+                    <span />
+                    <span />
+                </div>
+            </div>
         </div>
     );
 };
