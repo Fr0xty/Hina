@@ -128,6 +128,18 @@
     .navbar-wrapper .navbar {
         padding: 2em 5em;
 
+        a {
+            h1 {
+                font-size: 1.8em;
+                margin: auto 0;
+            }
+
+            img {
+                height: 4em;
+                margin: auto 0.8em;
+            }
+        }
+
         nav {
             position: absolute;
             height: auto;
