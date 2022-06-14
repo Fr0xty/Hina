@@ -2,7 +2,7 @@
     .mobile-menu-backgrounds {
         div {
             clip-path: circle(0px at 0 0px);
-            position: absolute;
+            position: fixed;
             height: 100%;
             width: 100%;
             z-index: 998;
@@ -176,7 +176,6 @@
         .mobile-menu-backgrounds {
             div {
                 clip-path: circle(100%);
-                position: fixed;
             }
         }
 
