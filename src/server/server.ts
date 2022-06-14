@@ -32,6 +32,23 @@ app.get('/help/runtimes', async (req, res) => {
 });
 
 /**
+ * simple routes
+ */
+app.get('/invite', async (req, res) => {
+    res.redirect(
+        'https://discord.com/api/oauth2/authorize?client_id=769125937731338290&permissions=8&scope=bot%20applications.commands'
+    );
+});
+
+app.get('/repository', async (req, res) => {
+    res.redirect('https://github.com/Fr0xty/Hina');
+});
+
+app.get('/discord', async (req, res) => {
+    res.redirect('https://discord.gg/VtQRrVCxg8');
+});
+
+/**
  * render React webapp
  */
 app.get('*', async (req, res) => {
