@@ -23,7 +23,7 @@ const Statistics = () => {
     }, []);
 
     return (
-        <div className="statistics">
+        <div className="statistics no-select">
             <div>
                 <img src={guildIcon} alt="server icon" />
                 <p>
