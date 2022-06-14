@@ -25,8 +25,12 @@ const Navbar = ({ currentPage }: { currentPage?: 'home' | 'about' | 'products' }
                     <a href="/" className="home-nav">
                         Home
                     </a>
-                    <a href="/invite">Invite</a>
-                    <a href="/repository">Repository</a>
+                    <a target="_blank" rel="noreferrer" href="/invite">
+                        Invite
+                    </a>
+                    <a target="_blank" rel="noreferrer" href="/repository">
+                        Repository
+                    </a>
                     <a target="_blank" rel="noreferrer" href="/discord">
                         Discord_Server
                     </a>
