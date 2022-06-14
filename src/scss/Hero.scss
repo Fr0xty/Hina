@@ -9,12 +9,14 @@
         right: 0;
         top: 18%;
         bottom: 0;
+        display: flex;
+        justify-content: space-evenly;
 
         .texts {
-            padding: 4em 0;
-            margin-left: 5em;
+            padding: 8em 0;
             z-index: 100;
             position: relative;
+            width: 50%;
 
             h1 {
                 font-size: 5em;
@@ -45,7 +47,7 @@
             p {
                 font-size: 1.4em;
                 color: var(--light-primary-color);
-                width: 30em;
+                width: auto;
                 text-shadow: -1px -1px 0 var(--background-color), -1px 0px 0 var(--background-color),
                     -1px 1px 0 var(--background-color), 0px -1px 0 var(--background-color),
                     0px 0px 0 var(--background-color), 0px 1px 0 var(--background-color),
@@ -78,26 +80,42 @@
         }
 
         img.hero-visual {
-            // position: absolute;
-            height: 30em;
+            height: 23em;
+            border-radius: 0.8em;
+            margin: auto 0;
+            transform: rotate(3deg);
         }
     }
 }
 
 @media screen and (max-width: 1120px) {
     .hero .content {
+        .texts {
+            h1 {
+                font-size: 4rem;
+            }
+            p {
+                font-size: 1.2em;
+            }
+
+            .action-row button {
+                font-size: 1.2em;
+            }
+        }
         img.hero-visual {
-            height: 90%;
+            height: 20em;
         }
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 890px) {
     .hero .content {
         .texts {
             display: block;
             text-align: center;
+            width: 80%;
             margin: 0;
+            padding: 1em 0;
 
             h1 {
                 font-size: 3.5em;
@@ -111,11 +129,20 @@
 
             .action-row {
                 justify-content: center;
+
+                button {
+                    font-size: 1.1em;
+                }
             }
         }
 
         img.hero-visual {
-            display: none;
+            position: absolute;
+            opacity: 50%;
+            height: 25em;
+            margin-left: 8em;
+            margin-top: 3em;
+            transform: rotate(8deg);
         }
     }
 }
@@ -124,7 +151,7 @@
     .hero {
         .content {
             .texts {
-                padding: 1em 0;
+                width: 100%;
 
                 h1 {
                     font-size: 3em;
@@ -134,15 +161,28 @@
                 p {
                     font-size: 1.2em;
                     margin-bottom: 0;
+                    margin-top: 2em;
                 }
                 .action-row {
                     display: block;
+                    margin-top: 3em;
+
                     button {
                         font-size: 1.1em;
                         margin-bottom: 1.5em;
                     }
                 }
             }
+
+            img.hero-visual {
+                margin-left: 4em;
+            }
         }
+    }
+}
+
+@media screen and (max-height: 750px) {
+    .hero .content .texts {
+        padding: 2em 0;
     }
 }
