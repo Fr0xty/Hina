@@ -1,4 +1,4 @@
-.Statistics {
+.statistics {
     background: var(--dark-color);
     display: flex;
     justify-content: space-around;
@@ -27,7 +27,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .Statistics {
+    .statistics {
         img {
             height: 4em;
         }
@@ -38,7 +38,7 @@
     }
 }
 @media screen and (max-width: 780px) {
-    .Statistics {
+    .statistics {
         display: block;
 
         div,

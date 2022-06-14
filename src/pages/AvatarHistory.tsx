@@ -19,7 +19,7 @@ const AvatarHistory = () => {
     }, []);
 
     return (
-        <div className="AvatarHistory">
+        <div className="avatar-history">
             {avatars.length
                 ? avatars.map((avatar) => (
                       <img

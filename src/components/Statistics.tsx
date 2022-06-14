@@ -23,7 +23,7 @@ const Statistics = () => {
     }, []);
 
     return (
-        <div className="Statistics">
+        <div className="statistics">
             <div>
                 <img src={guildIcon} alt="server icon" />
                 <p>
