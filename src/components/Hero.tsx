@@ -16,32 +16,27 @@ const Hero = () => {
     }, []);
 
     return (
-        <div className="Hero">
-            <div className="main">
-                <h1>Welcome to HinaWeb!</h1>
-                <p>
-                    Hina is a multi-purpose Discord bot. You can get help on command usages and
-                    other information about Hina here.
-                    <br />
-                    <br />
-                    You might want:
-                </p>
-                <div className="hero-btns">
-                    <button>
-                        <a href="/command-help">Command Help</a>
-                    </button>
-                    <button>
-                        <a
-                            href="https://discord.gg/VtQRrVCxg8"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Join Server
+        <div className="hero no-select">
+            <div className="content">
+                <div className="texts">
+                    <h1>
+                        Welcome To <br />
+                        <span>TajiMisé</span> Store!
+                    </h1>
+                    <p>
+                        Quality, Custom-Tailored Art is our raison d'être. <i>Anime</i>,{' '}
+                        <i>Manga</i> or <i>Game</i> characters you ruminate, why not bring them to
+                        reality?
+                    </p>
+                    <div className="action-row">
+                        <a href={'hi'}>
+                            <button>{'a'}</button>
                         </a>
-                    </button>
+                        <pre>{'a'}</pre>
+                    </div>
                 </div>
+                <img className="hero-visual" src={heroImage} alt="visual" />
             </div>
-            <img src={heroImage} alt="random waifu" />
         </div>
     );
 };

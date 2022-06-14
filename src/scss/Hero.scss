@@ -1,113 +1,159 @@
-a {
-    text-decoration: none;
-    color: black;
-}
+.hero {
+    min-height: 100vh;
+    position: relative;
 
-button {
-    font-size: 1.4em;
-    padding: 0.4em 1em;
-    border-radius: 0.6em;
-    border: none;
-    background: #d4c2fc;
-    margin: 0.2em 0.6em;
-}
+    .content {
+        padding: 2em 4em;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 18%;
+        bottom: 0;
 
-.Hero {
-    box-shadow: 0 0 200px rgba(0, 0, 0, 0.4) inset;
-    height: 100vh;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-
-    .main {
-        margin-left: 12%;
-        width: 35vw;
-
-        h1 {
-            font-size: 4em;
-        }
-
-        p {
-            font-size: 1.4em;
-        }
-
-        .hero-btns {
-            width: 80%;
-            display: flex;
-            justify-content: space-around;
-        }
-    }
-
-    img {
-        max-width: 28em;
-        max-height: 30em;
-        border-radius: 1em;
-        margin: auto 0;
-        margin-right: 15%;
-        transform: rotate(4deg);
-    }
-}
-
-@media screen and (max-width: 1300px) {
-    .Hero {
-        .main {
-            h1 {
-                font-size: 3.3em;
-            }
-            p {
-                font-size: 1.2em;
-            }
-        }
-        img {
-            max-width: 23em;
-            max-height: 25em;
-        }
-    }
-}
-@media screen and (max-width: 950px) {
-    .Hero {
-        img {
-            max-width: 20em;
-            max-height: 22em;
-        }
-    }
-}
-
-@media screen and (max-width: 780px) {
-    .Hero {
-        display: flex;
-        justify-content: center;
-        text-align: center;
-
-        .main {
-            margin: 0;
-            width: 80%;
+        .texts {
+            padding: 4em 0;
+            margin-left: 5em;
+            z-index: 100;
+            position: relative;
 
             h1 {
-                font-size: 3.3em;
-            }
-            p {
-                font-size: 1.2em;
-            }
-            .hero-btns button a {
-                font-size: 0.9em;
+                font-size: 5em;
+                color: var(--baby-powder);
+                margin-bottom: 0.5em;
+                margin-top: 0.2em;
+                line-height: 1.15em;
+
+                span {
+                    color: transparent;
+                    background: linear-gradient(to left, var(--salmon-pink) 50%, var(--nyanza) 50%)
+                        right;
+                    background-size: 200%;
+                    transition: 0.4s;
+                    -webkit-background-clip: text;
+                    background-clip: text;
+
+                    &:hover {
+                        background-position: left;
+                    }
+                }
             }
 
-            .hero-btns {
-                margin: 0 auto;
+            p {
+                font-size: 1.4em;
+                color: var(--light-gray);
+                width: 30em;
+                text-shadow: -1px -1px 0 var(--cadet), -1px 0px 0 var(--cadet),
+                    -1px 1px 0 var(--cadet), 0px -1px 0 var(--cadet), 0px 0px 0 var(--cadet),
+                    0px 1px 0 var(--cadet), 1px -1px 0 var(--cadet), 1px 0px 0 var(--cadet),
+                    1px 1px 0 var(--cadet);
+            }
+
+            .action-row {
+                display: flex;
+                justify-content: left;
 
                 button {
-                    padding: 0.4em 0.5em;
+                    margin: 2em 0.5em;
+                    padding: 0.5em 1em;
+                    font-size: 1.3em;
+                    font-weight: bold;
+                    background: none;
+                    color: var(--lavender-blue);
+                    border: 2px solid var(--lavender-blue);
+                    cursor: pointer;
+                    transition: background 0.4s, color 0.4s;
+
+                    &:hover {
+                        color: rgb(50, 50, 50);
+                        background: var(--lavender-blue);
+                    }
+                }
+
+                pre {
+                    font-size: 1.3em;
+                    font-weight: bold;
+                    color: white;
+                    height: 1.2em;
+                    margin: auto 0;
+                    margin-left: 2em;
                 }
             }
         }
-        img {
+
+        img.hero-visual {
             position: absolute;
-            right: 1em;
-            bottom: 8em;
-            opacity: 60%;
-            z-index: -1;
+            right: 0;
+            bottom: 0;
+            height: 120%;
+            z-index: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 1120px) {
+    .hero .content {
+        img.hero-visual {
+            height: 90%;
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .hero .content {
+        .texts {
+            display: block;
+            text-align: center;
+            margin: 0;
+
+            h1 {
+                font-size: 3.5em;
+                display: block;
+            }
+
+            p {
+                font-size: 1.3em;
+                width: 100%;
+            }
+
+            .action-row {
+                justify-content: center;
+            }
+        }
+
+        img.hero-visual {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .hero {
+        .content {
+            .texts {
+                padding: 1em 0;
+
+                h1 {
+                    font-size: 3em;
+                    margin: 0;
+                }
+
+                p {
+                    font-size: 1.2em;
+                    margin-bottom: 0;
+                }
+                .action-row {
+                    display: block;
+                    button {
+                        font-size: 1.1em;
+                        margin-bottom: 1.5em;
+                    }
+
+                    pre {
+                        font-size: 1.2em;
+                        margin: 0 0;
+                    }
+                }
+            }
         }
     }
 }
