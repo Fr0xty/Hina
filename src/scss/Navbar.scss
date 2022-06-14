@@ -33,11 +33,11 @@
 
         a {
             display: flex;
+            z-index: 999;
 
             img {
                 height: 5em;
                 position: relative;
-                z-index: 999;
                 margin-left: 0.8em;
                 border-radius: 50%;
             }

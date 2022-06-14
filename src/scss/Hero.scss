@@ -18,14 +18,18 @@
 
             h1 {
                 font-size: 5em;
-                color: var(--baby-powder);
+                color: var(--white);
                 margin-bottom: 0.5em;
                 margin-top: 0.2em;
                 line-height: 1.15em;
 
                 span {
                     color: transparent;
-                    background: linear-gradient(to left, var(--salmon-pink) 50%, var(--nyanza) 50%)
+                    background: linear-gradient(
+                            to left,
+                            var(--secondary-color) 50%,
+                            var(--nadeshiko-pink) 50%
+                        )
                         right;
                     background-size: 200%;
                     transition: 0.4s;
@@ -40,42 +44,35 @@
 
             p {
                 font-size: 1.4em;
-                color: var(--light-gray);
+                color: var(--light-primary-color);
                 width: 30em;
-                text-shadow: -1px -1px 0 var(--cadet), -1px 0px 0 var(--cadet),
-                    -1px 1px 0 var(--cadet), 0px -1px 0 var(--cadet), 0px 0px 0 var(--cadet),
-                    0px 1px 0 var(--cadet), 1px -1px 0 var(--cadet), 1px 0px 0 var(--cadet),
-                    1px 1px 0 var(--cadet);
+                text-shadow: -1px -1px 0 var(--background-color), -1px 0px 0 var(--background-color),
+                    -1px 1px 0 var(--background-color), 0px -1px 0 var(--background-color),
+                    0px 0px 0 var(--background-color), 0px 1px 0 var(--background-color),
+                    1px -1px 0 var(--background-color), 1px 0px 0 var(--background-color),
+                    1px 1px 0 var(--background-color);
             }
 
             .action-row {
                 display: flex;
                 justify-content: left;
+                margin-top: 3em;
 
                 button {
-                    margin: 2em 0.5em;
+                    margin: 0 0.5em;
                     padding: 0.5em 1em;
                     font-size: 1.3em;
                     font-weight: bold;
                     background: none;
-                    color: var(--lavender-blue);
-                    border: 2px solid var(--lavender-blue);
+                    color: var(--secondary-color);
+                    border: 2px solid var(--secondary-color);
                     cursor: pointer;
                     transition: background 0.4s, color 0.4s;
 
                     &:hover {
                         color: rgb(50, 50, 50);
-                        background: var(--lavender-blue);
+                        background: var(--secondary-color);
                     }
-                }
-
-                pre {
-                    font-size: 1.3em;
-                    font-weight: bold;
-                    color: white;
-                    height: 1.2em;
-                    margin: auto 0;
-                    margin-left: 2em;
                 }
             }
         }
@@ -146,11 +143,6 @@
                     button {
                         font-size: 1.1em;
                         margin-bottom: 1.5em;
-                    }
-
-                    pre {
-                        font-size: 1.2em;
-                        margin: 0 0;
                     }
                 }
             }

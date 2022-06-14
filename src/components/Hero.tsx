@@ -21,18 +21,19 @@ const Hero = () => {
                 <div className="texts">
                     <h1>
                         Welcome To <br />
-                        <span>TajiMisé</span> Store!
+                        <span>HinaWeb</span>!
                     </h1>
                     <p>
-                        Quality, Custom-Tailored Art is our raison d'être. <i>Anime</i>,{' '}
-                        <i>Manga</i> or <i>Game</i> characters you ruminate, why not bring them to
-                        reality?
+                        Hina is a multi-purpose Discord bot. You can get help on command usages and
+                        other information about Hina here.
                     </p>
                     <div className="action-row">
-                        <a href={'hi'}>
-                            <button>{'a'}</button>
+                        <a href="/command">
+                            <button>Commands</button>
                         </a>
-                        <pre>{'a'}</pre>
+                        <a href="/discord">
+                            <button>Discord Server</button>
+                        </a>
                     </div>
                 </div>
                 <img className="hero-visual" src={heroImage} alt="visual" />
