@@ -28,7 +28,7 @@ const Hero = () => {
                         other information about Hina here.
                     </p>
                     <div className="action-row">
-                        <a href="/command">
+                        <a href="/commands">
                             <button>Commands</button>
                         </a>
                         <a href="/discord">
