@@ -1,4 +1,13 @@
-import { Client, Message, ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle } from 'discord.js';
+import {
+    Client,
+    Message,
+    ActionRowBuilder,
+    ButtonBuilder,
+    EmbedBuilder,
+    ButtonStyle,
+    APIActionRowComponent,
+    APIMessageActionRowComponent,
+} from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import { generateHinaInvite } from '../../utils/general.js';
@@ -33,6 +42,9 @@ export default class invite implements BaseCommand {
                 .setEmoji('<a:AquaBounce:884003530933944341>')
         );
 
-        await msg.reply({ embeds: [embed], components: [button] });
+        await msg.reply({
+            embeds: [embed],
+            components: [button.data as APIActionRowComponent<APIMessageActionRowComponent>],
+        });
     }
 }

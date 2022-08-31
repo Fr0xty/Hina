@@ -1,4 +1,13 @@
-import { CommandInteraction, Message, ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle } from 'discord.js';
+import {
+    CommandInteraction,
+    Message,
+    ActionRowBuilder,
+    ButtonBuilder,
+    EmbedBuilder,
+    ButtonStyle,
+    APIActionRowComponent,
+    APIMessageActionRowComponent,
+} from 'discord.js';
 
 import Hina from '../res/HinaClient.js';
 
@@ -11,7 +20,10 @@ export const paginator = async (msg: Message, pages: EmbedBuilder[], timeout: nu
     if (pages.length === 1) return await msg.channel.send({ embeds: [pages[0]] });
 
     let currentPage = 0;
-    const sentMsg = await msg.channel.send({ embeds: [pages[currentPage]], components: [_aquaButtons] });
+    const sentMsg = await msg.channel.send({
+        embeds: [pages[currentPage]],
+        components: [_aquaButtons.data as APIActionRowComponent<APIMessageActionRowComponent>],
+    });
     const collector = sentMsg.createMessageComponentCollector({ idle: timeout, dispose: true });
     collector.on('collect', async (i) => {
         if (i.customId === 'pageLeft' && currentPage !== 0) currentPage--;
@@ -36,7 +48,7 @@ export const interactionPaginator = async (interaction: CommandInteraction, page
     let currentPage = 0;
     const sentMsg = (await interaction.reply({
         embeds: [pages[currentPage]],
-        components: [_aquaButtons],
+        components: [_aquaButtons.data as APIActionRowComponent<APIMessageActionRowComponent>],
         fetchReply: true,
     })) as Message;
 
