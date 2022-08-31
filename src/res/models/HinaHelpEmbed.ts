@@ -1,4 +1,4 @@
-import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, MessageSelectMenu, User, ButtonStyle } from 'discord.js';
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, SelectMenuBuilder, User, ButtonStyle } from 'discord.js';
 
 import Hina from '../HinaClient.js';
 
@@ -49,7 +49,7 @@ export class Help {
             ),
 
             selectCategory: new ActionRowBuilder().addComponents(
-                new MessageSelectMenu()
+                new SelectMenuBuilder()
                     .setCustomId('select')
                     .setPlaceholder('Select your command category!')
                     .addOptions([
