@@ -34,20 +34,16 @@ export default class avatar implements BaseCommand {
             .setDescription(
                 `
 [\`webp\`](${User.displayAvatarURL({
-                    dynamic: true,
-                    format: 'webp',
+                    extension: 'webp',
                     size: 4096,
                 })}) [\`png\`](${User.displayAvatarURL({
-                    dynamic: true,
-                    format: 'png',
+                    extension: 'png',
                     size: 4096,
                 })}) [\`jpg\`](${User.displayAvatarURL({
-                    dynamic: true,
-                    format: 'jpg',
+                    extension: 'jpg',
                     size: 4096,
                 })}) [\`jpeg\`](${User.displayAvatarURL({
-                    dynamic: true,
-                    format: 'jpeg',
+                    extension: 'jpeg',
                     size: 4096,
                 })})
             `

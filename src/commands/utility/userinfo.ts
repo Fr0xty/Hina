@@ -70,7 +70,7 @@ export default class userinfo implements BaseCommand {
             })
             .setTitle(member.user.tag)
             .setColor(member.displayHexColor)
-            .setThumbnail(member.user.displayAvatarURL({ size: 4096, dynamic: true }))
+            .setThumbnail(member.user.displayAvatarURL({ size: 4096 }))
             .setTimestamp()
             .setFooter({
                 text: `Requested by: ${msg.author.tag}`,
