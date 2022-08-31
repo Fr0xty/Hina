@@ -1,4 +1,4 @@
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
@@ -42,7 +42,7 @@ export default class getemoji implements BaseCommand {
                 _++;
 
                 if (_ === 20) {
-                    const embed: MessageEmbed = new MessageEmbed()
+                    const embed: EmbedBuilder = new EmbedBuilder()
                         .setColor(Hina.color)
                         .setAuthor({
                             name: `${Hina.user!.username} Page ${pages.length + 1} / ${pageAmount}`,
@@ -62,7 +62,7 @@ export default class getemoji implements BaseCommand {
                 }
             }
             if (_) {
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setColor(Hina.color)
                     .setAuthor({
                         name: `${Hina.user!.username} Page ${pages.length + 1} / ${pageAmount}`,

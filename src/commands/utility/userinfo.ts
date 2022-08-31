@@ -1,4 +1,4 @@
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
@@ -63,7 +63,7 @@ export default class userinfo implements BaseCommand {
             roles = `highest: ${member.roles.highest}\nhoist: ${member.roles.hoist}`;
         }
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setAuthor({
                 name: `${member.displayName}'s User Info`,
                 iconURL: member.user.displayAvatarURL(Hina.imageOption),

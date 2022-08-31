@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 import { loadFile } from 'graphql-import-files';
 
 import CommandArgument from '../../res/models/CommandArgument.js';
@@ -59,7 +59,7 @@ export default class manga implements BaseCommand {
             data: { Media: mangaInfo },
         }: any = JSON.parse(JSON.stringify(await req.json()).replaceAll(':null,', ':"-",'));
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setTitle(`${mangaInfo.title.native}\n${mangaInfo.title.english}`)
             .setURL(`https://myanimelist.net/manga/${mangaInfo.idMal}`)
             .setDescription(

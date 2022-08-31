@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
@@ -26,7 +26,7 @@ export default class jisho implements BaseCommand {
 
         if (result.meta.status !== 200) return await msg.reply(`No result was found with the search term \`${word}\`.`);
 
-        let pages: MessageEmbed[] = [];
+        let pages: EmbedBuilder[] = [];
         for (let i = 0; i < result.data.length; i++) {
             const wordResult = result.data[i];
 
@@ -68,7 +68,7 @@ export default class jisho implements BaseCommand {
                 alternativeKanji = '';
             }
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setColor(Hina.color)
                 .setAuthor({
                     name: `Hina Jisho (Page ${i + 1} / ${result.data.length})`,

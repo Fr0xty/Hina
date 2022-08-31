@@ -1,4 +1,4 @@
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
@@ -27,7 +27,7 @@ export default class avatar implements BaseCommand {
         const User = user ? await Hina.users.fetch(user.match(/\d+/)![0]) : msg.author;
         if (!User) return await msg.reply('Invalid user id / mention!');
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({ name: "Hina's Avatar Fetcher", iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
             .setTitle(`${User.tag}'s Avatar'`)

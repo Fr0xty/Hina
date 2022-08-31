@@ -1,4 +1,4 @@
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 
@@ -14,7 +14,7 @@ export default class epochtime implements BaseCommand {
     }
 
     async execute(Hina: Client, msg: Message, args: string[]) {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({ name: 'Epoch Time Example', iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
             .setDescription(

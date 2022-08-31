@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
@@ -67,7 +67,7 @@ export default class waifuPics implements BaseCommand {
         let pages = [];
         let _ = 1;
         for (let i = 0; i < amount; i++) {
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setAuthor({ name: `${Hina.user!.username} Page ${_++} / ${amount}` })
                 .setColor(Hina.color)
                 .setTitle(tag)

@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 
@@ -18,7 +18,7 @@ export default class funfact implements BaseCommand {
             return await msg.reply('Sorry, something went wrong went making the request. Please try again.');
         const fact: any = await req.json();
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({ name: 'Fun fact with Hina!', iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
             .setFooter({

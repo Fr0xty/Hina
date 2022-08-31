@@ -1,4 +1,4 @@
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import { paginator } from '../../utils/paginator.js';
@@ -42,7 +42,7 @@ export default class queue implements BaseCommand {
          * only 1 song in queue
          */
         if (!queue.tracks.length) {
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setColor(Hina.color)
                 .setAuthor({
                     name: `Music queue for ${queue.guild.name}`,
@@ -69,12 +69,12 @@ no more songs in queue...
          */
         let songNum = 2;
         let page = `[${queue.nowPlaying().title}](${queue.nowPlaying().url})\n\n`;
-        const pages: MessageEmbed[] = [];
+        const pages: EmbedBuilder[] = [];
         queue.tracks.forEach((track) => {
             page += `**${songNum++}.** [${track.title}](${track.url})\n`;
 
             if (songNum % 15 === 0) {
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setColor(Hina.color)
                     .setAuthor({
                         name: `Music queue for ${queue.guild.name} | Page ${pages.length + 1} / ${Math.ceil(
@@ -95,7 +95,7 @@ no more songs in queue...
             }
         });
         if (page) {
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setColor(Hina.color)
                 .setAuthor({
                     name: `Music queue for ${queue.guild.name} | Page ${pages.length + 1} / ${Math.ceil(

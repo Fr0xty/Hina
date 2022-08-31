@@ -1,4 +1,4 @@
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 
@@ -23,7 +23,7 @@ export default class nowplaying implements BaseCommand {
         const progress = queue.createProgressBar();
         const timestamp = queue.getPlayerTimestamp();
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({
                 name: `Music queue for ${queue.guild.name}`,

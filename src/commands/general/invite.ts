@@ -1,4 +1,4 @@
-import { Client, Message, MessageActionRow, MessageButton, MessageEmbed } from 'discord.js';
+import { Client, Message, MessageActionRow, MessageButton, EmbedBuilder } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import { generateHinaInvite } from '../../utils/general.js';
@@ -15,7 +15,7 @@ export default class invite implements BaseCommand {
     async execute(Hina: Client, msg: Message, args: string[]) {
         const HinaInvite = await generateHinaInvite(Hina);
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setAuthor({ name: 'My invite link♡', iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
             .setColor(Hina.color)
             .setDescription(HinaInvite)

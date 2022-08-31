@@ -1,4 +1,4 @@
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
@@ -49,7 +49,7 @@ export default class spotify implements BaseCommand {
             const songDuration = await convertSeconds(Math.abs(endTime - startTime));
             const partyID = spotifyAct.party!.id;
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setAuthor({
                     name: `${member!.user.tag}'s Spotify Activity`,
                     iconURL: 'https://cdn.discordapp.com/emojis/936844383926517771.webp?size=96&quality=lossless',
