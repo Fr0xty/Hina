@@ -13,7 +13,7 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
 
         for (const [id, emoji] of msg.guild!.emojis.cache.entries()) {
             if (emoji.name === emojiName) {
-                if (!msg.guild!.me!.permissions.has(PermissionFlagsBits.ManageWebhooks)) {
+                if (!msg.guild!.members.me!.permissions.has(PermissionFlagsBits.ManageWebhooks)) {
                     return await msg.reply(
                         'Please enable "Manage Webhooks" permission for me in order to use this feature!'
                     );

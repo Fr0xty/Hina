@@ -57,7 +57,7 @@ export default class play implements BaseCommand {
             queue.addTrack(resource.tracks[0]);
         }
 
-        if (msg.member!.voice.channelId !== msg.guild!.me!.voice.channelId || !alreadyConnectedQueue) {
+        if (msg.member!.voice.channelId !== msg.guild!.members.me!.voice.channelId || !alreadyConnectedQueue) {
             try {
                 await queue.connect(msg.member!.voice.channel);
             } catch {
