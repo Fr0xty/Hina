@@ -1,4 +1,4 @@
-import { Client, Message, EmbedBuilder } from 'discord.js';
+import { Client, Message, EmbedBuilder, ActivityType } from 'discord.js';
 
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
@@ -36,7 +36,9 @@ export default class spotify implements BaseCommand {
         const activities = member!.presence?.activities;
 
         if (activities) {
-            const spotifyAct = activities.filter((act) => act.name === 'Spotify' && act.type === 'LISTENING').shift();
+            const spotifyAct = activities
+                .filter((act) => act.name === 'Spotify' && act.type === ActivityType.Listening)
+                .shift();
             if (!spotifyAct) return await msg.reply(`${member} is not listening to Spotify!`);
 
             const songName = spotifyAct.details;
