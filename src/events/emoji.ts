@@ -19,7 +19,8 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
                     );
                 }
 
-                const webhook = await msg.channel.createWebhook(msg.member!.displayName, {
+                const webhook = await msg.channel.createWebhook({
+                    name: msg.member!.displayName,
                     avatar: msg.author.displayAvatarURL(Hina.imageOption),
                 });
                 await webhook.send(emoji.toString());
