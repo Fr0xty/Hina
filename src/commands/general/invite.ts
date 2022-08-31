@@ -1,4 +1,13 @@
-import { Client, Message, MessageActionRow, MessageButton, MessageEmbed } from 'discord.js';
+import {
+    Client,
+    Message,
+    ActionRowBuilder,
+    ButtonBuilder,
+    EmbedBuilder,
+    ButtonStyle,
+    APIActionRowComponent,
+    APIMessageActionRowComponent,
+} from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import { generateHinaInvite } from '../../utils/general.js';
@@ -15,7 +24,7 @@ export default class invite implements BaseCommand {
     async execute(Hina: Client, msg: Message, args: string[]) {
         const HinaInvite = await generateHinaInvite(Hina);
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setAuthor({ name: 'My invite link♡', iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
             .setColor(Hina.color)
             .setDescription(HinaInvite)
@@ -25,14 +34,17 @@ export default class invite implements BaseCommand {
             })
             .setTimestamp();
 
-        const button = new MessageActionRow().addComponents(
-            new MessageButton()
+        const button = new ActionRowBuilder().addComponents(
+            new ButtonBuilder()
                 .setLabel('Invite Me!')
-                .setStyle('LINK')
+                .setStyle(ButtonStyle.Link)
                 .setURL(HinaInvite)
                 .setEmoji('<a:AquaBounce:884003530933944341>')
         );
 
-        await msg.reply({ embeds: [embed], components: [button] });
+        await msg.reply({
+            embeds: [embed],
+            components: [button.data as APIActionRowComponent<APIMessageActionRowComponent>],
+        });
     }
 }

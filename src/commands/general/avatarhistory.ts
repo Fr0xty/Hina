@@ -1,4 +1,4 @@
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
@@ -32,7 +32,7 @@ export default class avatarhistory implements BaseCommand {
             return await msg.reply('Invalid userId!');
         }
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({ name: `${theUser.tag}'s Avatar History`, iconURL: theUser.displayAvatarURL() })
             .setDescription(`see them [HERE](https://Hina.fr0xty.repl.co/api/avatar-history/${userId})`)

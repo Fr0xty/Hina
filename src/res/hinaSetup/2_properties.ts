@@ -11,7 +11,7 @@ Hina.prefix = 'hina ';
 Hina.color = '#E49CFF';
 
 Hina.okEmoji = '902096184645124146';
-Hina.imageOption = { dynamic: true, size: 4096 };
+Hina.imageOption = { size: 4096 };
 
 /**
  * to store commands

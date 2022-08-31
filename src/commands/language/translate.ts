@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import DetectLanguage from 'detectlanguage';
 import Translate from 'translate';
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
@@ -60,7 +60,7 @@ export default class translate implements BaseCommand {
             await msg.reply(err);
         }
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({ name: 'Hina Translate', iconURL: Hina.user!.displayAvatarURL() })
             .setDescription(

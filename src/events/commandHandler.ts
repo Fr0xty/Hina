@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import Hina from '../res/HinaClient.js';
 import { BaseCommand } from 'hina';
@@ -27,7 +27,7 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
      */
     const command: BaseCommand = Hina.commands.get(commandName);
     if (!command) {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setTitle(
                 `No command named "${
@@ -49,7 +49,7 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
         for (let i = 0; i < command.args.length; i++) {
             // missing required argument
             if (!command.args[i].optional && !args.length) {
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setColor(Hina.color)
                     .setTitle(`Missing command argument "${command.args[i].name}"`)
                     .setDescription(
@@ -78,7 +78,7 @@ ${command.args[i].description}`
             // validate the argument
             const validateResult = validateArgument(structuredArguments.at(-1)!, command.args[i]);
             if (!validateResult) {
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setColor(Hina.color)
                     .setTitle(`Invalid argument for "${command.args[i].name}"`)
                     .setDescription(

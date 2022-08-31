@@ -1,11 +1,11 @@
-import { Client, Guild, PartialUser, Permissions, User } from 'discord.js';
+import { Client, Guild, OAuth2Scopes, PartialUser, PermissionsBitField, User } from 'discord.js';
 
 import Hina from '../res/HinaClient.js';
 
 export const generateHinaInvite = async (Hina: Client) => {
     const invite = Hina.generateInvite({
-        permissions: [Permissions.FLAGS.MODERATE_MEMBERS],
-        scopes: ['bot', 'applications.commands'],
+        permissions: [PermissionsBitField.Flags.ModerateMembers],
+        scopes: [OAuth2Scopes.Bot, OAuth2Scopes.ApplicationsCommands],
     });
     return invite;
 };
@@ -20,7 +20,7 @@ export const sleep = (ms: number): Promise<void> => {
 };
 
 export const avatarURLToAttachment = async (user: User | PartialUser) => {
-    const avatarURL = user.displayAvatarURL({ dynamic: true, size: 4096, format: 'webp' });
+    const avatarURL = user.displayAvatarURL({ size: 4096, extension: 'webp' });
 
     const msg = await Hina.avatarHistoryChannel.send({
         files: [

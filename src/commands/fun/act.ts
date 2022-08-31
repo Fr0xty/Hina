@@ -31,7 +31,8 @@ export default class act implements BaseCommand {
 
         // sending the message as user using webhook
         if (!(msg.channel instanceof NewsChannel || msg.channel instanceof TextChannel)) return;
-        const webhook = await msg.channel.createWebhook(member.displayName, {
+        const webhook = await msg.channel.createWebhook({
+            name: member.displayName,
             avatar: member.displayAvatarURL(Hina.imageOption),
         });
         await webhook.send(message);

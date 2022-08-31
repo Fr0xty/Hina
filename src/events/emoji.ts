@@ -1,4 +1,4 @@
-import { NewsChannel, TextChannel } from 'discord.js';
+import { NewsChannel, PermissionFlagsBits, TextChannel } from 'discord.js';
 
 import Hina from '../res/HinaClient.js';
 
@@ -13,13 +13,14 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
 
         for (const [id, emoji] of msg.guild!.emojis.cache.entries()) {
             if (emoji.name === emojiName) {
-                if (!msg.guild!.me!.permissions.has('MANAGE_WEBHOOKS')) {
+                if (!msg.guild!.members.me!.permissions.has(PermissionFlagsBits.ManageWebhooks)) {
                     return await msg.reply(
                         'Please enable "Manage Webhooks" permission for me in order to use this feature!'
                     );
                 }
 
-                const webhook = await msg.channel.createWebhook(msg.member!.displayName, {
+                const webhook = await msg.channel.createWebhook({
+                    name: msg.member!.displayName,
                     avatar: msg.author.displayAvatarURL(Hina.imageOption),
                 });
                 await webhook.send(emoji.toString());

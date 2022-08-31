@@ -25,7 +25,8 @@ export default class usemoji implements BaseCommand {
         const [emoji_id] = args;
 
         if (!(msg.channel instanceof NewsChannel || msg.channel instanceof TextChannel)) return;
-        const webhook = await msg.channel.createWebhook(msg.member!.displayName, {
+        const webhook = await msg.channel.createWebhook({
+            name: msg.member!.displayName,
             avatar: msg.author.displayAvatarURL(Hina.imageOption),
         });
 

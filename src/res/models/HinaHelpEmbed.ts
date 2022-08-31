@@ -1,4 +1,4 @@
-import { MessageEmbed, MessageActionRow, MessageButton, MessageSelectMenu, User } from 'discord.js';
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, SelectMenuBuilder, User, ButtonStyle } from 'discord.js';
 
 import Hina from '../HinaClient.js';
 
@@ -6,21 +6,21 @@ export class Help {
     author: User;
     categories: string[];
     components: {
-        actionRow: MessageActionRow;
-        selectCategory: MessageActionRow;
-        linkRow: MessageActionRow;
+        actionRow: ActionRowBuilder;
+        selectCategory: ActionRowBuilder;
+        linkRow: ActionRowBuilder;
     };
 
-    mainPage: MessageEmbed;
-    behavoiral: MessageEmbed;
-    general: MessageEmbed;
-    fun: MessageEmbed;
-    emoji: MessageEmbed;
-    music: MessageEmbed;
-    image: MessageEmbed;
-    language: MessageEmbed;
-    utility: MessageEmbed;
-    coderunner: MessageEmbed;
+    mainPage: EmbedBuilder;
+    behavoiral: EmbedBuilder;
+    general: EmbedBuilder;
+    fun: EmbedBuilder;
+    emoji: EmbedBuilder;
+    music: EmbedBuilder;
+    image: EmbedBuilder;
+    language: EmbedBuilder;
+    utility: EmbedBuilder;
+    coderunner: EmbedBuilder;
 
     constructor(author: User, _hinaInvite: string) {
         this.author = author;
@@ -38,14 +38,18 @@ export class Help {
         ];
 
         this.components = {
-            actionRow: new MessageActionRow().addComponents(
-                new MessageButton().setCustomId('mainPage').setLabel('Main Page').setStyle('PRIMARY').setDisabled(true),
+            actionRow: new ActionRowBuilder().addComponents(
+                new ButtonBuilder()
+                    .setCustomId('mainPage')
+                    .setLabel('Main Page')
+                    .setStyle(ButtonStyle.Primary)
+                    .setDisabled(true),
 
-                new MessageButton().setCustomId('delete').setLabel('Delete').setStyle('DANGER')
+                new ButtonBuilder().setCustomId('delete').setLabel('Delete').setStyle(ButtonStyle.Danger)
             ),
 
-            selectCategory: new MessageActionRow().addComponents(
-                new MessageSelectMenu()
+            selectCategory: new ActionRowBuilder().addComponents(
+                new SelectMenuBuilder()
                     .setCustomId('select')
                     .setPlaceholder('Select your command category!')
                     .addOptions([
@@ -106,34 +110,34 @@ export class Help {
                     ])
             ),
 
-            linkRow: new MessageActionRow().addComponents(
-                new MessageButton()
+            linkRow: new ActionRowBuilder().addComponents(
+                new ButtonBuilder()
                     .setLabel('Invite me!')
-                    .setStyle('LINK')
+                    .setStyle(ButtonStyle.Link)
                     .setURL(_hinaInvite)
                     .setEmoji('<a:AquaBounce:884003530933944341>'),
 
-                new MessageButton()
+                new ButtonBuilder()
                     .setLabel('Join Server')
-                    .setStyle('LINK')
+                    .setStyle(ButtonStyle.Link)
                     .setURL('https://discord.gg/VtQRrVCxg8')
                     .setEmoji('<a:Koronom:885845966421372958>'),
 
-                new MessageButton()
+                new ButtonBuilder()
                     .setLabel('HinaWeb (NEW!)')
-                    .setStyle('LINK')
+                    .setStyle(ButtonStyle.Link)
                     .setURL('https://Hina.fr0xty.repl.co')
                     .setEmoji('<:HinaWeb:953546770963628042>'),
 
-                new MessageButton()
+                new ButtonBuilder()
                     .setLabel('Github Repo')
-                    .setStyle('LINK')
+                    .setStyle(ButtonStyle.Link)
                     .setURL('https://github.com/Fr0xty/Hina')
                     .setEmoji('<:github:913019791743262772>')
             ),
         };
 
-        this.mainPage = new MessageEmbed()
+        this.mainPage = new EmbedBuilder()
             .setAuthor({
                 name: `${Hina.user!.username} Commands!`,
                 iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
@@ -165,7 +169,7 @@ My prefix is \`hina\`
             })
             .setTimestamp();
 
-        this.behavoiral = new MessageEmbed()
+        this.behavoiral = new EmbedBuilder()
             .setAuthor({
                 name: `${Hina.user!.username} Behavoiral Category`,
                 iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
@@ -187,7 +191,7 @@ My prefix is \`hina\`
                     'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png',
             });
 
-        this.general = new MessageEmbed()
+        this.general = new EmbedBuilder()
             .setAuthor({
                 name: `${Hina.user!.username} General Category`,
                 iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
@@ -205,7 +209,7 @@ My prefix is \`hina\`
                     'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png',
             });
 
-        this.fun = new MessageEmbed()
+        this.fun = new EmbedBuilder()
             .setAuthor({
                 name: `${Hina.user!.username} Fun Category`,
                 iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
@@ -224,7 +228,7 @@ My prefix is \`hina\`
                     'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png',
             });
 
-        this.emoji = new MessageEmbed()
+        this.emoji = new EmbedBuilder()
             .setAuthor({
                 name: `${Hina.user!.username} Fun Category`,
                 iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
@@ -267,7 +271,7 @@ __reply to the message while using the command__
                     'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png',
             });
 
-        this.music = new MessageEmbed()
+        this.music = new EmbedBuilder()
             .setAuthor({
                 name: `${Hina.user!.username} Fun Category`,
                 iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
@@ -294,7 +298,7 @@ __reply to the message while using the command__
                     'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png',
             });
 
-        this.image = new MessageEmbed()
+        this.image = new EmbedBuilder()
             .setAuthor({
                 name: `${Hina.user!.username} Image Category`,
                 iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
@@ -331,7 +335,7 @@ This can be applied to every command in this category. Must be \`>0\` and \`<31\
                     'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png',
             });
 
-        this.language = new MessageEmbed()
+        this.language = new EmbedBuilder()
             .setAuthor({
                 name: `${Hina.user!.username} Language Category`,
                 iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
@@ -351,7 +355,7 @@ This can be applied to every command in this category. Must be \`>0\` and \`<31\
                     'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png',
             });
 
-        this.utility = new MessageEmbed()
+        this.utility = new EmbedBuilder()
             .setAuthor({
                 name: `${Hina.user!.username} Utility Category`,
                 iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
@@ -370,7 +374,7 @@ This can be applied to every command in this category. Must be \`>0\` and \`<31\
                     'https://media.discordapp.net/attachments/907586559719645204/913010359936372746/amasiro_natuki.png',
             });
 
-        this.coderunner = new MessageEmbed()
+        this.coderunner = new EmbedBuilder()
             .setAuthor({
                 name: `${Hina.user!.username} Code Runner Category`,
                 iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),

@@ -1,4 +1,4 @@
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import { convertSeconds } from '../../utils/convert.js';
@@ -19,7 +19,7 @@ export default class appinfo implements BaseCommand {
         const nodeVer = '^16.13.2';
         const uptime = await convertSeconds(Hina.uptime! / 1000);
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setDescription(
                 `
 Hina is in \`${guildIn.size}\` guilds!

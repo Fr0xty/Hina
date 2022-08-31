@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 
@@ -23,7 +23,7 @@ export default class joke implements BaseCommand {
                 ? joke.joke
                 : `${joke.setup.replace('`', '\\`')}\n||${joke.delivery.replace('`', '\\`')}||`;
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({ name: `Joke (${joke.category})`, iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
             .setFooter({

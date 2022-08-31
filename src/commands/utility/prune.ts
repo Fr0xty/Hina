@@ -1,4 +1,4 @@
-import { Client, Message, NewsChannel, TextChannel } from 'discord.js';
+import { Client, Message, NewsChannel, PermissionFlagsBits, TextChannel } from 'discord.js';
 
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
@@ -25,7 +25,7 @@ export default class prune implements BaseCommand {
     async execute(Hina: Client, msg: Message, args: string[]) {
         const [givenAmount] = args;
 
-        if (!msg.member!.permissions.has('MANAGE_MESSAGES'))
+        if (!msg.member!.permissions.has(PermissionFlagsBits.ManageMessages))
             return await msg.reply("You don't have the permission to use this command!\nrequire: `Manage Messages`");
         const amount = givenAmount ? Number(givenAmount) + 1 : 2;
 

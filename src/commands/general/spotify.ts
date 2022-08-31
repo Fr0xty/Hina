@@ -1,4 +1,4 @@
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client, Message, EmbedBuilder, ActivityType } from 'discord.js';
 
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
@@ -36,11 +36,13 @@ export default class spotify implements BaseCommand {
         const activities = member!.presence?.activities;
 
         if (activities) {
-            const spotifyAct = activities.filter((act) => act.name === 'Spotify' && act.type === 'LISTENING').shift();
+            const spotifyAct = activities
+                .filter((act) => act.name === 'Spotify' && act.type === ActivityType.Listening)
+                .shift();
             if (!spotifyAct) return await msg.reply(`${member} is not listening to Spotify!`);
 
             const songName = spotifyAct.details;
-            const songUrl = `https://open.spotify.com/track/${spotifyAct.syncId}`;
+            // const songUrl = `https://open.spotify.com/track/${spotifyAct.syncId}`;
             const albumArt = spotifyAct.assets!.largeImageURL();
             const artists = spotifyAct.state!.replace(';', ',');
             const albumName = spotifyAct.assets!.largeText;
@@ -49,14 +51,14 @@ export default class spotify implements BaseCommand {
             const songDuration = await convertSeconds(Math.abs(endTime - startTime));
             const partyID = spotifyAct.party!.id;
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setAuthor({
                     name: `${member!.user.tag}'s Spotify Activity`,
                     iconURL: 'https://cdn.discordapp.com/emojis/936844383926517771.webp?size=96&quality=lossless',
                 })
                 .setColor('#1DB954')
                 .setTitle(songName!)
-                .setURL(songUrl)
+                // .setURL(songUrl)
                 .setThumbnail(albumArt!)
                 .setTimestamp()
                 .setFooter({

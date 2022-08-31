@@ -1,5 +1,5 @@
 import { Player, Queue } from 'discord-player';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import Hina from './2_properties.js';
 
@@ -10,7 +10,7 @@ Hina.player = new Player(Hina);
 
 Hina.player
     .on('trackStart', (queue: Queue<any>, track) => {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({
                 name: `Music queue for ${queue.guild.name}`,
@@ -37,7 +37,7 @@ Hina.player
     })
 
     .on('trackAdd', async (queue: Queue<any>, track) => {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({
                 name: `Music queue for ${queue.guild.name}`,
@@ -51,7 +51,7 @@ Hina.player
     })
 
     .on('tracksAdd', async (queue: Queue<any>, track) => {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({
                 name: `Music queue for ${queue.guild.name}`,
