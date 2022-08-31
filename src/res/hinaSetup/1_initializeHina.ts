@@ -5,6 +5,7 @@ import { Client, IntentsBitField } from 'discord.js';
  */
 const Hina = new Client({
     intents: [
+        IntentsBitField.Flags.MessageContent,
         IntentsBitField.Flags.Guilds,
         IntentsBitField.Flags.GuildMessages,
         IntentsBitField.Flags.GuildMembers,
