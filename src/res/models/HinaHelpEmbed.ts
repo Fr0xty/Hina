@@ -1,4 +1,4 @@
-import { EmbedBuilder, MessageActionRow, MessageButton, MessageSelectMenu, User } from 'discord.js';
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, MessageSelectMenu, User, ButtonStyle } from 'discord.js';
 
 import Hina from '../HinaClient.js';
 
@@ -6,9 +6,9 @@ export class Help {
     author: User;
     categories: string[];
     components: {
-        actionRow: MessageActionRow;
-        selectCategory: MessageActionRow;
-        linkRow: MessageActionRow;
+        actionRow: ActionRowBuilder;
+        selectCategory: ActionRowBuilder;
+        linkRow: ActionRowBuilder;
     };
 
     mainPage: EmbedBuilder;
@@ -38,13 +38,17 @@ export class Help {
         ];
 
         this.components = {
-            actionRow: new MessageActionRow().addComponents(
-                new MessageButton().setCustomId('mainPage').setLabel('Main Page').setStyle('PRIMARY').setDisabled(true),
+            actionRow: new ActionRowBuilder().addComponents(
+                new ButtonBuilder()
+                    .setCustomId('mainPage')
+                    .setLabel('Main Page')
+                    .setStyle(ButtonStyle.Primary)
+                    .setDisabled(true),
 
-                new MessageButton().setCustomId('delete').setLabel('Delete').setStyle('DANGER')
+                new ButtonBuilder().setCustomId('delete').setLabel('Delete').setStyle(ButtonStyle.Danger)
             ),
 
-            selectCategory: new MessageActionRow().addComponents(
+            selectCategory: new ActionRowBuilder().addComponents(
                 new MessageSelectMenu()
                     .setCustomId('select')
                     .setPlaceholder('Select your command category!')
@@ -106,28 +110,28 @@ export class Help {
                     ])
             ),
 
-            linkRow: new MessageActionRow().addComponents(
-                new MessageButton()
+            linkRow: new ActionRowBuilder().addComponents(
+                new ButtonBuilder()
                     .setLabel('Invite me!')
-                    .setStyle('LINK')
+                    .setStyle(ButtonStyle.Link)
                     .setURL(_hinaInvite)
                     .setEmoji('<a:AquaBounce:884003530933944341>'),
 
-                new MessageButton()
+                new ButtonBuilder()
                     .setLabel('Join Server')
-                    .setStyle('LINK')
+                    .setStyle(ButtonStyle.Link)
                     .setURL('https://discord.gg/VtQRrVCxg8')
                     .setEmoji('<a:Koronom:885845966421372958>'),
 
-                new MessageButton()
+                new ButtonBuilder()
                     .setLabel('HinaWeb (NEW!)')
-                    .setStyle('LINK')
+                    .setStyle(ButtonStyle.Link)
                     .setURL('https://Hina.fr0xty.repl.co')
                     .setEmoji('<:HinaWeb:953546770963628042>'),
 
-                new MessageButton()
+                new ButtonBuilder()
                     .setLabel('Github Repo')
-                    .setStyle('LINK')
+                    .setStyle(ButtonStyle.Link)
                     .setURL('https://github.com/Fr0xty/Hina')
                     .setEmoji('<:github:913019791743262772>')
             ),

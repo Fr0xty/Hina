@@ -1,4 +1,4 @@
-import { Client, Message, MessageActionRow, MessageButton, EmbedBuilder } from 'discord.js';
+import { Client, Message, ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle } from 'discord.js';
 
 import { BaseCommand } from 'hina';
 import { generateHinaInvite } from '../../utils/general.js';
@@ -25,10 +25,10 @@ export default class invite implements BaseCommand {
             })
             .setTimestamp();
 
-        const button = new MessageActionRow().addComponents(
-            new MessageButton()
+        const button = new ActionRowBuilder().addComponents(
+            new ButtonBuilder()
                 .setLabel('Invite Me!')
-                .setStyle('LINK')
+                .setStyle(ButtonStyle.Link)
                 .setURL(HinaInvite)
                 .setEmoji('<a:AquaBounce:884003530933944341>')
         );
