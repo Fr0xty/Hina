@@ -42,7 +42,7 @@ export default class spotify implements BaseCommand {
             if (!spotifyAct) return await msg.reply(`${member} is not listening to Spotify!`);
 
             const songName = spotifyAct.details;
-            const songUrl = `https://open.spotify.com/track/${spotifyAct.syncId}`;
+            // const songUrl = `https://open.spotify.com/track/${spotifyAct.syncId}`;
             const albumArt = spotifyAct.assets!.largeImageURL();
             const artists = spotifyAct.state!.replace(';', ',');
             const albumName = spotifyAct.assets!.largeText;
@@ -58,7 +58,7 @@ export default class spotify implements BaseCommand {
                 })
                 .setColor('#1DB954')
                 .setTitle(songName!)
-                .setURL(songUrl)
+                // .setURL(songUrl)
                 .setThumbnail(albumArt!)
                 .setTimestamp()
                 .setFooter({
