@@ -1,29 +1,13 @@
 import fs from 'fs';
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { REST } from '@discordjs/rest';
-import { Routes } from 'discord-api-types/v9';
+import { SlashCommandBuilder } from 'discord.js';
 
+import registerSlashCommands from './utils/registerSlashCommands.js';
 import Hina from './res/HinaClient.js';
-
-/**
- * register slash commands
- */
-const registerSlashCommands = async (slashCommandProfiles: Object) => {
-    const hinaId = '769125937731338290';
-    const guildId = '744786416327721050';
-
-    const rest = new REST({ version: '9' }).setToken(Hina.token!);
-
-    await rest.put(Routes.applicationGuildCommands(hinaId, guildId), {
-        body: slashCommandProfiles,
-    });
-    console.log('Successfully registered application commands.');
-};
 
 /**
  * loading commands
  */
-const slashCommandProfiles: SlashCommandBuilder[] = [];
+const slashCommands: SlashCommandBuilder[] = [];
 
 const loadCommands = async () => {
     // folder: [emoji, fun, general...]
@@ -42,14 +26,14 @@ const loadCommands = async () => {
                     Hina.commands.set(alias, command);
                 }
             }
-            if (command.slashCommandProfile) slashCommandProfiles.push(command.slashCommandProfile.toJSON());
+            if (command.slashCommandProfile) slashCommands.push(command.slashCommandProfile.toJSON());
         }
     }
     console.log('Commands are successfully added!');
 };
 
 await loadCommands();
-// await registerSlashCommands(slashCommandProfiles);
+// await registerSlashCommands(slashCommands);
 
 /**
  * loading event handlers
