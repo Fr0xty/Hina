@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import { DocumentNode } from 'graphql';
 import { Client, Message, EmbedBuilder } from 'discord.js';
 import { loadFile } from 'graphql-import-files';
 
@@ -10,7 +11,7 @@ export default class manga implements BaseCommand {
     description: String;
     commandUsage: String;
     args: CommandArgument[];
-    gqlSchema: String;
+    gqlSchema: DocumentNode;
 
     constructor() {
         this.name = 'manga';

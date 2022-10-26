@@ -34,7 +34,7 @@ export default class join implements BaseCommand {
             await queue.connect(msg.member!.voice.channel);
         }
         if (msg.member!.voice.channelId !== msg.guild!.members.me!.voice.channelId) {
-            await queue.connect(msg.member!.voice.channel);
+            await queue?.connect(msg.member!.voice.channel);
         }
 
         await msg.react(Hina.okEmoji);

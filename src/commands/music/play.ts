@@ -27,24 +27,24 @@ export default class play implements BaseCommand {
         // return if author not in vc
         if (!msg.member!.voice.channel) return await msg.reply('Please join a voice channel!');
 
-        const alreadyConnectedQueue: Queue<any> = Hina.player.getQueue(msg.guild!);
-        const queue = alreadyConnectedQueue
-            ? alreadyConnectedQueue
-            : Hina.player.createQueue(msg.guild!, {
-                  ytdlOptions: {
-                      quality: 'highest',
-                      filter: 'audioonly',
-                      highWaterMark: 1 << 25,
-                      dlChunkSize: 0,
-                  },
-                  metadata: {
-                      channel: msg.channel,
-                  },
-                  leaveOnEnd: false,
-                  leaveOnStop: false,
-                  leaveOnEmptyCooldown: 180000,
-                  initialVolume: 50,
-              });
+        const alreadyConnectedQueue = Hina.player.getQueue(msg.guild!);
+        const queue =
+            alreadyConnectedQueue ??
+            Hina.player.createQueue(msg.guild!, {
+                ytdlOptions: {
+                    quality: 'highest',
+                    filter: 'audioonly',
+                    highWaterMark: 1 << 25,
+                    dlChunkSize: 0,
+                },
+                metadata: {
+                    channel: msg.channel,
+                },
+                leaveOnEnd: false,
+                leaveOnStop: false,
+                leaveOnEmptyCooldown: 180000,
+                initialVolume: 50,
+            });
 
         const resource = await Hina.player.search(query, {
             requestedBy: msg.member!,
