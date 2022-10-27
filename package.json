@@ -1,6 +1,6 @@
 {
   "name": "hina",
-  "version": "2.3.3",
+  "version": "2.4.1",
   "description": "A multi-purpose discord bot.",
   "main": "app.js",
   "type": "module",
@@ -15,6 +15,7 @@
     "firebase-admin": "^10.0.2",
     "graphql-import-files": "^1.0.18",
     "node-fetch": "^3.2.2",
+    "opusscript": "^0.0.8",
     "piston-client": "^1.0.2",
     "translate": "^1.4.1",
     "undici": "^5.10.0",
