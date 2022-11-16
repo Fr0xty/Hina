@@ -3,6 +3,9 @@ import { Client, Message, EmbedBuilder } from 'discord.js';
 import { BaseCommand } from 'hina';
 import { convertSeconds } from '../../utils/convert.js';
 
+// @ts-ignore package.json is not in ./src therefore can't be imported
+import packageJSON from '../../../package.json' assert { type: 'json' };
+
 export default class appinfo implements BaseCommand {
     name: String;
     description: String;
@@ -15,8 +18,8 @@ export default class appinfo implements BaseCommand {
     async execute(Hina: Client, msg: Message, args: string[]) {
         const guildIn = await Hina.guilds.fetch();
         const memberCount = Hina.users.cache.size;
-        const djsVer = '^13.6.0';
-        const nodeVer = '^16.13.2';
+        const djsVer = packageJSON.dependencies['discord.js'];
+        const nodeVer = process.version;
         const uptime = await convertSeconds(Hina.uptime! / 1000);
 
         const embed = new EmbedBuilder()
