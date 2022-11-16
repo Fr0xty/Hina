@@ -25,13 +25,16 @@ export default class evaluation implements BaseCommand {
         if (msg.author.id !== '395587171601350676') return;
         if (script.startsWith('```') && script.endsWith('```')) script = script.replace(/(^.*?\s)|(\n.*$)/g, '');
 
-        try {
-            // @ts-ignore
-            let result = eval(`(async () => {${script}})()`);
-        } catch (err) {
-            console.log(err);
-            // @ts-ignore
-            await msg.reply(err.message);
-        }
+        eval(`
+                (async () => {
+                    const { default: Hina } = await import('../../res/HinaClient.js');
+
+                    try {
+                        ${script}
+                    } catch (err) {
+                        await msg.reply(err.message)
+                    }
+                })();
+        `);
     }
 }
