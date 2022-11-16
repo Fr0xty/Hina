@@ -22,7 +22,7 @@ export const paginator = async (msg: Message, pages: EmbedBuilder[], timeout: nu
     let currentPage = 0;
     const sentMsg = await msg.channel.send({
         embeds: [pages[currentPage]],
-        components: [_aquaButtons.data as APIActionRowComponent<APIMessageActionRowComponent>],
+        components: [_aquaButtons as any],
     });
     const collector = sentMsg.createMessageComponentCollector({ idle: timeout, dispose: true });
     collector.on('collect', async (i) => {
@@ -48,7 +48,7 @@ export const interactionPaginator = async (interaction: CommandInteraction, page
     let currentPage = 0;
     const sentMsg = (await interaction.reply({
         embeds: [pages[currentPage]],
-        components: [_aquaButtons.data as APIActionRowComponent<APIMessageActionRowComponent>],
+        components: [_aquaButtons as any],
         fetchReply: true,
     })) as Message;
 

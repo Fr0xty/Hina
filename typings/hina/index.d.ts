@@ -11,6 +11,6 @@ declare module 'hina' {
         aliases?: String[];
         args?: CommandArgument[];
         execute(Hina: Hina, msg: Message, args: string[]): Promise<any>;
-        slashExecute?(interaction: CommandInteraction): Promise<any>;
+        slashExecute?(Hina: Hina, interaction: CommandInteraction): Promise<any>;
     }
 }
