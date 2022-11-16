@@ -43,7 +43,7 @@ export default class spotify implements BaseCommand {
 
             const songName = spotifyAct.details;
             // const songUrl = `https://open.spotify.com/track/${spotifyAct.syncId}`;
-            const albumArt = spotifyAct.assets!.largeImageURL();
+            const albumArt = `https://i.scdn.co/image/${spotifyAct.assets!.largeImage?.split(':')[1]}`;
             const artists = spotifyAct.state!.replace(';', ',');
             const albumName = spotifyAct.assets!.largeText;
             const startTime = Math.round(Math.abs(Number(spotifyAct.timestamps!.start) / 1000));
