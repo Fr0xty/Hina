@@ -32,7 +32,7 @@ export default class evaluation implements BaseCommand {
                     try {
                         ${script}
                     } catch (err) {
-                        await msg.reply(err.message)
+                        await msg.reply(err.message);
                     }
                 })();
         `);
