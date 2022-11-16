@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, SelectMenuBuilder, User, ButtonStyle } from 'discord.js';
 
 import Hina from '../HinaClient.js';
@@ -126,7 +127,7 @@ export class Help {
                 new ButtonBuilder()
                     .setLabel('HinaWeb (NEW!)')
                     .setStyle(ButtonStyle.Link)
-                    .setURL('https://Hina.fr0xty.repl.co')
+                    .setURL(process.env.HINAWEB_BASE_URL || 'https://github.com/Fr0xty')
                     .setEmoji('<:HinaWeb:953546770963628042>'),
 
                 new ButtonBuilder()
@@ -387,7 +388,7 @@ This can be applied to every command in this category. Must be \`>0\` and \`<31\
 
 The following picture is an example. Replace \`py\` with the language you want to use. More on Discord code blocks [here](https://gist.github.com/matthewzring/9f7bbfd102003963f9be7dbcf7d40e51#syntax-highlighting).
                 
-List of languages [here](https://hina.fr0xty.repl.co/help/runtimes). Both language and aliases are usable.
+List of languages [here](${process.env.HINAWEB_BASE_URL}/help/runtimes). Both language and aliases are usable.
                 `,
             })
             .setImage(

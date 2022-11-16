@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Client, Message, EmbedBuilder } from 'discord.js';
 
 import CommandArgument from '../../res/models/CommandArgument.js';
@@ -35,7 +36,7 @@ export default class avatarhistory implements BaseCommand {
         const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({ name: `${theUser.tag}'s Avatar History`, iconURL: theUser.displayAvatarURL() })
-            .setDescription(`see them [HERE](https://Hina.fr0xty.repl.co/api/avatar-history/${userId})`)
+            .setDescription(`see them [HERE](${process.env.HINAWEB_BASE_URL}/api/avatar-history/${userId})`)
             .setFooter({ text: `Requested by ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL() })
             .setTimestamp();
         await msg.reply({ embeds: [embed] });
