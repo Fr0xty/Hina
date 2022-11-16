@@ -1,3 +1,5 @@
+export default `
+
 # get anime info from anilist by name
 query ($name: String) {
     Media(search: $name, type: ANIME) {
@@ -22,3 +24,5 @@ query ($name: String) {
         }
     }
 }
+
+`;

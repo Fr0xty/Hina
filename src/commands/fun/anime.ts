@@ -1,8 +1,7 @@
 import fetch from 'node-fetch';
-import { DocumentNode } from 'graphql';
 import { Client, Message, EmbedBuilder } from 'discord.js';
-import { loadFile } from 'graphql-import-files';
 
+import animeQuerySchema from '../../schema/anilistAnime.graphql.js';
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
 
@@ -11,7 +10,7 @@ export default class anime implements BaseCommand {
     description: String;
     commandUsage: String;
     args: CommandArgument[];
-    gqlSchema: DocumentNode;
+    gqlSchema: string;
 
     constructor() {
         this.name = 'anime';
@@ -20,8 +19,7 @@ export default class anime implements BaseCommand {
         this.args = [
             new CommandArgument({ type: 'paragraph' }).setName('anime_name').setDescription('anime to search for.'),
         ];
-
-        this.gqlSchema = loadFile('./schema/anilistAnime.gql');
+        this.gqlSchema = animeQuerySchema;
     }
 
     async execute(Hina: Client, msg: Message, args: string[]) {

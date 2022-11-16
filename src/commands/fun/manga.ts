@@ -1,8 +1,7 @@
 import fetch from 'node-fetch';
-import { DocumentNode } from 'graphql';
 import { Client, Message, EmbedBuilder } from 'discord.js';
-import { loadFile } from 'graphql-import-files';
 
+import anilistMangaGraphql from '../../schema/anilistManga.graphql.js';
 import CommandArgument from '../../res/models/CommandArgument.js';
 import { BaseCommand } from 'hina';
 
@@ -11,7 +10,7 @@ export default class manga implements BaseCommand {
     description: String;
     commandUsage: String;
     args: CommandArgument[];
-    gqlSchema: DocumentNode;
+    gqlSchema: string;
 
     constructor() {
         this.name = 'manga';
@@ -20,8 +19,7 @@ export default class manga implements BaseCommand {
         this.args = [
             new CommandArgument({ type: 'paragraph' }).setName('manga_name').setDescription('manga to search for.'),
         ];
-
-        this.gqlSchema = loadFile('./schema/anilistManga.gql');
+        this.gqlSchema = anilistMangaGraphql;
     }
 
     async execute(Hina: Client, msg: Message, args: string[]) {

@@ -1,3 +1,5 @@
+export default `
+
 # get manga info from anilist by name
 query ($name: String) {
     Media(search: $name, type: MANGA) {
@@ -19,3 +21,5 @@ query ($name: String) {
         }
     }
 }
+
+`;
