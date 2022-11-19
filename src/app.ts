@@ -45,7 +45,7 @@ eventFiles.forEach(async (eventFile) => {
 console.log('Events are successfully added!');
 
 /**
- * run express server to keep alive on replit
+ * serve hinaweb
  */
 import './server/server.js';
 
