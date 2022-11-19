@@ -4,17 +4,22 @@ export const convertSeconds = async (seconds: number) => {
     seconds = Math.round(seconds);
     if (seconds <= 59) return `${seconds}s`;
 
+    const days = Math.floor(seconds / (24 * 3600));
     seconds = seconds % (24 * 3600);
-    let hours = Math.floor(seconds / 3600);
+    const hours = Math.floor(seconds / 3600);
     seconds %= 3600;
-    let minutes = Math.floor(seconds / 60);
+    const minutes = Math.floor(seconds / 60);
     seconds %= 60;
 
-    if (hours) {
-        return `${hours}h ${minutes}m ${seconds}s`;
-    } else {
-        return `${minutes}m ${seconds}s`;
-    }
+    /**
+     * format result in string
+     */
+    let result = `${seconds}s`;
+    if (minutes) result = `${minutes}m `.concat(result);
+    if (hours) result = `${hours}h `.concat(result);
+    if (days) result = `${days}d `.concat(result);
+
+    return result;
 };
 
 export const convertPresence = async (presence: ClientPresenceObject) => {
