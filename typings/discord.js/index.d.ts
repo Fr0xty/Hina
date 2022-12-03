@@ -1,8 +1,9 @@
 import { Player } from 'discord-player';
 import { Collection, ColorResolvable, TextChannel } from 'discord.js';
 
-import Command from '../hina/classes/Command';
 import GuildMusic from '../../src/res/models/GuildMusic';
+import BaseCommand from '../../src/res/models/BaseCommand';
+import { Command } from 'hina';
 
 declare module 'discord.js' {
     export interface Client {
@@ -15,7 +16,7 @@ declare module 'discord.js' {
         avatarHistoryChannel: any;
         owner: User;
 
-        commands: Collection<String, Command>;
+        commands: Collection<String, BaseCommand>;
         player: Player;
 
         database: FirebaseFirestore;
