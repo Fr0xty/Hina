@@ -11,8 +11,10 @@ export default class extends BaseCommand {
     }
 
     async execute(Hina: Client, msg: Message, args: string[]) {
-        // await msg.reply('command working');
+        await msg.reply('command working');
     }
 
-    async slashExecute(Hina: Client, interaction: CommandInteraction) {}
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        await interaction.reply('working yo');
+    }
 }

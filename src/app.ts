@@ -21,19 +21,20 @@ const loadCommands = async () => {
             const command = new commandClass();
             Hina.commands.set(command.name, command);
 
-            if (command.aliases) {
-                for (const alias of command.aliases) {
-                    Hina.commands.set(alias, command);
-                }
-            }
-            if (command.slashCommandProfile) slashCommands.push(command.slashCommandProfile.toJSON());
+            // if (command.aliases) {
+            //     for (const alias of command.aliases) {
+            //         Hina.commands.set(alias, command);
+            //     }
+            // }
+
+            slashCommands.push(command.slashCommandBuilder);
         }
     }
     console.log('Commands are successfully added!');
 };
 
 await loadCommands();
-// await registerSlashCommands(slashCommands);
+await registerSlashCommands(slashCommands);
 
 /**
  * loading event handlers

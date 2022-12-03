@@ -40,6 +40,8 @@ Hina.on('messageCreate', async (msg): Promise<any> => {
         return await msg.reply({ embeds: [embed] });
     }
 
+    return await command.execute(Hina, msg, []);
+
     //     /**
     //      * validate command arguments if theres any
     //      */
