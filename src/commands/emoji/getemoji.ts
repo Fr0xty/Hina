@@ -5,13 +5,16 @@ export default class extends BaseCommand {
     constructor() {
         super(
             new SlashCommandBuilder()
-                .setName('testcommand')
-                .setDescription('a temporary test command for new design structure.')
+                .setName('getemoji')
+                .setDescription('get all of the server emoji ids.')
+                .addIntegerOption((option) =>
+                    option.setName('server_id').setDescription('server id of the emoji hosting server.')
+                )
         );
     }
 
     async execute(Hina: Client, msg: Message, args: string[]) {
-        await msg.reply('command working');
+        await msg.reply('working');
     }
 
     async slashExecute(Hina: Client, interaction: CommandInteraction) {

@@ -1,12 +1,33 @@
-import { Client, CommandInteraction, Message, SlashCommandBuilder } from 'discord.js';
+import {
+    Client,
+    CommandInteraction,
+    Message,
+    SlashCommandBuilder,
+    SlashCommandSubcommandsOnlyBuilder,
+} from 'discord.js';
 
 export default abstract class BaseCommand {
+    /**
+     * name of the command
+     */
     public readonly name: string;
-    public readonly description: string;
-    public readonly commandArgumentUsage: string;
-    public readonly slashCommandBuilder: SlashCommandBuilder;
 
-    constructor(slashCommandBuilder: SlashCommandBuilder) {
+    /**
+     * description of the command
+     */
+    public readonly description: string;
+
+    /**
+     * readable format of the command arguments need
+     */
+    public readonly commandArgumentUsage: string;
+
+    /**
+     * slashCommandBuilder object of the command
+     */
+    public readonly slashCommandBuilder: Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
+
+    constructor(slashCommandBuilder: Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>) {
         this.slashCommandBuilder = slashCommandBuilder;
         this.name = this.slashCommandBuilder.name;
         this.description = this.slashCommandBuilder.description;
@@ -16,7 +37,9 @@ export default abstract class BaseCommand {
     /**
      * return command argument as string from SlashCommandBuilder object
      */
-    private static formatCommandArgumentUsage(slashCommandBuilder: SlashCommandBuilder) {
+    private static formatCommandArgumentUsage(
+        slashCommandBuilder: Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>
+    ) {
         return 'not implemented yet';
     }
 
