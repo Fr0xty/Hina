@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, SelectMenuBuilder, User, ButtonStyle } from 'discord.js';
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, StringSelectMenuBuilder, User, ButtonStyle } from 'discord.js';
 
 import Hina from '../HinaClient.js';
 
@@ -50,7 +50,7 @@ export class Help {
             ),
 
             selectCategory: new ActionRowBuilder().addComponents(
-                new SelectMenuBuilder()
+                new StringSelectMenuBuilder()
                     .setCustomId('select')
                     .setPlaceholder('Select your command category!')
                     .addOptions([
