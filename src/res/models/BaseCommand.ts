@@ -43,6 +43,8 @@ export default abstract class BaseCommand {
         return 'not implemented yet';
     }
 
-    abstract execute(Hina: Client, msg: Message, args: string[]): Promise<any>;
+    /**
+     * function to be executed when slash command is called
+     */
     abstract slashExecute(Hina: Client, interaction: CommandInteraction): Promise<any>;
 }
