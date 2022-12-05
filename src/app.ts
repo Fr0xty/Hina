@@ -2,7 +2,7 @@ import 'dotenv/config';
 import fs from 'fs';
 import { SlashCommandBuilder } from 'discord.js';
 
-import registerSlashCommands from './utils/registerSlashCommands.js';
+import slashCommand from './utils/slashCommand.js';
 import Hina from './res/HinaClient.js';
 
 /**
@@ -35,7 +35,7 @@ const loadCommands = async () => {
 };
 
 await loadCommands();
-if (process.env.REGISTER_SLASH_COMMANDS) await registerSlashCommands(slashCommandBuilders);
+if (process.env.REGISTER_SLASH_COMMANDS) await slashCommand.register(slashCommandBuilders);
 
 /**
  * loading event handlers
