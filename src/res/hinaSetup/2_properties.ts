@@ -8,7 +8,7 @@ import Hina from './1_initializeHina.js';
  */
 Hina.token = process.env.HINA_CLIENT_TOKEN!;
 Hina.prefix = process.env.HINA_TEXT_COMMAND_PREFIX!;
-Hina.color = '#E49CFF';
+Hina.color = 14982399;
 
 Hina.okEmoji = '902096184645124146';
 Hina.imageOption = { size: 4096 };

@@ -8,8 +8,8 @@ export default async (slashCommands: SlashCommandBuilder[]) => {
     const rest = new REST({ version: '10' }).setToken(Hina.token!);
 
     try {
-        await rest.put(Routes.applicationCommands(hinaId), {
-            // await rest.put(Routes.applicationGuildCommands(hinaId, '859029044942471208'), {
+        // await rest.put(Routes.applicationCommands(hinaId), {
+        await rest.put(Routes.applicationGuildCommands(hinaId, '859029044942471208'), {
             body: slashCommands,
         });
 

@@ -10,7 +10,7 @@
         "scope": "typescript",
         "prefix": "HinaCommandTemplate",
         "body": [
-            "import { Client, CommandInteraction, Message, SlashCommandBuilder } from 'discord.js';",
+            "import { Client, CommandInteraction, SlashCommandBuilder } from 'discord.js';",
             "import BaseCommand from '../../res/models/BaseCommand.js';",
             "",
             "export default class extends BaseCommand {",
