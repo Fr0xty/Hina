@@ -2,12 +2,12 @@ import 'dotenv/config';
 import { REST, Routes, SlashCommandBuilder } from 'discord.js';
 import Hina from '../res/HinaClient.js';
 
-const hinaId = process.env.HINA_CLIENT_ID!;
-const rest = new REST({ version: '10' }).setToken(Hina.token!);
-
 export default {
     register: async (slashCommands: SlashCommandBuilder[]) => {
         try {
+            const hinaId = process.env.HINA_CLIENT_ID!;
+            const rest = new REST({ version: '10' }).setToken(Hina.token!);
+
             if (process.env.REGISTER_COMMANDS_DEBUG) {
                 await rest.put(Routes.applicationGuildCommands(hinaId, '859029044942471208'), {
                     body: slashCommands,
