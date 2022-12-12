@@ -27,8 +27,8 @@ export default class extends BaseCommand {
 
     async slashExecute(Hina: Client, interaction: CommandInteraction) {
         const args = {
-            message_id: interaction.options.get('message_id')?.value as string,
-            emoji_id: interaction.options.get('emoji_id')?.value as string,
+            message_id: interaction.options.get('message_id')!.value as string,
+            emoji_id: interaction.options.get('emoji_id')!.value as string,
         };
 
         try {

@@ -30,7 +30,7 @@ export default class extends BaseCommand {
 
     async slashExecute(Hina: Client, interaction: CommandInteraction) {
         const args = {
-            emoji_id: interaction.options.get('emoji_id')?.value as string,
+            emoji_id: interaction.options.get('emoji_id')!.value as string,
         };
 
         if (interaction.channel?.isDMBased() || interaction.channel?.isThread()) return;
@@ -41,6 +41,9 @@ export default class extends BaseCommand {
         const resultMsg = await webhook.send(args.emoji_id);
         await webhook.delete();
 
+        /**
+         * affirmation response
+         */
         const embed = new EmbedBuilder()
             .setDescription(
                 `
