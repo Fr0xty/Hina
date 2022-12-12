@@ -13,7 +13,6 @@
     "express": "^4.17.2",
     "ffmpeg-static": "^4.4.1",
     "firebase-admin": "^10.0.2",
-    "node-fetch": "^3.2.2",
     "opusscript": "^0.0.8",
     "piston-client": "^1.0.2",
     "translate": "^1.4.1",
