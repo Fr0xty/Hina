@@ -68,6 +68,7 @@ export default class extends BaseCommand {
                     .replace(/(\r\n|\n|\r)/gm, '') // removes linebreaks
                     .replaceAll('<br>', '\n') // format <br> tags
                     .replace(/<\/?i>/gm, '*') // format <i> and </i> tags
+                    .replace(/<\/?b>/gm, '**') // format <b> and </b> tags
             )
             .setColor(Hina.color)
             .setThumbnail(animeInfo.coverImage[Object.keys(animeInfo.coverImage)[0]])
