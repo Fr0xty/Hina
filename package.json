@@ -26,7 +26,7 @@
     "typescript": "^4.9.3"
   },
   "scripts": {
-    "start": "node ./dist/app.js"
+    "start": "node ./dist/app.js --trace-warnings"
   },
   "repository": {
     "type": "git",
