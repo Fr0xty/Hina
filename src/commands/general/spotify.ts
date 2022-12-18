@@ -49,7 +49,7 @@ export default class extends BaseCommand {
          */
         const spotifyActivityData = {
             songName: spotifyActivity.details,
-            songUrl: `https://open.spotify.com/track/${spotifyActivity.syncId}`,
+            // songUrl: `https://open.spotify.com/track/${spotifyActivity.syncId}`,
             albumArt: `https://i.scdn.co/image/${spotifyActivity.assets!.largeImage?.split(':')[1]}`,
             artists: spotifyActivity.state!.replace(';', ','),
             albumName: spotifyActivity.assets!.largeText,
