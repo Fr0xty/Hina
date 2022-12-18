@@ -7,9 +7,9 @@ export class Help {
     author: User;
     categories: string[];
     components: {
-        actionRow: ActionRowBuilder;
-        selectCategory: ActionRowBuilder;
-        linkRow: ActionRowBuilder;
+        actionRow: ActionRowBuilder<ButtonBuilder>;
+        selectCategory: ActionRowBuilder<StringSelectMenuBuilder>;
+        linkRow: ActionRowBuilder<ButtonBuilder>;
     };
 
     mainPage: EmbedBuilder;
@@ -39,7 +39,7 @@ export class Help {
         ];
 
         this.components = {
-            actionRow: new ActionRowBuilder().addComponents(
+            actionRow: new ActionRowBuilder<ButtonBuilder>().addComponents(
                 new ButtonBuilder()
                     .setCustomId('mainPage')
                     .setLabel('Main Page')
@@ -49,7 +49,7 @@ export class Help {
                 new ButtonBuilder().setCustomId('delete').setLabel('Delete').setStyle(ButtonStyle.Danger)
             ),
 
-            selectCategory: new ActionRowBuilder().addComponents(
+            selectCategory: new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
                 new StringSelectMenuBuilder()
                     .setCustomId('select')
                     .setPlaceholder('Select your command category!')
@@ -111,7 +111,7 @@ export class Help {
                     ])
             ),
 
-            linkRow: new ActionRowBuilder().addComponents(
+            linkRow: new ActionRowBuilder<ButtonBuilder>().addComponents(
                 new ButtonBuilder()
                     .setLabel('Invite me!')
                     .setStyle(ButtonStyle.Link)
