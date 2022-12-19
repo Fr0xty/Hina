@@ -97,26 +97,22 @@ const _NSFWEnumValueToURL = (enumValue: number): string | null => {
             return _waifuImURL('selfies', true);
         case ImageChoices.NSFW.Uniform:
             return _waifuImURL('uniform', true);
-        case ImageChoices.NSFW.Shinobu:
-            return _waifuImURL('shinobu', true);
-        case ImageChoices.NSFW.Megumin:
-            return _waifuImURL('megumin', true);
 
         default:
             return null;
     }
 };
 
-const _waifuImImagesToPaginable = async (images: WaifuImImageObject[]) => {
+const _waifuImImagesToPaginable = async (images: WaifuImImageObject[], limit: number) => {
     const pages: EmbedBuilder[] = [];
 
-    for (let i = 0; i < images.length; i++) {
+    for (let i = 0; i < Math.min(limit, images.length); i++) {
         const image = images[i];
         const decColor = parseInt(image.dominant_color.slice(1), 16);
         const titleTags = image.tags.map((tag) => tag.name);
 
         const embed = new EmbedBuilder()
-            .setAuthor({ name: `${Hina.user!.username} Page ${i + 1} / ${images.length}` })
+            .setAuthor({ name: `${Hina.user!.username} Page ${i + 1} / ${Math.min(limit, images.length)}` })
             .setColor(decColor)
             .setTitle(titleTags.join(', '))
             .setDescription(`[source](${image.source})`)
@@ -128,14 +124,14 @@ const _waifuImImagesToPaginable = async (images: WaifuImImageObject[]) => {
     return pages;
 };
 
-const _waifuPicsImagesToPaginable = async (images: string[]) => {
+const _waifuPicsImagesToPaginable = async (images: string[], limit: number) => {
     const pages: EmbedBuilder[] = [];
 
-    for (let i = 0; i < images.length; i++) {
+    for (let i = 0; i < Math.min(limit, images.length); i++) {
         const imageURL = images[i];
 
         const embed = new EmbedBuilder()
-            .setAuthor({ name: `${Hina.user!.username} Page ${i + 1} / ${images.length}` })
+            .setAuthor({ name: `${Hina.user!.username} Page ${i + 1} / ${Math.min(limit, images.length)}` })
             .setColor(Hina.color)
             .setTitle('Image(s):')
             .setImage(imageURL)
@@ -146,7 +142,7 @@ const _waifuPicsImagesToPaginable = async (images: string[]) => {
     return pages;
 };
 
-export const fetchImage = async (type: number, isNSFW: boolean = false): Promise<EmbedBuilder[] | null> => {
+export const fetchImage = async (type: number, isNSFW: boolean, limit: number = 1): Promise<EmbedBuilder[] | null> => {
     const url = isNSFW ? _NSFWEnumValueToURL(type) : _SFWEnumValueToURL(type);
     if (!url) return null;
 
@@ -162,7 +158,7 @@ export const fetchImage = async (type: number, isNSFW: boolean = false): Promise
         if (res.status !== 200) return null;
 
         const images = (await res.json()).images as WaifuImImageObject[];
-        return await _waifuImImagesToPaginable(images);
+        return await _waifuImImagesToPaginable(images, limit);
     }
 
     /**
@@ -177,6 +173,6 @@ export const fetchImage = async (type: number, isNSFW: boolean = false): Promise
         if (res.status !== 200) return null;
 
         const images = (await res.json()).files as string[];
-        return await _waifuPicsImagesToPaginable(images);
+        return await _waifuPicsImagesToPaginable(images, limit);
     }
 };

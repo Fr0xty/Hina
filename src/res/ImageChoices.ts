@@ -32,8 +32,6 @@ namespace ImageChoices {
         Oppai,
         Selfies,
         Uniform,
-        Shinobu,
-        Megumin,
     }
 }
 

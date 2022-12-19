@@ -29,16 +29,23 @@ export default class extends BaseCommand {
                         )
                         .setRequired(true)
                 )
+                .addNumberOption((option) =>
+                    option
+                        .setName('limit')
+                        .setDescription('Increase amount of pictures you get. Maximum 30.')
+                        .setMinValue(1)
+                        .setMaxValue(30)
+                )
         );
     }
 
     async slashExecute(Hina: Client, interaction: CommandInteraction) {
         const args = {
             type: interaction.options.get('type')!.value as number,
+            limit: interaction.options.get('limit')?.value as number | undefined,
         };
-        console.log(args.type);
 
-        const paginable = (await fetchImage(args.type))!;
+        const paginable = (await fetchImage(args.type, false, args.limit))!;
         await interactionPaginator(interaction, paginable, 120_000);
     }
 }

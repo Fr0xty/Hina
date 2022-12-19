@@ -32,11 +32,16 @@ export default class extends BaseCommand {
                             { name: 'Raiden Shogun', value: ImageChoices.NSFW.RaidenShogun },
                             { name: 'Oppai', value: ImageChoices.NSFW.Oppai },
                             { name: 'Selfies', value: ImageChoices.NSFW.Selfies },
-                            { name: 'Uniform', value: ImageChoices.NSFW.Uniform },
-                            { name: 'Shinobu', value: ImageChoices.NSFW.Shinobu },
-                            { name: 'Megumin', value: ImageChoices.NSFW.Megumin }
+                            { name: 'Uniform', value: ImageChoices.NSFW.Uniform }
                         )
                         .setRequired(true)
+                )
+                .addNumberOption((option) =>
+                    option
+                        .setName('limit')
+                        .setDescription('Increase amount of pictures you get. Maximum 30.')
+                        .setMinValue(1)
+                        .setMaxValue(30)
                 )
         );
     }
@@ -44,9 +49,10 @@ export default class extends BaseCommand {
     async slashExecute(Hina: Client, interaction: CommandInteraction) {
         const args = {
             type: interaction.options.get('type')!.value as number,
+            limit: interaction.options.get('limit')?.value as number | undefined,
         };
 
-        const paginable = (await fetchImage(args.type, true))!;
+        const paginable = (await fetchImage(args.type, true, args.limit))!;
         await interactionPaginator(interaction, paginable, 120_000);
     }
 }
