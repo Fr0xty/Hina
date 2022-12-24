@@ -10,7 +10,7 @@ Hina.token = process.env.HINA_CLIENT_TOKEN!;
 Hina.prefix = process.env.HINA_TEXT_COMMAND_PREFIX!;
 Hina.color = 14982399;
 
-Hina.okEmoji = '902096184645124146';
+Hina.okEmoji = '<:menheraChanOK:902096184645124146>';
 Hina.imageOption = { size: 4096 };
 
 /**
