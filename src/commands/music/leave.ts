@@ -15,7 +15,7 @@ export default class extends BaseCommand {
         /**
          * not in voice channel in the server
          */
-        if (!queue) return await interaction.reply("I'm not currently playing in this server.");
+        if (!queue) return await interaction.reply("I'm not currently playing songs in this server.");
 
         queue.destroy(true);
         await interaction.reply(Hina.okEmoji);

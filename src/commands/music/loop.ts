@@ -40,7 +40,7 @@ export default class extends BaseCommand {
         /**
          * not playing any song in server
          */
-        if (!queue) return await interaction.reply("I'm not currently playing in this server.");
+        if (!queue) return await interaction.reply("I'm not currently playing songs in this server.");
 
         /**
          * set looping type

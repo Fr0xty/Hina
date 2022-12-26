@@ -15,7 +15,7 @@ export default class extends BaseCommand {
         /**
          * server has no queue (not playing music)
          */
-        if (!queue) return await interaction.reply("I'm not currently playing in this server.");
+        if (!queue) return await interaction.reply("I'm not currently playing songs in this server.");
 
         /**
          * no song in queue
