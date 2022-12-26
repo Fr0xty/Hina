@@ -1,4 +1,4 @@
-import { QueryType, Queue } from 'discord-player';
+import { QueryType } from 'discord-player';
 import { Client, CommandInteraction, GuildMember, SlashCommandBuilder } from 'discord.js';
 import BaseCommand from '../../res/models/BaseCommand.js';
 
