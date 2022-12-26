@@ -1,6 +1,6 @@
 import { WaifuImImageObject } from 'hina-general-types';
 import ImageChoices from '../res/ImageChoices.js';
-import { EmbedBuilder } from '@discordjs/builders';
+import { EmbedBuilder } from 'discord.js';
 import Hina from '../res/HinaClient.js';
 
 /**

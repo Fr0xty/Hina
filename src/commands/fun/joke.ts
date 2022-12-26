@@ -1,5 +1,4 @@
-import { EmbedBuilder } from '@discordjs/builders';
-import { Client, CommandInteraction, SlashCommandBuilder } from 'discord.js';
+import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import BaseCommand from '../../res/models/BaseCommand.js';
 
 export default class extends BaseCommand {

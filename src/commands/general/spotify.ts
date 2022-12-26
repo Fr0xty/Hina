@@ -1,6 +1,5 @@
-import { ActivityType, Client, CommandInteraction, GuildMember, SlashCommandBuilder } from 'discord.js';
+import { ActivityType, Client, CommandInteraction, EmbedBuilder, GuildMember, SlashCommandBuilder } from 'discord.js';
 import BaseCommand from '../../res/models/BaseCommand.js';
-import { EmbedBuilder } from '@discordjs/builders';
 import { convertSeconds } from '../../utils/convert.js';
 
 export default class extends BaseCommand {
