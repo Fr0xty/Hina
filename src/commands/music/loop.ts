@@ -1,11 +1,6 @@
 import { Client, CommandInteraction, SlashCommandBuilder } from 'discord.js';
 import BaseCommand from '../../res/models/BaseCommand.js';
-
-enum LoopChoices {
-    Cancel,
-    Song,
-    Queue,
-}
+import { QueueRepeatMode } from 'discord-player';
 
 export default class extends BaseCommand {
     constructor() {
@@ -18,9 +13,9 @@ export default class extends BaseCommand {
                         .setName('type')
                         .setDescription('type of looping.')
                         .setChoices(
-                            { name: 'Cancel', value: LoopChoices.Cancel },
-                            { name: 'Song', value: LoopChoices.Song },
-                            { name: 'Queue', value: LoopChoices.Queue }
+                            { name: 'Cancel', value: QueueRepeatMode.OFF },
+                            { name: 'Song', value: QueueRepeatMode.TRACK },
+                            { name: 'Queue', value: QueueRepeatMode.QUEUE }
                         )
                         .setRequired(true)
                 )
