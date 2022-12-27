@@ -46,9 +46,9 @@ export const convertPresence = async (presence: ClientPresenceObject) => {
     return result;
 };
 
-export const convertFlags = async (bitField: number) => {
+export const convertUserFlags = async (bitField: number) => {
     let flags = [];
-    if (bitField == 0) return 'None';
+    if (bitField === 0) return 'None';
 
     if (bitField & (0b1 << 0)) flags.push('<:discord_staff:908516650331025458>');
     if (bitField & (0b1 << 1)) flags.push('<:discord_partner:908517486113202287>');
@@ -58,19 +58,24 @@ export const convertFlags = async (bitField: number) => {
     if (bitField & (0b1 << 7)) flags.push('<:hypesquad_brilliance:908246675116670986>');
     if (bitField & (0b1 << 8)) flags.push('<:hypesquad_balance:908246674755964978>');
     if (bitField & (0b1 << 9)) flags.push('<:early_supporter:908246674743365632>');
-    if (bitField & (0b1 << 10)) flags.push('TEAM_PSEUDO_USER'); // TEAM_PSEUDO_USER
     if (bitField & (0b1 << 14)) flags.push('<:bug_buster:908516650326843412>');
     if (bitField & (0b1 << 16)) flags.push('<:verified_bot:936164801674100746>');
     if (bitField & (0b1 << 17)) flags.push('<:verified_developer:908246675267657759>');
     if (bitField & (0b1 << 18)) flags.push('<:discord_certified_moderator:908246674516885544>');
-    if (bitField & (0b1 << 19)) flags.push('BOT_HTTP_INTERACTIONS');
+    if (bitField & (0b1 << 22)) flags.push('<:active_developer_badge:1057294322585829436>');
     return flags.join(' ');
+};
+
+export const convertApplicationFlags = async (bitField: number) => {
+    if (bitField & (0b1 << 23)) return '<:supports_slash_command_badge:1057306720717766736>';
+
+    return 'None';
 };
 
 export const convertPermissions = async (bitField: bigint | number) => {
     bitField = Number(bitField);
     let perms = [];
-    if (bitField == 0) return 'None';
+    if (bitField === 0) return 'None';
 
     if (bitField & (0x1 << 0)) perms.push('create_instant_invite');
     if (bitField & (0x1 << 1)) perms.push('kick_members');
