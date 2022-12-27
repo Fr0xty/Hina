@@ -17,6 +17,9 @@ export default class extends BaseCommand {
          */
         if (!queue) return await interaction.reply("I'm not currently playing in this server.");
 
+        /**
+         * resume queue
+         */
         queue.setPaused(false);
         await interaction.reply(Hina.okEmoji);
     }

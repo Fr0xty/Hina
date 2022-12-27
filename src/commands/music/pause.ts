@@ -17,6 +17,9 @@ export default class extends BaseCommand {
          */
         if (!queue) return await interaction.reply("I'm not currently playing songs in this server.");
 
+        /**
+         * pause queue
+         */
         queue.setPaused(true);
         await interaction.reply(Hina.okEmoji);
     }

@@ -22,6 +22,9 @@ export default class extends BaseCommand {
          */
         if (!queue.nowPlaying()) return await interaction.reply('There is no music in queue.');
 
+        /**
+         * clear queue
+         */
         queue.clear();
         await interaction.reply(Hina.okEmoji);
     }
