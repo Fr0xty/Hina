@@ -21,7 +21,7 @@ export default class extends BaseCommand {
 
         try {
             /**
-             * fetch guild by id from api, not providing server id defaults to invoked command server
+             * fetch guild by id from api, not providing server id defaults to current server
              */
             const guild =
                 args.server_id === undefined ? interaction.guild! : await Hina.guilds.fetch(args.server_id.toString());
