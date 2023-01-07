@@ -9,7 +9,7 @@ Hina is a very capable multi-purpose bot. Some powerful commands include music c
 ## HinaWeb
 
 Hinaweb is dedicated to Hina where you can find Hina's information, detailed command help (coming), etc...
-Visit HinaWeb [**HERE**](https://35.208.206.50/)!
+Visit HinaWeb [**HERE**](https://hinaweb.vercel.app)!
 
 ## Invite Me!
 
