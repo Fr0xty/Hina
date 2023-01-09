@@ -2,10 +2,10 @@ import { Router } from 'express';
 
 const router = Router();
 
-import fetchavatarhistoryRouter from './private/fetchavatarhistory.js';
-import hinawebRouter from './private/hinaweb.js';
+import avatarhistoryRouter from './avatarhistory.js';
+import hinawebRouter from './hinaweb.js';
 
-router.use('/fetch-avatar-history', fetchavatarhistoryRouter);
+router.use('/avatar-history', avatarhistoryRouter);
 router.use('/hinaweb', hinawebRouter);
 
 export default router;
