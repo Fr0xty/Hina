@@ -7,6 +7,28 @@ import express from 'express';
 const app = express();
 
 /**
+ * simple token authentication
+ */
+app.use(async (req, res, next) => {
+    const token = req.headers.authorization;
+
+    /**
+     * no token
+     */
+    if (!token) return res.sendStatus(401);
+
+    /**
+     * valid api token
+     */
+    if (token === process.env.HINA_API_TOKEN) return next();
+
+    /**
+     * invalid api token
+     */
+    res.sendStatus(401);
+});
+
+/**
  * express routers
  */
 import apiRouter from './routes/api/api.js';
