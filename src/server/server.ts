@@ -45,4 +45,6 @@ app.get('/repository', async (req, res) => {
     res.redirect('https://github.com/Fr0xty/Hina');
 });
 
-app.listen(3000);
+app.listen(3000, '0.0.0.0', () => {
+    console.log('Express server is running on port 3000.');
+});
