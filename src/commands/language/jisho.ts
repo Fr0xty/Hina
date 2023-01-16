@@ -1,30 +1,27 @@
-import fetch from 'node-fetch';
-import { Client, Message, EmbedBuilder } from 'discord.js';
+import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
+import { interactionPaginator } from '../../utils/paginator.js';
 
-import CommandArgument from '../../res/models/CommandArgument.js';
-import { BaseCommand } from 'hina';
-import { paginator } from '../../utils/paginator.js';
-
-export default class jisho implements BaseCommand {
-    name: String;
-    description: String;
-    commandUsage: String;
-    args: CommandArgument[];
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'jisho';
-        this.description = 'searches for words from jisho.org.';
-        this.commandUsage = '<word>';
-        this.args = [new CommandArgument({ type: 'paragraph' }).setName('word').setDescription('word to search.')];
+        super(
+            new SlashCommandBuilder()
+                .setName('jisho')
+                .setDescription('search for a word from jisho.org')
+                .addStringOption((option) => option.setName('search').setDescription('search term.').setRequired(true))
+        );
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const [word] = args;
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        const args = {
+            search: interaction.options.get('search')!.value as string,
+        };
 
-        const req = await fetch(`https://jisho.org/api/v1/search/words?keyword=${word}`);
-        const result: any = await req.json();
+        const req = await fetch(`https://jisho.org/api/v1/search/words?keyword=${args.search}`);
+        const result = await req.json();
 
-        if (result.meta.status !== 200) return await msg.reply(`No result was found with the search term \`${word}\`.`);
+        if (result.meta.status !== 200)
+            return await interaction.reply(`No result was found with the search term \`${args.search}\`.`);
 
         let pages: EmbedBuilder[] = [];
         for (let i = 0; i < result.data.length; i++) {
@@ -86,13 +83,13 @@ ${dbpediaRedirect}
                 `
                 )
                 .setFooter({
-                    text: `Requested by ${msg.author.tag}`,
-                    iconURL: msg.author.displayAvatarURL(Hina.imageOption),
+                    text: `Requested by ${interaction.user.tag}`,
+                    iconURL: interaction.user.displayAvatarURL(Hina.imageOption),
                 })
                 .setTimestamp();
 
             pages.push(embed);
         }
-        await paginator(msg, pages, 300_000);
+        await interactionPaginator(interaction, pages, 300_000);
     }
 }

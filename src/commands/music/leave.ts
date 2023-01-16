@@ -1,21 +1,26 @@
-import { Client, Message } from 'discord.js';
+import { Client, CommandInteraction, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 
-import { BaseCommand } from 'hina';
-
-export default class leave implements BaseCommand {
-    name: String;
-    description: String;
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'leave';
-        this.description = 'clear server song queue.';
+        super(new SlashCommandBuilder().setName('leave').setDescription('I will leave the voice channel.'));
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const queue = Hina.player.getQueue(msg.guild!);
-        if (!queue) return await msg.reply("I'm not currently playing in this server.");
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        /**
+         * get server song queue
+         */
+        const queue = Hina.player.getQueue(interaction.guild!);
 
+        /**
+         * not in voice channel in the server
+         */
+        if (!queue) return await interaction.reply("I'm not currently playing songs in this server.");
+
+        /**
+         * destroy queue
+         */
         queue.destroy(true);
-        await msg.react(Hina.okEmoji);
+        await interaction.reply(Hina.okEmoji);
     }
 }

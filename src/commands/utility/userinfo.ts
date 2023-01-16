@@ -1,80 +1,88 @@
-import { Client, Message, EmbedBuilder } from 'discord.js';
+import { Client, CommandInteraction, EmbedBuilder, GuildMember, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
+import { convertApplicationFlags, convertPermissions, convertPresence, convertUserFlags } from '../../utils/convert.js';
 
-import CommandArgument from '../../res/models/CommandArgument.js';
-import { BaseCommand } from 'hina';
-import { convertFlags, convertPermissions, convertPresence } from '../../utils/convert.js';
-
-export default class userinfo implements BaseCommand {
-    name: String;
-    description: String;
-    commandUsage: String;
-    args: CommandArgument[];
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'userinfo';
-        this.description = 'get all user information.';
-        this.commandUsage = '[@user/user_id]';
-        this.args = [
-            new CommandArgument({ optional: true })
-                .setName('user')
-                .setDescription('user to get info on.')
-                .setRegex(/^(<@)?!?[0-9]{18}>?$/),
-        ];
+        super(
+            new SlashCommandBuilder()
+                .setName('userinfo')
+                .setDescription('get user information.')
+                .addUserOption((option) => option.setName('user').setDescription('user to get information.'))
+        );
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const [givenMember] = args;
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        const args = {
+            user: interaction.options.get('user')?.value as string | undefined,
+        };
 
-        let member, flags, nickname, roles, presence;
+        let member: GuildMember | undefined;
+        let flags: string | undefined;
+        let nickname: string | undefined;
+        let roles: string | undefined;
+        let presence: string | undefined;
 
+        /**
+         * set member = fetch member ?? command invoker
+         */
         try {
-            member = givenMember
-                ? await msg.guild!.members.fetch({ user: givenMember.match(/[0-9]+/)![0], withPresences: true })
-                : msg.member;
+            member = args.user
+                ? await interaction.guild!.members.fetch({
+                      user: args.user,
+                      withPresences: true,
+                  })
+                : (interaction.member as GuildMember);
         } catch {
-            await msg.reply("Invalid member! Either the user isn't in the server or invalid id / mention.");
+            return await interaction.reply('Invalid user. (user has to be in this server)');
         }
 
-        if (member == undefined) return await msg.reply('User does not exist!');
-
-        if (member.user.flags == null) {
-            flags = 'None';
+        /**
+         * format badges (UserFlags | ApplicationFlags)
+         */
+        if (member.user.bot) {
+            flags = member.user.flags ? await convertApplicationFlags(member.user.flags.bitfield) : 'None';
         } else {
-            flags = await convertFlags(member.user.flags.bitfield);
+            flags = member.user.flags ? await convertUserFlags(member.user.flags.bitfield) : 'None';
         }
 
-        if (!member.nickname) {
-            nickname = 'None';
-        } else {
-            nickname = member.nickname;
-        }
+        /**
+         * get nickname
+         */
+        nickname = member.nickname ?? 'None';
 
-        if (!member.presence) {
-            presence = `desktop: <:status_offline:908249115505332234>\nmobile:<:status_offline:908249115505332234>\nweb: <:status_offline:908249115505332234>`;
-        } else {
-            presence = await convertPresence(member.presence.clientStatus!);
-        }
+        /**
+         * format member presence
+         */
+        presence = member.presence
+            ? await convertPresence(member.presence.clientStatus!)
+            : 'desktop: <:status_offline:908249115505332234>\nmobile:<:status_offline:908249115505332234>\nweb: <:status_offline:908249115505332234>';
 
+        /**
+         * format permissions
+         */
         const permissions = await convertPermissions(member.permissions.bitfield);
 
-        if (!member.roles.highest) {
-            roles = 'None';
-        } else {
-            roles = `highest: ${member.roles.highest}\nhoist: ${member.roles.hoist}`;
-        }
+        /**
+         * format roles
+         */
+        roles = member.roles.highest ? `highest: ${member.roles.highest}\nhoist: ${member.roles.hoist}` : 'None';
 
+        /**
+         * format embed
+         */
         const embed = new EmbedBuilder()
             .setAuthor({
                 name: `${member.displayName}'s User Info`,
                 iconURL: member.user.displayAvatarURL(Hina.imageOption),
             })
             .setTitle(member.user.tag)
-            .setColor(member.displayHexColor)
+            .setColor(member.user.bot ? Hina.color : (await member.user.fetch(true)).accentColor ?? Hina.color)
             .setThumbnail(member.user.displayAvatarURL({ size: 4096 }))
             .setTimestamp()
             .setFooter({
-                text: `Requested by: ${msg.author.tag}`,
-                iconURL: msg.author.displayAvatarURL(Hina.imageOption),
+                text: `Requested by: ${interaction.user.tag}`,
+                iconURL: interaction.user.displayAvatarURL(Hina.imageOption),
             })
             .addFields(
                 { name: 'nickname', value: nickname, inline: true },
@@ -86,13 +94,16 @@ export default class userinfo implements BaseCommand {
                 { name: 'badges', value: flags },
                 { name: 'roles', value: roles },
                 {
-                    name: `permissions [${permissions.length}]`,
+                    name: `permissions ${permissions === 'None' ? '' : `[${permissions.length}]`}`,
                     value: `${
-                        // @ts-ignore
-                        permissions.perms ? permissions.perms : permissions
+                        permissions === 'None' ? permissions : permissions.perms
                     }\n[for more info...](https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags)`,
                 }
             );
-        await msg.reply({ embeds: [embed] });
+
+        /**
+         * return result
+         */
+        await interaction.reply({ embeds: [embed] });
     }
 }

@@ -1,90 +1,98 @@
-import { Client, Message, EmbedBuilder, ActivityType } from 'discord.js';
-
-import CommandArgument from '../../res/models/CommandArgument.js';
-import { BaseCommand } from 'hina';
+import { ActivityType, Client, CommandInteraction, EmbedBuilder, GuildMember, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 import { convertSeconds } from '../../utils/convert.js';
 
-export default class spotify implements BaseCommand {
-    name: String;
-    description: String;
-    commandUsage: String;
-    args: CommandArgument[];
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'spotify';
-        this.description = 'get user spotify listening info.';
-        this.commandUsage = '[@user/user_id]';
-        this.args = [
-            new CommandArgument({ optional: true })
-                .setName('@user/user_id')
-                .setDescription('the user to fetch spotify info, leave blank will default to yourself.')
-                .setRegex(/^(<@)?!?[0-9]{18}>?$/),
-        ];
+        super(
+            new SlashCommandBuilder()
+                .setName('spotify')
+                .setDescription("get user's current spotify listening info.")
+                .addUserOption((option) => option.setName('user').setDescription('the user to fetch info on.'))
+        );
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const [user] = args;
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        const args = {
+            user: interaction.options.get('user')?.value as string | undefined,
+        };
 
-        let member;
+        /**
+         * fetch member object
+         */
+        let member: GuildMember | undefined;
         try {
-            member = user
-                ? await msg.guild!.members.fetch({ user: user.match(/[0-9]+/)![0], withPresences: true })
-                : msg.member;
+            member = await interaction.guild!.members.fetch(args.user ?? interaction.user.id);
         } catch {
-            return await msg.reply("Invalid member! Either the user isn't in the server or invalid id / mention.");
+            return await interaction.reply({
+                content: 'Invalid user. The user has to be a member of this server.',
+                ephemeral: true,
+            });
         }
-        const activities = member!.presence?.activities;
 
-        if (activities) {
-            const spotifyAct = activities
-                .filter((act) => act.name === 'Spotify' && act.type === ActivityType.Listening)
-                .shift();
-            if (!spotifyAct) return await msg.reply(`${member} is not listening to Spotify!`);
+        const activities = member.presence?.activities;
+        if (!activities) {
+            return await interaction.reply(`${member} is not listening to Spotify.`);
+        }
 
-            const songName = spotifyAct.details;
-            // const songUrl = `https://open.spotify.com/track/${spotifyAct.syncId}`;
-            const albumArt = `https://i.scdn.co/image/${spotifyAct.assets!.largeImage?.split(':')[1]}`;
-            const artists = spotifyAct.state!.replace(';', ',');
-            const albumName = spotifyAct.assets!.largeText;
-            const startTime = Math.round(Math.abs(Number(spotifyAct.timestamps!.start) / 1000));
-            const endTime = Math.round(Math.abs(Number(spotifyAct.timestamps!.end) / 1000));
-            const songDuration = await convertSeconds(Math.abs(endTime - startTime));
-            const partyID = spotifyAct.party!.id;
+        /**
+         * get spotify activity from activities array
+         */
+        const spotifyActivity = activities
+            .filter((act) => act.name === 'Spotify' && act.type === ActivityType.Listening)
+            .shift();
+        if (!spotifyActivity) return await interaction.reply(`${member} is not listening to Spotify.`);
 
-            const embed = new EmbedBuilder()
-                .setAuthor({
-                    name: `${member!.user.tag}'s Spotify Activity`,
-                    iconURL: 'https://cdn.discordapp.com/emojis/936844383926517771.webp?size=96&quality=lossless',
-                })
-                .setColor('#1DB954')
-                .setTitle(songName!)
-                // .setURL(songUrl)
-                .setThumbnail(albumArt!)
-                .setTimestamp()
-                .setFooter({
-                    text: `Requested by: ${msg.author.tag}`,
-                    iconURL: msg.author.displayAvatarURL(Hina.imageOption),
-                }).setDescription(`
+        /**
+         * found spotify activity, format into an embed
+         */
+        const spotifyActivityData = {
+            songName: spotifyActivity.details,
+            // songUrl: `https://open.spotify.com/track/${spotifyActivity.syncId}`,
+            albumArt: `https://i.scdn.co/image/${spotifyActivity.assets!.largeImage?.split(':')[1]}`,
+            artists: spotifyActivity.state!.replace(';', ','),
+            albumName: spotifyActivity.assets!.largeText,
+            startTime: Math.round(Math.abs(Number(spotifyActivity.timestamps!.start) / 1000)),
+            endTime: Math.round(Math.abs(Number(spotifyActivity.timestamps!.end) / 1000)),
+            partyID: spotifyActivity.party!.id,
+            get songDuration() {
+                return (async () => {
+                    return await convertSeconds(Math.abs(this.endTime - this.startTime));
+                })();
+            },
+        };
+
+        const embed = new EmbedBuilder()
+            .setAuthor({
+                name: `${member!.user.tag}'s Spotify Activity`,
+                iconURL: 'https://cdn.discordapp.com/emojis/936844383926517771.webp?size=96&quality=lossless',
+            })
+            .setColor(1947988)
+            .setTitle(spotifyActivityData.songName)
+            // .setURL(songUrl)
+            .setThumbnail(spotifyActivityData.albumArt)
+            .setTimestamp()
+            .setFooter({
+                text: `Requested by: ${interaction.user.tag}`,
+                iconURL: interaction.user.displayAvatarURL(Hina.imageOption),
+            }).setDescription(`
 artist(s):
-\`${artists}\`
+\`${spotifyActivityData.artists}\`
 
 album:
-\`${albumName}\`
+\`${spotifyActivityData.albumName}\`
 
 song started:
-<t:${startTime}:t> | <t:${startTime}:R>
+<t:${spotifyActivityData.startTime}:t> | <t:${spotifyActivityData.startTime}:R>
 
 ending song:
-<t:${endTime}:t> | <t:${endTime}:R>
+<t:${spotifyActivityData.endTime}:t> | <t:${spotifyActivityData.endTime}:R>
 
-song duration: \`${songDuration}\`
+song duration: \`${await spotifyActivityData.songDuration}\`
 
-party id: \`${partyID}\`
+party id: \`${spotifyActivityData.partyID}\`
                 `);
 
-            await msg.reply({ embeds: [embed] });
-            return;
-        }
-        await msg.reply(`${member} is not listening to Spotify!`);
+        return await interaction.reply({ embeds: [embed] });
     }
 }

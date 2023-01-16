@@ -1,63 +1,69 @@
 import 'dotenv/config';
+import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 import DetectLanguage from 'detectlanguage';
 import Translate from 'translate';
-import { Client, Message, EmbedBuilder } from 'discord.js';
-
-import CommandArgument from '../../res/models/CommandArgument.js';
-import { BaseCommand } from 'hina';
 
 Translate.engine = 'google';
 const DetectClient = new DetectLanguage(process.env.DETECTLANGUAGE_API_KEY!);
 
-export default class translate implements BaseCommand {
-    name: String;
-    description: String;
-    commandUsage: String;
-    aliases: String[];
-    args: CommandArgument[];
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'translate';
-        this.description = 'translate to and from any language of your choice!';
-        this.commandUsage = '[to_language] [from_language]';
-        this.aliases = ['trans'];
-        this.args = [
-            new CommandArgument({ optional: true })
-                .setName('to_language')
-                .setDescription(
-                    'Translate to what language? Leaving blank will default to english. Only accept `ISO 639-1` & `ISO 639-2` language code.'
-                ),
-
-            new CommandArgument({ optional: true })
-                .setName('from_language')
-                .setDescription(
-                    'Translate from what language? Leaving blank will auto detect language. Only accept `ISO 639-1` & `ISO 639-2` language code.'
-                ),
-        ];
+        super(
+            new SlashCommandBuilder()
+                .setName('translate')
+                .setDescription('translate a message to and from any language.')
+                .addStringOption((option) =>
+                    option
+                        .setName('message_id')
+                        .setDescription('message id of the message you want to translate.')
+                        .setRequired(true)
+                )
+                .addStringOption((option) =>
+                    option.setName('to_language').setDescription('language to translate to. Defaults to English.')
+                )
+                .addStringOption((option) =>
+                    option
+                        .setName('from_language')
+                        .setDescription('language of the original message. Defaults to detect language.')
+                )
+        );
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        let [to_language, from_language] = args;
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        const args = {
+            message_id: interaction.options.get('message_id')!.value as string,
+            to_language: interaction.options.get('to_language')?.value as string | undefined,
+            from_language: interaction.options.get('from_language')?.value as string | undefined,
+        };
 
-        if (!msg.reference) return await msg.reply('Please reply to the message you want to translate.');
-        const { content: originalText } = await msg.fetchReference();
+        let targetMessage;
+        try {
+            targetMessage = await interaction.channel!.messages.fetch(args.message_id);
+        } catch {
+            return await interaction.reply({ content: 'Invalid message id.', ephemeral: true });
+        }
 
-        Translate.to = to_language ? to_language : 'en';
+        Translate.to = args.to_language ?? 'en';
+        Translate.from = args.from_language;
 
-        // get from_language
-        let detectResult;
-        if (from_language) Translate.from = from_language;
-        if (!from_language) {
-            detectResult = await DetectClient.detect(originalText);
+        let detectResult, translatedText;
+
+        /**
+         * from_language not provided: detect language and use as from_language
+         */
+        if (!args.from_language) {
+            detectResult = await DetectClient.detect(targetMessage.content);
             Translate.from = detectResult[0].language;
         }
 
-        // translate the message
-        let translatedText;
+        /**
+         * translate
+         */
         try {
-            translatedText = await Translate(originalText);
-        } catch (err: any) {
-            await msg.reply(err);
+            translatedText = await Translate(targetMessage.content);
+        } catch {
+            return await interaction.reply('Invalid language code.');
         }
 
         const embed = new EmbedBuilder()
@@ -65,23 +71,21 @@ export default class translate implements BaseCommand {
             .setAuthor({ name: 'Hina Translate', iconURL: Hina.user!.displayAvatarURL() })
             .setDescription(
                 `
-from: \`${Translate.from}\`
-to: \`${Translate.to}\`
-
-> ${translatedText}
-
-${
-    detectResult
-        ? `
-\`from\` is detected at confidence of: \`${detectResult[0].confidence}%\`
-if my prediction is wrong, you can provide \`[from_language]\`.`
-        : ''
-}
-        `
+ from: \`${Translate.from}\`
+ to: \`${Translate.to}\`
+ > ${translatedText}
+ ${
+     detectResult
+         ? `
+ \`from\` is detected at confidence of: \`${detectResult[0].confidence}%\`
+ if my prediction is wrong, you can provide \`[from_language]\`.`
+         : ''
+ }
+         `
             )
-            .setFooter({ text: `Requested by ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL() })
+            .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() })
             .setTimestamp();
 
-        await msg.reply({ embeds: [embed] });
+        await interaction.reply({ embeds: [embed] });
     }
 }

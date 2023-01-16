@@ -1,27 +1,28 @@
-import { Client, Message, EmbedBuilder } from 'discord.js';
-
-import { BaseCommand } from 'hina';
+import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 import { convertSeconds } from '../../utils/convert.js';
 
-// @ts-ignore package.json is not in ./src therefore can't be imported
+// @ts-ignore package.json is not in ./src therefore can't be imported (for code safety purpose but this is exception)
 import packageJSON from '../../../package.json' assert { type: 'json' };
 
-export default class appinfo implements BaseCommand {
-    name: String;
-    description: String;
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'appinfo';
-        this.description = 'get information about me.';
+        super(new SlashCommandBuilder().setName('appinfo').setDescription('get information about me.'));
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        /**
+         * get information
+         */
         const guildIn = await Hina.guilds.fetch();
         const memberCount = Hina.users.cache.size;
         const djsVer = packageJSON.dependencies['discord.js'];
         const nodeVer = process.version;
         const uptime = await convertSeconds(Hina.uptime! / 1000);
 
+        /**
+         * format embed
+         */
         const embed = new EmbedBuilder()
             .setDescription(
                 `
@@ -29,7 +30,7 @@ Hina is in \`${guildIn.size}\` guilds!
 Serving approximately \`${memberCount}\` total unique members.
 discord.js: \`${djsVer}\`
 Node JS: \`${nodeVer}\`
-bot latency: \`${Math.abs(Date.now() - msg.createdTimestamp)}ms\`
+bot latency: \`${Math.abs(Date.now() - interaction.createdTimestamp)}ms\`
 websocket latency: \`${Math.round(Hina.ws.ping)}ms\`
 bot uptime: \`${uptime}\`
             `
@@ -40,9 +41,13 @@ bot uptime: \`${uptime}\`
             .setThumbnail(Hina.user!.displayAvatarURL(Hina.imageOption))
             .setTimestamp()
             .setFooter({
-                text: `Requested by: ${msg.author.tag}`,
-                iconURL: msg.author.displayAvatarURL(Hina.imageOption),
+                text: `Requested by: ${interaction.user.tag}`,
+                iconURL: interaction.user.displayAvatarURL(Hina.imageOption),
             });
-        await msg.reply({ embeds: [embed] });
+
+        /**
+         * send result
+         */
+        await interaction.reply({ embeds: [embed] });
     }
 }

@@ -1,37 +1,60 @@
-import { Client, Message, NewsChannel, TextChannel } from 'discord.js';
+import {
+    Client,
+    CommandInteraction,
+    EmbedBuilder,
+    GuildMember,
+    GuildTextBasedChannel,
+    NewsChannel,
+    SlashCommandBuilder,
+    TextChannel,
+    ThreadChannel,
+    VoiceBasedChannel,
+    VoiceChannel,
+} from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 
-import CommandArgument from '../../res/models/CommandArgument.js';
-import { BaseCommand } from 'hina';
-
-export default class usemoji implements BaseCommand {
-    name: String;
-    description: String;
-    commandUsage: String;
-    args: CommandArgument[];
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'usemoji';
-        this.description = 'use animated emojis.';
-        this.commandUsage = '<emoji_id>';
-        this.args = [
-            new CommandArgument()
-                .setName('emoji_id')
-                .setDescription('full emoji id without `<>`, can get using `getemoji` command.')
-                .setRegex(/^a?:.+:([0-9]{18})$/),
-        ];
+        super(
+            new SlashCommandBuilder()
+                .setName('usemoji')
+                .setDescription('use any emojis including animated ones.')
+                .addStringOption((option) =>
+                    option
+                        .setName('emoji_id')
+                        .setDescription('emoji id to use. (use /getemoji command)')
+                        .setRequired(true)
+                )
+        );
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const [emoji_id] = args;
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        const args = {
+            emoji_id: interaction.options.get('emoji_id')!.value as string,
+        };
 
-        if (!(msg.channel instanceof NewsChannel || msg.channel instanceof TextChannel)) return;
-        const webhook = await msg.channel.createWebhook({
-            name: msg.member!.displayName,
-            avatar: msg.author.displayAvatarURL(Hina.imageOption),
+        if (interaction.channel?.isDMBased() || interaction.channel?.isThread()) return;
+        const webhook = await (interaction.channel as TextChannel | NewsChannel | VoiceChannel).createWebhook({
+            name: (interaction.member as GuildMember).displayName,
+            avatar: (interaction.member as GuildMember).displayAvatarURL(Hina.imageOption),
         });
-
-        await webhook.send(`<${emoji_id}>`);
+        const resultMsg = await webhook.send(args.emoji_id);
         await webhook.delete();
-        await msg.delete();
+
+        /**
+         * affirmation response
+         */
+        const embed = new EmbedBuilder()
+            .setDescription(
+                `
+Successfully used: ${args.emoji_id}
+Message [**HERE**](${resultMsg.url})`
+            )
+            .setColor(Hina.color);
+
+        return await interaction.reply({
+            embeds: [embed],
+            ephemeral: true,
+        });
     }
 }

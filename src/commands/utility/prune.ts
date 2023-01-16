@@ -1,35 +1,50 @@
-import { Client, Message, NewsChannel, PermissionFlagsBits, TextChannel } from 'discord.js';
+import {
+    Client,
+    CommandInteraction,
+    DMChannel,
+    PartialDMChannel,
+    PermissionFlagsBits,
+    SlashCommandBuilder,
+    TextBasedChannel,
+} from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 
-import CommandArgument from '../../res/models/CommandArgument.js';
-import { BaseCommand } from 'hina';
-
-export default class prune implements BaseCommand {
-    name: String;
-    description: String;
-    commandUsage: String;
-    args: CommandArgument[];
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'prune';
-        this.description = 'bulk delete a certain amount of messages in the channel.';
-        this.commandUsage = '[amount]';
-        this.args = [
-            new CommandArgument({ optional: true })
-                .setName('amount')
-                .setDescription('Amount of message to delete. Has to be >0 and <1001.')
-                .setMin(1)
-                .setMax(1000),
-        ];
+        super(
+            new SlashCommandBuilder()
+                .setName('prune')
+                .setDescription('bulk delete a certain amount of messages in the channel.')
+                .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
+                .addIntegerOption((option) =>
+                    option
+                        .setName('amount')
+                        .setDescription('Amount of message to delete.')
+                        .setMinValue(1)
+                        .setMaxValue(100)
+                )
+        );
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const [givenAmount] = args;
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        const args = {
+            amount: (interaction.options.get('amount')?.value ?? 1) as number,
+        };
 
-        if (!msg.member!.permissions.has(PermissionFlagsBits.ManageMessages))
-            return await msg.reply("You don't have the permission to use this command!\nrequire: `Manage Messages`");
-        const amount = givenAmount ? Number(givenAmount) + 1 : 2;
+        /**
+         * delete messages
+         */
+        try {
+            await (interaction.channel as Exclude<TextBasedChannel, DMChannel | PartialDMChannel>).bulkDelete(
+                args.amount
+            );
+        } catch (err) {
+            return await interaction.reply({ content: (err as Error).message, ephemeral: true });
+        }
 
-        if (!(msg.channel instanceof TextChannel || msg.channel instanceof NewsChannel)) return;
-        await msg.channel.bulkDelete(amount);
+        /**
+         * simple reply
+         */
+        await interaction.reply({ content: `Successfully deleted ${args.amount} message(s).`, ephemeral: true });
     }
 }

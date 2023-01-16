@@ -1,36 +1,38 @@
-import { QueryType, Queue } from 'discord-player';
-import { Client, Message } from 'discord.js';
+import { QueryType } from 'discord-player';
+import { Client, CommandInteraction, GuildMember, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 
-import CommandArgument from '../../res/models/CommandArgument.js';
-import { BaseCommand } from 'hina';
-
-export default class play implements BaseCommand {
-    name: String;
-    description: String;
-    commandUsage: String;
-    args: CommandArgument[];
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'play';
-        this.description = 'add song to song queue.';
-        this.commandUsage = '<yt_url/search_terms>';
-        this.args = [
-            new CommandArgument({ type: 'paragraph' })
-                .setName('yt_url/search_terms')
-                .setDescription('a YouTube video url or words to search on YouTube.'),
-        ];
+        super(
+            new SlashCommandBuilder()
+                .setName('play')
+                .setDescription('add song to the song queue.')
+                .addStringOption((option) =>
+                    option.setName('url_or_search').setDescription('A song url or search term.').setRequired(true)
+                )
+        );
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const [query] = args;
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        const args = {
+            url_or_search: interaction.options.get('url_or_search')!.value as string,
+        };
 
-        // return if author not in vc
-        if (!msg.member!.voice.channel) return await msg.reply('Please join a voice channel!');
+        const targetMember = interaction.member as GuildMember;
 
-        const alreadyConnectedQueue = Hina.player.getQueue(msg.guild!);
+        /**
+         * member is not in voice channel
+         */
+        if (!targetMember.voice.channel) return await interaction.reply('Please join a voice channel!');
+
+        /**
+         * get already existing queue else create new queue and store into queue constant
+         */
+        const alreadyConnectedQueue = Hina.player.getQueue(interaction.guild!);
         const queue =
             alreadyConnectedQueue ??
-            Hina.player.createQueue(msg.guild!, {
+            Hina.player.createQueue(interaction.guild!, {
                 ytdlOptions: {
                     quality: 'highest',
                     filter: 'audioonly',
@@ -38,7 +40,7 @@ export default class play implements BaseCommand {
                     dlChunkSize: 0,
                 },
                 metadata: {
-                    channel: msg.channel,
+                    channel: interaction.channel,
                 },
                 leaveOnEnd: false,
                 leaveOnStop: false,
@@ -46,25 +48,50 @@ export default class play implements BaseCommand {
                 initialVolume: 50,
             });
 
-        const resource = await Hina.player.search(query, {
-            requestedBy: msg.member!,
+        /**
+         * search with url_or_search argument
+         */
+        const resource = await Hina.player.search(args.url_or_search, {
+            requestedBy: targetMember,
             searchEngine: QueryType.AUTO,
         });
-        if (!resource.tracks.length) return msg.reply('No results found with the query provided.');
-        if (query.includes('https://') && resource.tracks.length > 1) {
+
+        /**
+         * no result
+         */
+        if (!resource.tracks.length) return interaction.reply('No results found with the query provided.');
+
+        /**
+         * if argument is a playlist url: add all songs, else add first result
+         */
+        if (args.url_or_search.includes('https://') && resource.tracks.length > 1) {
             queue.addTracks(resource.tracks);
         } else {
             queue.addTrack(resource.tracks[0]);
         }
 
-        if (msg.member!.voice.channelId !== msg.guild!.members.me!.voice.channelId || !alreadyConnectedQueue) {
+        /**
+         * if bot is not in the same vc / not in any vc, join the member's channel
+         */
+        if (targetMember.voice.channelId !== interaction.guild!.members.me!.voice.channelId || !alreadyConnectedQueue) {
             try {
-                await queue.connect(msg.member!.voice.channel);
+                await queue.connect(targetMember.voice.channel);
             } catch {
-                Hina.player.deleteQueue(msg.guild!);
-                return await msg.reply('Cannot join your voice channel! Try checking my permissions on the server.');
+                Hina.player.deleteQueue(interaction.guild!);
+                return await interaction.reply(
+                    'Cannot join your voice channel! Try checking my permissions on the server.'
+                );
             }
         }
+
+        /**
+         * start playing from queue
+         */
         if (!queue.playing) await queue.play();
+
+        /**
+         * reply to avoid "The application did not respond" error message
+         */
+        await interaction.reply(Hina.okEmoji);
     }
 }

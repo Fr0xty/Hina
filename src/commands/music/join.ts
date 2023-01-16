@@ -1,22 +1,27 @@
-import { Client, Message } from 'discord.js';
+import { Client, CommandInteraction, GuildMember, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 
-import { BaseCommand } from 'hina';
-
-export default class join implements BaseCommand {
-    name: String;
-    description: String;
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'join';
-        this.description = 'I will join your voice channel.';
+        super(new SlashCommandBuilder().setName('join').setDescription('I will join your voice channel.'));
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        if (!msg.member!.voice.channel) return await msg.reply('Please join a voice channel!');
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        const targetMember = interaction.member as GuildMember;
 
-        const queue = Hina.player.getQueue(msg.guild!);
+        /**
+         * target member isn't in a voice channel
+         */
+        if (!targetMember.voice.channel) {
+            return await interaction.reply('Please join a voice channel before using this command.');
+        }
+
+        /**
+         * join
+         */
+        const queue = Hina.player.getQueue(interaction.guild!);
         if (!queue) {
-            const queue = Hina.player.createQueue(msg.guild!, {
+            const queue = Hina.player.createQueue(interaction.guild!, {
                 ytdlOptions: {
                     quality: 'highest',
                     filter: 'audioonly',
@@ -24,19 +29,19 @@ export default class join implements BaseCommand {
                     dlChunkSize: 0,
                 },
                 metadata: {
-                    channel: msg.channel,
+                    channel: interaction.channel,
                 },
                 leaveOnEnd: false,
                 leaveOnStop: false,
                 leaveOnEmptyCooldown: 180000,
                 initialVolume: 50,
             });
-            await queue.connect(msg.member!.voice.channel);
+            await queue.connect(targetMember.voice.channel);
         }
-        if (msg.member!.voice.channelId !== msg.guild!.members.me!.voice.channelId) {
-            await queue?.connect(msg.member!.voice.channel);
+        if (targetMember.voice.channelId !== interaction.guild!.members.me!.voice.channelId) {
+            await queue?.connect(targetMember.voice.channel);
         }
 
-        await msg.react(Hina.okEmoji);
+        await interaction.reply(Hina.okEmoji);
     }
 }

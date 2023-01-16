@@ -1,29 +1,30 @@
-import fetch from 'node-fetch';
-import { Client, Message, EmbedBuilder } from 'discord.js';
-
 import anilistMangaGraphql from '../../schema/anilistManga.graphql.js';
-import CommandArgument from '../../res/models/CommandArgument.js';
-import { BaseCommand } from 'hina';
+import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 
-export default class manga implements BaseCommand {
-    name: String;
-    description: String;
-    commandUsage: String;
-    args: CommandArgument[];
+export default class extends BaseCommand {
     gqlSchema: string;
 
     constructor() {
-        this.name = 'manga';
-        this.description = 'search for information on manga.';
-        this.commandUsage = '<manga_name>';
-        this.args = [
-            new CommandArgument({ type: 'paragraph' }).setName('manga_name').setDescription('manga to search for.'),
-        ];
+        super(
+            new SlashCommandBuilder()
+                .setName('manga')
+                .setDescription('search for information on manga.')
+                .addStringOption((option) =>
+                    option.setName('manga_title').setDescription('manga to search for.').setRequired(true)
+                )
+        );
+
+        /**
+         * gql query schema to fetch required information
+         */
         this.gqlSchema = anilistMangaGraphql;
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const [manga_name] = args;
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        const args = {
+            manga_title: interaction.options.get('manga_title')!.value as string,
+        };
 
         /**
          * fetch info from api
@@ -37,7 +38,7 @@ export default class manga implements BaseCommand {
             body: JSON.stringify({
                 query: this.gqlSchema,
                 variables: {
-                    name: manga_name,
+                    name: args.manga_title,
                 },
             }),
         });
@@ -46,9 +47,9 @@ export default class manga implements BaseCommand {
          * errors when requesting
          */
         if (req.status === 404)
-            return await msg.reply(`Did not find any manga with the search terms: \`${manga_name}\`.`);
+            return await interaction.reply(`Did not find any manga with the search terms: \`${args.manga_title}\`.`);
         if (req.status !== 200) {
-            return await msg.reply('Something went wrong with the request. Please try again in a while.');
+            return await interaction.reply('Something went wrong with the request. Please try again in a while.');
         }
 
         /**
@@ -66,6 +67,7 @@ export default class manga implements BaseCommand {
                     .replace(/(\r\n|\n|\r)/gm, '') // removes linebreaks
                     .replaceAll('<br>', '\n') // format <br> tags
                     .replace(/<\/?i>/gm, '*') // format <i> and </i> tags
+                    .replace(/<\/?b>/gm, '**') // format <b> and </b> tags
             )
             .setColor(Hina.color)
             .setThumbnail(mangaInfo.coverImage[Object.keys(mangaInfo.coverImage)[0]])
@@ -79,6 +81,6 @@ export default class manga implements BaseCommand {
                 { name: 'Genres', value: mangaInfo.genres.toString().replaceAll(',', ', '), inline: false },
             ]);
 
-        await msg.reply({ embeds: [embed] });
+        await interaction.reply({ embeds: [embed] });
     }
 }

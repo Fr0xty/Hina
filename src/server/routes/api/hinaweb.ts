@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import Hina from '../../../../res/HinaClient.js';
+import Hina from '../../../res/HinaClient.js';
 
 const router = Router();
 

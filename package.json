@@ -1,19 +1,18 @@
 {
   "name": "hina",
-  "version": "2.4.2",
+  "version": "2.5.0",
   "description": "A multi-purpose discord bot.",
   "main": "app.js",
   "type": "module",
   "dependencies": {
     "bufferutil": "^4.0.6",
     "detectlanguage": "^2.1.0",
-    "discord-player": "^5.2.2",
+    "discord-player": "^5.4.0",
     "discord.js": "^14.7.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "ffmpeg-static": "^4.4.1",
-    "firebase-admin": "^10.0.2",
-    "node-fetch": "^3.2.2",
+    "firebase-admin": "^11.4.1",
     "opusscript": "^0.0.8",
     "piston-client": "^1.0.2",
     "translate": "^1.4.1",
@@ -21,12 +20,14 @@
     "utf-8-validate": "^5.0.8"
   },
   "devDependencies": {
+    "@fr0xty/prettier-config": "^1.0.2",
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.21",
     "typescript": "^4.9.3"
   },
+  "prettier": "@fr0xty/prettier-config",
   "scripts": {
-    "start": "node ./dist/app.js"
+    "start": "node ./dist/app.js --trace-warnings"
   },
   "repository": {
     "type": "git",

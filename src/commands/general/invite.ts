@@ -1,27 +1,23 @@
 import {
-    Client,
-    Message,
-    ActionRowBuilder,
-    ButtonBuilder,
-    EmbedBuilder,
-    ButtonStyle,
     APIActionRowComponent,
     APIMessageActionRowComponent,
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
+    Client,
+    CommandInteraction,
+    EmbedBuilder,
+    SlashCommandBuilder,
 } from 'discord.js';
-
-import { BaseCommand } from 'hina';
+import BaseCommand from '../../res/BaseCommand.js';
 import { generateHinaInvite } from '../../utils/general.js';
 
-export default class invite implements BaseCommand {
-    name: String;
-    description: String;
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'invite';
-        this.description = 'get my invite link.';
+        super(new SlashCommandBuilder().setName('invite').setDescription('get my invite link.'));
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
         const HinaInvite = await generateHinaInvite(Hina);
 
         const embed = new EmbedBuilder()
@@ -29,12 +25,12 @@ export default class invite implements BaseCommand {
             .setColor(Hina.color)
             .setDescription(HinaInvite)
             .setFooter({
-                text: `Requested by: ${msg.author.tag}`,
-                iconURL: msg.author.displayAvatarURL(Hina.imageOption),
+                text: `Requested by: ${interaction.user.tag}`,
+                iconURL: interaction.user.displayAvatarURL(Hina.imageOption),
             })
             .setTimestamp();
 
-        const button = new ActionRowBuilder().addComponents(
+        const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
                 .setLabel('Invite Me!')
                 .setStyle(ButtonStyle.Link)
@@ -42,9 +38,9 @@ export default class invite implements BaseCommand {
                 .setEmoji('<a:AquaBounce:884003530933944341>')
         );
 
-        await msg.reply({
+        await interaction.reply({
             embeds: [embed],
-            components: [button.data as APIActionRowComponent<APIMessageActionRowComponent>],
+            components: [row],
         });
     }
 }

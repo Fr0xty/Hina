@@ -1,17 +1,8 @@
-import {
-    CommandInteraction,
-    Message,
-    ActionRowBuilder,
-    ButtonBuilder,
-    EmbedBuilder,
-    ButtonStyle,
-    APIActionRowComponent,
-    APIMessageActionRowComponent,
-} from 'discord.js';
+import { CommandInteraction, Message, ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle } from 'discord.js';
 
 import Hina from '../res/HinaClient.js';
 
-const _aquaButtons = new ActionRowBuilder().addComponents(
+const _aquaButtons = new ActionRowBuilder<ButtonBuilder>().addComponents(
     new ButtonBuilder().setCustomId('pageLeft').setEmoji('879530551038603264').setStyle(ButtonStyle.Secondary),
     new ButtonBuilder().setCustomId('pageRight').setEmoji('879530551881637930').setStyle(ButtonStyle.Secondary)
 );
@@ -48,7 +39,7 @@ export const interactionPaginator = async (interaction: CommandInteraction, page
     let currentPage = 0;
     const sentMsg = (await interaction.reply({
         embeds: [pages[currentPage]],
-        components: [_aquaButtons as any],
+        components: [_aquaButtons],
         fetchReply: true,
     })) as Message;
 

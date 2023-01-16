@@ -1,44 +1,47 @@
 import 'dotenv/config';
-import { Client, Message, EmbedBuilder } from 'discord.js';
+import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 
-import CommandArgument from '../../res/models/CommandArgument.js';
-import { BaseCommand } from 'hina';
-
-export default class avatarhistory implements BaseCommand {
-    name: String;
-    description: String;
-    commandUsage: String;
-    args: CommandArgument[];
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'avatarhistory';
-        this.description = 'get the avatar history of a user.';
-        this.commandUsage = '[@user/user_id]';
-        this.args = [
-            new CommandArgument({ optional: true })
-                .setName('@user/user_id')
-                .setDescription('the user to fetch avatar history, leave blank will default to yourself.')
-                .setRegex(/^(<@)?!?[0-9]{18}>?$/),
-        ];
+        super(
+            new SlashCommandBuilder()
+                .setName('avatarhistory')
+                .setDescription('get avatar history of a user.')
+                .addUserOption((option) =>
+                    option.setName('user').setDescription('the user to fetch their avatar history.')
+                )
+        );
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        let [userId] = args;
-        userId = userId ? userId.match(/[0-9]+/)![0] : msg.author.id;
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        const args = {
+            user: interaction.options.get('user')?.value as string | undefined,
+        };
 
-        let theUser;
+        /**
+         * determine user
+         */
+        let targetUser;
         try {
-            theUser = await Hina.users.fetch(userId);
+            targetUser = args.user ? await Hina.users.fetch(args.user) : interaction.user;
         } catch {
-            return await msg.reply('Invalid userId!');
+            return await interaction.reply('Invalid userId!');
         }
 
+        /**
+         * return result
+         */
         const embed = new EmbedBuilder()
             .setColor(Hina.color)
-            .setAuthor({ name: `${theUser.tag}'s Avatar History`, iconURL: theUser.displayAvatarURL() })
-            .setDescription(`see them [HERE](${process.env.HINAWEB_BASE_URL}/api/avatar-history/${userId})`)
-            .setFooter({ text: `Requested by ${msg.author.tag}`, iconURL: msg.author.displayAvatarURL() })
+            .setAuthor({ name: `${targetUser.tag}'s Avatar History`, iconURL: targetUser.displayAvatarURL() })
+            .setDescription(`see them [HERE](${process.env.HINAWEB_BASE_URL}/avatar-history/${targetUser.id})`)
+            .setFooter({
+                text: `Requested by ${interaction.user.tag}`,
+                iconURL: interaction.user.displayAvatarURL(),
+            })
             .setTimestamp();
-        await msg.reply({ embeds: [embed] });
+
+        await interaction.reply({ embeds: [embed] });
     }
 }

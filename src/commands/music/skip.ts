@@ -1,25 +1,32 @@
-import { Client, Message } from 'discord.js';
+import { Client, CommandInteraction, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 
-import { BaseCommand } from 'hina';
-
-export default class skip implements BaseCommand {
-    name: String;
-    description: String;
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'skip';
-        this.description = 'clear server song queue.';
+        super(new SlashCommandBuilder().setName('skip').setDescription('skip curent song in song queue.'));
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const queue = Hina.player.getQueue(msg.guild!);
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        /**
+         * get server song queue
+         */
+        const queue = Hina.player.getQueue(interaction.guild!);
 
-        if (!queue) return await msg.reply("I'm not currently playing in this server.");
+        /**
+         * not playing songs in server
+         */
+        if (!queue) return await interaction.reply("I'm not currently playing in this server.");
 
+        /**
+         * no song in queue
+         */
         const npMusic = queue.nowPlaying();
-        if (!npMusic) return await msg.reply("I'm not currently playing any songs.");
+        if (!npMusic) return await interaction.reply("I'm not currently playing any songs.");
 
+        /**
+         * skip song
+         */
         queue.skip();
-        await msg.react(Hina.okEmoji);
+        await interaction.reply(Hina.okEmoji);
     }
 }

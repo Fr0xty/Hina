@@ -1,24 +1,31 @@
-import { Client, Message } from 'discord.js';
+import { Client, CommandInteraction, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 
-import { BaseCommand } from 'hina';
-
-export default class clearqueue implements BaseCommand {
-    name: String;
-    description: String;
-    aliases: String[];
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'clearqueue';
-        this.description = 'clear server song queue.';
-        this.aliases = ['clearq'];
+        super(new SlashCommandBuilder().setName('clearqueue').setDescription('clear song queue.'));
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const queue = Hina.player.getQueue(msg.guild!);
-        if (!queue) return await msg.reply("I'm not currently playing in this server.");
-        if (!queue.nowPlaying()) return await msg.reply('There is no music in queue.');
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        /**
+         * get server song queue
+         */
+        const queue = Hina.player.getQueue(interaction.guild!);
 
+        /**
+         * server has no queue (not playing music)
+         */
+        if (!queue) return await interaction.reply("I'm not currently playing songs in this server.");
+
+        /**
+         * no song in queue
+         */
+        if (!queue.nowPlaying()) return await interaction.reply('There is no music in queue.');
+
+        /**
+         * clear queue
+         */
         queue.clear();
-        await msg.react(Hina.okEmoji);
+        await interaction.reply(Hina.okEmoji);
     }
 }

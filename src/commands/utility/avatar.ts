@@ -1,60 +1,66 @@
-import { Client, Message, EmbedBuilder } from 'discord.js';
+import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder, User } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 
-import CommandArgument from '../../res/models/CommandArgument.js';
-import { BaseCommand } from 'hina';
-
-export default class avatar implements BaseCommand {
-    name: String;
-    description: String;
-    commandUsage: String;
-    args: CommandArgument[];
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'avatar';
-        this.description = 'get user profile avatar.';
-        this.commandUsage = '[@user/user_id]';
-        this.args = [
-            new CommandArgument({ optional: true })
-                .setName('user')
-                .setDescription('user of the avatar you want to get, leaving blank will default to yourself.')
-                .setRegex(/^(<@)?!?[0-9]{18}>?$/),
-        ];
+        super(
+            new SlashCommandBuilder()
+                .setName('avatar')
+                .setDescription('get user profile avatar.')
+                .addUserOption((option) =>
+                    option.setName('user').setDescription('user to get profile avatar of. Defaults to yourself.')
+                )
+        );
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const [user] = args;
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        const args = {
+            user: interaction.options.get('user')?.value as string | User | undefined,
+        };
 
-        const User = user ? await Hina.users.fetch(user.match(/\d+/)![0]) : msg.author;
-        if (!User) return await msg.reply('Invalid user id / mention!');
+        /**
+         * fetch user if provided, else assign to command invoker
+         */
+        try {
+            args.user = args.user ? await Hina.users.fetch(args.user) : interaction.user;
+        } catch {
+            return await interaction.reply({ content: 'Invalid user.', ephemeral: true });
+        }
 
+        /**
+         * format embed
+         */
         const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({ name: "Hina's Avatar Fetcher", iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
-            .setTitle(`${User.tag}'s Avatar'`)
+            .setTitle(`${args.user.tag}'s Avatar'`)
             .setDescription(
                 `
-[\`webp\`](${User.displayAvatarURL({
+[\`webp\`](${args.user.displayAvatarURL({
                     extension: 'webp',
                     size: 4096,
-                })}) [\`png\`](${User.displayAvatarURL({
+                })}) [\`png\`](${args.user.displayAvatarURL({
                     extension: 'png',
                     size: 4096,
-                })}) [\`jpg\`](${User.displayAvatarURL({
+                })}) [\`jpg\`](${args.user.displayAvatarURL({
                     extension: 'jpg',
                     size: 4096,
-                })}) [\`jpeg\`](${User.displayAvatarURL({
+                })}) [\`jpeg\`](${args.user.displayAvatarURL({
                     extension: 'jpeg',
                     size: 4096,
                 })})
             `
             )
-            .setImage(User.displayAvatarURL(Hina.imageOption))
+            .setImage(args.user.displayAvatarURL(Hina.imageOption))
             .setFooter({
-                text: `Requested by: ${msg.author.tag}`,
-                iconURL: msg.author.displayAvatarURL(Hina.imageOption),
+                text: `Requested by: ${interaction.user.tag}`,
+                iconURL: interaction.user.displayAvatarURL(Hina.imageOption),
             })
             .setTimestamp();
 
-        await msg.reply({ embeds: [embed] });
+        /**
+         * return result
+         */
+        await interaction.reply({ embeds: [embed] });
     }
 }

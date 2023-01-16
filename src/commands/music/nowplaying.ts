@@ -1,25 +1,35 @@
-import { Client, Message, EmbedBuilder } from 'discord.js';
+import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 
-import { BaseCommand } from 'hina';
-
-export default class nowplaying implements BaseCommand {
-    name: String;
-    description: String;
-    aliases: String[];
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'nowplaying';
-        this.description = 'clear server song queue.';
-        this.aliases = ['np'];
+        super(new SlashCommandBuilder().setName('nowplaying').setDescription('get current playing song.'));
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const queue = Hina.player.getQueue(msg.guild!);
-        if (!queue) return await msg.reply("I'm not currently playing in this server.");
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        /**
+         * get server song queue
+         */
+        const queue = Hina.player.getQueue(interaction.guild!);
 
+        /**
+         * not playing any song in server
+         */
+        if (!queue) return await interaction.reply("I'm not currently playing songs in this server.");
+
+        /**
+         * get song
+         */
         const npMusic = queue.nowPlaying();
-        if (!npMusic) return await msg.reply('There is no more music in queue, use `play` to add more songs.');
 
+        /**
+         * song queue is empty
+         */
+        if (!npMusic) return await interaction.reply('There is no more music in queue, use `play` to add more songs.');
+
+        /**
+         * format info into embed
+         */
         const progress = queue.createProgressBar();
         const timestamp = queue.getPlayerTimestamp();
 
@@ -45,6 +55,6 @@ ${progress}
                 { name: 'Views', value: String(npMusic.views) },
                 { name: 'Requested by', value: `<@${npMusic.requestedBy.id}>` }
             );
-        await msg.reply({ embeds: [embed] });
+        await interaction.reply({ embeds: [embed] });
     }
 }

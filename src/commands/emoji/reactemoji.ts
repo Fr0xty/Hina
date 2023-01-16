@@ -1,38 +1,73 @@
-import { Client, Message } from 'discord.js';
+import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 
-import CommandArgument from '../../res/models/CommandArgument.js';
-import { BaseCommand } from 'hina';
-
-export default class reactemoji implements BaseCommand {
-    name: String;
-    description: String;
-    commandUsage: String;
-    args: CommandArgument[];
-
+export default class extends BaseCommand {
     constructor() {
-        this.name = 'reactemoji';
-        this.description = 'react to message using the emoji id.';
-        this.commandUsage = '<emoji_id>';
-        this.args = [
-            new CommandArgument()
-                .setName('emoji_id')
-                .setDescription('full emoji id without `<>`, can get using `getemoji` command.'),
-        ];
+        super(
+            new SlashCommandBuilder()
+                .setName('reactemoji')
+                .setDescription('react to message using the emoji id.')
+                .addStringOption((option) =>
+                    option
+                        .setName('message_id')
+                        .setDescription('message id of the message to react to.')
+                        .setRequired(true)
+                )
+                .addStringOption((option) =>
+                    option
+                        .setName('emoji_id')
+                        .setDescription(
+                            'emoji id of the emoji to react with (use /getemoji command) e.g.: <:Hmm:885845962310963270>'
+                        )
+                        .setRequired(true)
+                )
+        );
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const [emoji_id] = args;
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        const args = {
+            message_id: interaction.options.get('message_id')!.value as string,
+            emoji_id: interaction.options.get('emoji_id')!.value as string,
+        };
 
-        if (!msg.reference)
-            return await msg.reply('Please reply to the message you want to react to while using the command!');
-        if (!args) return await msg.reply('Please provide the emoji id.');
-
-        const theMsg = await msg.fetchReference();
         try {
-            await theMsg.react(emoji_id);
-            await msg.delete();
+            /**
+             * get Message object to react to
+             */
+            const messageToReact = await interaction.channel!.messages.fetch(args.message_id);
+
+            /**
+             * react with emoji, reply with error response if emoji_id give is invalid
+             */
+            try {
+                await messageToReact.react(args.emoji_id);
+            } catch {
+                return await interaction.reply({ content: `Invalid emoji id: ${args.emoji_id}`, ephemeral: true });
+            }
+
+            /**
+             * affirmation response
+             */
+            const embed = new EmbedBuilder()
+                .setDescription(
+                    `
+Successfully reacted with: ${args.emoji_id}
+Message [**HERE**](${messageToReact.url})`
+                )
+                .setColor(Hina.color);
+
+            return await interaction.reply({
+                embeds: [embed],
+                ephemeral: true,
+            });
         } catch {
-            await msg.reply(`Invalid emoji id: ${emoji_id}`);
+            /**
+             * cannot find message with given id, return immediately
+             */
+            return await interaction.reply({
+                content: 'Invalid message id provided, the message has to be in this channel.',
+                ephemeral: true,
+            });
         }
     }
 }

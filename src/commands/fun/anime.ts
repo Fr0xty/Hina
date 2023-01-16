@@ -1,29 +1,30 @@
-import fetch from 'node-fetch';
-import { Client, Message, EmbedBuilder } from 'discord.js';
+import anilistAnimeGraphql from '../../schema/anilistAnime.graphql.js';
+import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import BaseCommand from '../../res/BaseCommand.js';
 
-import animeQuerySchema from '../../schema/anilistAnime.graphql.js';
-import CommandArgument from '../../res/models/CommandArgument.js';
-import { BaseCommand } from 'hina';
-
-export default class anime implements BaseCommand {
-    name: String;
-    description: String;
-    commandUsage: String;
-    args: CommandArgument[];
+export default class extends BaseCommand {
     gqlSchema: string;
 
     constructor() {
-        this.name = 'anime';
-        this.description = 'search for information on anime.';
-        this.commandUsage = '<anime_name>';
-        this.args = [
-            new CommandArgument({ type: 'paragraph' }).setName('anime_name').setDescription('anime to search for.'),
-        ];
-        this.gqlSchema = animeQuerySchema;
+        super(
+            new SlashCommandBuilder()
+                .setName('anime')
+                .setDescription('search for information on anime.')
+                .addStringOption((option) =>
+                    option.setName('anime_name').setDescription('anime to search for.').setRequired(true)
+                )
+        );
+
+        /**
+         * gql query schema to fetch required information
+         */
+        this.gqlSchema = anilistAnimeGraphql;
     }
 
-    async execute(Hina: Client, msg: Message, args: string[]) {
-        const [anime_name] = args;
+    async slashExecute(Hina: Client, interaction: CommandInteraction) {
+        const args = {
+            anime_name: interaction.options.get('anime_name')!.value as string,
+        };
 
         /**
          * fetch info from api
@@ -37,7 +38,7 @@ export default class anime implements BaseCommand {
             body: JSON.stringify({
                 query: this.gqlSchema,
                 variables: {
-                    name: anime_name,
+                    name: args.anime_name,
                 },
             }),
         });
@@ -46,9 +47,9 @@ export default class anime implements BaseCommand {
          * errors when requesting
          */
         if (req.status === 404)
-            return await msg.reply(`Did not find any anime with the search terms: \`${anime_name}\`.`);
+            return await interaction.reply(`Did not find any anime with the search terms: \`${args.anime_name}\`.`);
         if (req.status !== 200) {
-            return await msg.reply('Something went wrong with the request. Please try again in a while.');
+            return await interaction.reply('Something went wrong with the request. Please try again in a while.');
         }
 
         /**
@@ -66,6 +67,7 @@ export default class anime implements BaseCommand {
                     .replace(/(\r\n|\n|\r)/gm, '') // removes linebreaks
                     .replaceAll('<br>', '\n') // format <br> tags
                     .replace(/<\/?i>/gm, '*') // format <i> and </i> tags
+                    .replace(/<\/?b>/gm, '**') // format <b> and </b> tags
             )
             .setColor(Hina.color)
             .setThumbnail(animeInfo.coverImage[Object.keys(animeInfo.coverImage)[0]])
@@ -85,6 +87,6 @@ export default class anime implements BaseCommand {
                 { name: 'Genres', value: animeInfo.genres.toString().replaceAll(',', ', '), inline: false },
             ]);
 
-        await msg.reply({ embeds: [embed] });
+        await interaction.reply({ embeds: [embed] });
     }
 }
