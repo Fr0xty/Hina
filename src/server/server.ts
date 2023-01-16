@@ -35,16 +35,8 @@ import apiRouter from './routes/api/api.js';
 app.use('/api', apiRouter);
 
 /**
- * simple routes
+ * run server
  */
-app.get('/invite', async (req, res) => {
-    res.redirect(process.env.HINA_INVITE_URL!);
-});
-
-app.get('/repository', async (req, res) => {
-    res.redirect('https://github.com/Fr0xty/Hina');
-});
-
-app.listen(3000, '0.0.0.0', () => {
+app.listen(3000, () => {
     console.log('Express server is running on port 3000.');
 });
