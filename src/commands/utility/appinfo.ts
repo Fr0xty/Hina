@@ -1,5 +1,5 @@
 import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import BaseCommand from '../../res/models/BaseCommand.js';
+import BaseCommand from '../../res/BaseCommand.js';
 import { convertSeconds } from '../../utils/convert.js';
 
 // @ts-ignore package.json is not in ./src therefore can't be imported (for code safety purpose but this is exception)

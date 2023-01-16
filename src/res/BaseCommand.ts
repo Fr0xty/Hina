@@ -1,10 +1,4 @@
-import {
-    Client,
-    CommandInteraction,
-    Message,
-    SlashCommandBuilder,
-    SlashCommandSubcommandsOnlyBuilder,
-} from 'discord.js';
+import { Client, CommandInteraction, SlashCommandBuilder } from 'discord.js';
 
 export default abstract class BaseCommand {
     /**

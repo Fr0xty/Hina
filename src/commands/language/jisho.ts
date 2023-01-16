@@ -1,5 +1,5 @@
 import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import BaseCommand from '../../res/models/BaseCommand.js';
+import BaseCommand from '../../res/BaseCommand.js';
 import { interactionPaginator } from '../../utils/paginator.js';
 
 export default class extends BaseCommand {

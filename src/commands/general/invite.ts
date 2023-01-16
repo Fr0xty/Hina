@@ -9,7 +9,7 @@ import {
     EmbedBuilder,
     SlashCommandBuilder,
 } from 'discord.js';
-import BaseCommand from '../../res/models/BaseCommand.js';
+import BaseCommand from '../../res/BaseCommand.js';
 import { generateHinaInvite } from '../../utils/general.js';
 
 export default class extends BaseCommand {

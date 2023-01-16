@@ -1,5 +1,5 @@
 import { Client, CommandInteraction, SlashCommandBuilder } from 'discord.js';
-import BaseCommand from '../../res/models/BaseCommand.js';
+import BaseCommand from '../../res/BaseCommand.js';
 import { QueueRepeatMode } from 'discord-player';
 
 export default class extends BaseCommand {

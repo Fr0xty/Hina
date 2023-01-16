@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import BaseCommand from '../../res/models/BaseCommand.js';
+import BaseCommand from '../../res/BaseCommand.js';
 import DetectLanguage from 'detectlanguage';
 import Translate from 'translate';
 

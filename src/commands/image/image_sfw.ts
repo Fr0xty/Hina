@@ -1,5 +1,5 @@
 import { Client, CommandInteraction, SlashCommandBuilder } from 'discord.js';
-import BaseCommand from '../../res/models/BaseCommand.js';
+import BaseCommand from '../../res/BaseCommand.js';
 import ImageChoices from '../../res/ImageChoices.js';
 import { fetchImage } from '../../utils/imageCommand.js';
 import { interactionPaginator } from '../../utils/paginator.js';
