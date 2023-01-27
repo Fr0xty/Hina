@@ -16,7 +16,7 @@ export default class extends BaseCommand {
 
     async slashExecute(Hina: Client, interaction: CommandInteraction) {
         const args = {
-            server_id: interaction.options.get('server_id')!.value as string | undefined,
+            server_id: interaction.options.get('server_id')?.value as string | undefined,
         };
 
         try {
