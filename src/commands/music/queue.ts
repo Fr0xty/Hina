@@ -5,7 +5,12 @@ import { interactionPaginator } from '../../utils/paginator.js';
 
 export default class extends BaseCommand {
     constructor() {
-        super(new SlashCommandBuilder().setName('queue').setDescription('get song queue of the server.'));
+        super(
+            new SlashCommandBuilder()
+                .setName('queue')
+                .setDescription('get song queue of the server.')
+                .setDMPermission(false)
+        );
     }
 
     async slashExecute(Hina: Client, interaction: CommandInteraction) {

@@ -11,6 +11,7 @@ export default class extends BaseCommand {
                 .addStringOption((option) =>
                     option.setName('url_or_search').setDescription('A song url or search term.').setRequired(true)
                 )
+                .setDMPermission(false)
         );
     }
 

@@ -19,6 +19,7 @@ export default class extends BaseCommand {
                         )
                         .setRequired(true)
                 )
+                .setDMPermission(false)
         );
     }
 

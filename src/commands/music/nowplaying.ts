@@ -3,7 +3,12 @@ import BaseCommand from '../../res/BaseCommand.js';
 
 export default class extends BaseCommand {
     constructor() {
-        super(new SlashCommandBuilder().setName('nowplaying').setDescription('get current playing song.'));
+        super(
+            new SlashCommandBuilder()
+                .setName('nowplaying')
+                .setDescription('get current playing song.')
+                .setDMPermission(false)
+        );
     }
 
     async slashExecute(Hina: Client, interaction: CommandInteraction) {

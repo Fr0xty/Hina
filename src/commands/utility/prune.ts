@@ -23,6 +23,7 @@ export default class extends BaseCommand {
                         .setMinValue(1)
                         .setMaxValue(100)
                 )
+                .setDMPermission(false)
         );
     }
 
