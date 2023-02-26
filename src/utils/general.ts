@@ -32,3 +32,13 @@ export const avatarURLToAttachment = async (user: User | PartialUser) => {
     });
     return msg.attachments.first()!;
 };
+
+export const extractCodeBlock = async (content: string) => {
+    /**
+     * extract code and language from the message content
+     */
+    const code = content.match(/(?<=\`\`\`.*\n).*(?=\`\`\`)/s)?.shift();
+    const language = content.match(/(?<=\`\`\`).+(?=\n)/)?.shift();
+
+    return { code, language };
+};

@@ -1,6 +1,7 @@
 import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import BaseCommand from '../../res/BaseCommand.js';
 import piston from 'piston-client';
+import { extractCodeBlock } from '../../utils/general.js';
 
 export default class extends BaseCommand {
     constructor() {
@@ -22,11 +23,9 @@ export default class extends BaseCommand {
         try {
             const msgContent = (await interaction.channel?.messages.fetch(args.message_id))!.content;
 
-            /**
-             * extract code and language from the message content
-             */
-            const code = msgContent.match(/(?<=\`\`\`.*\n).*(?=\`\`\`)/s)?.shift();
-            let language = msgContent.match(/(?<=\`\`\`).+(?=\n)/)?.shift();
+            const codeBlockData = await extractCodeBlock(msgContent);
+            const { code } = codeBlockData;
+            let { language } = codeBlockData;
 
             /**
              * if no code / code is not provided properly
