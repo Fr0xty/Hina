@@ -9,6 +9,7 @@ export default class extends BaseCommand {
                 .setName('userinfo')
                 .setDescription('get user information.')
                 .addUserOption((option) => option.setName('user').setDescription('user to get information.'))
+                .setDMPermission(false)
         );
     }
 

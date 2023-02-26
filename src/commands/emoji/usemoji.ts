@@ -25,6 +25,7 @@ export default class extends BaseCommand {
                         .setDescription('emoji id to use. (use /getemoji command)')
                         .setRequired(true)
                 )
+                .setDMPermission(false)
         );
     }
 

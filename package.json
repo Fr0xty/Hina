@@ -1,6 +1,6 @@
 {
   "name": "hina",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "A multi-purpose discord bot.",
   "main": "app.js",
   "type": "module",

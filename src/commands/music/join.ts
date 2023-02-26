@@ -3,7 +3,12 @@ import BaseCommand from '../../res/BaseCommand.js';
 
 export default class extends BaseCommand {
     constructor() {
-        super(new SlashCommandBuilder().setName('join').setDescription('I will join your voice channel.'));
+        super(
+            new SlashCommandBuilder()
+                .setName('join')
+                .setDescription('I will join your voice channel.')
+                .setDMPermission(false)
+        );
     }
 
     async slashExecute(Hina: Client, interaction: CommandInteraction) {

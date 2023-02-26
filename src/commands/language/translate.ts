@@ -27,6 +27,7 @@ export default class extends BaseCommand {
                         .setName('from_language')
                         .setDescription('language of the original message. Defaults to detect language.')
                 )
+                .setDMPermission(false)
         );
     }
 

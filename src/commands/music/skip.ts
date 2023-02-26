@@ -3,7 +3,12 @@ import BaseCommand from '../../res/BaseCommand.js';
 
 export default class extends BaseCommand {
     constructor() {
-        super(new SlashCommandBuilder().setName('skip').setDescription('skip curent song in song queue.'));
+        super(
+            new SlashCommandBuilder()
+                .setName('skip')
+                .setDescription('skip curent song in song queue.')
+                .setDMPermission(false)
+        );
     }
 
     async slashExecute(Hina: Client, interaction: CommandInteraction) {

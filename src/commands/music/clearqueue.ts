@@ -3,7 +3,9 @@ import BaseCommand from '../../res/BaseCommand.js';
 
 export default class extends BaseCommand {
     constructor() {
-        super(new SlashCommandBuilder().setName('clearqueue').setDescription('clear song queue.'));
+        super(
+            new SlashCommandBuilder().setName('clearqueue').setDescription('clear song queue.').setDMPermission(false)
+        );
     }
 
     async slashExecute(Hina: Client, interaction: CommandInteraction) {

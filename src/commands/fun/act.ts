@@ -20,6 +20,7 @@ export default class extends BaseCommand {
                     option.setName('user').setDescription('the person to impersonate.').setRequired(true)
                 )
                 .addStringOption((option) => option.setName('message').setDescription('text to say.').setRequired(true))
+                .setDMPermission(false)
         );
     }
 

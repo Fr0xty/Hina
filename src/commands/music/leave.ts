@@ -3,7 +3,12 @@ import BaseCommand from '../../res/BaseCommand.js';
 
 export default class extends BaseCommand {
     constructor() {
-        super(new SlashCommandBuilder().setName('leave').setDescription('I will leave the voice channel.'));
+        super(
+            new SlashCommandBuilder()
+                .setName('leave')
+                .setDescription('I will leave the voice channel.')
+                .setDMPermission(false)
+        );
     }
 
     async slashExecute(Hina: Client, interaction: CommandInteraction) {
