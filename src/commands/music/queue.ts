@@ -2,6 +2,7 @@ import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'd
 import BaseCommand from '../../res/BaseCommand.js';
 import { QueueRepeatMode } from 'discord-player';
 import { interactionPaginator } from '../../utils/paginator.js';
+import { getUsernameOrTag } from '../../utils/user.js';
 
 export default class extends BaseCommand {
     constructor() {
@@ -62,7 +63,7 @@ no more songs in queue...
                 `
                 )
                 .setFooter({
-                    text: `${loopMessage}\nRequested by ${interaction.user.tag}`,
+                    text: `${loopMessage}\nRequested by ${getUsernameOrTag(interaction.user)}`,
                     iconURL: interaction.user.displayAvatarURL(),
                 })
                 .setTimestamp();
@@ -90,7 +91,7 @@ no more songs in queue...
                     .setDescription(page)
                     .setTimestamp()
                     .setFooter({
-                        text: `${loopMessage}\nRequested by ${interaction.user.tag}`,
+                        text: `${loopMessage}\nRequested by ${getUsernameOrTag(interaction.user)}`,
                         iconURL: interaction.user.displayAvatarURL(),
                     });
                 if (!pages.length) embed.setTitle('Now Playing:');

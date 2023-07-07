@@ -1,6 +1,7 @@
 import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import BaseCommand from '../../res/BaseCommand.js';
 import { convertSeconds } from '../../utils/convert.js';
+import { getUsernameOrTag } from '../../utils/user.js';
 
 // @ts-ignore package.json is not in ./src therefore can't be imported (for code safety purpose but this is exception)
 import packageJSON from '../../../package.json' assert { type: 'json' };
@@ -35,13 +36,16 @@ websocket latency: \`${Math.round(Hina.ws.ping)}ms\`
 bot uptime: \`${uptime}\`
             `
             )
-            .setAuthor({ name: Hina.user!.tag, iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
+            .setAuthor({
+                name: getUsernameOrTag(Hina.user!),
+                iconURL: Hina.user!.displayAvatarURL(Hina.imageOption),
+            })
             .setColor(Hina.color)
             .setTitle(`Hina's Application Info`)
             .setThumbnail(Hina.user!.displayAvatarURL(Hina.imageOption))
             .setTimestamp()
             .setFooter({
-                text: `Requested by: ${interaction.user.tag}`,
+                text: `Requested by: ${getUsernameOrTag(interaction.user)}`,
                 iconURL: interaction.user.displayAvatarURL(Hina.imageOption),
             });
 

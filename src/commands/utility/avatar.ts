@@ -1,5 +1,6 @@
 import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder, User } from 'discord.js';
 import BaseCommand from '../../res/BaseCommand.js';
+import { getUsernameOrTag } from '../../utils/user.js';
 
 export default class extends BaseCommand {
     constructor() {
@@ -33,7 +34,7 @@ export default class extends BaseCommand {
         const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({ name: "Hina's Avatar Fetcher", iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
-            .setTitle(`${args.user.tag}'s Avatar'`)
+            .setTitle(`${getUsernameOrTag(args.user)}'s Avatar'`)
             .setDescription(
                 `
 [\`webp\`](${args.user.displayAvatarURL({
@@ -53,7 +54,7 @@ export default class extends BaseCommand {
             )
             .setImage(args.user.displayAvatarURL(Hina.imageOption))
             .setFooter({
-                text: `Requested by: ${interaction.user.tag}`,
+                text: `Requested by: ${getUsernameOrTag(interaction.user)}`,
                 iconURL: interaction.user.displayAvatarURL(Hina.imageOption),
             })
             .setTimestamp();

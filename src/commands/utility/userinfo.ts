@@ -1,6 +1,7 @@
 import { Client, CommandInteraction, EmbedBuilder, GuildMember, SlashCommandBuilder } from 'discord.js';
 import BaseCommand from '../../res/BaseCommand.js';
 import { convertApplicationFlags, convertPermissions, convertPresence, convertUserFlags } from '../../utils/convert.js';
+import { getUsernameOrTag } from '../../utils/user.js';
 
 export default class extends BaseCommand {
     constructor() {
@@ -77,12 +78,12 @@ export default class extends BaseCommand {
                 name: `${member.displayName}'s User Info`,
                 iconURL: member.user.displayAvatarURL(Hina.imageOption),
             })
-            .setTitle(member.user.tag)
+            .setTitle(getUsernameOrTag(member.user))
             .setColor(member.user.bot ? Hina.color : (await member.user.fetch(true)).accentColor ?? Hina.color)
             .setThumbnail(member.user.displayAvatarURL({ size: 4096 }))
             .setTimestamp()
             .setFooter({
-                text: `Requested by: ${interaction.user.tag}`,
+                text: `Requested by: ${getUsernameOrTag(interaction.user)}`,
                 iconURL: interaction.user.displayAvatarURL(Hina.imageOption),
             })
             .addFields(

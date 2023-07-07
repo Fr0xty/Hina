@@ -1,5 +1,6 @@
 import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import BaseCommand from '../../res/BaseCommand.js';
+import { getUsernameOrTag } from '../../utils/user.js';
 
 export default class extends BaseCommand {
     constructor() {
@@ -18,7 +19,7 @@ export default class extends BaseCommand {
             .setColor(Hina.color)
             .setAuthor({ name: 'Fun fact with Hina!', iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
             .setFooter({
-                text: `Requested by: ${interaction.user.tag}`,
+                text: `Requested by: ${getUsernameOrTag(interaction.user)}`,
                 iconURL: interaction.user.displayAvatarURL(Hina.imageOption),
             })
             .setTimestamp().setDescription(`
