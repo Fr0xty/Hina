@@ -34,7 +34,7 @@ export default class extends BaseCommand {
         const embed = new EmbedBuilder()
             .setColor(Hina.color)
             .setAuthor({ name: "Hina's Avatar Fetcher", iconURL: Hina.user!.displayAvatarURL(Hina.imageOption) })
-            .setTitle(`${getUsernameOrTag(args.user)}'s Avatar'`)
+            .setTitle(`${getUsernameOrTag(args.user)}'s Avatar`)
             .setDescription(
                 `
 [\`webp\`](${args.user.displayAvatarURL({
