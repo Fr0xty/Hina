@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import BaseCommand from '../../res/BaseCommand.js';
+import { getUsernameOrTag } from '../../utils/user.js';
 
 export default class extends BaseCommand {
     constructor() {
@@ -34,10 +35,13 @@ export default class extends BaseCommand {
          */
         const embed = new EmbedBuilder()
             .setColor(Hina.color)
-            .setAuthor({ name: `${targetUser.tag}'s Avatar History`, iconURL: targetUser.displayAvatarURL() })
+            .setAuthor({
+                name: `${getUsernameOrTag(targetUser)}'s Avatar History`,
+                iconURL: targetUser.displayAvatarURL(),
+            })
             .setDescription(`see them [HERE](${process.env.HINAWEB_BASE_URL}/avatar-history/${targetUser.id})`)
             .setFooter({
-                text: `Requested by ${interaction.user.tag}`,
+                text: `Requested by ${getUsernameOrTag(interaction.user)}`,
                 iconURL: interaction.user.displayAvatarURL(),
             })
             .setTimestamp();

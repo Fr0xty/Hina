@@ -1,6 +1,6 @@
-import type { User } from 'discord.js';
+import type { ClientUser, User } from 'discord.js';
 
-export const getUsernameOrTag = (user: User) => {
+export const getUsernameOrTag = (user: User | ClientUser) => {
     /**
      * user using new username system
      */

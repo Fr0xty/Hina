@@ -3,6 +3,7 @@ import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'd
 import BaseCommand from '../../res/BaseCommand.js';
 import DetectLanguage from 'detectlanguage';
 import Translate from 'translate';
+import { getUsernameOrTag } from '../../utils/user.js';
 
 Translate.engine = 'google';
 const DetectClient = new DetectLanguage(process.env.DETECTLANGUAGE_API_KEY!);
@@ -84,7 +85,10 @@ export default class extends BaseCommand {
  }
          `
             )
-            .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() })
+            .setFooter({
+                text: `Requested by ${getUsernameOrTag(interaction.user)}`,
+                iconURL: interaction.user.displayAvatarURL(),
+            })
             .setTimestamp();
 
         await interaction.reply({ embeds: [embed] });

@@ -2,6 +2,7 @@ import { Player, Queue } from 'discord-player';
 import { EmbedBuilder } from 'discord.js';
 
 import Hina from './2_properties.js';
+import { getUsernameOrTag } from '../../utils/user.js';
 
 /**
  * player for music commands
@@ -46,7 +47,10 @@ Hina.player
             .setThumbnail(track.thumbnail)
             .setTitle('Added to queue:')
             .setDescription(`[${track.title}](${track.url})`)
-            .setFooter({ text: `Added by ${track.requestedBy.tag}`, iconURL: track.requestedBy.displayAvatarURL() });
+            .setFooter({
+                text: `Added by ${getUsernameOrTag(track.requestedBy)}`,
+                iconURL: track.requestedBy.displayAvatarURL(),
+            });
         await queue.metadata.channel.send({ embeds: [embed] });
     })
 

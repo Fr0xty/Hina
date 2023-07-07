@@ -1,6 +1,7 @@
 import { Client, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import BaseCommand from '../../res/BaseCommand.js';
 import { interactionPaginator } from '../../utils/paginator.js';
+import { getUsernameOrTag } from '../../utils/user.js';
 
 export default class extends BaseCommand {
     constructor() {
@@ -63,7 +64,7 @@ export default class extends BaseCommand {
                         .setTitle(`Emoji Id(s) for ${guild!.name} [${emojiAmount}]`)
                         .setDescription(page)
                         .setFooter({
-                            text: `Requested by: ${interaction.user.tag}`,
+                            text: `Requested by: ${getUsernameOrTag(interaction.user)}`,
                             iconURL: interaction.user.displayAvatarURL(Hina.imageOption),
                         })
                         .setTimestamp();
@@ -83,7 +84,7 @@ export default class extends BaseCommand {
                     .setTitle(`Emoji Id(s) for ${guild!.name} [${emojiAmount}]`)
                     .setDescription(page)
                     .setFooter({
-                        text: `Requested by: ${interaction.user.tag}`,
+                        text: `Requested by: ${getUsernameOrTag(interaction.user)}`,
                         iconURL: interaction.user.displayAvatarURL(Hina.imageOption),
                     })
                     .setTimestamp();

@@ -1,6 +1,7 @@
 import { ActivityType, Client, CommandInteraction, EmbedBuilder, GuildMember, SlashCommandBuilder } from 'discord.js';
 import BaseCommand from '../../res/BaseCommand.js';
 import { convertSeconds } from '../../utils/convert.js';
+import { getUsernameOrTag } from '../../utils/user.js';
 
 export default class extends BaseCommand {
     constructor() {
@@ -64,7 +65,7 @@ export default class extends BaseCommand {
 
         const embed = new EmbedBuilder()
             .setAuthor({
-                name: `${member!.user.tag}'s Spotify Activity`,
+                name: `${getUsernameOrTag(member.user)}'s Spotify Activity`,
                 iconURL: 'https://cdn.discordapp.com/emojis/936844383926517771.webp?size=96&quality=lossless',
             })
             .setColor(1947988)
@@ -73,7 +74,7 @@ export default class extends BaseCommand {
             .setThumbnail(spotifyActivityData.albumArt)
             .setTimestamp()
             .setFooter({
-                text: `Requested by: ${interaction.user.tag}`,
+                text: `Requested by: ${getUsernameOrTag(interaction.user)}`,
                 iconURL: interaction.user.displayAvatarURL(Hina.imageOption),
             }).setDescription(`
 artist(s):
