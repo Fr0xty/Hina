@@ -11,7 +11,6 @@ declare module 'discord.js' {
         prefix: string;
         color: string;
         okEmoji: string;
-        imageOption: Object;
 
         avatarHistoryChannel: any;
         owner: User;
@@ -25,3 +24,4 @@ declare module 'discord.js' {
         web?: 'online' | 'idle' | 'dnd';
     }
 }
+
