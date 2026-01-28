@@ -9,7 +9,7 @@ declare module 'discord.js' {
     export interface Client {
         token: string;
         prefix: string;
-        color: number | RGBTuple;
+        color: string;
         okEmoji: string;
         imageOption: Object;
 
@@ -17,9 +17,6 @@ declare module 'discord.js' {
         owner: User;
 
         commands: Collection<String, BaseCommand>;
-        player: Player;
-
-        database: FirebaseFirestore;
     }
 
     export interface ClientPresenceObject {
