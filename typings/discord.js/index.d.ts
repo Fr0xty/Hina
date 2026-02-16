@@ -9,13 +9,17 @@ declare module 'discord.js' {
     export interface Client {
         token: string;
         prefix: string;
-        color: string;
+        color: number | RGBTuple;
         okEmoji: string;
         imageOption: Object;
 
+        avatarHistoryChannel: any;
         owner: User;
 
         commands: Collection<String, BaseCommand>;
+        player: Player;
+
+        database: FirebaseFirestore;
     }
 
     export interface ClientPresenceObject {
@@ -24,4 +28,3 @@ declare module 'discord.js' {
         web?: 'online' | 'idle' | 'dnd';
     }
 }
-

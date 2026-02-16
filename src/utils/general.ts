@@ -19,6 +19,20 @@ export const sleep = (ms: number): Promise<void> => {
     return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
+export const avatarURLToAttachment = async (user: User | PartialUser) => {
+    const avatarURL = user.displayAvatarURL({ size: 4096, extension: 'webp' });
+
+    const msg = await Hina.avatarHistoryChannel.send({
+        files: [
+            {
+                attachment: avatarURL,
+                name: `${user.id}.${avatarURL.includes('.gif') ? 'gif' : 'png'}`,
+            },
+        ],
+    });
+    return msg.attachments.first()!;
+};
+
 export const extractCodeBlock = async (content: string) => {
     /**
      * extract code and language from the message content
@@ -28,4 +42,3 @@ export const extractCodeBlock = async (content: string) => {
 
     return { code, language };
 };
-
