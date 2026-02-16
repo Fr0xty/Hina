@@ -1,0 +1,15 @@
+services:
+    bot:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: hina
+        restart: unless-stopped
+        env_file:
+            - .env
+        volumes:
+            - sqlite-data:/app/data
+
+volumes:
+    sqlite-data:
+

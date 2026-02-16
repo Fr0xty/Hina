@@ -1,9 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
 
-/**
- * server app instance
- */
+// import apiRouter from './routes/api/api.js';
+
 const app = express();
 
 /**
@@ -11,32 +10,13 @@ const app = express();
  */
 app.use(async (req, res, next) => {
     const token = req.headers.authorization;
+    if (token !== process.env.EXPRESS_API_TOKEN) res.sendStatus(401);
 
-    /**
-     * no token
-     */
-    if (!token) return res.sendStatus(401);
-
-    /**
-     * valid api token
-     */
-    if (token === process.env.HINA_API_TOKEN) return next();
-
-    /**
-     * invalid api token
-     */
-    res.sendStatus(401);
+    next();
 });
 
-/**
- * express routers
- */
-import apiRouter from './routes/api/api.js';
-app.use('/api', apiRouter);
+// app.use('/api', apiRouter);
 
-/**
- * run server
- */
 app.listen(3000, () => {
     console.log('Express server is running on port 3000.');
 });
