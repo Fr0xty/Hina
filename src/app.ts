@@ -54,4 +54,9 @@ import './server/server.js';
 /**
  * login into bot
  */
-Hina.login(Hina.token!);
+if (process.env.HINA_CLIENT_TOKEN === undefined) {
+    console.error('HINA_CLIENT_TOKEN is not defined in .env file!');
+    process.exit(1);
+}
+Hina.login(process.env.HINA_CLIENT_TOKEN);
+

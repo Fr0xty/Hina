@@ -7,7 +7,6 @@ import { Command } from 'hina';
 
 declare module 'discord.js' {
     export interface Client {
-        token: string;
         prefix: string;
         color: string;
         okEmoji: string;
