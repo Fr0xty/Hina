@@ -12,7 +12,6 @@ declare module 'discord.js' {
         color: string;
         okEmoji: string;
 
-        avatarHistoryChannel: any;
         owner: User;
 
         commands: Collection<String, BaseCommand>;
