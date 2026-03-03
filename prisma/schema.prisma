@@ -1,0 +1,25 @@
+generator client {
+    provider = "prisma-client"
+    output   = "../src/generated/prisma"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+model User {
+    id            BigInt          @id
+    created_at    DateTime        @default(now())
+
+    avatarHistory AvatarHistory[]
+}
+
+model AvatarHistory {
+    id         BigInt   @id @default(autoincrement())
+    user_id    BigInt
+    user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+    object_key String   @unique
+    created_at DateTime @default(now())
+
+    @@index([user_id, created_at(sort: Desc)])
+}

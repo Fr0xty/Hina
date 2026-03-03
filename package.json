@@ -5,6 +5,7 @@
   "main": "app.js",
   "type": "module",
   "dependencies": {
+    "@prisma/client": "^7.4.2",
     "discord.js": "^14.25.1",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
@@ -14,11 +15,15 @@
     "@fr0xty/prettier-config": "^1.0.2",
     "@types/express": "^5.0.6",
     "@types/node": "^25.1.0",
+    "prisma": "^7.4.1",
     "typescript": "^5.9.3"
   },
   "prettier": "@fr0xty/prettier-config",
   "scripts": {
-    "build": "tsc"
+    "build": "npx prisma generate && tsc",
+    "start": "docker compose up -d --build",
+    "down": "docker compose down",
+    "migrate:dev": "npm run start && docker compose exec bot npx prisma migrate dev && npm run down"
   },
   "repository": {
     "type": "git",
@@ -31,3 +36,4 @@
   },
   "homepage": "https://github.com/Fr0xty/Hina#readme"
 }
+

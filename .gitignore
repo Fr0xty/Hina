@@ -1,6 +1,7 @@
+/src/generated/prisma
+
 node_modules
 dist
-.env
 build
-.replit
-**/*.rest
+
+.env
