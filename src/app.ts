@@ -3,7 +3,7 @@ import fs from 'fs';
 import { SlashCommandBuilder } from 'discord.js';
 
 // import slashCommand from './utils/slashCommand.js';
-import Hina from './res/HinaClient.js';
+import hina from './lib/hina.js';
 
 /**
  * loading commands
@@ -58,5 +58,5 @@ if (process.env.HINA_CLIENT_TOKEN === undefined) {
     console.error('HINA_CLIENT_TOKEN is not defined in .env file!');
     process.exit(1);
 }
-Hina.login(process.env.HINA_CLIENT_TOKEN);
+hina.login(process.env.HINA_CLIENT_TOKEN);
 
