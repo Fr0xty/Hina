@@ -8,7 +8,7 @@ RUN yarn install --frozen-lockfile
 
 COPY . .
 
-RUN yarn build
+RUN yarn run docker:build
 
 FROM node:24.13.0-bookworm-slim
 

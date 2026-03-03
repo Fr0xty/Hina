@@ -20,10 +20,11 @@
   },
   "prettier": "@fr0xty/prettier-config",
   "scripts": {
-    "build": "npx prisma generate && tsc",
     "start": "docker compose up -d --build",
     "down": "docker compose down",
-    "migrate:dev": "npm run start && docker compose exec bot npx prisma migrate dev && npm run down"
+    "dev:generate": "npx prisma generate",
+    "dev:migrate": "npm run start && docker compose exec bot npx prisma migrate dev && npm run down",
+    "docker:build": "npm run dev:generate && tsc"
   },
   "repository": {
     "type": "git",
